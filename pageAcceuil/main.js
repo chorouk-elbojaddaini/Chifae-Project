@@ -122,10 +122,58 @@ faqs.forEach((faq) => {
     const icon = faq.querySelector(".faq_icon i");
     if (icon.className === "uil uil-plus") {
       icon.className = "uil uil-minus";
-    }
-    else{
-        icon.className ="uil uil-plus";
+    } else {
+      icon.className = "uil uil-plus";
     }
   });
 });
 // end faq open |close
+
+// CHANGE THE LANGUAGE
+var data = {
+  french: {
+    title:" prenez vos rendez-vous , accédez à vos espaces personnels en toute faciliter",
+    ville: "ville",
+    specialite: "Specialiste/generaliste",
+    shifae:"shifae"
+  },
+  arabe: {
+    title: "قم بأخذ موعد مع طبيبك ، تصفح منتداك الخاص بكل سهولة ",
+    ville: "المدينة",
+    specialite: "تخصص |عام",
+    shifae:"شفاء"
+  }
+};
+
+const langEl = document.querySelector(".langWrap");
+const link = document.querySelectorAll("a");
+const titleEl = document.querySelector(".title");
+const villeEl = document.querySelector(".ville");
+const shifaeEl = document.querySelector(".shifae");
+const specialiteEl = document.querySelector(".specialite");
+link.forEach((zl) => {
+  zl.addEventListener("click", () => {
+    const attr = zl.getAttribute("language");
+    titleEl.textContent = data[attr].title;
+    villeEl.textContent =data[attr].ville;
+    specialiteEl.textContent =data[attr].specialite;
+    shifaeEl.textContent =data[attr].shifae;
+    // villeEl.textContent = data[attr].ville;
+  });
+});
+//  black video
+// this.video.pause();
+// setTimeout(() => {
+//     this.video.play().then((res) => {
+//         console.log("playing start", res);
+//     })
+//     .catch((err) => {
+//         console.log("error playing", err);
+//     });
+// }, 0);
+
+// var videoEl = document.createElement('video');
+// videoEl.srcObject = mediaStream;
+// videoEl.setAttribute('playsinline', '');
+// videoEl.muted = true;
+

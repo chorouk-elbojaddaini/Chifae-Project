@@ -23,7 +23,7 @@
       rel="stylesheet"
       href="https://unicons.iconscout.com/release/v4.0.0/css/solid.css"
     />
-    <link rel="icon" type="image/png" href="./assets/Layer1.png" />
+    <link rel="icon" type="image/png" href="./assets/logo.png" />
     <title>Shifae</title>
   </head>
   <body>
@@ -31,17 +31,22 @@
       <div class="container nav_container">
         <div class="logo_cont">
           <a href="index.html"
-            ><img src="assets/Layer1.png" alt="logo" class="logo"
+            ><img src="assets/logo.png" alt="logo" class="logo"
           /></a>
-          <h4>Shifae</h4>
+          <h4 class="shifae">Shifae</h4>
         </div>
         <ul class="nav-menu">
           <li><a href="index.html">Acceuil</a></li>
           <li class="medecin"><a href="index.html">Medecin</a></li>
           <li class="patient"><a href="index.html">Patient</a></li>
-          <li><a href="index.html">Contact</a></li>
-          <li ><a href="" ><img src="assets/maroc.jpg" alt="maroc" class="arabe"><span class="arab-text">العربية</span></a></li>
-        </ul>
+          <li><a href="../ContactPage/contact.html">Contact</a></li>
+          <!-- <li >
+            <div class="langWrap">
+            <a href="#" language="arabe"><img src="assets/maroc.jpg" alt="maroc" class="arabe"> Ar</a>
+            <a href="#" language="french"><img src="assets/french.jpg" alt="maroc" class="arabe">Fr</a>
+          </div>
+        </li> -->
+          </ul>
         <!-- drop down medecin  -->
         <div class="dropdown">
           <button onclick="myFunction()" class="dropbtn"></button>
@@ -81,9 +86,8 @@
       <div class="container header_container">
         <div class="header-left">
           <div class="formwithh1">
-            <h1>
-              prenez vos rendez-vous , accédez à vos espaces personnels en toute
-              faciliter
+            <h1 class="title">
+              &nbsp; &nbsp; &nbsp;Je prends rendez-vous </br> avec un médecin à proximité
             </h1>
             <!-- start bare de recherche  -->
             <form
@@ -95,7 +99,7 @@
               <div class="box1">
                 <label for="cars"></label>
                 <select id="villes" name="ville">
-                  <option value="fa-map-o">Ville</option>
+                  <option value="fa-map-o" class="ville">Ville</option>
                   <option value="Ahfir">Ahfir</option>
                   <option value="Al Aroui">Al Aroui</option>
                   <option value="Beni Ensar">Beni Ensar</option>
@@ -109,7 +113,7 @@
               <div class="box2">
                 <label for="cars"></label>
                 <select id="specialites" name="specialite">
-                  <option value="Specialiste/generaliste">
+                  <option value="Specialiste/generaliste" class="specialite">
                     Specialiste/generaliste
                   </option>
                   <option value="generaliste">generaliste</option>
@@ -156,7 +160,7 @@
     
    <section class="section1">
     <h2 class="ml12">
-    Vous êtes un patient et vous voulez prendre un rendez-vous!</h2>
+    Vous voulez planifier un rendez-vous!</h2>
      
     
 
@@ -165,21 +169,21 @@
 		<img src="assets/Mobile inbox-rafiki.svg" alt="img">
 		<!-- <img src="assets/line-arrow-png-favpng-2raiLVTxv52r9tBhw0FqS5Ets.jpg" alt="img"> -->
 		<h3>1. chercher son rendez-vous</h3>
-		<p>Vous pouvez filtrer les résultats pour affiner votre recherche et consulter les informations professionnels de votre praticien</p>
+		<p>Vous pouvez filtrer les résultats pour affiner votre recherche et consulter les informations professionnels des médecins </p>
 	</div>
 
 	<div class="card card-two">
-        <img src="assets/Mobile login-bro.svg" alt="img">
+    <img src="assets/Timeline-bro.svg" alt="img">
 		<!-- <img src="assets/line-arrow-png-favpng-2raiLVTxv52r9tBhw0FqS5Ets.jpg" alt="img"> -->
-		<h3>2. Se connecter  </h3>
-		<p> Connectez-vous ou inscriez pour accéder à votre propre espace personnel et consultez votre dossier médical</p>
+		<h3>2. Choisir son praticien  </h3>
+		<p> choisissez  le médecin et planifier une date</p>
 	</div>
 
 	<div class="card card-three">
-        <img src="assets/Timeline-bro.svg" alt="img">
+    <img src="assets/Confirmed-rafiki.svg" alt="img">
 		<!-- <img src="assets/line-arrow-png-favpng-2raiLVTxv52r9tBhw0FqS5Ets.jpg" alt="img"> -->
 		<h3>3.Valider son choix </h3>
-		<p>choisissez votre praticien et confirmez votre rendez-vous en toute faciliter</p>
+		<p>Remplez vos informations et confirmez votre choix</p>
 	</div>
     </div>
    </section>
@@ -195,21 +199,21 @@
                 <div class="blog-slider__content">
                   <span class="blog-slider__code"></span>
                   <div class="blog-slider__title">Son espace personnel </div>
-                  <div class="blog-slider__text">accédez à votre espace ,consultez vos informations professionnels et  gérez votre calendrier de rendez-vous  </div>
+                  <div class="blog-slider__text">accédez à votre espace ,consultez vos informations professionnels   </div>
                   <a href="#" class="blog-slider__button">Se connecter</a>
                 </div>
               </div>
               
               <div class="blog-slider__item swiper-slide">
                 <div class="blog-slider__img">
-                  <img src="assets/blogs.png" alt="">
+                  <img src="assets/calendrier.jpg" alt="">
                 </div>
                 <div class="blog-slider__content">
                   <span class="blog-slider__code"></span>
-                  <div class="blog-slider__title">Son espace blog</div>
-                  <div class="blog-slider__text">Postez des blogs , des actualités , des nouveautés .Réagissez et partagez avec tout le monde
+                  <div class="blog-slider__title">Gérer Ses rendez-vous</div>
+                  <div class="blog-slider__text"> Modifiez votre temps de disponibilité dans un calendrier, ainsi consultez tout les informations de vos  patients 
                   </div>
-                  <a href="#" class="blog-slider__button">Publier </a>
+                  <a href="#" class="blog-slider__button">Se connecter </a>
                 </div>
               </div>
               
@@ -242,24 +246,24 @@
            </div>
            <div class="categories_right">
                <article class="category">
-                <span class="category_icon"><img src="assets/Ambulance-bro.svg" alt="img"></span>
-                  <a href="#"> <h5>SOS</h5></a>
-                   <a href="#"><p>Les contacts téléphonique d'urgence par ville</p></a>
+                <span class="category_icon"><img src="assets/Fill out-bro.svg" alt="img"></span>
+                  <a href="#"> <h5>Dossier médical</h5></a>
+                   <a href="#"><p>Tous les historiques médicaux , les documents d'analyses </p></a>
                </article>
                <article class="category">
-                <span class="category_icon"><img src="assets/Delivery-amico.svg" alt="img"></span>
-                <a href="#"><h5>livraison de médicaments</h5></a>
-                <a href="#"><p>Les contacts de livreurs de médicaments dans chaque ville</p></a>
+                <span class="category_icon"><img src="assets/Messaging-bro.svg" alt="img"></span>
+                <a href="#"><h5>Espace de messagerie</h5></a>
+                <a href="#"><p>Laissez un message pour votre médecin ou patient</p></a>
             </article>
             <article class="category">
-                <span class="category_icon"><img src="assets/Pharmacist-bro.svg" alt="img"></span>
-                <a href="#"><h5>Pharmacie de garde</h5></a>
-                <a href="#"><p>localisation et contacts de pharmacie de garde dans chaque ville</p></a>
+                <span class="category_icon"><img src="assets/Doctors-bro.svg" alt="img"></span>
+                <a href="#"><h5>Espace medecin </h5></a>
+                <a href="#"><p>Espace qui offre au médecins la possibilté de gérer ses rendez-vous </p></a>
             </article>
             <article class="category">
-                <span class="category_icon"><img src="assets/Researchers-bro.svg" alt="img"></span>
-                <a href="#"><h5>Laboratoire d'Analyse</h5></a>
-                <a href="#"><p>localisation et contacts de Laboratoire d'Analyse dans chaque ville</p></a>
+                <span class="category_icon"><img src="assets/Ophthalmologist-rafiki.svg" alt="img"></span>
+                <a href="#"><h5>Espace patient</h5></a>
+                <a href="#"><p> contient tous les informations personnels et son dossier médical</p></a>
             </article>
            </div>
        </div>
@@ -267,7 +271,7 @@
    <div class="vid-section">
        <h1> Découvrez notre site Shifae !</h1>
        <div class="vid-container">
-    <video width="560" height="315" controls controls>
+    <video width="365px" height=" 500px" controls controls>
         <source src="assets/vid1.mp4" type="video/mp4">
         <source src="assets/vid1.webm" type="video/webm">
         <p>Votre navigateur ne prend pas en charge les vidéos HTML5.
@@ -276,7 +280,7 @@
       </div>
    </div>
    <div class="QA">
-       <h1>Plus Fréquents Questions </h1>
+       <h1>Les questions les plus fréquentes </h1>
     <div class="container faqs_container">
         <article class="faq">
             <div class="faq_icon"><i class="uil uil-plus"></i></div>
@@ -336,7 +340,7 @@
         <div class="footer-widget">
           <a href="#">
               <div class="logo-footer">
-            <img src="assets/Layer1.png" class="logo" />
+            <img src="assets/logo.png" class="logo" />
             <p>Shifae</p></div>
           </a>
           <p class="desc">
@@ -368,7 +372,7 @@
           <h6>des liens rapides</h6>
           <ul class="links">
             <li><a href="#">Acceuil</a></li>
-            <li><a href="#"></a>Se connecter</li>
+            <li><a href="#">Se connecter</a></li>
             <li><a href="#">services</a></li>
             <!-- <li><a href="#">testimonial</a></li> -->
             <li><a href="#">contact</a></li>
