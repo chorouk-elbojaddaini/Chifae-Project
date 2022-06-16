@@ -1,3 +1,28 @@
+<?php
+  // $file_new_name = $_POST["nom-docs"];
+  if (isset($_POST['upload']))
+  {
+    // $file = $_FILES["file"];
+    $file_size = $_FILES["file"]["size"];
+    $file_name = $_FILES["file"]["name"];
+    $file_temp = $_FILES["file"]["tmp_name"];
+
+    $location = "telecharge/";
+    //condition sur la taille de fichier :10 MB max
+    if($file_size>10485760)
+    { 
+           echo "<script>alert('Tres grande taille: taille maximale 10MB')</script>";
+
+    }
+    else
+    {
+      move_uploaded_file( $file_temp ,$location. $file_name);
+      // move_uploaded_file( $file_temp ,$location. $file_new_name);
+
+    }
+     
+  }
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,8 +177,8 @@
         <div class="header">
           <p><i class="fa fa-cloud-upload fa-2x"></i><span id="telecharge">Télecharger</span></p>			
         </div>
-        <form class="body">
-          <input type="file" id="upload">
+        <form class="body" action=""  method="post"  enctype="multipart/form-data">
+          <input type="file" id="upload" name="file" required>
           <label for="upload">
             <i class="fa fa-file-text-o fa-3x"></i>
             <p>
@@ -161,7 +186,7 @@
               ou <span>parcourir </span><br> pour commencer le téléchargement
             </p>
           </label>
-          <button class="ajout-fichier">Ajouter </button> 
+          <button class="ajout-fichier" name="upload">Ajouter </button> 
 
           <!-- <button class="fermer">Fermer </button>  -->
         </form>

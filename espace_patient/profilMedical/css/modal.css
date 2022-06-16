@@ -375,7 +375,7 @@
   width: 400px;
   height: 445px;
   /* margin: 20px; */
-  /* box-shadow: 0 0 5px rgba(0,0,0,.3); */
+  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.384); */
   padding:20px 10px;
   position: absolute;
   top:50%;
@@ -424,7 +424,7 @@
 }
 
 .file__upload .body input[type="file"] {
-  display: none;
+  opacity: 0;
 }
 
 .file__upload .body i.fa {
