@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/nav.css" />
+    <link rel="icon" type="image/png" href="./images/logo.png" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
+  <link
+  rel="stylesheet"
+  href="https://unicons.iconscout.com/release/v4.0.0/css/solid.css"
+/>
+    <!-- cdn icons link  -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+    <title>Profil Médical | Chifae</title>
+      <!-- Font Awesome CDN Link -->
+      <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!---------------------------BOX ICONS ------------------------------>
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+
+
+
+</head>
+<body>
+    <nav>
+        <div class="container nav_container">
+          <div class="logo_cont">
+            <a href="index.html"
+              ><img src="./assets/logo.png" alt="logo" class="logo"
+            /></a>
+            <h4>Shifae</h4>
+          </div>
+          <ul class="nav-menu">
+            <li><a href="patient/index.html">Acceuil</a></li>
+            <li class="medecin"><a href="index.html">Mon profil médical</a></li>
+            <li class="patient"><a href="document.html">Documents</a></li>
+          </ul>
+          <!-- drop down medecin  -->
+          <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn"></button>
+            <div id="myDropdown" class="dropdown-content">
+              <hr class="solid" />
+              <a href="#">Mon espace </a>
+              <hr class="solid" />
+              <a href="#">Mes blogs</a>
+              <hr class="solid" />
+              <a href="#">Se déconnecter</a>
+              <hr class="solid" />
+            </div>
+          </div>
+          <!-- end  drop down medecin  -->
+          
+          <!-- drop down patient -->
+          <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn"></button>
+            <div id="myDropdown" class="dropdown-content">
+              <hr class="solid" />
+              <a href="#">Mon dossier medical</a>
+              <hr class="solid" />
+              <a href="#">Prendre un rendez-vous</a>
+              <hr class="solid" />
+              <a href="#">Se déconnecter</a>
+              <hr class="solid" />
+            </div>
+          </div>
+          <!-- end drop down patient -->
+          <!-------------------------------------------------->
+         <input type="image"  src="images/profile.jpg" alt="profile" id="user">
+          <button class="open_menu_botton"><i class="uis uis-bars"></i></button>
+          <button class="close_menu_botton">
+            <i class="uis uis-multiply"></i>
+          </button> 
+          
+        
+        </div>
+      </nav>
+          <!-----------------PROFIL MODAL------------------>
+          <div class="overlay " >
+       
+            <div id="popup" class="popup">
+             <div class="modal-btn"  >
+               <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
+                 <img type="image"  src="images/profile.jpg" alt="profile" id="account">
+                   <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
+                      <a class="pop"href="profil.html" target="_blank" id="monProfil">Mon Profil</a>
+                      <a class="pop" href="#" id="deconnect">Se déconnecter</a>
+           </div>
+            </div>
+           
+          </div>
+       <!-- ------------------------------------------ -->
+   <div class="wrapp">
+ <!--=====================FIXED CONTENT======================-->
+       <!-- --------------------PROFILE------------------->
+        <div class="profil border">
+           <img src="images/profi.png" id="profil" alt="profil">
+          <div class="profil-text">
+            <h1 id="profil-medical">Profil Médical</h1>
+           <p>Je complète mon profil médical pour retrouver facilement toutes les informations importantes qui caractérisent ma santé</p>
+           <a href="#" id="prendre-rdv">Prendre un Rendez-vous ></a>
+          </div>
+          
+        </div>
+       <!-- --------------------TABS------------------->
+         <div class="tabs" >
+            <ul id="tabs">
+              <li class="tab is-active"><a  href="#" data-switcher data-tab="1">Maladies et sujets de santé</a></li>
+              <li class="tab "><a  href="#" data-switcher data-tab="2">Traitements</a></li>
+              <li class="tab "><a  href="#" data-switcher data-tab="3">Hospitalisation et chirurgies</a></li>
+              <li  class="tab "><a href="#" data-switcher data-tab="4">Allergies</a></li>
+              <li class="tab "><a  href="#" data-switcher data-tab="5">Vaccinations</a></li>
+              <li class="tab " ><a href="#" data-switcher data-tab="6">Mesures</a></li>
+              <li class="tab "><a  href="#" data-switcher data-tab="7">Antécédents familiaux</a></li>
+              <li class="tab"><a  href="#" data-switcher data-tab="8">Historique des soins</a></li>
+              <li  class="tab "><a href="#" data-switcher data-tab="9">Infos administratives</a></li>
+            </ul>
+         </div>
+<!-- ==================================PAGES=================================-->
+      
+              <!-- =====================PAGE 1 =========================-->
+         <div class="page  is-active" data-page="1" >
+              <!-- -------------------------Descriptions------------------------ -->
+              <div class="description " data-page="1">
+
+                   <div class="text-img">
+                      <img src="images/load.png" alt="load-a-file" id="add-file">
+                       <div class="text">
+                        <h2 id="ajout" class="hover-underline-animation">
+                          J'ajoute mes maladies et autres sujets de santé
+                        </h2>
+                        <p>
+                          Je peux renseigner l'ensemble de mes maladies et autres sujets de santé actuels ou passes (exemples : maladies graves,suivi dentaires, grossesses, douleurs chroniques...)
+                        </p>
+                        <button type="button" class="open-form" id="add-maladie" onclick="displayForm('maladie')">Ajouter une maladie</button>
+                       </div>
+                   </div>
+                 
+                   <!-- -----------------------REMPLISSAGE DES MALADIES------------------------ -->
+               
+              <div class="overlay-form maladie" id="maladie">
+                <form action="#" method="post" name="maladie" class="form border" id="maladie-form">
+                
+                          <label >
+                            Nom du maladie : 
+                            <input type="text" minlength="3" name="nom-maladie"  placeholder="Entrez le nom du maladie"/>
+                        </label>
+                          <label >
+                              Date début du maladie :
+                              <input type="date"id="date-maladie"name="maladie-date" required/>
+                          </label>
+                            <label >
+                                Description :
+                                <textarea name="desc-maladie"  id="desc-maladie"  rows="4" placeholder="Décrivez votre maladie"></textarea>
+                            </label>
+                            
+                        <button type="button" class="form-btn" id="maladie-btn" >Ajouter</button>
+               </form>
+              </div>
+              </div>
+             
+              <!-- -------------------------Contenu------------------------ -->
+              <div class="contenu " data-page="1">
+                <hr>
+                <!-- -----------------------AFFICHAGE DES MALADIES------------------------ -->
+                 <div class="affichage">
+                 
+                     <div class="affichage-item border">
+                         <h4>Nom du maladie</h4>
+                         <p>Depuis <span>Date de la maladie</span></p>
+                         <p>Decription Lorem ipsum dolor sit am</p>
+                         <div class="modif-suprim">
+                          <img src="images/update.PNG" alt="modifier-icon">
+                          <img src="images/delete.PNG" alt="supprimer-icon">
+                         </div>
+                     </div>
+                 </div>
+                 <table id="maladie-table">
+                  <thead>
+                    <tr>
+                      <th>Nom du maladie</th>
+                      <th>Depuis</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Arthrose</td>
+                      <td>12 juillet 2020</td>
+                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum fugiat, iste odio dolorem voluptatibus aperiam ipsum rem, nemo maxime dolor animi eius vitae debitis laudantium itaque quasi officia, molestiae quae?</td>
+                    </tr>
+                    <tr>
+                      <td>Arthrose</td>
+                      <td>12 juillet 2020</td>
+                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum fugiat, iste odio dolorem voluptatibus aperiam ipsum rem, nemo maxime dolor animi eius vitae debitis laudantium itaque quasi officia, molestiae quae?</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="button" class="modif-table" id="modif-maladie">Modifier</button>
+              </div>
+         </div>
+          <!-- =====================PAGE 2 =========================-->
+        <div class="page " data-page="2">
+              <!-- -------------------------Descriptions------------------------ -->
+              <div class="description" data-page="2">
+                  <div class="text-img">
+                     <img src="images/traitement.png" alt="medicament" id="add-file">
+                      <div class="text">
+                       <h2 id="ajout" class="hover-underline-animation">
+                         J'ajoute mes traitements
+                       </h2>
+                       <p>
+                         Je peux renseigner l'ensemble de mes traitements (exemples : maladies graves,suivi dentaires, grossesses, douleurs chroniques...)
+                       </p>
+                       <button type="button" class="open-form" id="add-traitement" onclick="displayForm('traitement')">Ajouter un traitement</button>
+                      </div>
+                  </div>
+                
+                  <!-- -----------------------REMPLISSAGE DES TARAITEMENTS------------------------ -->
+              
+             <div class="overlay-form traitement" id="traitement" >
+               <form action="#" method="post" name="traitement" class="form border" id="traitement-form">
+               
+                         <label >
+                           Nom du traitement : 
+                           <input type="text" minlength="3" name="nom-traitement"  placeholder="Entrez le nom du traitement"/>
+                       </label>
+                         <label >
+                             Date début  :
+                             <input type="date"id="date-traitement"name="traitement-date" required/>
+                         </label>
+                         <label >
+                          Durée du Traitement : 
+                          <input type="text" minlength="3" name="duree-traitement"  placeholder="exp: 3 mois ....."/>
+                      </label>
+                      <label >
+                        Dose : 
+                        <input type="text" minlength="3" name="duree-traitement"  placeholder="exp: 2 fois par jour ....."/>
+                    </label>
+                           <label >
+                               Description :
+                               <textarea name="desc-traitement"  id="desc-traitement"  rows="4" placeholder=""></textarea>
+                           </label>
+                           
+                       <button type="button" class="form-btn" id="traitement-btn">Ajouter</button>
+              </form>
+             </div>
+             
+              </div>
+              <!-- -------------------------Contenu------------------------ -->
+
+              <div class="contenu" data-page="2">
+                <div class="affichage ">
+                  <hr>
+                     <div class="affichage-item border ">
+                         <h4>Nom du Traitement</h4>
+                         <p>Depuis <span> 12 juillet 2020</span></p>
+                         <p>Durée: <span> 3 mois</span></p>
+                         <p>Dose: <span> 2 fois par jour</span></p>
+                         <p>Decription Lorem ipsum dolor sit am</p>
+                         <div class="modif-suprim">
+                          <img src="images/update.PNG" alt="modifier-icon">
+                          <img src="images/delete.PNG" alt="supprimer-icon">
+                         </div>
+                     </div>
+                 </div>
+                 <hr>
+              <table id="traitement-table">
+                <thead>
+                  <tr>
+                    <th>Nom du Traitement</th>
+                    <th>Date de début</th>
+                    <th>Durée</th>
+                    <th>Dose</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Paracitamole</td>
+                    <td>12 juillet 2020</td>
+                    <td>3 mois</td>
+                    <td>2 fois par jour</td>
+                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum fugiat, iste odio dolorem voluptatibus aperiam ipsum rem, nemo maxime dolor animi eius vitae debitis laudantium itaque quasi officia, molestiae quae?</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" class="modif-table" id="modif-traitement">Modifier</button>
+
+         </div>
+              
+         </div>
+            <!-- =====================PAGE 3 =========================-->
+            <div class="page "  data-page="3">
+              <!-- -------------------------Descriptions------------------------ -->
+               <div class="description" data-page="3">
+                <div class="text-img">
+                  <img src="images/hospital.png" alt="load-a-file" id="add-file">
+                   <div class="text">
+                    <h2 id="ajout" class="hover-underline-animation">
+                      J'ajoute une hospitalisation ou un acte chirurgical
+                    </h2>
+                    <p>
+                      Je peux renseigner l'ensemble de mes hospitalisations et autres actes chirurgicals actuels ou passes 
+                    </p>
+                    <button type="button" class="open-form" id="add-hospital" onclick="displayForm('hospital')">Ajouter</button>
+                   </div>
+               </div>
+               </div>
+               <!-- -----------------------------form----------------------------------- -->
+               <div class="overlay-form hospital" id="hospital">
+                <form action="#" method="post" name="hospital" class="form border" id="hospital-form">
+                
+                          <label >
+                            Cause : 
+                            <input type="text" minlength="3" name="cause-hospital"  placeholder="Chirurgie cardiaque"/>
+                        </label>
+                          <label >
+                              Date d'admission :
+                              <input type="date"id="date-hospital" name="hospital-date" required/>
+                          </label>
+                          <label >
+                            Durée de séjour :
+                            <input type="text" minlength="3"id="date-hospital" name="hospital-date" />
+                        </label>
+                            <label >
+                              Description :
+                                <textarea name="desc-hospital"  id="desc-hospital"  rows="4" placeholder=" Description "></textarea>
+                            </label>
+                            
+                        <button type="button" class="form-btn" id="hospital-btn">Ajouter</button>
+               </form>
+              </div>
+              <!-- -------------------------Contenu------------------------ -->
+               
+              <div class="contenu" data-page="3">
+                <div class="affichage ">
+                  <hr>
+                     <div class="affichage-item border ">
+                         <h4>Cause</h4>
+                         <p> Date d'admission : <span> 12 juillet 2020</span></p>
+                         <p> Durée de séjour : <span> 2 jours</span></p>
+                         <p>Description : Lorem ipsum dolor sit am</p>
+                         <div class="modif-suprim">
+                          <img src="images/update.PNG" alt="modifier-icon">
+                          <img src="images/delete.PNG" alt="supprimer-icon">
+                         </div>
+                     </div>
+                 </div>
+                 <hr>
+              <table id="hospital-table">
+                <thead>
+                  <tr>
+                    <th>Cause</th>
+                    <th>Date d'admission</th>
+                    <th>Durée de séjour </th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Chirurgie cardiaque</td>
+                    <td>12 juillet 2020</td>
+                    <td>3 mois</td>
+                    <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum fugiat, iste odio dolorem voluptatibus aperiam ipsum rem, nemo maxime dolor animi eius vitae debitis laudantium itaque quasi officia, molestiae quae?</td>
+                  </tr>
+                </tbody>
+              </table>
+              <button type="button" class="modif-table" id="modif-hospital">Modifier</button>
+
+         </div>
+            </div>
+          <!-- =====================PAGE 4 =========================-->
+              <div class="page " data-page="4">
+              <!-- -------------------------Descriptions------------------------ -->
+                 <div class="description" data-page="4">
+                  <div class="text-img">
+                    <img src="images/allergie.png" alt="allergie" id="add-file">
+                     <div class="text">
+                      <h2 id="ajout" class="hover-underline-animation">
+                        J'ajoute mes allergies
+                      </h2>
+                      <p>
+                        Je peux renseigner l'ensemble de mes allergies et les décrire 
+                      </p>
+                      <button type="button" class="open-form" id="add-allergy" onclick="displayForm('allergy')">Ajouter</button>
+                     </div>
+                 </div>
+                 </div>
+                 <!-- -----------------------------form----------------------------------- -->
+               <div class="overlay-form allergy" id="allergy">
+                <form action="#" method="post" name="allergy" class="form border" id="allergy-form">
+                
+                          <label >
+                            Nom d'allergie : 
+                            <input type="text" minlength="3" name="nom-allergy"  placeholder="Allergie alimentaire"/>
+                          </label>
+                            <label >
+                              Description :
+                                <textarea name="desc-allergy"  id="desc-allergy"  rows="4" placeholder=" Description "></textarea>
+                            </label>
+                            
+                        <button type="button" class="form-btn" id="allergy-btn">Ajouter</button>
+               </form>
+              </div>
+              <!-- -------------------------Contenu------------------------ -->
+
+                 <div class="contenu" data-page="4">
+                  <div class="affichage ">
+                    <hr>
+                       <div class="affichage-item border ">
+                           <h4> Nom d'allergie</h4>
+                           <p>Description : Lorem ipsum dolor sit am</p>
+                           <div class="modif-suprim">
+                            <img src="images/update.PNG" alt="modifier-icon">
+                            <img src="images/delete.PNG" alt="supprimer-icon">
+                           </div>
+                       </div>
+                   </div>
+                   <hr>
+                <table id="allergy-table">
+                  <thead>
+                    <tr>
+                      <th>Nom d'allergie</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Allergie alimentaire</td>
+                      <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum fugiat, iste odio dolorem voluptatibus aperiam ipsum rem, nemo maxime dolor animi eius vitae debitis laudantium itaque quasi officia, molestiae quae?</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <button type="button" class="modif-table" id="modif-allergie">Modifier</button>
+
+                 </div>
+              </div>
+            <!-- =====================PAGE 5 =========================-->
+                <div class="page " data-page="5">
+              <!-- -------------------------Descriptions------------------------ -->
+                   <div class="description" data-page="5">
+                    <div class="text-img">
+                      <img src="images/vaccin.png" alt="vaccin" id="add-file">
+                       <div class="text">
+                        <h2 id="ajout" class="hover-underline-animation">
+                          J'ajoute mes vaccins
+                        </h2>
+                        <p>
+                          Je peux renseigner l'ensemble de mes vaccins et les décrire 
+                        </p>
+                        <button type="button" class="open-form" id="add-vaccin" onclick="displayForm('vaccin')">Ajouter</button>
+                       </div>
+                   </div>
+                   </div>
+                       <!-- -----------------------------form----------------------------------- -->
+               <div class="overlay-form vaccin" id="vaccin">
+                <form action="#" method="post" name="vaccin" class="form border" id="vaccin-form">
+                
+                          <label >
+                            Nom du vaccin : 
+                            <input type="text" minlength="3" name="nom-vaccin"  placeholder="Exp: astrazeneca"/>
+                          </label>
+                          <label >
+                            Date de l'act  :
+                            <input type="date"id="date-vaccin"name="vaccin-date" required/>
+                        </label>
+                        <label >
+                         Protège contre : 
+                         <input type="text" minlength="3" name="utilite-vaccin"  placeholder="exp: Protège contre covid-19 ....."/>
+                     </label>
+                     <label >
+                       Nombre des rappels : 
+                       <input type="number"  name="nbr-vaccin"  placeholder="exp: 2 fois ....."/>
+                   </label>
+                          <label >
+                              Description :
+                              <textarea name="desc-vaccin"  id="desc-vaccin"  rows="4" placeholder="Exp: J'ai eu des effets secondaires ..."></textarea>
+                          </label>
+                            
+                        <button type="button" class="form-btn" id="vaccin-btn">Ajouter</button>
+               </form>
+              </div>
+              <!-- -------------------------Contenu------------------------ -->
+
+                   <div class="contenu" data-page="5">
+                    <div class="affichage ">
+                      <hr>
+                         <div class="affichage-item border ">
+                             <h4>Nom du vaccin </h4>
+                             <p>  Date de l'act : <span> 12 juillet 2020</span></p>
+                             <p> Protège contre :  <span> covid-19</span></p>
+                             <p> Nombre des rappels :  <span> 2 fois</span></p>
+                             <p>Description : Lorem ipsum dolor sit am</p>
+                             <div class="modif-suprim">
+                              <img src="images/update.PNG" alt="modifier-icon">
+                              <img src="images/delete.PNG" alt="supprimer-icon">
+                             </div>
+                         </div>
+                     </div>
+                     <hr>
+                  <table id="vaccin-table">
+                    <thead>
+                      <tr>
+                        <th>Nom du vaccin</th>
+                        <th> Date de l'act</th>
+                        <th>Protège contre </th>
+                        <th>Nombre des rappels </th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>astrazeneca</td>
+                        <td>12 juillet 2020</td>
+                        <td>covid-19</td>
+                        <td>2 fois</td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum fugiat, iste odio dolorem voluptatibus aperiam ipsum rem, nemo maxime dolor animi eius vitae debitis laudantium itaque quasi officia, molestiae quae?</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                <button type="button" class="modif-table" id="modif-vaccin">Modifier</button>
+
+                   </div>
+                </div>
+          <!-- =====================PAGE 6 =========================-->
+                 <div class="page " data-page="6">
+              <!-- -------------------------Descriptions------------------------ -->
+                   <div class="description" data-page="6">
+                    <div class="text-img">
+                      <img src="images/mesurement.png" alt="load-a-file" id="add-file">
+                       <div class="text">
+                        <h2 id="ajout" class="hover-underline-animation">
+                          J'ajoute mes mesures , et Je controle ma santé
+                        </h2>
+                        <p>
+                          Je peux renseigner l'ensemble de mes mesures  
+                        </p>
+                       </div>
+                   </div>
+                   </div>
+              <!-- -------------------------Contenu------------------------ -->
+
+                    <div class="contenu mesure" data-page="6">
+                      <hr>
+                      <form action="#" method="post" name="mesure" class="grid-mesure" id="mesure-form">
+                           <div class="mesure">
+                            <img src="images/poid.png" alt="poids" />
+                             <label >
+                              Poids
+                               <input type="text" value="" name="poid" id="M1">
+                              <span class="masure-time">12/06/2022</span>
+
+                              </label>
+                            </div>
+                           <div class="mesure">
+                             <img src="images/taille.png" alt="taille" />
+                              <label >
+                              Taille
+                              <input type="text" value="" name="taille" id="M2">
+                              <span class="masure-time">12/06/2022</span>
+
+                            </label>
+                          </div>
+                           <div class="mesure">
+                            <img src="images/imc.png" alt="icm" />
+                              <label >
+                                ICM <span>Indice de Masse Corporelle</span>
+                                <input type="text" value="" name="IMC" id="M3">
+                              <span class="masure-time">12/06/2022</span>
+
+                              </label>
+                            </div>
+                           <div class="mesure">
+                            <img src="images/tour.png" alt="Tour de taille" />
+                             <label >
+                              Tour de taille
+                              <input type="text" value="" name="tour-taille" id="M4">
+                              <span class="masure-time">12/06/2022</span>
+
+                            </label>
+                          </div>
+                           <div class="mesure">
+                            <img src="images/temperature.png" alt="Température" />
+                            <label >
+                              Température
+                              <input type="text" value="" name="temperature" id="M5">
+                              <span class="masure-time">12/06/2022</span>
+
+                            </label>
+                          </div>
+                           <div class="mesure">
+                            <img src="images/tension.png" alt="Tension artérielle" />
+                            <label >
+                              Tension artérielle
+                              <input type="text" value="" name="tension-arterielle" id="M6">
+                              <span class="masure-time">12/06/2022</span>
+
+                            </label>
+                          </div>
+                           <div class="mesure">
+                            <img src="images/frq.png" alt="fréquence cardiaque" />
+                            <label >
+                              fréquence cardiaque
+                              <input type="text" value="" name="frq-cardiaque" id="M7">
+                              <span class="masure-time">12/06/2022</span>
+
+                            </label>
+                          </div>
+                           <div class="mesure">
+                            <img src="images/glycemie.png" alt="Glycémie" />
+                            <label >
+                              Glycémie
+                              <input type="text" value="" name="glycemie" id="M8">
+                              <span class="masure-time">12/06/2022</span>
+                            </label>
+                          </div>
+                          
+                      </form>
+                    </div>
+                 </div>
+            <!-- =====================PAGE 7 =========================-->
+                  <div class="page " data-page="7">
+              <!-- -------------------------Descriptions------------------------ -->
+                     <div class="description" data-page="7">
+                      <div class="text-img">
+                        <img src="images/family.png" alt="family" id="add-file">
+                         <div class="text">
+                          <h2 id="ajout" class="hover-underline-animation">
+                            J'ajoute mes antécédents familiaux
+                          </h2>
+                          <p>
+                            Je peux renseigner l'ensemble de mes antécédents familiaux et les décrire 
+                          </p>
+                          <button type="button" class="open-form" id="add-antecedent" onclick="displayForm('antecedent')">Ajouter</button>
+                         </div>
+                     </div>
+                     </div>
+                          <!-- -----------------------------form----------------------------------- -->
+               <div class="overlay-form antecedent" id="antecedent">
+                <form action="#" method="post" name="antecedent" class="form border" id="antecedent-form">
+                
+                          <label >
+                            Nom de la maladie : 
+                            <input type="text" minlength="3" name="nom-antecedent"  placeholder="Exp: Diabête type 1"/>
+                          </label>
+                          <label >
+                            Lien Familiale : 
+                            <input type="text" minlength="3" name="nom-antecedent"  placeholder="Exp: Mère"/>
+                          </label>
+                            <label >
+                              Description :
+                                <textarea name="desc-antecedent"  id="desc-antecedent"  rows="4" placeholder=" Description "></textarea>
+                            </label>
+                            
+                        <button type="button" class="form-btn" id="antecedent-btn">Ajouter</button>
+               </form>
+              </div>
+              <!-- -------------------------Contenu------------------------ -->
+
+                     <div class="contenu" data-page="7">
+                      <div class="affichage ">
+                        <hr>
+                           <div class="affichage-item border ">
+                               <h4>Nom de la maladie </h4>
+                               <p>Lien Familiale : <span> Mère</span></p>
+                               <p>Description : Lorem ipsum dolor sit am</p>
+                               <div class="modif-suprim">
+                                <img src="images/update.PNG" alt="modifier-icon">
+                                <img src="images/delete.PNG" alt="supprimer-icon">
+                               </div>
+                           </div>
+                       </div>
+                       <hr>
+                    <table id="antecedent-table">
+                      <thead>
+                        <tr>
+                          <th>Nom de la maladie</th>
+                          <th>Lien Familiale </th>
+                          <th>Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Diabête type 1</td>
+                          <td>Mère</td>
+                          <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum fugiat, iste odio dolorem voluptatibus aperiam ipsum rem, nemo maxime dolor animi eius vitae debitis laudantium itaque quasi officia, molestiae quae?</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                <button type="button" class="modif-table" id="modif-antecedent">Modifier</button>
+
+                     </div>
+                  </div>
+         <!-- =====================PAGE 8 =========================-->
+                <div class="page " data-page="8">
+              <!-- -------------------------Descriptions------------------------ -->
+                   <div class="description" data-page="8">
+                    <div class="text-img">
+                      <img src="images/historic.png" alt="historic" id="add-file">
+                       <div class="text">
+                        <h2 id="ajout" class="hover-underline-animation">
+                          Je trouve mon historique du soin
+                        </h2>
+                        <p>
+                          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium velit quo mollitia iste pariatur! Quod tenetur 
+                        </p>
+                        
+                       </div>
+                   </div>
+                   </div>
+              <!-- -------------------------Contenu------------------------ -->
+
+                   <div class="contenu" data-page="8">
+                    <hr>
+                   </div>
+                </div>
+          <!-- =====================PAGE 9 =========================-->
+                  <div class="page " data-page="9">
+              <!-- -------------------------Descriptions------------------------ -->
+                     <div class="description" data-page="9">
+                      <div class="text-img">
+                        <img src="images/info-admi.png" alt="infos administratives" id="add-file">
+                         <div class="text">
+                          <h2 id="ajout" class="hover-underline-animation">
+                            Je trouve mes informations administratives
+                          </h2>
+                          <p>
+                            Je trouve mes informations administratives que je peux les partager avec les professionnels de santé.
+                          </p>
+                         </div>
+                         <div class="infos-btn">
+                          <button  name="modif-info" class="profil-info">Modifier</button>
+                          <button name="partager-profil" class="profil-info">Partager</button>
+                         </div>
+                     </div>
+                          <hr>
+
+                     </div>
+              <!-- -------------------------Contenu------------------------ -->
+
+                     <div class="contenu" data-page="9">
+                      <!-- ================================INFOS PERSONNELLES ET MESURES ======================== -->
+                      <div class="info-administratives  " id="personal-data-all">
+                         <h3 class="hover-underline-animation h3-info" id="">Informations personnelles et mesure :</h3>
+                           <div class="infos" id="personal-data">
+                              <p class="">Nom et prénom :<span>&nbsp;Najma Blqasm</span></p>
+                              <p class="">Tél :<span>&nbsp;0739820120</span></p>
+                              <p class="">Né(e) le :<span>&nbsp;23 mai 2000</span></p>
+                              <p class="">Adresse :<span>&nbsp;Hay el qods</span></p>
+                              <p class="">Sexe :<span>&nbsp;Femme</span></p>
+                              <p class="">Group sanguin :<span>&nbsp;O+</span></p>
+                              <p class="">Etat civil :<span>&nbsp;Mariée</span></p>
+                              <p class="">Poids :<span>&nbsp;70 kg</span></p>
+                              <p class="">Taille :<span>&nbsp;165 cm</span></p>
+                              
+                         </div>
+                       </div>
+                       <hr>
+                       <div class="infos" id="info-traitement-vaccin">
+                         <ul class="info" id="maladie-anteced">
+                          <h3 class="h3-info">
+                              Antécédents médicaux et maladies:
+                          </h3>
+                          <li>Lorem ipsum dolor, sit amet </li>
+                          <li>consectetur adipisicing elit.  </li>
+                          <li>neque perspiciatis laborum </li>
+                        </ul>
+                        <ul class="info" id="hospitalisaion-anteced">
+                          <h3 class="h3-info">
+
+                              Hospitalisation et chirurgies:
+                          </h3>
+                          <li>Odit molestiae nihil eaque </li>
+                          <li>placeat quas earum impedit</li>
+                          <li>officiis! Unde perspiciatis a sed</li>
+                        </ul>
+                        <ul class="info" id="allergie-anteced">
+
+                          <h3 class="h3-info">
+
+                              Antécédents allérgiques :
+                          </h3>
+                          <li>culpa voluptates eaque</li>
+                          <li>quaerat provident! Sapiente.</li>
+                          <li>quaerat provident! Sapiente.</li>
+
+                        </ul>
+                        <ul class="info" id="familiaux-anteced">
+                          <h3 class="h3-info">
+
+                            Antécédents familiaux :
+                          </h3>
+                          <li>culpa voluptates eaque</li>
+                          <li>quaerat provident! Sapiente.</li>
+                          <li>quaerat provident! Sapiente.</li>
+                        </ul>
+                       </div>
+                       <hr>
+                       <div class="infos" id="info-antecedents">
+                        <ul class="info" id="traitement-info">
+                         <h3 class="h3-info">
+                             Traitements:
+                         </h3>
+                         <li>Lorem ipsum dolor, sit amet </li>
+                         <li>consectetur adipisicing elit.  </li>
+                         <li>neque perspiciatis laborum </li>
+                       </ul>
+                       <ul class="info" id="vaccin-info">
+
+                         <h3 class="h3-info">
+
+                             Vaccins:
+                         </h3>
+                         <li>Odit molestiae nihil eaque </li>
+                         <li>placeat quas earum impedit</li>
+                         <li>officiis! Unde perspiciatis a sed</li>
+                       </ul>
+                      </div>
+                     </div>
+                   
+                  </div>
+
+          <!-- =====================END OF PAGES========================-->
+         <!-- </div> -->
+    </div>
+     <footer>
+        <div class="container">
+          <div class="wrapper">
+            <div class="footer-widget">
+              <a href="#">
+                  <div class="logo-footer">
+                <img src="assets/logo.png" class="logo" />
+                <p>Shifae</p></div>
+              </a>
+              <p class="desc">
+              </p>
+              <ul class="socials">
+                <li>
+                  <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer-widget">
+              <h6>des liens rapides</h6>
+              <ul class="links">
+                <li><a href="#">Acceuil</a></li>
+                <li><a href="#"></a>Se connecter</li>
+                <li><a href="#">services</a></li>
+                <!-- <li><a href="#">testimonial</a></li> -->
+                <li><a href="#">contact</a></li>
+              </ul>
+            </div>
+            <div class="footer-widget">
+              <h6>Services</h6>
+              <ul class="links">
+                <li><a href="#">SOS</a></li>
+                <li><a href="#">livraison de médicaments</a></li>
+                <li><a href="#">Pharmacies de garde</a></li>
+                <li><a href="#">Contacts de Laboratoires</a></li>
+              </ul>
+            </div>
+            <div class="footer-widget">
+              <h6>Aide &amp; Support</h6>
+              <ul class="links">
+                <!-- <li><a href="#">support center</a></li> -->
+                <!-- <li><a href="#">live chat</a></li> -->
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">Conditions Générales d’Utilisation </a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="copyright-wrapper">
+            <p>
+                © 2022 Shifae.com - Tous les droits sont réservés
+              <a href="#" target="blank">Shifae</a>
+            </p>
+          </div>
+        </div>
+      </footer>      
+  
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<script src="js/script.js" defer></script>
+<script src="js/main.js" defer></script>
+<script src="js/modal.js" defer></script>
+
+</body>
+</html>

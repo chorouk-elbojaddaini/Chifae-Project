@@ -1,0 +1,880 @@
+:root {
+    --grey: #eff5f57a;
+    --green: #13565f;
+    --pink: #fe6687ee;
+  }
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  body
+  {
+    background-color:#e6edee;
+  }
+  /********************************************GENERAL STYLING*****************************/
+  /*create white Border */
+.border {
+  background-color: transparent;
+  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+  border-radius: 15px;
+  padding: 2%;
+  /* padding-top:25px; */
+  margin: 4%; 
+  background-color:#ffffff;
+  
+}
+/*styling the texte */
+.texte {
+  font-size: 1.2rem;
+  padding:5px;
+  margin-left:5px
+}
+/*create colored Border */
+.borderColorful1 {
+  background-color: var(--green);
+  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+  /* border-radius: 15px; */
+  padding: 5px;
+  margin: 40px 10px;
+  border-radius: 15px;
+}
+/*create colored Border */
+.borderColorful {
+  background-color: var(--grey);
+  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+  border-radius: 15px;
+  padding: 10px;
+  margin: 4% 2%;
+}
+ /*used to decorate a text when hovering over by adding an animated line*/
+ .hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  left: 5px;
+  top: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+  color: rgb(39, 39, 39);
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--pink);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+/*texte-rdv*/
+.titre-rdv
+{
+  text-align: center;
+  font-size:1.5;
+  font-weight: bold;
+}
+
+/*========visibility=============*/
+.visibility
+{
+  display: none;
+}
+  /*===========wrapp===========*/
+  .wrapp
+  {
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: max-content  max-content max-content;
+    grid-template-areas: "nav nav"
+                         "main aside"
+                          "footer footer";
+   height:100vh;
+   width: 100vw;
+ 
+  }
+  footer
+  {
+    grid-area:footer;
+    align-self:end;
+  }
+  /*===========.nav============*/
+  .nav
+  {
+      grid-area: nav;
+      background-color: #13565f;
+     width:100vw;
+     
+
+
+  }
+  /*===========END .nav============*/
+  
+  /*===========main============*/
+  .main
+  {
+      grid-area: main;
+      background-color: transparent;
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      grid-template-rows:.75fr .75fr .25 1fr ;
+      grid-template-areas: "welcome welcome welcome"
+                         "doc-bt mesure-bt profil-bt "
+                         "h2 h2 h2 "
+
+                         "profil doc appointement "
+
+                         ;
+    margin:20px;
+  }
+  h2
+  {
+    grid-area: h2;
+    text-align: center;
+    font-size: 1.6rem;
+    margin:10px;
+  }
+  #doc-bt
+  {
+    grid-area: doc-bt;
+  
+  }
+  #mesure-bt
+  {
+    grid-area: mesure-bt;
+   
+  }
+  #profil-bt
+  {
+    grid-area: profil-bt;
+   
+  }
+  .welcome
+  {
+    grid-area: welcome;
+    background-color: #ffffff;
+    height:fit-content
+  }
+  .doc
+  {
+    grid-area: doc;
+    /* background-color: #304042; */
+  }
+  
+  .profil
+  {
+    grid-area: profil;
+    /* background-color: #1d2e31; */
+  }
+  .appointement
+  {
+    grid-area: appointement;
+    /* background-color: #51686d; */
+  }
+
+  /*-----------welcome--------------*/
+  #hello
+{
+  width:180px;
+  height:180px;
+}
+.welcome
+{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-column-gap:10px;
+  margin:30px 10px 10px;
+  height:fit-content
+}
+.welcome .border
+{
+  height:fit-content
+
+
+}
+#prendre-rdv {
+  text-decoration: none;
+  color: var(--pink);
+  height:fit-content
+}
+#salut {
+  padding-top: 20px;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: rgb(30, 30, 30);
+}
+#fullName {
+  color: var(--green);
+}
+  /*-----------BTN--------------*/
+  a[class="btn"]
+  {
+    display:flex;
+    flex-direction: row;
+    height:100px
+  }
+  .link
+  {
+    align-self: center;
+  }
+  span.link
+  {
+    margin:5px
+  }
+#doc-bt 
+  {
+    text-decoration: none;
+    text-align: center;
+    color:#fff;
+    font-weight: bold;
+    background-color:#074a52;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px grey;
+  transition: transform 0.25s ease-out;
+
+
+    padding:5px;
+    
+  }
+  #mesure-bt 
+  {
+    text-align: center;
+
+    text-decoration: none;
+    color:#fff;
+    font-weight: bold;
+    background-color:#396e75;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px grey;
+    padding:5px;
+  transition: transform 0.25s ease-out;
+
+    /* display: inline-block; */
+    }
+  #profil-bt 
+  {
+    text-align: center;
+
+    text-decoration: none;
+    color:#fff;
+    font-weight: bold;
+    background-color:#83a5a9;
+    border-radius: 15px;
+    box-shadow: 3px 3px 3px grey;
+
+    padding:5px;
+  transition: transform 0.25s ease-out;
+
+    /* display: inline-block */
+}
+  .icons
+  {
+    display: inline-block;
+    /* margin-bottom:-25px; */
+    width:40px;
+    height:40px;
+    align-self: center;
+    margin-left:5px;
+  }
+  .btn
+  {
+    margin:10px;
+    
+  }
+  /*===========END main============*/
+  /*===========aside============*/
+  /********************************ASIDE*********************************/
+.aside
+{
+  grid-area: aside;
+  display: grid;
+  grid-template-columns:1fr;
+  grid-template-rows: .5fr .3fr  max-content;
+  grid-template-areas: "bg"
+                        "photo"
+                      
+                        "schedule";
+ height:fit-content;
+}
+
+#bg
+{
+  grid-area:bg;
+}
+#profile
+{
+  grid-area:photo;
+}
+.schedule
+{
+  grid-area:schedule;
+  height:fit-content
+}
+#profile {
+  border-radius: 50%;
+  border: 4px solid white;
+  height: 100px;
+  width: 100px;
+  margin: 10px auto;
+
+  box-shadow: 4px 4px 2px rgba(65, 65, 65, 0.679);
+
+  transition: transform 0.2s 0.1s ease-out;
+  /* position: relative; */
+}
+
+#bg
+{
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin:10px auto
+}
+#profile
+{
+  display: block;
+  margin-top: -35%;
+}
+#doctor p {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: rgb(36, 36, 36);
+  padding-left: 10px;
+}
+.rdv
+{
+  display:flex;
+  flex-direction: row;
+  padding:5px;
+}
+.schedule .rdv >img
+{
+  width:40px;
+  height:40px;
+  padding:5px 0;
+  margin:0 auto
+}
+#doctor p
+{
+font-size: 16px;
+
+}
+#doctor p[id="specialiste"]
+{
+font-size: 16px;
+font-weight:none;
+color:#fff
+
+}
+#time
+{
+  font-weight: bold;
+  /* color: #fff; */
+  text-align: center;
+  margin:auto
+}
+  /*===========END aside============*/
+
+/*============fonctionnalites===========*/
+.imgs
+{
+  width:180px;
+  height:180px;
+  display: block;
+  margin:10px auto;
+  /* margin-top:-25%; */
+}
+.fct
+{
+  padding:10px;
+  text-align: center;
+  height:fit-content;
+  /* margin-top:-25%; */
+
+}
+.fct h3
+{
+  font-size: 1.3rem;
+}
+h3:nth-child(1)
+{
+  color:#1d2e31
+}
+h3:nth-child(2)
+{
+  color:#304042
+}
+h3:nth-child(3)
+{
+  color:#51686d
+}
+.aside .titre-rdv
+{
+  color:#ffffff;
+  text-align: center;
+}
+    /* =============================================MEDIA QUERIES ========================================*/
+/*-----------xall------------------*/
+@media (max-width: 480px) 
+{
+     /*===========wrapp===========*/
+     .wrapp
+     {
+       display:grid;
+       grid-template-columns: 3fr ;
+       grid-template-rows: max-content max-content max-content;
+       grid-template-areas: "nav "
+                             "main"
+                             "footer"
+          
+                          ;
+      height:100vh;
+      
+     }
+     .nav
+     {
+       width:100%
+     }
+     .hidden
+     {
+         display: none;
+     }
+     .main
+     {
+         grid-area: main;
+         background-color: transparent;
+         display:grid;
+         grid-template-columns: repeat(3,1fr);
+         grid-template-rows:.5fr .5fr max-content  .05fr .75fr .75fr .75fr ;
+         grid-template-areas: "welcome welcome welcome"
+                            "doc-bt mesure-bt profil-bt "
+                            "rdv rdv rdv"
+                            "h2  h2 h2" 
+                            "profil profil profil "
+                            "doc doc doc "
+                            "appointement appointement appointement "
+   
+                            ;
+      grid-gap:15px;
+   
+     }
+     .schedule
+     {
+       grid-area: rdv;
+       justify-self:center;
+       margin:10px;
+       width:80%;
+       height:fit-content
+     }
+     #doctor p[id="specialiste"]
+{
+
+color:var(--green);
+}
+     
+     .main ,.welcome
+     {
+      margin:5px 0px;}}
+      @media (max-width: 480px)
+      {
+        .nav_container {
+            margin-top:-10px;
+            align-self:center
+            
+           }
+           .welcome
+           {
+             width:96%;
+             margin:0 auto;
+           }
+           .container
+           {
+             margin:0
+           }
+           .logo
+           {
+            margin-top:20px;
+            margin-left:20px;
+            align-self:center
+           }
+           #user
+           {
+               margin-right:-10%
+           }
+           nav 
+           {
+               width:100%;
+           }
+           
+          
+     
+           .wrapper .footer-widget, .wrapper .footer-widget:nth-child(1)
+           {
+               width:100%
+           }
+      
+     .main
+     {
+       margin-top:15px;
+       grid-gap:5px;
+       padding:5px;
+     }
+  #hello
+  {
+    /* width:160px;
+    height:140px */
+    width:120px;
+    height:120px;
+    margin-left:-30px
+  }
+  .imgs
+  {
+    /* width:130px;
+    height:150px; */
+    margin-left:90px
+  }
+  .texte
+  {
+    font-size: 1rem;
+  }
+  a[class="btn"]
+  {
+    display:flex;
+    flex-direction: column;
+   height:150px;
+  }
+
+  /* .icons
+  {
+    margin-top:5px
+  } */
+  h2
+  {
+    grid-area: h2;
+    text-align: center;
+  }
+  
+
+  .visibility
+  {
+    display: block;
+  }
+         /*********hovering**********/
+
+         #doc-bt:hover,#mesure-bt:hover,#profil-bt:hover
+         {
+           background-color:#9cb7ba;}
+  .btn
+  {
+    width:100px;
+    margin:20px auto;
+    /* display:flex;
+    flex-direction: column; */
+    
+    
+  }
+  .link
+  {
+    margin-left:-20px;
+    font-size: 1rem;
+  }
+  .icons
+  {
+    width:30px;
+    height:30px;
+  }
+ 
+}
+ /* all devices (tablets, 768px and up)*/
+ @media (min-width: 481px) and (max-width: 767px)  {
+     /*===========wrapp===========*/
+  .wrapp
+  {
+    display:grid;
+    grid-template-columns: 1fr ;
+    grid-template-rows: max-content max-content max-content;
+    grid-template-areas: "nav "
+                         "main "
+                         "footer"
+                       ;
+    grid-gap:15px;
+   height:100vh
+  }
+  .main
+  {
+      grid-area: main;
+      background-color: transparent;
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      grid-template-rows:.5fr .5fr max-content  .05fr 1fr 1fr 1fr ;
+
+      grid-template-areas: "welcome welcome welcome"
+                         "doc-bt mesure-bt profil-bt "
+                         " rdv rdv rdv"
+                         "h2  h2 h2" 
+                         "profil profil profil "
+                         "doc doc doc "
+                         "appointement appointement appointement "
+
+                         ;
+      grid-gap:15px;
+  }
+  .schedule
+  {
+    grid-area: rdv;
+    width:60%;
+    justify-self:center
+  
+  }
+  .hidden
+  {
+      display: none;
+  }
+  #hello
+  {
+    /* width:160px;
+    height:140px */
+    width:150px;
+    height:150px
+  }
+  .main
+     {
+      margin:10px
+     }
+     .visibility
+  {
+    display: block;
+  }
+
+     h2
+     {
+       grid-area: h2;
+     }
+   
+     .visibility
+     {
+       display: block;
+     }
+          /*********hovering**********/
+
+    #doc-bt:hover,#mesure-bt:hover,#profil-bt:hover
+    {
+
+      background-color:#9cb7ba;}
+      #doctor p[id="specialiste"]
+      {
+      
+      color:var(--green);
+      }
+      .fct
+      {
+        font-size:1.7rem
+      }
+   }
+
+ /* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991px) { 
+   /*===========wrapp===========*/
+   .wrapp
+   {
+     display:grid;
+     grid-template-columns: 1fr ;
+     grid-template-rows: max-content max-content max-content;
+     grid-template-areas: "nav "
+                          "main "
+                          "footer"
+                        ;
+     grid-gap:15px;
+    height:100vh
+   }
+   .main
+   {
+       grid-area: main;
+       background-color: transparent;
+       display:grid;
+       grid-template-columns: repeat(3,1fr);
+       grid-template-rows:.5fr .5fr max-content  .05fr 1fr 1fr 1fr ;
+ 
+       grid-template-areas: "welcome welcome welcome"
+                          "doc-bt mesure-bt profil-bt "
+                          " rdv rdv rdv"
+                          "h2  h2 h2" 
+                          "profil profil profil "
+                          "doc doc doc "
+                          "appointement appointement appointement "
+ 
+                          ;
+       grid-gap:15px;
+   }
+   .schedule
+   {
+     grid-area: rdv;
+     width:60%;
+     justify-self:center
+   
+   }
+   .hidden
+   {
+       display: none;
+   }
+    /*-----------welcome--------------*/
+    #hello {
+      width:210px;
+      height:210px
+    }
+    .main
+    {
+     margin:10px
+    }
+    .nav
+    {
+      width:100%;
+    }
+  
+     /*********hovering**********/
+
+    #doc-bt:hover,#mesure-bt:hover,#profil-bt:hover
+    {
+      background-color:#9cb7ba;
+      transform: scale(1.1);
+
+    }
+  
+    .welcome
+    {
+      margin:20px
+    }
+    .visibility1
+    {
+      display: block
+    }
+    .visibility
+    {
+      display: block
+    }
+    /****************hover profile********************/
+#profile:hover {
+  transform: scale(1.1);
+
+  border-radius: 50%;
+  border: 3px solid var(--color);
+}
+#doctor p[id="specialiste"]
+{
+
+color:var(--green);
+}
+ }
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1119px) {
+    /*-----------welcome--------------*/
+    .main
+     {
+      margin:10px
+     }
+     /*********hovering**********/
+     #doc-bt:hover,#mesure-bt:hover,#profil-bt:hover
+     {
+       background-color:#9cb7ba;
+       transform: scale(1.1);
+     }
+     /* .fct h3
+     {
+       font-size: 1.5rem;
+       margin-top:-65%
+     }
+     .fct
+     {
+       margin-top:-65%
+     } */
+     /****************hover profile********************/
+#profile:hover {
+  transform: scale(1.1);
+
+  border-radius: 50%;
+  border: 3px solid var(--color);
+}
+  }
+
+/* X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+  /*-----------welcome--------------*/
+  #hello {
+    width:210px;
+    height:210px;
+  }
+  .texte
+  {
+    font-size: 1.5rem;
+  }
+  .icons
+  {
+    display: inline-block;
+    margin-bottom:-25px;
+    width:60px;
+    height:60px
+  }
+  .link
+  {
+    font-size: 1.2rem
+  }
+  .icons
+  {
+    margin-left: 10px;
+    margin-bottom:15px;
+  }
+     /*********hovering**********/
+
+ #doc-bt:hover,#mesure-bt:hover,#profil-bt:hover
+  {
+    background-color:#9cb7ba;
+    transform: scale(1.1);
+  }
+  /* .fct h3
+{
+  font-size: 1.5rem;
+  margin-top:-20%
+
+}
+.fct
+{
+  margin-top:-20%
+} */
+h2
+{
+  margin:30px;
+  font-size: 2rem;
+}
+.main
+{
+  justify-self:center
+}
+.welcome
+{
+  width:fit-content;
+  margin-bottom:30px;
+  justify-self:center
+}
+.aside
+{
+  width:fit-content;
+  justify-self:center
+}
+/****************hover profile********************/
+#profile:hover {
+  transform: scale(1.1);
+
+  border-radius: 50%;
+  border: 3px solid var(--color);
+}
+  }

@@ -1,0 +1,102 @@
+:root {
+    --grey: #eff5f57a;
+    --green: #13565f;
+    --pink: #fe6687ee;
+  }
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  body
+  {
+    background-color: #e6edee
+  }
+  #welcome {
+      width:30%;
+      height:30%;
+      display:block;
+      margin: 40px auto
+  }
+  h2
+  {
+      color:var(--green);
+      text-align:center
+  }
+  p
+  {
+      text-align:center;
+      padding:5px 10px
+  }
+  span
+  {
+    text-align:center;
+    padding:5px  10px 5px 0
+}
+  button
+  {  
+      display:block;
+      margin:10px auto;
+      border:none;
+      background-color:var(--green);
+      padding:15px;
+      font-size:1.1rem;
+      border-radius:30px;
+      box-shadow: 4px 4px 2px #58597876;
+      color:#ffffff;
+      
+
+  }
+  a[id="connect"]
+  {
+      text-decoration:none
+  }
+  button:hover{
+
+    background-color:#538287;
+
+  }
+  .main
+  {
+    margin-bottom: 20%;
+  }
+  /* =============================================MEDIA QUERIES ========================================*/
+ /* Small devices (tablets, 768px and up)*/
+ @media (max-width: 767px)  { 
+    #welcome {
+        width:60%;
+        height:60%
+    }
+    span
+    {
+        display:none
+    }
+  }
+ /* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991px) {  }
+
+/* Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1119px) { 
+    h2
+    {
+        font-size: 3rem;
+    }
+    p
+    {
+        font-size: 2rem;
+    }
+ }
+
+/* X-Large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) { 
+    h2
+    {
+        font-size: 2.5rem;
+    }
+    p
+    {
+        font-size: 1.3rem;
+    }
+ }
+ 

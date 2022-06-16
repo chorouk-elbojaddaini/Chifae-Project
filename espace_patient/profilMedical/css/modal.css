@@ -1,0 +1,397 @@
+:root {
+    --grey: #eff5f57a;
+    --green: #13565f;
+    --pink: #fe6687ee;
+  }
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  .overlay
+  {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom:0;
+      right: 0;
+      z-index: 1;
+      background-color:rgba(39, 39, 39, 0.348);
+      display: none;
+  }
+  .open-popup
+  {
+      display: block;
+      transform: translate(-50%, -50%) scale(1);
+      top:50%;
+  }
+
+#popup
+{
+    width:300px;
+    height:400px;
+    background-color:#396e75;
+    border-radius: 6px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    /* bottom:0;
+    right:0; */
+  
+    transform: translate(-50%, -50%) scale(1);
+    padding:20px;
+ 
+   
+   
+}
+#account:hover {
+    
+  
+    
+    border: 3px solid var(--color-pink);
+  }
+  #account
+  {
+
+     border-radius: 50%;
+  border: 4px solid white;
+  height: 100px;
+  width: 100px;
+  margin: 10px auto;
+
+  box-shadow: 4px 4px 2px rgba(65, 65, 65, 0.679);
+    justify-self:center;
+    cursor: pointer;
+    
+    margin-top:-100%;
+
+  
+  }
+  .close_menu_botton2
+
+  {
+      background-color: transparent;
+      border:none
+  }
+
+  .close2
+  {
+      border-radius: 50%;
+      background-color: var(--pink);
+      color: white;
+      padding:5px 8px ;
+      font-size:20px;
+      box-shadow: 2px 2px 2px rgba(65, 65, 65, 0.679);
+      cursor: pointer;
+      margin-left:300px;
+      margin-bottom:150px;
+      display: inline-block;
+  }
+  .close2:hover
+  {
+      background-color: #fe6687c0;
+  }
+  .modal-btn
+  {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    height:100%
+    
+  }
+  .pop
+  {
+      margin:10px auto;
+      background-color:var(--pink);
+      border-radius : 20px;
+      padding:10px;
+      box-shadow: 2px 2px 2px rgba(65, 65, 65, 0.679);
+      transition: transform 0.2s 0.1s ease-out;
+      width:150px;
+      text-align: center;
+      cursor: pointer;
+
+  }
+  .pop:hover
+  {
+      background-color: #fe6687c0;
+      transform: scale(1.1);
+
+  }
+#bienvenu
+  {
+      color:#ffffffee;
+      z-index: 1;
+      text-align: center
+
+  }
+  /* =======================Modal FORM MALADIE========================== */
+  .overlay-form
+  {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom:0;
+      right: 0;
+      z-index: 1;
+      background-color:rgba(39, 39, 39, 0.348);
+      display: none;
+  }
+  /* ********************FORM-page1*********************** */
+.form
+{
+  display:grid;
+  grid-template-columns: repeat(2,fit-content);
+  grid-template-rows: repeat(4,fit-content);
+  grid-template-areas: "input"
+                        "input"
+               "describe "
+               "form-btn";
+ width:fit-content;
+ padding:20px 10px;
+ position: absolute;
+ top:50%;
+ left:50%;
+ transform: translate(-50%, -50%) scale(1);
+
+}
+.form input:nth-child(1)
+{
+  grid-area:input;
+
+}
+.form textarea
+{
+  grid-area:describe;
+
+}
+.form input:nth-child(2)
+{
+  grid-area:input;
+  
+}
+/* .form input:nth-child(1),
+.form label:nth-child(1),
+.form input:nth-child(2),
+.form label:nth-child(2),
+.form input:nth-child(2),
+.form label:nth-child(2),
+.form input:nth-child(2),
+.form label:nth-child(2),
+.form label:nth-child(5),
+.form textarea
+{
+
+  margin:10px
+} */
+
+
+
+.form-btn
+{
+  grid-area: form-btn;
+  width:250px;
+  height:50px;
+  padding:10px;
+  border:2px solid var(--pink);
+  background-color:var(--pink);
+  color:white;
+  font-weight:bold;
+  font-size:1rem;
+  border-radius:30px;
+  justify-self:center;
+
+}
+.form-btn:hover
+{
+ cursor:pointer;
+ box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+
+}
+
+.form input,
+.form textarea,.form select
+
+{
+   border:1px solid var(--green);
+   border-radius: 8px;
+   padding:10px;
+   width:403px;
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus
+
+{
+   border:1px solid var(--green3);
+   background-color:#e7edee
+
+
+}
+::placeholder
+{
+  padding:5px
+}
+.form input,
+.form textarea,
+.form label,.form select
+{
+  display:block;
+  margin:10px
+  
+}
+.form label
+{
+  font-weight: bold;
+  color: var(--pink)
+}
+/* ========================TRAITEMENT-FORM================== */
+#traitement-form
+{
+  display:grid;
+  grid-template-columns: repeat(2,fit-content);
+  grid-template-rows: repeat(6,fit-content);
+  grid-template-areas: "input"
+                        "input"
+                        "input"
+                        "input"
+               "describe "
+               "form-btn";
+               width:fit-content;
+               padding:20px 10px;
+               position: absolute;
+               top:55%;
+               left:50%;
+               transform: translate(-50%, -50%) scale(1)
+
+}
+#traitement-form input:nth-child(3)
+{
+  grid-area:input;
+  margin-left:10px
+  
+}
+#traitement-form input:nth-child(4)
+{
+  grid-area:input;
+  margin-left:10px
+  
+}
+/* ========================HOSPITALISATION-FORM================== */
+#hospital-form
+{
+  display:grid;
+  grid-template-columns: repeat(2,fit-content);
+  grid-template-rows: repeat(5,fit-content);
+  grid-template-areas: "input"
+                        "input"
+                        "input"
+               "describe "
+               "form-btn";
+
+
+}
+#hospital-form input:nth-child(3)
+{
+  grid-area:input;
+  margin-left:10px
+  
+}
+/* ========================ALLERGIES-FORM================== */
+#allergy-form
+{
+  display:grid;
+  grid-template-columns: repeat(2,fit-content);
+  grid-template-rows: repeat(3,fit-content);
+  grid-template-areas: "input"
+               "describe "
+               "form-btn";
+
+
+}
+/* ========================VACCINATION-FORM================== */
+#vaccin-form
+{
+  display:grid;
+  grid-template-columns: repeat(2,fit-content);
+  grid-template-rows: repeat(6,fit-content);
+  grid-template-areas: "input"
+                        "input"
+                        "input"
+                        "input"
+               "describe "
+               "form-btn";
+               top:55%;
+
+}
+#vaccin-form input:nth-child(3)
+{
+  grid-area:input;
+  margin-left:10px
+  
+}
+/* =========================MEDIA QUERIES========================= */
+/* *******************FORM des MALADIES******************* */
+@media(max-width:767px)
+{
+  .form
+{
+ padding:20px 5px;
+ top:50%;
+ left:50%;
+ transform: translate(-50%, -50%) scale(1);
+}
+.form input,
+.form textarea,.form select
+
+{
+   padding:5px;
+   width:250px;
+}
+.form-btn
+{
+  width:150px;
+  height:50px;
+  padding:10px;
+
+}
+}
+
+ /* ********************DOCUMENTS FORM*********************** */
+#docs-form
+ {
+   display:grid;
+   grid-template-columns: repeat(1,fit-content);
+   grid-template-rows: repeat(5,fit-content);
+   grid-template-areas: "input"
+                         "input"
+                         "input"
+                   "select"
+                "form-btn";
+
+ 
+ }
+ #docs-form input:nth-child(1)
+ {
+   grid-area:input;
+ 
+ }
+ #docs-form input:nth-child(2)
+ {
+   grid-area:input;
+ 
+ }
+ #docs-form input:nth-child(3)
+ {
+   grid-area:input;
+ 
+ }
+ #docs-form select
+ {
+   grid-area:select;
+ 
+ }

@@ -1,0 +1,898 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,200&display=swap");
+*{
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+  }
+  :root {
+    --dark-green :#0b2f34;
+    --green: #13565f;
+    --pink: #fe6686;
+    --white: white;
+    --green2: #2b6a72;
+    --green3: #4d9ca7;
+    --transition: all 400ms ease;
+  }
+  /* ===========================styling================================== */
+  body
+  {
+    background-color:#e6edee;
+  }
+  nav,footer
+  {
+    width:100%;
+  }
+     /*create white Border */
+.border {
+  background-color: transparent;
+  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+  border-radius: 15px;
+  background-color:#fffffff3;
+  
+}
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width:98%;               
+  background-color:var(--pink);
+  height: 1px;
+  margin:10px;
+  
+}
+/*used to decorate a text when hovering over by adding an animated line*/
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+  left: 5px;
+  top: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+  color: rgb(39, 39, 39);
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--pink);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+/*texte-rdv*/
+.titre-rdv
+{
+  text-align: center;
+  font-size:1.5;
+  font-weight: bold;
+}
+
+  /* ---------------------GRID WRAPP----------------------------- */
+  .wrapp
+  {
+    margin : 40px;
+    margin-left : 100px;
+    display : grid;
+    grid-template-columns :fit-content max-content ;
+    grid-template-rows : max-content max-content max-content;
+    grid-template-areas : "profil profil "
+                 "tabs page"
+                 "tabs page "
+  }
+  /* ---------------------GRID Contenaire page documents----------------------------- */
+  .contenaire
+  {
+    margin : 2% 5% ;
+    padding:20px;
+    /* margin-left : 100px; */
+    display : grid;
+    grid-template-columns : fit-content ;
+    grid-template-rows : max-content max-content;
+    grid-template-areas : " profil "
+                 " page"
+                
+  }
+   
+ /* =======================FIXED CONTENT============================== */
+/* --------------profil--------------- */
+.profil
+{
+  grid-area : profil;
+  display:flex;
+  padding:10px;
+  /* justify-content: center; */
+  flex-direction:row;
+  width:fit-content;
+   
+}
+#profil,#add-file,#docs
+{
+  width:200px;
+  height:200px
+}
+.profil-text
+{
+  display:block;
+  padding:10px;
+  font-size : 1.1rem
+
+}
+#profil-medical
+{
+  font-size:2.2rem;
+  color:var(--green);
+  padding:10px 0px;
+}
+.profil-text p
+{
+  /* text-align:center; */
+  padding:10px 0px;
+  word-wrap: wrap;
+
+}
+#prendre-rdv {
+  text-decoration: none;
+  color: var(--pink);
+  padding:10px 0px;
+
+}
+#prendre-rdv:hover
+{
+  color:var(--dark-green)
+}
+
+/* ------------------------------TABS------------------------- */
+.tabs
+{
+  grid-area: tabs;
+
+  background-color:#b8cacc;
+  margin:30px 0;
+  border-radius:8px;
+  margin-right:20px
+}
+#tabs
+{
+  display:flex;
+  flex-direction:column;
+}
+.tabs li
+{
+  padding:20px;
+  flex-wrap:wrap
+}
+.tabs li:hover
+{
+  background-color:#13565f51;
+  cursor: pointer;
+}
+.tabs a
+{
+  color:var(--dark-green)
+}
+
+/* ----------------------------PAGES------------------------- */
+
+/* --------------page non actives--------------- */
+.page
+{
+  display:none;
+}
+/* --------------page  active--------------- */
+.page.is-active
+{
+  display:block;
+}
+
+.page .is-active
+{
+  grid-area: page;
+  display:grid;
+  grid-template-columns: fit-content ;
+  grid-template-rows: fit-content max-content;
+  grid-template-areas: "description "
+                        "contenu ";
+padding:10px 20px
+}
+/* ======================PAGE 1=================================== */
+/* ----------------------------DESCRIPTION------------------------- */
+.description
+{
+  grid-area: description;
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height:fit-content;
+  width:fit-content;
+}
+.text-img
+{
+  display: flex;
+  flex-direction: row;
+  padding:5px;
+ margin:20px 10px
+
+}
+.description.text
+{
+  align-self: center;
+}
+
+.description h2,.description p
+{
+  padding:10px
+}
+.description p
+{
+  font-size: 1rem;
+}
+.open-form,.modif-table,.profil-info
+ {
+  
+  width:250px;
+  height:50px;
+  padding:10px;
+  border:2px solid ;
+  background: linear-gradient(135deg, rgba(245,112,139,1) 0%, rgba(247,144,165,1) 70%);
+  color:white;
+  font-weight:bold;
+  font-size:1rem;
+  border-radius:30px;
+  margin:10px auto;
+  cursor: pointer;
+ }
+
+ button[class= "open-form"]:hover,.modif-table:hover,.profil-info:hover
+ {
+  cursor:pointer;
+  background-color:pink;
+  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+
+ }
+
+
+/* ----------------------------CONTENT------------------------- */
+.contenu
+{
+  grid-area: contenu;
+ display:gird;
+ grid-template-columns: max-content;
+ grid-template-rows: max-content ;
+ grid-template-areas:
+                           "affichage";
+margin-left:20px
+}
+/* ---------------------PAGE 1-------------------------------- */
+
+/* ----------------maladies---------------- */
+.affichage {
+  grid-area: affichage;
+  display:flex;
+  flex-direction: column;
+  
+}
+.affichage-item
+{
+  padding:20px;
+  display:flex;
+  flex-direction: column;
+  
+}
+.affichage h4
+{
+  color:var(--pink);
+  padding:5px ;
+}
+.affichage-item
+ p
+{
+  padding:5px
+}
+.affichage-item
+ img
+{
+  width:20px;
+  height:20px;
+  margin:0 10px
+}
+.affichage-item
+ img:hover
+{
+ box-shadow: 1px 1px 2px black;
+ cursor: pointer;
+}
+.modif-suprim
+{
+  margin-left:90%;
+  display: flex;
+  flex-direction: row;
+}
+/* ---------------------END PAGE 1-------------------------------- */
+/* ---------------------PAGE 2-------------------------------- */
+table
+{
+  border-spacing:5px;
+  width:fit-content;
+  border-radius:5px;
+  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+  
+}
+th,td
+{
+  padding:10px 5px;
+ 
+}
+th
+{
+  color:white;
+  font-size: 1rem;
+  font-weight:500
+}
+tr:nth-child(odd)
+{
+  background-color:rgb(255, 255, 255);
+}
+tr:nth-child(even)
+{
+  /* background-color:#d0dcdd;
+   */
+  background-color:#a1b8bb5b;
+
+}
+th:nth-child(1) { background-color: #427178; }
+th:nth-child(2) { background-color: #5a8389; }
+th:nth-child(3) { background-color: #71959a; }
+th:nth-child(4) { background-color: #89a7ab; }
+th:nth-child(5) { background-color: #a1b8bb; }
+/* =========================PAGE 6===================== */
+ .grid-mesure
+{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  background-color:none;
+  
+
+}
+.mesure
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:5px;
+
+  margin:10px;
+ 
+}
+.mesure div
+{
+  border-radius: 8px;
+  background-color:rgba(255, 255, 255, 0.661);
+  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+  /* width:200px; */
+  position: relative;
+}
+.mesure label,.mesure input
+{
+  display:block;
+  padding:5px;
+ 
+}
+.mesure label
+{
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+.mesure label span
+{
+  font-size: .8rem;
+  font-weight: 400;
+  text-align: center;
+  display: block;
+}
+.mesure img
+{
+  width:60px;
+  height:60px;
+
+}
+.mesure input
+{
+ margin:10px auto;
+  width:100px;
+ align-self:flex-end;
+ border:none;
+ border-bottom: 1.5px solid var(--dark-green);
+}
+.mesure input:hover
+{
+  background-color:#a1b8bb67
+}
+.mesure div:nth-child(odd) ::before
+{
+  content:"";
+  width:4px;
+  height:94%;
+  background: linear-gradient(185deg, rgba(246,128,152,1) 0%, rgba(250,176,191,1) 70%, rgba(254,239,242,1) 99%);
+  top:10px;
+  bottom:10px;
+  left: 5px;
+  position: absolute;
+  z-index: 2;
+  border-radius:3px
+}
+.mesure div:nth-child(even) ::before
+{
+  content:"";
+  width:4px;
+  height:94%;
+  background: linear-gradient(185deg, rgba(66,113,120,1) 0%, rgba(113,149,154,1) 70%, rgba(231,237,238,1) 99%);
+  top:10px;
+  bottom:10px;
+  left: 5px;
+  position: absolute;
+  z-index: 2;
+  border-radius:3px
+}
+/* ==================================PAGE INFO-ADINSTRATIVE====================== */
+.infos
+{
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  background-color:white;
+  border-radius: 5px;
+
+}
+#personal-data-all,.infos
+{
+  /* background-color:rgba(255, 255, 255, 0.759); */
+  border-radius: 5px;
+  padding:10px 20px;
+  background-color:white;
+  border-radius: 5px;
+ 
+}
+.modif-suprim img {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+}
+
+.infos h3
+.infos p,
+.infos div
+{
+  padding:5px;
+  justify-self: center;
+  margin:10px ;
+
+}
+.infos p 
+{
+ font-size: 1.1rem;
+ padding-left:5px;
+
+}
+.infos p 
+{
+  color:var(--green);
+  font-weight: 600;
+}
+.infos span
+{
+  color:#2d2d2d;
+  font-weight: 400;
+
+}
+.h3-info
+{
+  margin:10px 0px;
+  color:var(--pink)
+}
+#personal-data p
+{
+  position: relative;
+}
+/* ===========Liste items=========== */
+.infos li
+{
+  padding-left:20px;
+  position: relative;
+}
+.info li::before,#personal-data p ::before
+{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius: 5px;
+  background: linear-gradient(185deg, var(--green) 0%, rgba(113,149,154,1) 70%, rgba(231,237,238,1) 99%);
+  box-shadow: 1px 1px 1px rgba(65, 65, 65, 0.381);
+  z-index: 2;
+  top:10px;
+  bottom:10px;
+  left:5px;
+  position: absolute;
+}
+#personal-data p ::before
+{
+  background: linear-gradient(185deg, var(--pink) 0%, rgba(250,176,191,1) 70%, rgba(254,239,242,1) 99%);
+  left:-10px;
+
+
+}
+#info-antecedents
+{
+  padding-bottom: 20px;
+}
+/* ============================PAGE DES DOCUMENTS============================ */
+#docs-table
+{
+  border-spacing:5px;
+  width:100%;
+  border-radius:5px;
+  margin:20px auto
+}
+#docs-table
+th, 
+#docs-table
+td
+{
+  padding:10px 10px;
+ 
+}
+#docs-title
+{
+  margin:30px 0 10px 20px;
+  color:var(--dark-green)
+}
+.affich-docs
+{
+  background-color:white;
+  padding:10px 20px;
+  box-shadow: 1px 1px 1px rgba(65, 65, 65, 0.381);
+
+}
+.affich-docs tr:nth-child(odd)
+{
+  background-color:#ffd3dbc4;
+}
+/* ============================MEDIA============================ */
+/* ---------------------------mobile media ------------------------ */
+@media (max-width: 480px)
+{
+
+
+}
+/* ----------------------------Tablette/ipad media------------------------ */
+@media (min-width: 481px)and(max-width:767px)
+{
+  
+}
+/* -------------------------Medium ------------------------------- */
+@media (min-width:768px) and (max-width:991px)
+{
+   /* ---------------------GRID WRAPP----------------------------- */
+   .wrapp
+   {
+     margin : 20px;
+
+   }
+   .text-img
+   {
+     display: flex;
+     flex-direction:column
+   
+   }
+   .affichage
+ hr
+   {
+     margin-top: 0%;
+   }
+   .page
+   {
+    padding:0px;
+    margin:10px
+   }
+   .affichage-item
+
+{
+  padding:10px;
+  display:flex;
+  flex-direction: column;
+  
+}
+.modif-suprim
+{
+  margin-left:80%
+}
+.infos-btn {
+  display:flex;
+  flex-direction:row;
+  flex-wrap: wrap;
+   /* margin-top:10%; */
+   
+  /* margin-left:-70% */
+}
+/* ===========================PAGE 9===================== */
+.infos
+{
+  display:grid;
+  grid-template-columns: 1fr;
+  margin:10px;
+  background-color:white;
+  border-radius: 5px;
+ padding:20px 10px
+}
+#personal-data-all
+{
+  width:96%;
+  padding:0;
+  margin:0 auto;
+  background-color:white;
+  border-radius: 5px;
+
+}
+.h3-info,.infos p,.infos li
+{
+  padding-left:25px;
+  padding-right:10px;
+
+  /* word-wrap:break-word; */
+}
+.infos li
+{
+  padding-left:35px
+}
+.info li::before
+{
+ 
+  top:10px;
+  bottom:10px;
+  left:20px;
+
+}
+#personal-data p ::before
+{
+  left:5px;
+
+
+}
+.contenaire
+{
+  margin : 3% ;
+  padding:20px;
+  /* margin-left : 100px; */
+  display : grid;
+  grid-template-columns : fit-content ;
+  grid-template-rows : max-content max-content;
+  grid-template-areas : " profil "
+               " page"
+              
+}
+}
+/* -------------------------large------------------------------ */
+@media (min-width:992px) and (max-width:1119px)
+{
+   /* ---------------------GRID WRAPP----------------------------- */
+   .wrapp
+   {
+     margin : 20px;
+
+   }
+   .text-img
+   {
+     display: flex;
+     flex-direction:column;
+ 
+   }
+   .affichage
+   hr
+{
+  margin-top: 0%;
+}
+.page
+{
+ padding:0px;
+ margin:10px
+}
+
+}
+/* -------------------------Xlarge------------------------------ */
+@media (min-width:1200px) 
+{
+  .infos-btn {
+    display:flex;
+    flex-direction:row;
+     margin-top:10%;
+     
+    margin-left:-70%
+  }
+  .infos-btn button
+  {
+    margin:10px
+  }
+
+}
+/* --------------------------------Xsmall & small----------------------- */
+@media (max-width:767px)
+{
+    /* ---------------------GRID WRAPP----------------------------- */
+    .wrapp
+    {
+      margin : 20px;
+      display : grid;
+      grid-template-columns :fit-content max-content ;
+      grid-template-rows : max-content max-content max-content;
+      grid-template-areas : "profil "
+                   "tabs "
+                   
+    }
+    .contenu
+    {
+      margin-left: -10px;
+    }
+
+    .text-img
+   {
+     display: flex;
+     flex-direction:column
+   
+   }
+   /* ---------------maladies-------------- */
+   .modif-suprim
+{
+  margin-left:60%
+}
+.affichage-item
+
+{
+  padding:10px;
+  display:flex;
+  flex-direction: column;
+  
+}
+    /* --------------profil--------------- */
+.profil
+{
+  grid-area : profil;
+  display:flex;
+  padding:10px;
+  /* justify-content: center; */
+  flex-direction:row;
+  width:fit-content;
+  flex-wrap: wrap;
+   
+}
+#profil,#docs
+{
+  width:120px;
+  height:120px;
+  margin:0 auto;
+}
+.profil-text
+{
+  display:block;
+  padding:5px;
+  font-size : 1.1rem;
+  text-align: center;
+
+}
+/* ------------------------------TABS------------------------- */
+.tabs
+{
+  background-color:transparent;
+  margin:30px 0;
+  border-radius:8px;
+
+}
+#tabs
+{
+  margin:10px auto;
+  width:100%;
+  padding:15px 10px;
+  border-radius:8px;
+  border:2px solid var(--green3);
+  box-shadow: 3px 3px 2px rgb(67, 67, 67);
+  font-size: 1rem;
+}
+.tabs li
+{
+  padding:20px;
+  flex-wrap:wrap
+}
+.tabs li:hover
+{
+  background-color:#13565f51;
+  cursor: pointer;
+}
+.tabs a
+{
+  color:var(--dark-green)
+}
+
+/* =========================PAGE 6===================== */
+ .grid-mesure
+{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  /* grid-template-rows: repeat(2,1fr); */
+
+}
+
+/* ===========================PAGE 9===================== */
+.infos
+{
+  display:grid;
+  grid-template-columns: 1fr;
+  margin:10px;
+  background-color:white;
+  border-radius: 5px;
+ padding:20px 10px
+}
+#personal-data-all
+{
+  width:96%;
+  padding:0;
+  margin:0 auto;
+  background-color:white;
+  border-radius: 5px;
+
+}
+.h3-info,.infos p,.infos li
+{
+  padding-left:25px
+}
+.infos li
+{
+  padding-left:35px
+}
+.info li::before,#personal-data p ::before
+{
+ 
+  top:10px;
+  bottom:10px;
+  left:20px;
+
+}
+#personal-data p ::before
+{
+  background: linear-gradient(185deg, var(--pink) 0%, rgba(250,176,191,1) 70%, rgba(254,239,242,1) 99%);
+  left:5px;
+
+
+}
+.infos-btn {
+  display:flex;
+  flex-direction:column;
+   /* margin-top:10%; */
+   
+  /* margin-left:-70% */
+}
+/* ===================================PAGE DOCUMENTS======================================== */
+ /* ---------------------GRID Contenaire page documents----------------------------- */
+ .contenaire
+ {
+   margin : 3% ;
+   padding:20px;
+   /* margin-left : 100px; */
+   display : grid;
+   grid-template-columns : fit-content ;
+   grid-template-rows : max-content max-content;
+   grid-template-areas : " profil "
+                " page"
+               
+ }
+}
