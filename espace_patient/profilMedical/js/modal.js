@@ -22,7 +22,7 @@ function displayForm(overlay_id)
      let close_btn ="#"+overlay.id.slice(0)+"-btn";
      
     
-document.querySelector(`${open_btn}`).addEventListener("click", ()=>
+document.querySelector(`${open_btn}`).addEventListener("dblclick", ()=>
 {
    
 
