@@ -143,9 +143,31 @@
                         <option value="autres">autres documents</option>
                     </select>
                 </label>
-                <button type="button" class="form-btn" id="doc-btn">Ajouter</button>
+                <button type="button" class="form-btn" id="doc-btn">choisir un document</button>
        </form>
       </div>
+      <!-- =================================FILE UPLOAD==================================== -->
+      <div class="overlay-file " >
+      <div class="file__upload">
+        <div class="header">
+          <p><i class="fa fa-cloud-upload fa-2x"></i><span id="telecharge">Télecharger</span></p>			
+        </div>
+        <form class="body">
+          <input type="file" id="upload">
+          <label for="upload">
+            <i class="fa fa-file-text-o fa-3x"></i>
+            <p>
+              <strong>Glisser et Déposer</strong> Fichier ici<br>
+              ou <span>parcourir </span><br> pour commencer le téléchargement
+            </p>
+          </label>
+          <button class="ajout-fichier">Ajouter </button> 
+
+          <!-- <button class="fermer">Fermer </button>  -->
+        </form>
+      </div>
+    </div>
+       <!-- =================================FIN -FILE UPLOAD==================================== -->
      <div class="docs">
         <h2 id="docs-title">Mes derniers documents</h2>
         <div class="affich-docs">

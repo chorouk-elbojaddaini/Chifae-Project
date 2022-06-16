@@ -31,7 +31,7 @@
   background-color: transparent;
   box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
   border-radius: 15px;
-  background-color:#fffffff3;
+  background-color:#ffffff;
   
 }
 hr {
@@ -239,7 +239,7 @@ padding:10px 20px
 {
   font-size: 1rem;
 }
-.open-form,.modif-table,.profil-info
+.open-form,.modif-table,.profil-info,.fermer,.ajout-fichier
  {
   
   width:250px;
@@ -255,7 +255,8 @@ padding:10px 20px
   cursor: pointer;
  }
 
- button[class= "open-form"]:hover,.modif-table:hover,.profil-info:hover
+ button[class= "open-form"]:hover,.modif-table:hover,.profil-info:hover,
+ .fermer:hover,.ajout-fichier:hover
  {
   cursor:pointer;
   background-color:pink;
