@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abel&family=Anton&family=Josefin+Sans:wght@100&family=Lexend+Deca:wght@100&family=Livvic:wght@100&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="icon" type="image/png" href="./images/Layer1.png" />
+        <title>Profil Médecin | Chifae</title>
+</head>
+
+<body onload="afficherChaqueSecondeHeure()">
+    <div class="container" id="blur">
+
+        <div class="navbar">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <section class="top-nav">
+                <!--nav bar-->
+                <div class="title-nav">
+                    <img class="logo" src="./images/Layer 1.png" alt="#">
+                    <h4>Chifae</h4>
+                </div>
+                <input id="menu-toggle" type="checkbox" />
+                <label class='menu-button-container' for="menu-toggle">
+                    <div class='menu-button'></div>
+                </label>
+                <ul class="menu">
+                    <li>
+                        <a class="nav-links" href="#">Accueil</a>
+                    </li>
+                    <li>
+                        <a class="nav-links pink" href="index.html">Médecin</a>
+                    </li>
+                    <li>
+                        <a class="nav-links pink" href="#">Patient</a>
+                    </li>
+                    <li>
+                        <a class="nav-links" href="#">Contact</a>
+                    </li>
+                </ul>
+            </section>
+            <!--nav bar end-->
+        </div>
+
+        <div class="sidebar">
+            <!--Side bar-->
+            <div class="top">
+                <!--Top section-->
+
+                <img class="imgTop" src="./images/doctor.png" alt="#">
+
+                <div class="profile">
+                    <img src="./images/profile2.jpeg" alt="#">
+                </div>
+                <div class="text">
+                    <h3>Dr.Rim Hassani</h3>
+                    <p>orthopedic</p>
+                </div>
+            </div>
+            <!--Top section end-->
+            <div class="line"></div>
+            <div class="bottom">
+                <!--bottom section-->
+
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">
+                            <i class="fa-solid fa-user icon"></i>
+                            <span class="text nav-text">profile</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../rendez-vous_medecin/index.html">
+                            <i class="fa-solid fa-calendar-check icon googleFont"></i>
+                            <span class="text nav-text">rendez-vous</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../page_patient/index.html">
+                            <i class="fa-solid fa-hospital-user icon"></i>
+                            <span class="text nav-text">patients</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa-solid fa-blog icon"></i>
+                            <span class="text nav-text">blog</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="../modification_profile_médecin/index.html">
+                            <i class="fa-solid fa-gear icon"></i>
+                            <span class="text nav-text">parametres</span>
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa-solid fa-arrow-right-from-bracket icon .logout "></i>
+                            <span class="text nav-text">Log Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--bottom section end-->
+
+        </div>
+        <!--side bar end-->
+
+        <main>
+            <div class="bonjour">
+                <div class="photo">
+                    <img src="images/Doctors-pana.svg" alt="doctorImage" class="doctorImg">
+                </div>
+                <div class="droite">
+                    <div id="date_heure"></div>
+                    <h4 class="b-3">Bonjour !
+                        <br>
+                        <span class="name"> Dr. bilal basma</span>
+                    </h4>
+                    <p class="para-desc">Have a nice day ! great day ! take care! you can do it</p>
+                    <h6 class="h6">You have <span class="text-p">10 patients</span> remaining today !</h6>
+                </div>
+            </div>
+            <div class="middle">
+                <ul class="tabs">
+                    <li class="infos active" data-cont=".one"><i class="fa-solid fa-info"></i> Informations</li>
+                    <li class="infos " data-cont=".two"><i class="fa-solid fa-stethoscope"></i> Expériences</li>
+                    <li class="infos" data-cont=".three"><i class="fa-solid fa-location-dot"></i> Localisation</li>
+                    <li class="infos" data-cont=".four"><i class="fa-solid fa-clock"></i> Horaires et contact</li>
+
+                </ul>
+                <div class="contenu">
+                    <div class="one">
+                        <div class="about-d"><i class="fa-solid fa-address-card"></i> About</div>
+                        <div class="one-name"><i class="fa-solid fa-user-doctor"></i> Dr.Bilal Basma</div>
+                        <div class="spec">médecin généraliste à Casablanca</div>
+                        <span class="span-desc">Description</span>
+                        <div class="description">
+                            Le médecin généraliste reçoit les enfants et les adultes pour tous types de soins médicaux
+                            généraux (consultation, contrôle annuel, vaccination, bilan de santé). Il assure également
+                            un
+                            suivi des patients dans le temps et les oriente vers des médecins spécialistes en cas de
+                            besoin.
+                        </div>
+                        <p class="voir">Afficher la description complète</p>
+                        <div class="infos-spec"><i class="fa-solid fa-heart-pulse"></i> Spécialités</div>
+                        <div class="class-spec">
+                            <span>generaliste</span>
+                            <span>Promotion de la santé</span>
+                            <span>generaliste</span>
+                            <span>generaliste</span>
+                            <span>generaliste</span> </div>
+                        <p class="voir" onclick="toggle()">voir plus</p>
+
+                        <div class="infos-tarifs"><i class="fa-solid fa-credit-card"></i> Tarifs</div>
+                        <table id="table">
+                            <tr>
+                                <th>Type de consultation</th>
+                                <th>Prix</th>
+                            </tr>
+                            <tr>
+                                <td>au cabinet</td>
+                                <td>200 DH</td>
+                            </tr>
+                            <tr>
+                                <td>en ligne</td>
+                                <td>300 DH</td>
+                            </tr>
+                            <tr>
+                                <td>à domicile</td>
+                                <td>300 DH</td>
+                            </tr>
+                        </table>
+                        <div class="paiment" id="pai">
+                            <div class="paiment-div">Méthodes de paiment</div><br>
+                            <span>espèces </span>
+                            <span>chèques </span>
+                            <span>CB </span>
+                        </div>
+                        <div class="langue"><i class="fa-solid fa-language"></i> Langues parlées</div>
+                        <div class="class-langues">
+                            <span>Arabe</span>
+                            <span>Français</span>
+                            <span>Anglais</span>
+                        </div>
+
+                    </div>
+                    <div class="two">
+                        <div class="experiences-content"><i class="fa-solid fa-stethoscope"></i> Expériences </div>
+                        <ul class="ul-experiences">
+                            <li>2009 - 2018: Consultant - Institut Alfred Fournier - Médecine générale
+
+                            </li>
+                            <li>1998 - 2000: Praticien attaché - Hôpital Bicêtre - Le Kremlin-Bicêtre - Médecine interne
+                                et pneumologie</li>
+                            <li>1995 - 1998: Praticien attaché - Hôpital Saint-Antoine - Paris - Pneumologie</li>
+                            <li>1991 - 1993: Assistant - Centre Hospitalier du Mans - Le Mans - Pneumologie</li>
+                        </ul>
+                        <p class="voir" onclick="toggle()">voir plus</p>
+                        <div class="diplome"><i class="fa-solid fa-graduation-cap"></i> Cursus et diplômes</div>
+                        <ul class="ul-diplome" style="list-style: inside">
+                            <li>D.I.U. Acupuncture scientifique - Université Paris 11 - Kremlin-Bicêtre (2021)</li>
+                            <li>D.I.U. Mésothérapie - Université Paris 5 - Paris-Descartes (2020)</li>
+                            <li>
+                                D.I.U. Phytothérapie - Université Paris 13 - Bobigny (2016)
+                            </li>
+                            <li> D.U. Micronutrition, alimentation, prévention et santé - Faculté de médecine de Dijon
+                                (2009)</li>
+                            <li>
+                                D.U. Pathologie cardio-respiratoire du sommeil - Université Paris 11 - Paris-Saclay
+                                (1993)
+                            </li>
+                            <li>
+                                C.E.S. Pneumologie - Université Paris 5 - Paris-Descartes (1991)</li>
+
+                        </ul>
+                        <p class="voir" onclick="toggle()">voir plus</p>
+
+                    </div>
+                    <div class="three">
+                        <div class="adresse">
+                            <i class="fa-solid fa-location-dot"></i> Adresse
+                            <p class="p-adresse">av Allal Ben Abdellah, imm 30, Meknès, maroc</p>
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105994.59262669296!2d-5.608060686464307!3d33.88112770504354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda044d23bfc49d1%3A0xfbbf80a99e4cde18!2zTWVrbsOocw!5e0!3m2!1sfr!2sma!4v1655074703314!5m2!1sfr!2sma"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade" class="iframe-map"></iframe>
+                        </div>
+                        <div class="map">
+
+                        </div>
+                    </div>
+                    <div class="four">
+                        <div class="contenu-four">
+                            <div class="horaires-left">
+                                <div class="horaires"><i class="fa-solid fa-clock"></i> Horaires </div>
+                                <div class="clock">
+                                    <ul>
+                                        <li>
+                                            <p>Lundi</p>
+                                            <p>08.00 - 18:00</p>
+                                        </li>
+                                        <li>
+                                            <p>Mardi</p>
+                                            <p>08.00 - 18:00</p>
+                                        </li>
+                                        <li>
+                                            <p>Jeudi</p>
+                                            <p>08.00 - 18:00</p>
+                                        </li>
+                                        <li>
+                                            <p>Vendredi</p>
+                                            <p>08.00 - 18:00</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="contact-side">
+                                <div class="contact"><i class="fa-solid fa-address-book"></i> Contact</div>
+                                <div class="num_email">
+                                    <div> <i class="fa-solid fa-phone"></i> Numéro de téléphone :
+                                        <span>(+212)612545454</span>
+                                    </div>
+                                    <div> <i class="fa-solid fa-envelope"></i> Email :
+                                        <span>contact@exemple.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+        </main>
+
+
+        <footer class="footer">
+            <div class="content">
+                <div class="row">
+                    <div class="footer-col">
+                        <div class="logoChifae">
+                            <img class="logo" src="./images/Layer 1.png" alt="#">
+                            <span class="chifae">Chifae</span>
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-col">
+                        <h4>des liens rapides</h4>
+                        <ul>
+                            <li><a href="#">Acceuil </a></li>
+                            <li><a href="#">Se connecter</a></li>
+                            <li><a href="#">services</a></li>
+                            <li><a href="#">contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">SOS</a></li>
+                            <li><a href="#">livraison de médicaments</a></li>
+                            <li><a href="#">Pharmacies de garde</a></li>
+                            <li><a href="#">Contacts de Laboratoires</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Aide &amp; Support</h4>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Conditions Générales d’Utilisation </a></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+
+    </div>
+
+    <div id="boite">
+        <div class="infos-spec"><i class="fa-solid fa-heart-pulse"></i> Spécialités</div>
+        <img src="images/close.svg.png" class="close" onclick="toggle()">
+    </div>
+
+    <script src="scripts/profil.js"></script>
+</body>
+
+</html>
