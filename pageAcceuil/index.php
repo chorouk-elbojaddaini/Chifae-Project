@@ -1,3 +1,7 @@
+<?php
+session_start();
+include "cnx.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,10 +40,11 @@
           <h4 class="shifae">Shifae</h4>
         </div>
         <ul class="nav-menu">
-          <li><a href="index.html">Acceuil</a></li>
-          <li class="medecin"><a href="index.html">Medecin</a></li>
-          <li class="patient"><a href="index.html">Patient</a></li>
-          <li><a href="../ContactPage/contact.html">Contact</a></li>
+          <li><a href="index.php">Acceuil</a></li>
+          <li class="medecin"><a href="../connexionDoc/index.php">Medecin</a></li>
+          <li class="patient"><a href="../connexionPat/index.php">Patient</a></li>
+          <li><a href="../ContactPage/contact.php">Contact</a></li>
+          <li><a href="../aboutUs/about.html" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
           <!-- <li >
             <div class="langWrap">
             <a href="#" language="arabe"><img src="assets/maroc.jpg" alt="maroc" class="arabe"> Ar</a>
@@ -91,41 +96,42 @@
             </h1>
             <!-- start bare de recherche  -->
             <form
-              action="../page/index.php"
+              action="../pageRecherche/recherche.php"
               class="boxes"
               method="post"
               enctype="multipart/form-data"
             >
               <div class="box1">
                 <label for="cars"></label>
-                <select id="villes" name="ville">
-                  <option value="fa-map-o" class="ville">Ville</option>
-                  <option value="Ahfir">Ahfir</option>
-                  <option value="Al Aroui">Al Aroui</option>
-                  <option value="Beni Ensar">Beni Ensar</option>
-                  <option value="Berkane">Berkane</option>
-                  <option value="Bni Drar">Bni Drar</option>
-                  <option value="Nador">Nador</option>
-                  <option value="Saidia">Saidia</option>
-                  <option value="Oujda">Oujda</option>
+                <select id="villes" name="ville"  value="<?echo $_POST["ville"];?>" >
+                  <option value="(ville?)" class="ville">Ville</option>
+                  <?php
+                  $query = "SELECT DISTINCT ville FROM medecin " ;
+                  $result = mysqli_query($conn , $query);
+                 $total = mysqli_num_rows($result);
+                 echo $total;
+                 while($row=mysqli_fetch_array($result)){
+                  echo '<option value="'."$row[ville]".'">'."$row[ville]".'</option>'; 
+                 }
+                 ?>
                 </select>
+                <!--  start specialite -->
               </div>
               <div class="box2">
                 <label for="cars"></label>
-                <select id="specialites" name="specialite">
-                  <option value="Specialiste/generaliste" class="specialite">
-                    Specialiste/generaliste
-                  </option>
-                  <option value="generaliste">generaliste</option>
-                  <option value="Endocrinologie">Endocrinologie</option>
-                  <option value="Cardiologie">Cardiologie</option>
-                  <option value="Dermatologue">Dermatologue</option>
-                  <option value="Gastro-entérologue">Gastro-entérologue</option>
-                  <option value="chimiothérapie">chimiothérapie</option>
-                  <option value="Pédiatre">Pédiatre</option>
+                <select id="specialites" name="specialite"  value="<?echo $_POST["specialite"];?>" >
+                <?php
+                  $query = "SELECT DISTINCT specialite FROM medecin " ;
+                  $result = mysqli_query($conn , $query);
+                 $total = mysqli_num_rows($result);
+                 echo $total;
+                 while($row=mysqli_fetch_array($result)){
+                  echo '<option value="'."$row[specialite]".'">'."$row[specialite]".'</option>'; 
+                 }
+                 ?>
                 </select>
               </div>
-              <div class="box2">
+              <!-- <div class="box2">
                 <label for="typeprise"></label>
                 <select id="type_prise" name="cars">
                   <option value="volvo ">Type de prise</option>
@@ -133,14 +139,14 @@
                   <option value="saab">rendez-vous a domicile</option>
                   <option value="fiat">controle medical en ligne</option>
                 </select>
-              </div>
+              </div> -->
               <!-- <div class="date">
                 <label for="birthday"></label>
                 <input type="date" id="date" name="birthday" />
               </div> -->
               <!-- <div class="sub"><button name="search" style="margin-bottom : 1px"><i class=" search fa-solid fa-magnifying-glass" ></i></button></div> -->
               <div>
-                <button type="submit" name="serach" id="search">
+                <button type="submit" name="search" id="search">
                   <i class="uil uil-search"></i>
                 </button>
               </div>
@@ -279,7 +285,7 @@
       </video>
       </div>
    </div>
-   <div class="QA">
+   <div class="QA" id="qa">
        <h1>Les questions les plus fréquentes </h1>
     <div class="container faqs_container">
         <article class="faq">
@@ -371,20 +377,20 @@
         <div class="footer-widget">
           <h6>des liens rapides</h6>
           <ul class="links">
-            <li><a href="#">Acceuil</a></li>
-            <li><a href="#">Se connecter</a></li>
-            <li><a href="#">services</a></li>
+            <li><a href="../pageAcceuil/index.php">Acceuil</a></li>
+            <li><a href="../connexionDoc/index.php">Medecin</a></li>
+            <li><a href="../connexionPat/index.php">Patient</a></li>
             <!-- <li><a href="#">testimonial</a></li> -->
-            <li><a href="#">contact</a></li>
+            <li><a href="../ContactPage/contact.php">contact</a></li>
           </ul>
         </div>
         <div class="footer-widget">
           <h6>Services</h6>
           <ul class="links">
-            <li><a href="#">SOS</a></li>
-            <li><a href="#">livraison de médicaments</a></li>
-            <li><a href="#">Pharmacies de garde</a></li>
-            <li><a href="#">Contacts de Laboratoires</a></li>
+            <li><a href="../pageAcceuil/index.php">prise de RDV</a></li>
+            <li><a href="../connexionPat/index.php">Dossier médical</a></li>
+            <li><a href="../connexionDoc/index.php">calendrier pour medecin</a></li>
+            <!-- <li><a href="#">Contacts de Laboratoires</a></li> -->
           </ul>
         </div>
         <div class="footer-widget">
@@ -392,8 +398,8 @@
           <ul class="links">
             <!-- <li><a href="#">support center</a></li> -->
             <!-- <li><a href="#">live chat</a></li> -->
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Conditions Générales d’Utilisation </a></li>
+            <li><a href="../pageAcceuil/index.php#qa">FAQ</a></li>
+            <li><a href="../condition/condition.php">Conditions Générales d’Utilisation </a></li>
           </ul>
         </div>
       </div>
@@ -405,7 +411,7 @@
       </div>
     </div>
   </footer>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="main.js"></script>
   </body>

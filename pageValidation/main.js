@@ -152,3 +152,89 @@ check.addEventListener("click",()=>{
 		text.style.color = "#da3400";
 		}
 });
+
+
+
+
+function validateForm() {
+  var x = document.forms["formm"]["nom"].value;
+  var y = document.forms["formm"]["prenom"].value;
+  var z = document.forms["formm"]["email"].value;
+  var e = document.forms["formm"]["phone"].value;
+  var f = document.forms["formm"]["date"].value;
+  var j = document.forms["formm"]["heure"].value;
+  var mail_format = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  if (x == "" || x == null) {
+    alert("Le nom doit être remplit");
+
+    location.reload();
+return false;
+  }
+  if (y == "" || y == null) {
+    alert("Le prenom doit être remplit");
+
+    location.reload();
+return false;
+  }
+  if (z == "" || z == null) {
+    alert("Le email doit être remplit");
+
+    location.reload();
+return false;
+  }
+  if (e == "" || e == null) {
+    alert("Le numero doit être remplit");
+
+    location.reload();
+return false;
+  }
+  if (f == "" || f == null) {
+    alert("La date doit être remplit");
+
+    location.reload();
+return false;
+  }
+  if (j == "" || j == null) {
+    alert("L'heure doit être remplit");
+
+    location.reload();
+return false;
+  }
+
+ 
+   if(number.value.length<12){
+    alert("le numéro doit contenir 10 nombres");
+
+    location.reload();
+return false;
+	}
+	else if(number.value.match(regex)){
+		
+	}
+ 
+
+
+
+if(z.match(mail_format))
+
+{
+
+
+
+return true;
+
+}
+
+else
+
+{
+
+alert('Entrer un email valide');
+
+
+location.reload();
+return false;
+
+}
+
+}

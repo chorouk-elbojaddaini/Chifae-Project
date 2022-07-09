@@ -100,7 +100,7 @@ nav {
   height: 5rem;
   position: fixed;
   top: 0;
-  z-index: 20;
+  z-index: 100000;
   padding-top: 1rem;
 }
 .logo_cont {
@@ -626,7 +626,7 @@ select:focus {
 .div-info h4 {
   color: var(--color-green);
 }
-.prendre-rdv {
+.prendre-rdv , .voir-rdv {
   margin-top: 8px;
   padding: 4px 8px;
   background-color: var(--color-pink);
@@ -642,6 +642,11 @@ select:focus {
   transition: var(--transition);
 }
 .prendre-rdv:hover {
+  background-color: var(--color-white);
+  color: var(--color-pink);
+  transform: scale(1.1);
+} 
+.voir-rdv:hover {
   background-color: var(--color-white);
   color: var(--color-pink);
   transform: scale(1.1);
@@ -664,10 +669,13 @@ select:focus {
     height: 220px;
   }
 
-  .prendre-rdv {
+  .prendre-rdv ,.voir-rdv{
     margin-left: -10px;
   }
   .prendre-rdv:hover {
+    transform: scale(1);
+  }
+  .voir-rdv:hover {
     transform: scale(1);
   }
 }
@@ -719,10 +727,11 @@ select:focus {
     font-size: smaller;
     /* margin-left: 10px; */
   }
-  .prendre-rdv {
+  .prendre-rdv , .voir-rdv{
     width: fit-content;
     /* height: fit-content; */
   }
+  
   .pagination {
     width: 240px;
   }
@@ -870,9 +879,23 @@ transition: var(--transition);
 .active {
   background: var(--color-green3);
 }
+.activee:focus{
+  background-color: var(--color-pink);
+}
 .disable {
   background: #ccc;
 }
+#googleMap {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+.medecin-map{
+  width: 20px;
+  height: 20px;
+}
+.iconnav{
+  font-size: 20px !important;}
 /* ========  Start pagination section ============*/
 /* ===================== end  medecin section ======================= */
 /* ========= End Search card  ================= */

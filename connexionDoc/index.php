@@ -1,52 +1,6 @@
-<?php 
-"/XMII/Illuminator?Service=Admin&Mode=SessionList&Content-Type=text/xml";
+<?php
 
-
-ini_set("display_errors", true);
-session_start();
-if (isset($_SESSION['SESSION_EMAIL'])) {
-    header("Location: connected.php");
-    die();
-}
-
-include 'cnx.php';
-$msg="";
-if (isset($_GET['verification'])){
-    if(mysqli_num_rows(mysqli_query($conn,"SELECT *FROM medecin WHERE code = '{$_GET['verification']}'")) >0){
-       $query= mysqli_query($conn ,"UPDATE medecin SET code='' WHERE code='{$_GET['verification']}' ");
-        if($query){
-            $msg="<p class='alert-succe'>Compte créer avec succé!</p>";
-        }
-    
-    else{
-        header("location: index.php");
-    }
-}
-
-}
-    if (isset($_POST['submit'])){
-        $email = mysqli_real_escape_string($conn ,$_POST['email']);
-        $motdepasse = mysqli_real_escape_string($conn ,$_POST['motdepasse']);
-        $sql = "SELECT * FROM medecin WHERE gmail = '{$email}' AND motdepasse ='{$motdepasse}' ";
-        $result = mysqli_query($conn ,$sql);
-        if(mysqli_num_rows($result)== 1){
-            $row = mysqli_fetch_assoc($result);
-            if(empty($row['code'])){
-                $_SESSION['SESSION_EMAIL'] = $email;
-                header("location: connected.php");
-            }
-            else{
-                 $msg="<p class='alert-blue'>vérifier votre compte et essayé de se connecter!</p>";
-                
-            }
-        }
-        else{
-            $msg="<p class='alert-red'>mot de passe ne correspond pas!</p>";
-
-        }
-
-    }
-
+include 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,117 +8,207 @@ if (isset($_GET['verification'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
-    <title>Document</title>
+    <link rel="stylesheet" href="cnx.css" />
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    <script
+    src="https://kit.fontawesome.com/64d58efce2.js"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
+  <link
+  rel="stylesheet"
+  href="https://unicons.iconscout.com/release/v4.0.0/css/solid.css"
+/>
+    <!-- cdn icons link  -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+    <title>connexion|Shifae</title>
+      <!-- Font Awesome CDN Link -->
+      <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 </head>
 <body>
-    <div class="container">
-        <section class="top-nav"><!--nav bar-->
-            <div class="navLogo">
-                <img class="logo" src="./images/Layer 1.png" alt="#">
-                <span class="chifaeNav">Chifae</span>
-            </div>
-            <input id="menu-toggle" type="checkbox" />
-            <label class='menu-button-container' for="menu-toggle">
-            <div class='menu-button'></div>
-            </label>
-            <ul class="menu">
-                <li>
-                    <a  class="nav-links" href="#">Acceuil</a>
-                </li>
-                <li>
-                    <a  class="nav-links pink" href="#">Médecin</a>
-                </li>
-                <li>
-                    <a class="nav-links pink" href="#">Patient</a>
-                </li>
-                <li>
-                    <a class="nav-links" href="#">Contact</a>
-                </li>
-            </ul>
-        </section> <!--nav bar end-->
+    <nav>
+        <div class="container nav_container">
+          <div class="logo_cont">
+            <a href="index.html"
+              ><img src="images/logo.png" alt="logo" class="logo"
+            /></a>
+            <h4>Shifae</h4>
+          </div>
+          <ul class="nav-menu">
+            <li><a href="../pageAcceuil/index.php">Acceuil</a></li>
+            <li class="medecin"><a href="../connexionDoc/index.php">Medecin</a></li>
+            <li class="patient"><a href="../connexionPat/index.php">Patient</a></li>
+            <li><a href="../ContactPage/contact.php">Contact</a></li>
+          <li><a href="../aboutUs/about.html" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
 
-        <main>
+          </ul>
+          <!-- drop down medecin  -->
+          <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn"></button>
+            <div id="myDropdown" class="dropdown-content">
+              <hr class="solid" />
+              <a href="#">Mon espace </a>
+              <hr class="solid" />
+              <a href="#">Mes blogs</a>
+              <hr class="solid" />
+              <a href="#">Se déconnecter</a>
+              <hr class="solid" />
+            </div>
+          </div>
+          <!-- end  drop down medecin  -->
+          <!-- drop down patient -->
+          <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn"></button>
+            <div id="myDropdown" class="dropdown-content">
+              <hr class="solid" />
+              <a href="#">Mon dossier medical</a>
+              <hr class="solid" />
+              <a href="#">Prendre un rendez-vous</a>
+              <hr class="solid" />
+              <a href="#">Se déconnecter</a>
+              <hr class="solid" />
+            </div>
+          </div>
+          <!-- end drop down patient -->
+          <button class="open_menu_botton"><i class="uis uis-bars"></i></button>
+          <button class="close_menu_botton">
+            <i class="uis uis-multiply"></i>
+          </button>
+        </div>
+      </nav>
+      <!-- Contact section  -->
       
-            <div class="left">
-                <div class="wrapCnx">
-                    <h1 class="cnx">Connexion</h1>
-                    <img src="./images/f.png" alt="">
+      <div class="container_contact">
+            <!-- <span class="big-circle"></span> -->
+            <img src="assets/image.png" class="square" alt="" />
+            <div class="form">
+              <div class="contact-info">
+                <h3 class="title">Espace medecin</h3>
+                <img src="images/Login-pana.svg"  alt="" />
+      
+                <div class="info">
+                  
+                </div>
+      
+                <div class="social-media">
+                  <div class="social-icons">
+                    
+                  </div>
+                </div>
+              </div>
+      
+              <div class="contact-form">
+                <span class="circle one"></span>
+                <span class="circle two"></span>
+                </br>
+                </br>
+               
+                <form action=""  method="POST" >
+                  <h3 class="title">Se connecter</h3>
                     <?php echo $msg; ?>
-                    <form action="" method="post">
-                        <div class="form_grp">
-                           <input class="form_input" type="email" placeholder="email" name="email" >
-                           <!-- <label class="form_label">email</label> -->
-                        </div>
+                  <div class="input-container">
+                  <input class="input" type="email"  name="email" >
+                    <label for="">Email</label>
+                    <span>Email</span>
+                  </div>
+                  <div class="input-container">
+                  <input class="input" type="password" name="motdepasse" >
+                    <label for="">Mot de passe</label>
+                    <span>Mot de passe</span>
+                  </div>
+                  
+                  <input type="submit" name="submit" value="se connecter" class="btn" /></br>
+                  <p style=" color:white;"><a href="Forgot/forgot.php">mot de passe oublié?</a></p>
                     
-                        <div class="form_grp">
-                           <input class="form_input" type="password" name="motdepasse" placeholder="mot de pass" >
-                           <!-- <label class="form_label">mot de pass</label> -->
-                        </div>
-                    <a class="btnPass" href="#">Mot de passe oublié</a>
-                    
-                    <button type="submit" class="btn btnCnx" name="submit" >Connexion</button>
-                    <p class="signIn">pas encore de compte</p>
-                    <a class="btn btnSign" href="inscriptionM/inscription.php">créer mon compte</a>
-                    </form>
+                </form>
+              
+                <p >Vous n'avez pas encore inscrit ? <a class=" btnSign" href="inscriptionM/inscription.php">créer mon compte</a> </p>
+                
 
-                </div>
+              </div>
             </div>
-            <div class="right">
-                <img src="./images/Doctors-pana.png" alt="#">
-            </div>
-    
-    
-    
-           </main>
-           <footer class="footer">
-            <div class="content">
-                <div class="row">
-                 <div class="footer-col">
-                    <div class="logoChifae">
-                        <img class="logo" src="./images/Layer 1.png" alt="#">
-                        <span class="chifae">Chifae</span>
-                    </div>
-                     <div class="social-links">
-                         <a href="#"><i class="fab fa-facebook-f"></i></a>
-                         <a href="#"><i class="fab fa-twitter"></i></a>
-                         <a href="#"><i class="fab fa-instagram"></i></a>
-                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                     </div>
-                 </div>
-                    <div class="footer-col">
-                        <h4>des liens rapides</h4>
-                        <ul>
-                            <li><a href="#">Acceuil </a></li>
-                            <li><a href="#">Se connecter</a></li>
-                            <li><a href="#">services</a></li>
-                            <li><a href="#">contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Services</h4>
-                        <ul>
-                            <li><a href="#">SOS</a></li>
-                            <li><a href="#">livraison de médicaments</a></li>
-                            <li><a href="#">Pharmacies de garde</a></li>
-                            <li><a href="#">Contacts de Laboratoires</a></li>
-                            
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4>Aide &amp; Support</h4>
-                        <ul>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Conditions Générales d’Utilisation </a></li>
-                            
-                        </ul>
-                    </div>
-                    
-                </div>
-            </div>
-       </footer>
+          </div>
+
+          <footer>
+    <div class="container">
+      <div class="wrapper">
+        <div class="footer-widget">
+          <a href="#">
+              <div class="logo-footer">
+            <img src="images/logo.png" class="logo" />
+            <p>Shifae</p></div>
+          </a>
+          <p class="desc">
+          </p>
+          <ul class="socials">
+            <li>
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-widget">
+          <h6>des liens rapides</h6>
+          <ul class="links">
+            <li><a href="../pageAcceuil/index.php">Acceuil</a></li>
+            <li><a href="../connexionDoc/index.php">Medecin</a></li>
+            <li><a href="../connexionPat/index.php">Patient</a></li>
+            <!-- <li><a href="#">testimonial</a></li> -->
+            <li><a href="../ContactPage/contact.php">contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-widget">
+          <h6>Services</h6>
+          <ul class="links">
+            <li><a href="../pageAcceuil/index.php">prise de RDV</a></li>
+            <li><a href="../connexionPat/index.php">Dossier médical</a></li>
+            <li><a href="../connexionDoc/index.php">calendrier pour medecin</a></li>
+            <!-- <li><a href="#">Contacts de Laboratoires</a></li> -->
+          </ul>
+        </div>
+        <div class="footer-widget">
+          <h6>Aide &amp; Support</h6>
+          <ul class="links">
+            <!-- <li><a href="#">support center</a></li> -->
+            <!-- <li><a href="#">live chat</a></li> -->
+            <li><a href="../pageAcceuil/index.php#qa">FAQ</a></li>
+            <li><a href="../condition/condition.php">Conditions Générales d’Utilisation </a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright-wrapper">
+        <p>
+            © 2022 Shifae.com - Tous les droits sont réservés
+          <a href="#" target="blank">Shifae</a>
+        </p>
+      </div>
     </div>
+  </footer>
+    <script src="cnx.js"></script>
 </body>
 </html>
