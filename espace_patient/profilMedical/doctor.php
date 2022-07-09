@@ -26,7 +26,18 @@ if (mysqli_num_rows($display) > 0)
   
     <title>Profil Médical | Chifae</title>
       <!-- Font Awesome CDN Link -->
-     
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
+  <link
+  rel="stylesheet"
+  href="https://unicons.iconscout.com/release/v4.0.0/css/solid.css"
+/>
+    <!-- cdn icons link  -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+ <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
    
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="css/style.css">
