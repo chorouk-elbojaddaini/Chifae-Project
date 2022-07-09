@@ -101,7 +101,7 @@
             <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
               <img type="image"  src="images/noprofil.jpg" alt="profile" id="account">
                 <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
-                   <a class="pop"href="profil.html" target="_blank" id="monProfil">Mes infos</a>
+                   <a class="pop"href="../profilMedical/index.php" target="_blank" id="monProfil">Mes infos</a>
                    <a class="pop" href="#" id="deconnect">Se déconnecter</a>
         </div>
          </div>
