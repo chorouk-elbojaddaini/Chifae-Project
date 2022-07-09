@@ -1,7 +1,12 @@
 :root {
     --grey: #eff5f57a;
+    
+    --dark-green :#0b2f34;
     --green: #13565f;
-    --pink: #fe6687ee;
+    --pink: #fe6686;
+    --white: white;
+    --green2: #2b6a72;
+    --green3: #4d9ca7;
   }
   *{
     margin: 0;
@@ -9,8 +14,7 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
   }
-  .overlay,
-  .overlay-file
+  .overlay
 
   {
       position: fixed;
@@ -20,7 +24,7 @@
       right: 0;
       z-index: 1;
       background-color:rgba(39, 39, 39, 0.348);
-      display: none;
+      /* display: none; */
   }
   .open-popup
   {
@@ -33,7 +37,12 @@
 {
     width:300px;
     height:400px;
-    background-color:#396e75;
+    background: linear-gradient(270deg, hsla(187, 41%, 29%, 1) 0%, hsla(188, 21%, 45%, 1) 100%);
+ 
+    background: -moz-linear-gradient(270deg, hsla(187, 41%, 29%, 1) 0%, hsla(188, 21%, 45%, 1) 100%);
+    
+    background: -webkit-linear-gradient(270deg, hsla(187, 41%, 29%, 1) 0%, hsla(188, 21%, 45%, 1) 100%);
+   box-shadow: 6px 6px 16px rgba(65, 65, 65, 0.381);
     border-radius: 6px;
     position: absolute;
     top:50%;
@@ -131,26 +140,59 @@
 
   }
   /* =======================Modal FORM MALADIE========================== */
-  .overlay-form
+  .close_form
+
   {
-      position: fixed;
-      top: 0;
-      left: 0;
-      bottom:0;
-      right: 0;
-      z-index: 1;
-      background-color:rgba(39, 39, 39, 0.348);
-      display: none;
+      background-color: transparent;
+      border:none
+  }
+
+  .closeF
+  {
+      border-radius: 50%;
+      background-color: var(--pink);
+      color: white;
+      padding:5px 8px ;
+      font-size:20px;
+      box-shadow: 2px 2px 2px rgba(65, 65, 65, 0.679);
+      cursor: pointer;
+      margin-left:400px;
+     margin-top:-100px;
+      display: inline-block;
+  }
+  .closer
+  {
+    border-radius: 50%;
+    background-color: var(--pink);
+    color: white;
+    padding:5px 8px ;
+    font-size:20px;
+    box-shadow: 2px 2px 2px rgba(65, 65, 65, 0.679);
+    cursor: pointer;
+    margin-left:400px;
+   margin-top:0px;
+    display: inline-block;
+  }
+  .closeF:hover,.closer:hover
+  {
+      background-color: #fe6687c0;
+  }
+
+  .hide
+  {
+    display: none;
   }
   /* ********************FORM-page1*********************** */
 .form
 {
   display:grid;
   grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(4,fit-content);
-  grid-template-areas: "input"
+  grid-template-rows: repeat(5,fit-content);
+  grid-template-areas: "close"
+                        "input"
                         "input"
                "describe "
+               "form-btn"
                "form-btn";
  width:fit-content;
  padding:20px 10px;
@@ -158,8 +200,28 @@
  top:50%;
  left:50%;
  transform: translate(-50%, -50%) scale(1);
+ padding-bottom:10px;
+ box-shadow: 10px 10px 300px rgba(96, 96, 96, 0.697);
+ 
 
 }
+form[class='maladie']
+{
+  display:grid;
+  grid-template-columns: repeat(2,fit-content);
+  grid-template-rows: repeat(5,fit-content);
+  grid-template-areas: "close"
+                        "input"
+                        "input"
+                        "select"
+               "describe "
+               "form-btn"
+               "form-btn";
+}
+form[class='maladie'] select  {
+   grid-area:select;
+
+   }
 .form input:nth-child(1)
 {
   grid-area:input;
@@ -175,42 +237,34 @@
   grid-area:input;
   
 }
-/* .form input:nth-child(1),
-.form label:nth-child(1),
-.form input:nth-child(2),
-.form label:nth-child(2),
-.form input:nth-child(2),
-.form label:nth-child(2),
-.form input:nth-child(2),
-.form label:nth-child(2),
-.form label:nth-child(5),
-.form textarea
+.form .close_btn
 {
-
-  margin:10px
-} */
-
-
+  grid-area:close;
+}
 
 .form-btn
 {
   grid-area: form-btn;
-  width:250px;
-  height:50px;
-  padding:10px;
+  width:150px;
+  height:40px;
+  /* padding:10px; */
   border:2px solid var(--pink);
   background-color:var(--pink);
   color:white;
-  font-weight:bold;
+  font-weight:500;
   font-size:1rem;
   border-radius:30px;
   justify-self:center;
+
+  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+  transition: transform 0.2s 0.1s ease-out;
 
 }
 .form-btn:hover
 {
  cursor:pointer;
  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+ transform: scale(1.1);
 
 }
 
@@ -243,7 +297,7 @@
 .form label,.form select
 {
   display:block;
-  margin:10px
+  margin:5px
   
 }
 .form label
@@ -256,8 +310,9 @@
 {
   display:grid;
   grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(6,fit-content);
-  grid-template-areas: "input"
+  grid-template-rows: repeat(7,fit-content);
+  grid-template-areas: "close"
+  "input"
                         "input"
                         "input"
                         "input"
@@ -283,18 +338,24 @@
   margin-left:10px
   
 }
+#traitement-form label
+{
+  margin:0px 10px
+}
+
 /* ========================HOSPITALISATION-FORM================== */
 #hospital-form
 {
   display:grid;
   grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(5,fit-content);
-  grid-template-areas: "input"
+  grid-template-rows: repeat(6,fit-content);
+  grid-template-areas: "close"
                         "input"
                         "input"
-               "describe "
-               "form-btn";
-
+                        "input"
+                      "describe "
+                       "form-btn";
+ 
 
 }
 #hospital-form input:nth-child(3)
@@ -308,8 +369,9 @@
 {
   display:grid;
   grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(3,fit-content);
-  grid-template-areas: "input"
+  grid-template-rows: repeat(4,fit-content);
+  grid-template-areas: "close"
+                "input"
                "describe "
                "form-btn";
 
@@ -320,8 +382,9 @@
 {
   display:grid;
   grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(6,fit-content);
-  grid-template-areas: "input"
+  grid-template-rows: repeat(7,fit-content);
+  grid-template-areas: "close"
+                          "input"
                         "input"
                         "input"
                         "input"
@@ -337,150 +400,230 @@
   
 }
 /* ********************DOCUMENTS FORM*********************** */
-#docs-form
+.docForm
  {
    display:grid;
    grid-template-columns: repeat(1,fit-content);
-   grid-template-rows: repeat(5,fit-content);
-   grid-template-areas: "input"
+   grid-template-rows: repeat(6,fit-content);
+   grid-template-areas: "close"
+                          "input"
                          "input"
                          "input"
                    "select"
+                   "file"
                 "form-btn";
-
+                top:55%;
  
  }
- #docs-form input:nth-child(1)
+ #close-edit-doc,
+ #close-add-doc{
+  grid-area:close;
+ }
+ .docForm input:nth-child(1)
  {
    grid-area:input;
  
  }
- #docs-form input:nth-child(2)
+ .docForm input:nth-child(2)
  {
    grid-area:input;
  
  }
- #docs-form input:nth-child(3)
+ .docForm input:nth-child(3)
  {
    grid-area:input;
  
  }
- #docs-form select
+ .docForm select
  {
    grid-area:select;
  
  }
-/* ========================UPLOAD-FORM================== */
-.file__upload {
-  width: 400px;
-  height: 445px;
-  /* margin: 20px; */
-  /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.384); */
-  padding:20px 10px;
-  position: absolute;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.file__upload .header {
-  width: 100%;
-  height: 145px;
-  background: var(--green2);
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px 5px 0 0;
-}
-
-.file__upload .header p {
-  color: #FFF;
-}
-
-.file__upload .header p i.fa {
-  margin-right: 10px;
-}
-
-.file__upload .header p span {
-  font-size: 2rem;
-  font-weight: 100;
-}
-
-.file__upload .header p span span {
-  font-weight: 600;
-}
-
-.file__upload .body {
-  background: #FFF;
-  width: 100%;
-  height: calc(100% - 145px);
-  border-radius: 0 0 5px 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-.file__upload .body input[type="file"] {
-  opacity: 0;
-}
-
-.file__upload .body i.fa {
-  color: #d3d3d3;
-  margin-bottom: 20px;
-}
-
-.file__upload .body p strong {
-  color: #4db6ac;
-}
-.file__upload .body p 
+ .docForm input[id="add-file"]
+ {
+  grid-area: file;
+  display:none
+ }
+ .docForm  #choisir
 {
-  text-align: center;
+  padding-bottom: 5px;
+  background-color:transparent;
+  border:none
 }
-.file__upload .body p span {
-  color: #4db6ac;
-  text-decoration: underline;
-}
-.file__upload .body p span:hover,
-.file__upload .body p strong:hover
+.docForm  #choisir:hover
 {
-  color:var(--pink)
-} 
+  color:var(--green3)
+}
 
+/* ==========================MESURE FORM=================== */
+.mesure-inputs,.profil-inputs
+{
+  display:grid;
+  grid-template-columns: repeat(2,1fr);
+  justify-content: center;
+}
+.mesureForm
+{
+  z-index: 15;
+}
+.mesureForm input,
+.profil input,
+.profil textarea,
+.profil select,
+.mesureForm textarea,.mesureForm select
+
+{
+  
+   width:120px;
+   margin-right:5px
+}
+.profil-inputs  label,
+.mesure-inputs
+label
+{
+  font-size:.8rem
+}
+.mesure-inputs
+input ::placeholder
+{
+  font-size:.7rem
+}
+#mesure-form
+{
+  z-index: 10;
+}
+/* ================================profil form=============================== */
+#profil-form-update
+{
+  display:grid;
+  grid-template-columns: repeat(2,fit-content);
+  /* grid-template-rows: repeat(5,fit-content);
+  grid-template-areas: "close"
+                        "input"
+                        "input"
+               "describe "
+               "form-btn"
+               "form-btn"; */
+ width:fit-content;
+ padding:20px 10px;
+ position: absolute;
+ /* top:25%;
+ left:25%;
+ transform: translate(75%, 5%) scale(1);
+ padding-bottom:10px;
+ box-shadow: 0px 0px 0px rgba(96, 96, 96, 0.697); */
+
+
+}
+.over-prof
+{
+
+
+  
+      position: fixed;
+      top: 40%;
+      left:50%;
+      bottom:0;
+      right: 0;
+      z-index: 1;
+      background-color:rgba(39, 39, 39, 0.348);
+      /* display: none; */
+  
+}
+/* =======================FORMS VALIDATION STYLING======================= */
+.form label span[id="show-name"]
+{
+  padding:10px;
+  margin:5px 10px;
+  color:rgb(42, 138, 99);
+  font-weight: 400;
+  font-size:.9rem;
+  background-color:rgb(182, 225, 208);
+  border:1.5px solid rgb(42, 138, 99);
+  display:none;
+ 
+}
+.fa-circle-check
+{
+  color:var(--green3);
+
+}
 /* =========================MEDIA QUERIES========================= */
 /* *******************FORM des MALADIES******************* */
 @media(max-width:767px)
 {
   .form
 {
- padding:20px 5px;
+ /* padding: 5px; */
  top:50%;
  left:50%;
  transform: translate(-50%, -50%) scale(1);
+ /* width:90% */
+
 }
 .form input,
 .form textarea,.form select
 
 {
    padding:5px;
-   width:250px;
+   width:200px;
 }
-.form-btn
-{
-  width:150px;
-  height:50px;
-  padding:10px;
 
-}
 #doc-btn
 {
   width:200px;
-  height:50px;
+  height:35px;
   padding:10px;
   font-weight: 500;
 
+}
+.closeF
+  {
+     
+      margin-right:10px;
+      margin-left:250px;
+
+      /* margin-bottom:150px; */
+      display: inline-block;
+  }
+  .closer
+  {
+    
+    margin-right:10px;
+    margin-left:250px;
+
+    /* margin-bottom:150px; */
+    display: inline-block;
+  }
+  .form input,
+.form textarea,.form select
+
+{
+  
+   width:98%;
+}
+#hospital-form
+{
+  top:60%
+}
+#vaccin-form
+{
+  top:60%
+}
+.over-prof
+{
+
+
+  
+      position: fixed;
+      top: 40%;
+      left:5%;
+      bottom:0;
+      right: 0;
+      z-index: 1;
+      background-color:rgba(39, 39, 39, 0.348);
+      /* display: none; */
+  
 }
 }
 

@@ -1,5 +1,5 @@
 /* ============================= Start Standar ===================================================  */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,200&display=swap");
+
 *{
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -167,6 +167,14 @@ nav button {
   {
     transition: transform 0.2s 0.1s ease-out;
   }
+  footer {
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding-top: 80px;
+    background-color: #ffffff;
+    bottom: 0;
+  }
 /* ============end nav============= */
 /* ========= start Media query ================== */
 @media (max-width: 480px)
@@ -328,6 +336,7 @@ footer {
     height: auto;
     padding-top: 80px;
     background-color: #ffffff;
+    bottom: 0;
   }
   
   .wrapper {

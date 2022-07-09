@@ -21,19 +21,50 @@
   body
   {
     background-color:#e6edee;
+   
   }
   nav,footer
   {
     width:100%;
   }
+  /* width */
+::-webkit-scrollbar {
+  width: 8px;
+
+}
+.logo
+{
+  width:40px;
+  height:40px
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+    border-radius: 20px;
+    margin-top:3px
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #a8bbbf;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green3); 
+}
      /*create white Border */
 .border {
   background-color: transparent;
   box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
   border-radius: 15px;
   background-color:#ffffff;
-  
+
 }
+
 hr {
   border: 0;
   clear:both;
@@ -43,6 +74,26 @@ hr {
   height: 1px;
   margin:10px;
   
+}
+.hrD {
+  border: 0;
+  clear:both;
+  display:block;
+  width:90%;               
+  height: 2px;
+  margin:10px;
+  padding-top: 5px;
+  
+}
+.hrD:nth-child(odd)
+{
+  background-color: #7fcec5;
+background-image: linear-gradient(315deg, #7fcec5 0%, #13565f 74%);
+}
+.hrD:nth-child(even)
+{
+  background-color: #f5f4f2;
+background-image: linear-gradient(315deg, #f9ccd6 0%, #fe6686 74%);
 }
 /*used to decorate a text when hovering over by adding an animated line*/
 .hover-underline-animation {
@@ -79,18 +130,20 @@ hr {
   font-size:1.5;
   font-weight: bold;
 }
-
+.show
+{
+  display:table
+}
   /* ---------------------GRID WRAPP----------------------------- */
   .wrapp
   {
     margin : 40px;
-    margin-left : 100px;
+    margin-left : 80px;
     display : grid;
-    grid-template-columns :fit-content max-content ;
-    grid-template-rows : max-content max-content max-content;
-    grid-template-areas : "profil profil "
-                 "tabs page"
-                 "tabs page "
+   grid-template-rows : max-content max-content max-content; 
+    grid-template-areas : "profil profil profil"
+                 "tabs page  page"
+                 "tabs page page"
   }
   /* ---------------------GRID Contenaire page documents----------------------------- */
   .contenaire
@@ -118,6 +171,16 @@ hr {
   width:fit-content;
    
 }
+.profilDoc
+{
+  grid-area : profil;
+  display:flex;
+  padding:10px;
+  /* justify-content: center; */
+  flex-direction:row;
+  width:fit-content;
+   
+}
 #profil,#add-file,#docs
 {
   width:200px;
@@ -130,11 +193,12 @@ hr {
   font-size : 1.1rem
 
 }
-#profil-medical
+#profil-medical 
 {
-  font-size:2.2rem;
+
   color:var(--green);
   padding:10px 0px;
+  margin:5px auto
 }
 .profil-text p
 {
@@ -162,7 +226,8 @@ hr {
   background-color:#b8cacc;
   margin:30px 0;
   border-radius:8px;
-  margin-right:20px
+  margin-right:20px;
+  /* max-width:300px */
 }
 #tabs
 {
@@ -183,16 +248,44 @@ hr {
 {
   color:var(--dark-green)
 }
+.pagination
+{
+  background-color:#89a7ab;
+  padding:5px 10px ;
+  margin:10px 5px;
+  box-shadow: 4px 4px 4px rgba(65, 65, 65, 0.674);
+  border:2px solid #ffffff;
+  border-radius:20px;
+  font-size: 1rem;
+  font-weight: 500;
+  /* color:var(--green2) */
+}
+.pagination:hover
+{
+  background-color:#89a7ab;
 
+}
+.pages-btn{
+  grid-area: pagesBtn;
+  margin:20px auto;
+  display:block;
+}
+.pagination:hover
+{
+  cursor: pointer;
+background-color:#fe6687c3
+}
+#doc-desc
+{
+  display:none
+}
 /* ----------------------------PAGES------------------------- */
-
-/* --------------page non actives--------------- */
-.page
+/* .page
 {
   display:none;
-}
+} */
 /* --------------page  active--------------- */
-.page.is-active
+/* .page.is-active
 {
   display:block;
 }
@@ -206,6 +299,23 @@ hr {
   grid-template-areas: "description "
                         "contenu ";
 padding:10px 20px
+} */
+/* --------------page non actives--------------- */
+
+/* --------------page  active--------------- */
+
+
+.page 
+{
+  grid-area: page;
+  display:flex;
+  flex-direction: column;
+  /* grid-template-columns: max-content; */
+  /* grid-template-rows: fit-content max-content; */
+  /* grid-template-areas: "description "
+                        "contenu "; */
+
+/* padding:10px 20px */
 }
 /* ======================PAGE 1=================================== */
 /* ----------------------------DESCRIPTION------------------------- */
@@ -223,7 +333,7 @@ padding:10px 20px
   display: flex;
   flex-direction: row;
   padding:5px;
- margin:20px 10px
+ margin:10px
 
 }
 .description.text
@@ -242,17 +352,20 @@ padding:10px 20px
 .open-form,.modif-table,.profil-info,.fermer,.ajout-fichier
  {
   
-  width:250px;
-  height:50px;
-  padding:10px;
-  border:2px solid ;
+  width:200px;
+  height:40px;
+  /* padding:5px 10px; */
+  border:2px solid #75efff91;
+
   background: linear-gradient(135deg, rgba(245,112,139,1) 0%, rgba(247,144,165,1) 70%);
   color:white;
-  font-weight:bold;
-  font-size:1rem;
+  font-weight:500;
+  font-size:.9rem;
   border-radius:30px;
   margin:10px auto;
   cursor: pointer;
+  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+
  }
 
  button[class= "open-form"]:hover,.modif-table:hover,.profil-info:hover,
@@ -264,76 +377,153 @@ padding:10px 20px
 
  }
 
+#mesureUpdate
+{
+  width:150px;
+  margin-left: 50%;
+}
 
 /* ----------------------------CONTENT------------------------- */
 .contenu
 {
   grid-area: contenu;
- display:gird;
- grid-template-columns: max-content;
- grid-template-rows: max-content ;
- grid-template-areas:
-                           "affichage";
+ display:grid;
+ /* grid-template-columns: max-content; */
+ /* grid-template-rows: max-content ; */
+ grid-template-areas: "filters"
+                           "affichage"
+                           "table"
+                           "pagesBtn";
 margin-left:20px
+}
+
+.filters
+{
+  grid-area:filters;
+  display:flex;
+  flex-direction:row;
+  margin:10px auto;
+  justify-content: center;
+  font-size:1.2rem;
+  font-weight:600
+}
+.filters #search,.filters select
+{
+  margin:5px 10px;
+  border: 2px solid var(--green3);
+  border-radius:8px;
+  padding:5px
+}
+.filters input[id="search"]:hover,.filters select:hover
+
+{
+  border: 2px solid var(--pink);
+ 
+}
+#date-op
+{
+  padding:5px 10px;
+  border: 2px solid var(--green3);
+  border-radius:20px;
+  background-color:#5a8389;
+  color:white;
+}
+#date-op:hover
+{
+  background-color:#217c8a;
+
+}
+#search_icon
+
+{
+color:#4d9ca7;
+font-size: 20px;
+}
+#search_icon:hover
+{
+  color:var(--dark-green)
+}
+
+.searchBtn
+{
+  background-color:transparent;
+  border-color:transparent;
+  width:40px;
+  height:40px;
+  
+}
+.affichage-item-msg
+{
+  width:300px;
+  margin:10px
+}
+.affichage-item-msg p
+{
+  padding: 10px;
+}
+.warning
+{
+  color:var(--pink);
+  margin:0px 5px;
+}
+#tableDiag
+
+{
+  margin-bottom: 20px;
 }
 /* ---------------------PAGE 1-------------------------------- */
 
 /* ----------------maladies---------------- */
-.affichage {
-  grid-area: affichage;
-  display:flex;
-  flex-direction: column;
-  
-}
-.affichage-item
-{
-  padding:20px;
-  display:flex;
-  flex-direction: column;
-  
-}
-.affichage h4
-{
-  color:var(--pink);
-  padding:5px ;
-}
-.affichage-item
- p
-{
-  padding:5px
-}
-.affichage-item
- img
-{
-  width:20px;
-  height:20px;
-  margin:0 10px
-}
-.affichage-item
- img:hover
-{
- box-shadow: 1px 1px 2px black;
- cursor: pointer;
-}
+
 .modif-suprim
 {
   margin-left:90%;
   display: flex;
   flex-direction: row;
 }
+/* =============== 3 Dots small devices=================== */
+div>.fa-ellipsis-vertical
+{
+  position: relative;
+}
+div>.fa-ellipsis-vertical:before
+{
+ right:10px;
+ bottom:5px;
+ position: absolute;
+ color:var(--green3);
+ font-size: 1.2rem;
+
+}
+/* =============== 3 Dots Big devices=================== */
+td>.fa-ellipsis-vertical
+{
+  position: relative;
+}
+td>.fa-ellipsis-vertical:before
+{
+ left:20px;
+ bottom:0px;
+
+ position: absolute;
+ color:var(--dark-green);
+ font-size: 1.2rem;
+
+}
 /* ---------------------END PAGE 1-------------------------------- */
 /* ---------------------PAGE 2-------------------------------- */
 table
 {
+  grid-area: table;
   border-spacing:5px;
-  width:fit-content;
+  width:90%;
   border-radius:5px;
-  box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
-  
+  background-color: rgba(178, 178, 178, 0.639);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 th,td
 {
-  padding:10px 5px;
+  padding:10px 20px;
  
 }
 th
@@ -350,7 +540,7 @@ tr:nth-child(even)
 {
   /* background-color:#d0dcdd;
    */
-  background-color:#a1b8bb5b;
+  background-color:#a1b8bba9;
 
 }
 th:nth-child(1) { background-color: #427178; }
@@ -358,6 +548,8 @@ th:nth-child(2) { background-color: #5a8389; }
 th:nth-child(3) { background-color: #71959a; }
 th:nth-child(4) { background-color: #89a7ab; }
 th:nth-child(5) { background-color: #a1b8bb; }
+th:nth-child(6) { background-color: #d0dcdd; }
+
 /* =========================PAGE 6===================== */
  .grid-mesure
 {
@@ -367,6 +559,7 @@ th:nth-child(5) { background-color: #a1b8bb; }
   
 
 }
+
 .mesure
 {
   display: flex;
@@ -382,46 +575,30 @@ th:nth-child(5) { background-color: #a1b8bb; }
   border-radius: 8px;
   background-color:rgba(255, 255, 255, 0.661);
   box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
-  /* width:200px; */
   position: relative;
 }
-.mesure label,.mesure input
+
+.mesure p
 {
-  display:block;
-  padding:5px;
- 
-}
-.mesure label
-{
-  font-size: 1rem;
+  font-size: .7rem;
   font-weight: 500;
   text-align: center;
+  padding: 5px;
 }
-.mesure label span
+.mesure p span
 {
-  font-size: .8rem;
+  font-size: .5rem;
   font-weight: 400;
   text-align: center;
   display: block;
 }
 .mesure img
 {
-  width:60px;
-  height:60px;
+  width:40px;
+  height:40px;
 
 }
-.mesure input
-{
- margin:10px auto;
-  width:100px;
- align-self:flex-end;
- border:none;
- border-bottom: 1.5px solid var(--dark-green);
-}
-.mesure input:hover
-{
-  background-color:#a1b8bb67
-}
+
 .mesure div:nth-child(odd) ::before
 {
   content:"";
@@ -432,7 +609,7 @@ th:nth-child(5) { background-color: #a1b8bb; }
   bottom:10px;
   left: 5px;
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   border-radius:3px
 }
 .mesure div:nth-child(even) ::before
@@ -445,9 +622,12 @@ th:nth-child(5) { background-color: #a1b8bb; }
   bottom:10px;
   left: 5px;
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   border-radius:3px
+  
 }
+
+
 /* ==================================PAGE INFO-ADINSTRATIVE====================== */
 .infos
 {
@@ -557,26 +737,270 @@ td
 #docs-title
 {
   margin:30px 0 10px 20px;
-  color:var(--dark-green)
+  color:var(--dark-green);
+
 }
 .affich-docs
 {
-  background-color:white;
-  padding:10px 20px;
-  box-shadow: 1px 1px 1px rgba(65, 65, 65, 0.381);
+  /* background-color:white; */
+  /* padding:10px 20px; */
+  /* box-shadow: 1px 1px 1px rgba(65, 65, 65, 0.381); */
 
 }
 .affich-docs tr:nth-child(odd)
 {
-  background-color:#ffd3dbc4;
+  background-color:rgb(253, 253, 253);
+}
+/* ============================OPTIONS UL STYLING================== */
+
+div[class="options"],.op-doc
+{
+  /* display:flex; */
+  flex-direction:column;
+  padding:5px;
+  width:70px;
+  height:110px;
+  background-color:rgba(255, 255, 255, 0.873);
+  box-shadow: 6px 6px 9px rgba(65, 65, 65, 0.381);
+ position: absolute;
+ z-index: 2;
+ text-align: center;
+ display:none;
+ 
+}
+.options-btn
+{
+  color:var(--green3);
+  cursor: pointer;
+  font-size: 1rem;
+  margin:5px auto;
+  position: relative;
+}
+.options-btn .fa-ellipsis-vertical::before
+{
+
+  margin-left:20px
+}
+.options p
+{
+  padding:5px;
+  color:var(--green2);
+  cursor: pointer;
+  font-size: 1rem;
+
+}
+.options button:hover,.options p i:hover
+{
+  color:var(--pink);
+
+}
+.options p a
+{
+  text-decoration: none;
+  color:var(--green2);
+}
+.options-btn ,.options button{
+  background-color:transparent;
+  border:none;
+  color:var(--green2);
+  
+}
+.affichage
+{
+  display:none
+}
+.affichage-item
+p
+{
+  padding:10px
+}
+/* =========================profil page============================== */
+.main-page {
+  display:grid;
+  /* grid-template-columns: 1fr  2fr; */
+  grid-template-areas: "tabs data";
+
+
+}
+.tabs
+{
+  grid-area: tabs;
+  justify-self: start;
+  margin-left:30px
+}
+.perso-data {
+ display:flex;
+ flex-direction: column;
+ grid-area: data;
+ background-color:white;
+ border-radius:15px;
+ margin:40px 20px;
+ /* margin-left:-15%; */
+ height:fit-content;
+ width:fit-content;
+ /* padding:30px */
+ box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+
+}
+.header
+{
+  display:flex;
+  flex-direction:row;
+  padding:20px 10px;
+  border-top-left-radius:15px;
+  border-top-right-radius:15px;
+
+  margin:0px  auto 10px auto;
+  background-color:#5a8389
+}
+.header h1 {
+  font-weight:600;
+  color:var(--dark-green);
+
+}
+.header  {
+ color:white;}
+.details {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+ padding:20px
+}
+.informations
+{
+   padding:5px;
+   display: flex;
+   flex-direction:row
+}
+.informations
+p
+{
+  padding:5px 10px
+}
+.informations .titre
+{
+ font-weight:600;
+ color:var(--pink)
+}
+.photo
+{
+  margin: 0px 10px 
+}
+#photo
+{
+  width:100px;
+  height:100px;
+  border-radius: 50%;
+  border: 3px solid rgb(216, 216, 216)
+}
+#add-photo
+{
+  display:none;
+}
+#cam
+{
+  cursor: pointer;
+ font-size: 1.2rem;
+ color:white;
+}
+#cam:hover
+{
+ color:var(--green);
+
+}
+
+#profilBtn
+{
+  margin:10px;
+  padding:0px;
+  width:150px;
+  justify-self:end;
+  background-color:#f5708b;
+  border:#b8cacc
+
+}
+.info-general
+{
+  display:flex;
+  flex-direction:column;
+}
+/* =============================doctor page========================= */
+.main-doctor
+{
+  display:grid;
+  /* grid-template-columns: fit-content max-content; */
+  grid-template-areas:"tabs sections sections  sections  sections" 
+}
+.titlesD
+{
+  margin:35px 0px 20px 0px;
+  
+  color:var(--green2);
+}
+
+#doctor-tabs #tabs
+{
+  grid-area:tabs;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+#sections
+{
+  grid-area:sections;
+}
+
+
+
+/* ---------profilD------------- */
+#profilD
+{
+  margin:10px 0px 20px;
+  /* margin-left:-20%; */
+  margin-right:20%;
+  padding:20px;
+  /* display:grid; */
+  grid-template-areas: "photo"
+                             "infoP"
+                             "btnP";
+}
+#profilD h4
+{
+  color:var(--pink);
+  align-self:center;
+  margin-left:10px
+}
+#photo_name
+{
+  grid-area:photo;
+  display:flex;
+  flex-direction:row
+}
+#info-profilP
+{
+  grid-area:infoD;
+  display:grid;
+  grid-template-columns:repeat(2,1fr)
+}
+.profilP_btn
+{
+  grid-area:btnP;
+  margin:5px 50%;
+
+}
+/* =====================maladieD================ */
+#maladie {
+ margin:20px auto
+}
+#tableMal
+{
+  display:flex;
+  flex-direction:column;
+ margin:20px auto
+
 }
 /* ============================MEDIA============================ */
 /* ---------------------------mobile media ------------------------ */
-@media (max-width: 480px)
-{
 
-
-}
 /* ----------------------------Tablette/ipad media------------------------ */
 @media (min-width: 481px)and(max-width:767px)
 {
@@ -605,7 +1029,8 @@ td
    .page
    {
     padding:0px;
-    margin:10px
+    margin:10px;
+    justify-self: start;
    }
    .affichage-item
 
@@ -613,6 +1038,7 @@ td
   padding:10px;
   display:flex;
   flex-direction: column;
+  /* margin:10px auto; */
   
 }
 .modif-suprim
@@ -683,6 +1109,33 @@ td
                " page"
               
 }
+.affichage
+{
+  margin:15px;
+  display:block;
+}
+table
+{
+  display: none
+}
+/* .doctor-tables table
+{
+  display:block;
+} */
+    /* --------------profil--------------- */
+    .profil
+    {
+    
+      display: none;
+       
+    }
+    .profilDoc
+    {
+    
+      flex-direction: column;
+      flex-wrap: wrap;
+       
+    }
 }
 /* -------------------------large------------------------------ */
 @media (min-width:992px) and (max-width:1119px)
@@ -699,15 +1152,17 @@ td
      flex-direction:column;
  
    }
-   .affichage
-   hr
-{
-  margin-top: 0%;
-}
+
 .page
 {
  padding:0px;
  margin:10px
+}
+.doctor-tables
+{
+  overflow-x:auto;
+  /* width:90vw */
+
 }
 
 }
@@ -735,11 +1190,19 @@ td
     {
       margin : 20px;
       display : grid;
-      grid-template-columns :fit-content max-content ;
-      grid-template-rows : max-content max-content max-content;
-      grid-template-areas : "profil "
+      /* grid-template-columns :fit-content  ; */
+      /* grid-template-rows : max-content max-content ; */
+      grid-template-areas : 
                    "tabs "
+                   "profil "
+
+                   "page "
+                 
                    
+    }
+    #search-icon
+    {
+      margin-left:50%
     }
     .contenu
     {
@@ -749,34 +1212,129 @@ td
     .text-img
    {
      display: flex;
-     flex-direction:column
+     flex-direction:column;
+     margin-top:0px;
+     background-color:rgba(255, 255, 255, 0.979);
+     border-radius:15px;
+     box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
+      
+
    
    }
-   /* ---------------maladies-------------- */
+   #add-file
+   {
+    width:150px;
+    height: 150px
+   }
+   .text-img .text
+   {
+      font-size:.7rem;
+      padding:5px
+   }
+
+   .text-img img
+   {
+    width:150px;
+    height:150px;
+    margin:0 auto;
+   }
+   .text-img h2
+   {
+    margin-bottom: 0;
+   }
+ .visibil
+ {
+  display:none
+ }
+ .filters #search
+ {
+  width:142px;
+  margin:0px;
+ }
+ .filters select
+ {
+  margin:0px;
+ }
+ .profilDoc
+ {
+ 
+   flex-direction: column;
+   flex-wrap: wrap;
+    
+ }
+ #profilD
+{
+  margin:10px 0px 20px;
+  /* margin-left:-20%; */
+  margin-right:30px;
+  padding:10px;
+  /* display:grid; */
+  grid-template-areas: "photo"
+                             "infoP"
+                             "btnP";
+}
+   /* ---------------affichage-------------- */
    .modif-suprim
 {
   margin-left:60%
 }
-.affichage-item
 
+.affichage-item p
 {
-  padding:10px;
-  display:flex;
-  flex-direction: column;
+  font-weight: bold;
+  color:var(--green2);
+  font-size:.9rem
+
+}
+.affichage-item p span
+{
+  font-weight: 400;
+  color:black;
   
 }
+.affich-docs
+{
+  
+  box-shadow: none;
+
+}
+.affichage h4,
+.affichage-item h4
+{
+  font-size: 1rem;
+
+}
+.affichage-item h4
+{
+  position: relative;
+}
+.affichage
+{
+  margin:15px;
+  display:block;
+}
+.open-form,.modif-table,.profil-info,.fermer,.ajout-fichier
+ {
+  
+
+  
+   
+  width:180px;
+  padding:5px 10px;
+  height:40px;
+  padding:5px;
+  font-size:.7rem;
+  font-weight: 400;
+
+ }
     /* --------------profil--------------- */
 .profil
 {
-  grid-area : profil;
-  display:flex;
-  padding:10px;
-  /* justify-content: center; */
-  flex-direction:row;
-  width:fit-content;
-  flex-wrap: wrap;
+
+  display: none;
    
 }
+
 #profil,#docs
 {
   width:120px;
@@ -787,15 +1345,33 @@ td
 {
   display:block;
   padding:5px;
-  font-size : 1.1rem;
+  font-size : .8rem;
   text-align: center;
 
+}
+#profil-medical 
+{
+  font-size:.9rem;
+}
+
+  /* ===============the big title==================== */
+  .profil-text h1[id="profil-medical"],#docs-title
+{
+  font-size:1.2rem !important;
+  color:var(--green);
+  padding:10px 0px;
+  margin:10px 0 10px 10px;
+}
+.profil-text h1[id="profil-medical"]
+{
+  font-size:1.5rem
 }
 /* ------------------------------TABS------------------------- */
 .tabs
 {
   background-color:transparent;
-  margin:30px 0;
+  margin:0px 20px;
+  margin-bottom: 10px;
   border-radius:8px;
 
 }
@@ -808,6 +1384,7 @@ td
   border:2px solid var(--green3);
   box-shadow: 3px 3px 2px rgb(67, 67, 67);
   font-size: 1rem;
+  justify-self:center
 }
 .tabs li
 {
@@ -896,4 +1473,217 @@ td
                 " page"
                
  }
+ #show_affiche
+ {
+  margin:10px auto
+ }
+ /* ===================options============================= */
+
+.options-btn 
+ {
+  
+  margin-right:-70%
+
+ }
+ .options
+ {
+  left:100px
+ }
+ /* ===========================open form==================== */
+ .open-form
+ {
+  width:150px;
+  padding:5px 10px;
+  height:35px;
+  padding:5px;
+  font-size:.8rem;
+  font-weight:500;
+ }
+table
+{
+  display: none
+}
+/* .doctor-tables table
+{
+  display:block;
+} */
+#mesureUpdate
+{
+  width:150px;
+  margin-left:-45%;
+}
+/* =================page profil================ */
+.main-page {
+  display:grid;
+  /* grid-template-columns: 1fr  2fr; */
+  grid-template-areas: "tabs "
+  "data";
+ font-size: 1rem;
+ margin:10px 20px;
+
+}
+.header h1 {
+  font-size: 1.5rem;
+  font-weight:700;
+  text-align: center;
+ 
+}
+#profilBtn
+{
+  display: block;
+  margin: 10px auto;
+}
+.header
+{
+  flex-direction:row;
+  flex-wrap: wrap;
+}
+.header p
+{
+  font-size: .9rem;
+  text-align: center;
+
+}
+#photo
+{
+  width:70px;
+  height:70px;
+  /* justify-self: center; */
+  display: block;
+  /* margin-right:-50% */
+
+}
+.details {
+  display:grid;
+  grid-template-columns:1fr;
+ padding:10px 20px
+}
+.informations
+{
+  flex-wrap: wrap;
+}
+#profil-tabs
+{
+  margin:0px auto
+}
+.perso-data
+{
+  margin-top:10px
+}
+.photo
+{
+  display:block;
+  margin: 0 auto;
+}
+  /* ===================doctor page==================== */
+  #info-profilP {
+    grid-area: infoD;
+    /* display: flex;
+    flex-direction: column;
+
+    flex-wrap: wrap; */
+    font-size: .9rem;
+}
+.doctor-tables
+{
+  overflow-x:auto;
+  width:90vw
+
+}
+.show
+{
+  display: table;
+}
+table[class="show"]
+{
+  border-spacing: 2px;
+}
+/* =============================doctor page========================= */
+.main-doctor
+{
+  display:grid;
+  /* grid-template-columns: fit-content max-content; */
+  grid-template-areas:"tabs " 
+                      "sections";
+  margin-left:20px;
+}
+}
+@media (max-width: 991px)
+{
+  .affichage {
+    grid-area: affichage;
+    display:flex;
+    flex-direction: column;
+    
+  }
+  .affichage-item
+  {
+    padding:10px;
+    display:flex;
+    flex-direction: column;
+    /* margin:10px auto; */
+    
+  }
+  .affichage h4,
+  .affichage-item h4
+  {
+    color:var(--pink);
+    padding:5px ;
+  }
+  .affichage-item
+   p
+  {
+    padding:5px
+  }
+  .affichage-item
+   img
+  {
+    width:20px;
+    height:20px;
+    margin:0 10px
+  }
+  .affichage-item
+   img:hover
+  {
+   box-shadow: 1px 1px 2px black;
+   cursor: pointer;
+  }
+  /* ===================doctor page==================== */
+  /* #info-profilP {
+    grid-area: infoD;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+} */
+.doctor-tables
+{
+  overflow-x:auto;
+  /* width:90vw */
+
+}
+.show
+{
+  display: table;
+  font-size: .9rem;
+}
+table[class="show"]
+{
+  border-spacing: 2px;
+}
+th,td
+{
+  padding:5px;
+  font-size: .7rem;
+ 
+}
+th{
+  font-weight: 300;
+}
+.grid-mesure
+{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  /* grid-template-rows: repeat(2,1fr); */
+
+}
 }

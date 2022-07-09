@@ -17,7 +17,7 @@
       bottom:0;
       right: 0;
       z-index: 1;
-      background-color:rgba(128, 128, 128, 0.56);
+      background-color:rgba(39, 39, 39, 0.348);
       display: none;
   }
   .open-popup
@@ -30,8 +30,8 @@
 #popup
 {
     width:300px;
-    height:400px;
-    background-color:#396e75;
+    /* height:400px; */
+    /* background-color:#ffffffc8; */
     border-radius: 6px;
     position: absolute;
     top:50%;
@@ -41,8 +41,12 @@
   
     transform: translate(-50%, -50%) scale(1);
     padding:20px;
+    background: linear-gradient(270deg, hsla(187, 41%, 29%, 1) 0%, hsla(188, 21%, 45%, 1) 100%);
  
-   
+    background: -moz-linear-gradient(270deg, hsla(187, 41%, 29%, 1) 0%, hsla(188, 21%, 45%, 1) 100%);
+    
+    background: -webkit-linear-gradient(270deg, hsla(187, 41%, 29%, 1) 0%, hsla(188, 21%, 45%, 1) 100%);
+   box-shadow: 6px 6px 16px rgba(65, 65, 65, 0.381);
    
 }
 #account:hover {
@@ -64,7 +68,7 @@
     justify-self:center;
     cursor: pointer;
     
-    margin-top:-40%;
+    /* margin-top:-40%; */
 
   
   }
@@ -84,8 +88,10 @@
       font-size:20px;
       box-shadow: 2px 2px 2px rgba(65, 65, 65, 0.679);
       cursor: pointer;
-      margin-left:-300px;
-      margin-top:-90px;
+      margin-right:-800%;
+      /* margin-left:100%; */
+
+      /* margin-top:-90px; */
       display: inline-block;
   }
   .close2:hover
@@ -97,7 +103,7 @@
     display: flex;
     align-items: center;
     justify-items: center;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     flex-direction: column;
     height:100%
     
@@ -123,7 +129,7 @@
   }
 #bienvenu
   {
-      color:#ffffffee;
+      color:white;
       z-index: 1;
       text-align: center
 

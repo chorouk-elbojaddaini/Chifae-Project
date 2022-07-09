@@ -2,12 +2,18 @@
     --grey: #eff5f57a;
     --green: #13565f;
     --pink: #fe6687ee;
+    --green3: #4d9ca7;
+
   }
   *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+  }
+  html
+  {
+    scroll-behavior: smooth;
   }
   body
   {
@@ -27,7 +33,7 @@
 }
 /*styling the texte */
 .texte {
-  font-size: 1.2rem;
+  font-size: 1rem;
   padding:5px;
   margin-left:5px
 }
@@ -93,8 +99,8 @@
   .wrapp
   {
     display:grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-rows: max-content  max-content max-content;
+    grid-template-columns:2.5fr 1.5fr;
+    /* grid-template-rows: max-content  max-content max-content; */
     grid-template-areas: "nav nav"
                          "main aside"
                           "footer footer";
@@ -125,13 +131,13 @@
       grid-area: main;
       background-color: transparent;
       display:grid;
-      grid-template-columns: repeat(3,1fr);
+      grid-template-columns: repeat(2,1fr);
       grid-template-rows:.75fr .75fr .25 1fr ;
-      grid-template-areas: "welcome welcome welcome"
-                         "doc-bt mesure-bt profil-bt "
-                         "h2 h2 h2 "
+      grid-template-areas: "welcome  welcome"
+                         /* "doc-bt  profil-bt " */
+                         "h2  h2 "
 
-                         "profil doc appointement "
+                         "profil doc "
 
                          ;
     margin:20px;
@@ -140,19 +146,21 @@
   {
     grid-area: h2;
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+    color:var(--green);
     margin:10px;
+    text-align: center;
   }
   #doc-bt
   {
     grid-area: doc-bt;
   
   }
-  #mesure-bt
+  /* #mesure-bt
   {
     grid-area: mesure-bt;
    
-  }
+  } */
   #profil-bt
   {
     grid-area: profil-bt;
@@ -162,7 +170,8 @@
   {
     grid-area: welcome;
     background-color: #ffffff;
-    height:fit-content
+    height:fit-content;
+    font-size:1rem
   }
   .doc
   {
@@ -192,7 +201,7 @@
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-column-gap:10px;
-  margin:30px 10px 10px;
+  /* margin:30px 10px 10px; */
   height:fit-content
 }
 .welcome .border
@@ -245,7 +254,7 @@
     padding:5px;
     
   }
-  #mesure-bt 
+  /* #mesure-bt 
   {
     text-align: center;
 
@@ -256,10 +265,10 @@
     border-radius: 15px;
     box-shadow: 3px 3px 3px grey;
     padding:5px;
-  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out; */
 
     /* display: inline-block; */
-    }
+    /* } */
   #profil-bt 
   {
     text-align: center;
@@ -297,13 +306,22 @@
 {
   grid-area: aside;
   display: grid;
-  grid-template-columns:1fr;
+  grid-template-columns: max-content;
   grid-template-rows: .5fr .3fr  max-content;
   grid-template-areas: "bg"
                         "photo"
                       
                         "schedule";
- height:fit-content;
+ /* height:fit-content; */
+ padding:10px;
+ justify-content:center;
+ background: hsla(187, 41%, 29%, 1);
+
+ background: linear-gradient(270deg, hsla(187, 41%, 29%, 1) 0%, hsla(188, 21%, 45%, 1) 100%);
+ 
+ background: -moz-linear-gradient(270deg, hsla(187, 41%, 29%, 1) 0%, hsla(188, 21%, 45%, 1) 100%);
+ 
+ background: -webkit-linear-gradient(270deg, hsla(187, 41%, 29%, 1) 0%, hsla(188, 21%, 45%, 1) 100%);
 }
 
 #bg
@@ -317,7 +335,8 @@
 .schedule
 {
   grid-area:schedule;
-  height:fit-content
+  height:fit-content;
+  margin:10px 20px
 }
 #profile {
   border-radius: 50%;
@@ -348,13 +367,14 @@
   font-size: 1.2em;
   font-weight: bold;
   color: rgb(36, 36, 36);
-  padding-left: 10px;
+  /* padding: 5px 10px; */
 }
 .rdv
 {
   display:flex;
   flex-direction: row;
-  padding:5px;
+  width: 100%;
+  /* padding:5px; */
 }
 .schedule .rdv >img
 {
@@ -366,11 +386,12 @@
 #doctor p
 {
 font-size: 16px;
+margin:5px
 
 }
 #doctor p[id="specialiste"]
 {
-font-size: 16px;
+/* font-size: 16px; */
 font-weight:none;
 color:#fff
 
@@ -380,7 +401,8 @@ color:#fff
   font-weight: bold;
   /* color: #fff; */
   text-align: center;
-  margin:auto
+  margin:auto ;
+ 
 }
   /*===========END aside============*/
 
@@ -404,8 +426,9 @@ color:#fff
 .fct h3
 {
   font-size: 1.3rem;
+  color:#13565f
 }
-h3:nth-child(1)
+/* h3:nth-child(1)
 {
   color:#1d2e31
 }
@@ -416,7 +439,7 @@ h3:nth-child(2)
 h3:nth-child(3)
 {
   color:#51686d
-}
+} */
 .aside .titre-rdv
 {
   color:#ffffff;
@@ -453,15 +476,14 @@ h3:nth-child(3)
          grid-area: main;
          background-color: transparent;
          display:grid;
-         grid-template-columns: repeat(3,1fr);
-         grid-template-rows:.5fr .5fr max-content  .05fr .75fr .75fr .75fr ;
-         grid-template-areas: "welcome welcome welcome"
-                            "doc-bt mesure-bt profil-bt "
-                            "rdv rdv rdv"
-                            "h2  h2 h2" 
-                            "profil profil profil "
-                            "doc doc doc "
-                            "appointement appointement appointement "
+         grid-template-columns: repeat(2,1fr);
+         grid-template-rows:.5fr  max-content  .05fr .5fr .5fr  ;
+         grid-template-areas: "welcome  welcome"
+                            /* "doc-bt  profil-bt " */
+                            "rdv  rdv"
+                            "h2   h2" 
+                            "profil  profil "
+                            "doc doc  "
    
                             ;
       grid-gap:15px;
@@ -484,7 +506,7 @@ color:var(--green);
      .main ,.welcome
      {
       margin:5px 0px;}}
-      @media (max-width: 480px)
+ @media (max-width: 480px)
       {
         .nav_container {
             margin-top:-10px;
@@ -495,6 +517,8 @@ color:var(--green);
            {
              width:96%;
              margin:0 auto;
+             font-size: 1.2rem;
+             font-weight:500
            }
            .container
            {
@@ -557,11 +581,7 @@ color:var(--green);
   {
     margin-top:5px
   } */
-  h2
-  {
-    grid-area: h2;
-    text-align: center;
-  }
+
   
 
   .visibility
@@ -592,7 +612,11 @@ color:var(--green);
     width:30px;
     height:30px;
   }
- 
+  h2
+  {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
 }
  /* all devices (tablets, 768px and up)*/
  @media (min-width: 481px) and (max-width: 767px)  {
@@ -614,16 +638,15 @@ color:var(--green);
       grid-area: main;
       background-color: transparent;
       display:grid;
-      grid-template-columns: repeat(3,1fr);
-      grid-template-rows:.5fr .5fr max-content  .05fr 1fr 1fr 1fr ;
+      grid-template-columns: repeat(2,1fr);
+      grid-template-rows:.5fr .5fr max-content  .05fr 1fr 1fr  ;
 
-      grid-template-areas: "welcome welcome welcome"
-                         "doc-bt mesure-bt profil-bt "
-                         " rdv rdv rdv"
-                         "h2  h2 h2" 
-                         "profil profil profil "
-                         "doc doc doc "
-                         "appointement appointement appointement "
+      grid-template-areas: "welcome  welcome"
+                         /* "doc-bt  profil-bt " */
+                         " rdv  rdv"
+                         "h2  h2 " 
+                         "profil profil  "
+                         "doc doc  "
 
                          ;
       grid-gap:15px;
@@ -655,11 +678,7 @@ color:var(--green);
     display: block;
   }
 
-     h2
-     {
-       grid-area: h2;
-     }
-   
+ 
      .visibility
      {
        display: block;
@@ -678,6 +697,11 @@ color:var(--green);
       .fct
       {
         font-size:1.7rem
+      }
+      h2
+      {
+        font-size:1.2rem;
+        font-weight:500
       }
    }
 
@@ -701,16 +725,15 @@ color:var(--green);
        grid-area: main;
        background-color: transparent;
        display:grid;
-       grid-template-columns: repeat(3,1fr);
-       grid-template-rows:.5fr .5fr max-content  .05fr 1fr 1fr 1fr ;
+       grid-template-columns: repeat(2,1fr);
+       grid-template-rows:.5fr  max-content  .05fr 1fr 1fr  ;
  
-       grid-template-areas: "welcome welcome welcome"
-                          "doc-bt mesure-bt profil-bt "
-                          " rdv rdv rdv"
-                          "h2  h2 h2" 
-                          "profil profil profil "
-                          "doc doc doc "
-                          "appointement appointement appointement "
+       grid-template-areas: "welcome  welcome"
+                          /* "doc-bt profil-bt " */
+                          " rdv rdv"
+                          "h2   h2" 
+                          "profil  profil "
+                          "doc   doc "
  
                           ;
        grid-gap:15px;
@@ -809,14 +832,14 @@ color:var(--green);
 /* X-Large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
   /*-----------welcome--------------*/
-  #hello {
+  /* #hello {
     width:210px;
     height:210px;
-  }
-  .texte
+  } */
+  /* .texte
   {
     font-size: 1.5rem;
-  }
+  } */
   .icons
   {
     display: inline-block;
@@ -850,11 +873,11 @@ color:var(--green);
 {
   margin-top:-20%
 } */
-h2
+/* h2
 {
-  margin:30px;
-  font-size: 2rem;
-}
+  margin:15px;
+  font-size: 1.5rem;
+} */
 .main
 {
   justify-self:center
@@ -867,7 +890,7 @@ h2
 }
 .aside
 {
-  width:fit-content;
+  /* width:70%; */
   justify-self:center
 }
 /****************hover profile********************/

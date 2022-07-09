@@ -1,38 +1,93 @@
-<?php
-  // $file_new_name = $_POST["nom-docs"];
-  if (isset($_POST['upload']))
-  {
-    // $file = $_FILES["file"];
-    $file_size = $_FILES["file"]["size"];
-    $file_name = $_FILES["file"]["name"];
-    $file_temp = $_FILES["file"]["tmp_name"];
+<?php 
+include '../../connexionDoc/cnx.php';
+include'pagination.php';
+include'filter.php';
 
-    $location = "telecharge/";
-    //condition sur la taille de fichier :10 MB max
-    if($file_size>10485760)
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
+if (mysqli_num_rows($display) > 0) 
+ { 
+   $row = mysqli_fetch_assoc($display);
+ }
+ //===============function to display content
+ function affich_doc($doc) 
+{
+  echo' 
+ <!-- -----------------------AFFICHAGE DES DOCUMENTS------------------------ -->
+  <div class="affichage">';
+ while($row = mysqli_fetch_assoc($doc)) 
+ { 
+    echo"
+    <div class='affichage-item border'>
+         <h4>".$row["nomDoc"]."
+         <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
+                     <div class='options' data-div='".$row["idDoc"]."'>
+                         <button class='editDoc' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
+                         <button class='deleteDoc' id='delete-'".$row["idDoc"]."' value='".$row["idDoc"]."'><i class='fa-solid fa-trash-can'></i></button>
+                     </div>
+         </h4>
+         <p>Date :<span> ".$row["date"]."</span></p>
+         <p>Ajouté par :<span>  ".$row["ajoutPar"]."</span></p>
+         <p>Catégorie :<span> ". $row["categorieDoc"]."</span></p>
+   </div>
+   <hr>";
+ }
+ echo'</div>';
+ 
+}
+function table_doc($doc)
+{
+  echo"
+      
+    <table id='maladie-table'>
+    <thead>
+      <tr>
+        <th>Nom du document</th>
+        <th>Date</th>
+        <th>Ajouté par</th>
+        <th>Catégorie</th>
+        <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+      </tr>
+    </thead>
+    <tbody>";
+     while($row = mysqli_fetch_assoc($doc)) 
     { 
-           echo "<script>alert('Tres grande taille: taille maximale 10MB')</script>";
-
+       echo"
+           <tr>
+           <td>".$row["nomDoc"]."</td>
+           <td>".$row["date"]."</td>
+           <td>".$row["ajoutPar"]."</td>
+           <td>".$row["categorieDoc"]."</td>
+                  <td>
+                  <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
+                  <div class='options' data-div='".$row["idDoc"]."'>
+                      <button class='editDoc' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
+                      <button class='deleteDoc' id='delete-'".$row["idDoc"]."' value='".$row["idDoc"]."'><i class='fa-solid fa-trash-can'></i></button>
+                  </div>
+                 </td>
+            </tr>
+         ";       
+              
     }
-    else
-    {
-      move_uploaded_file( $file_temp ,$location. $file_name);
-      // move_uploaded_file( $file_temp ,$location. $file_new_name);
+    
+echo" 
+    </tbody>
+    </table> 
+    ";
 
-    }
-     
-  }
-  ?>
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/nav.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" type="image/png" href="./images/logo.png" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
   <link
@@ -57,21 +112,68 @@
    <!----======== CSS ======== -->
    <link rel="stylesheet" href="css/style.css">
    <link rel="stylesheet" href="css/modal.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="js/script.js" defer></script>
+   <!-- <script src="js/main.js" defer></script> -->
+   <script src="js/docDisplay.js" defer></script>
+   <script src="js/docEdit.js" defer></script>
+   <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+   <script src="js/modal.js" defer></script>
+   <script>
+        //=====================toogle to show the options div=============
+    //   let options = document.querySelectorAll('.options-btn');
+     
+    //  for (let i = 0; i < options.length; i++) {
+    //    options[i].addEventListener('click',()=>{
+    //      let div=options[i].nextElementSibling
+    //      $(div).toggle()
+    //      console.log(options[i].nextElementSibling)
+    //    })
+    //  }
+    
+      const affichage =document.querySelector('.affichage');
+      const table =document.querySelector('table');
+      const show_tr =document.getElementById('show_tr');
+      const show_affiche =document.getElementById('show_affiche');
+
+      let query2 = window.matchMedia("(max-width:767px)");
+
+
+          if (query2.matches) {
+      
+          table.style.display = 'none';
+          show_tr.style.display = 'none';
+          document.querySelector('.affich-docs').style.background = 'transparent';
+          document.querySelector('.affich-docs').style.padding = 0;
+          // document.querySelector('.affich-docs').style.boxshadow = 'none';
+
+
+      }
+        else{
+            affichage.style.display = 'none';
+            show_affiche.style.display = 'none';
+
+        }
+        console.log("options");
+       
+   </script>
     <title>Mes Documents| Chifae</title>
 </head>
 <body>
     <nav>
         <div class="container nav_container">
           <div class="logo_cont">
-            <a href="index.html"
+            <a href="../accueil/index.php"
               ><img src="./assets/logo.png" alt="logo" class="logo"
             /></a>
             <h4>Shifae</h4>
           </div>
           <ul class="nav-menu">
-            <li><a href="../accueil/index.html">Acceuil</a></li>
-            <li class="medecin"><a href="index.html">Mon profil médical</a></li>
-            <li class="patient"><a href="document.html">Documents</a></li>
+            <li><a href="../accueil/index.php">Acceuil</a></li>
+            <li class="medecin"><a href="index.php">Mon profil médical</a></li>
+            <li class="patient"><a href="document.php">Documents</a></li>
 
           </ul>
           <!-- drop down medecin  -->
@@ -104,7 +206,7 @@
           </div>
           <!-- end drop down patient -->
           <!-------------------------------------------------->
-         <input type="image"  src="images/profile.jpg" alt="profile" id="user">
+          <img  id="user"  height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
           <button class="open_menu_botton"><i class="uis uis-bars"></i></button>
           <button class="close_menu_botton">
             <i class="uis uis-multiply"></i>
@@ -114,12 +216,12 @@
         </div>
       </nav>
        <!-----------------PROFIL MODAL------------------>
-       <div class="overlay " >
+       <div class="overlay hide" >
        
         <div id="popup" class="popup">
          <div class="modal-btn"  >
            <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
-             <img type="image"  src="images/profile.jpg" alt="profile" id="account">
+           <img  id="account"  height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
                <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
                   <a class="pop"href="profil.html" target="_blank" id="monProfil">Mon Profil</a>
                   <a class="pop" href="#" id="deconnect">Se déconnecter</a>
@@ -128,10 +230,10 @@
        
       </div>
    <!-- ------------------------------------------ -->
-   <div class="contenaire">
+<div class="contenaire">
      <!--=====================FIXED CONTENT======================-->
        <!-- --------------------PROFILE------------------->
-       <div class="profil border">
+       <div class="profilDoc border">
         <img src="images/docs.png" id="docs" alt="documents">
        <div class="profil-text">
          <h1 id="profil-medical">Mes documents de Santé</h1>
@@ -140,26 +242,42 @@
        </div>
        
      </div>
+     <div class="description " id="doc-desc">
+
+        <div class="text-img">
+        <img src="images/docs.png" id="docs" alt="documents">
+            <div class="text">
+              <h2 id="ajout" class="hover-underline-animation">
+              Mes documents de Santé
+              </h2>
+              <p>
+              J'ajoute mes documents de sante Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione officia nam ad repellat, fugit magni dicta labore velit inventore commodi
+              </p>
+              <button type="button" class="open-form" id="add-doc" onclick="displayForm('doc');">Ajouter un document</button>
+            </div>
+        </div>
+</div>
       <!-- -----------------------REMPLISSAGE DES docsS------------------------ -->
                
-      <div class="overlay-form docs" id="doc">
-        <form action="#" method="post" name="docs" class="form border" id="docs-form">
-        
-                  <label >
+      <div class="overlay docs hide" id="doc">
+        <form   class="form border docForm" id="docs-form" enctype="multipart/form-data" >
+        <button class="close_form" id="close-add-doc"> <i class="uis uis-multiply closeF"></i> </button> 
+                <label >
                     Nom du document : 
-                    <input type="text" minlength="3" name="nom-docs"  placeholder="Entrez le nom du document"/>
+                    <input type="text" minlength="3" name="nom-docs" id="nom-doc" placeholder="Entrez le nom du document"  />
+                    <!-- add condition about existing file name -->
                 </label>
                   <label >
                       Date :
-                      <input type="date"id="date-docs"name="docs-date" required/>
+                      <input type="date"id="date-docs"name="docs-date"  />
                   </label>
                   <label >
                     Ajouté par :
-                    <input type="text"id="added-by-docs"name="added-by" required/>
+                    <input type="text"id="added-by-docs"name="added-by"  />
                 </label>
                 <label >
                     Catégorie :
-                    <select id="category">
+                    <select id="category" name="category">
                         <option value="resultats">Résultats de biologie</option>
                         <option value="compte-rendu">Comptes rendu</option>
                         <option value="imagerie">Imageries médicales</option>
@@ -168,89 +286,129 @@
                         <option value="autres">autres documents</option>
                     </select>
                 </label>
-                <button type="button" class="form-btn" id="doc-btn">choisir un document</button>
+                <label id="choisir">
+                  Choisir un document
+                  <input type="file" name="file" id="add-file"/>
+                  <span id="show-name"></span>
+                 </label>
+                <button  class="form-btn" id="submit-docF" >Ajouter</button>
        </form>
       </div>
-      <!-- =================================FILE UPLOAD==================================== -->
-      <div class="overlay-file " >
-      <div class="file__upload">
-        <div class="header">
-          <p><i class="fa fa-cloud-upload fa-2x"></i><span id="telecharge">Télecharger</span></p>			
-        </div>
-        <form class="body" action=""  method="post"  enctype="multipart/form-data">
-          <input type="file" id="upload" name="file" required>
-          <label for="upload">
-            <i class="fa fa-file-text-o fa-3x"></i>
-            <p>
-              <strong>Glisser et Déposer</strong> Fichier ici<br>
-              ou <span>parcourir </span><br> pour commencer le téléchargement
-            </p>
-          </label>
-          <button class="ajout-fichier" name="upload">Ajouter </button> 
 
-          <!-- <button class="fermer">Fermer </button>  -->
-        </form>
+      <!-- -----------------------Editer un docsS------------------------ -->
+               
+      <div class="overlay docs hide" id="editDoc">
+        <form   class="form border docForm" id="docs-form-edit" enctype="multipart/form-data" >
+        <button class="close_form" id="close-edit-doc"> <i class="uis uis-multiply closeF"></i> </button> 
+        <input type="hidden" name="doc_id" id="doc_id" >
+                <label >
+                    Nom du document : 
+                    <input type="text" minlength="3" name="nom" id="nom" placeholder="Entrez le nom du document"  />
+                    <!-- add condition about existing file name -->
+                </label>
+                  <label >
+                      Date :
+                      <input type="date"id="date"name="date"  />
+                  </label>
+                  <label >
+                    Ajouté par :
+                    <input type="text"id="added"name="added"  />
+                </label>
+                <label >
+                    Catégorie :
+                    <select id="category-doc" name="category-doc">
+                        <option value="resultats">Résultats de biologie</option>
+                        <option value="compte-rendu">Comptes rendu</option>
+                        <option value="imagerie">Imageries médicales</option>
+                        <option value="certifs">Certificats</option>
+                        <option value="piece">Pièces administratives</option>
+                        <option value="autres">autres documents</option>
+                    </select>
+                </label>
+               
+                <button  class="form-btn" id="submit-doc-edit" value="Edit" >Modifier</button>
+       </form>
       </div>
-    </div>
-       <!-- =================================FIN -FILE UPLOAD==================================== -->
-     <div class="docs">
+      
+     
+      <div class="docs">
         <h2 id="docs-title">Mes derniers documents</h2>
         <div class="affich-docs">
-          <!-- =======================samll devices============================== -->
-          <div class="affichage">
-                 
-            <div class="affichage-item border">
-                <h4>Nom du document</h4>
-                <p>Date :<span>Date de la maladie</span></p>
-                <p>Ajouté par :<span>Dr.Benrhou jalil</span></p>
-                <p>Catégorie : scanner - radio ............</p>
-                <div class="modif-suprim">
-                 <img src="images/update.PNG" alt="modifier-icon">
-                 <img src="images/delete.PNG" alt="supprimer-icon">
-                </div>
-            </div>
-        </div>
-        <!-- ===================================big devices=============================== -->
-          <table id="docs-table">
-            <thead>
-              <tr>
-                <th>Nom du document</th>
-                <th>Date</th>
-                <th>Ajouté par</th>
-                <th>Catégorie</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Ordonnence pour la maladie X</td>
-                <td>12 juillet 2020</td>
-                <td>Dr.Benrhou jalil</td>
-                <td>Certificats</td>
-              </tr>
-              <tr>
-                <td>Ordonnence pour la maladie X</td>
-                <td>12 juillet 2020</td>
-                <td>Dr.Benrhou jalil</td>
-                <td>Certificats</td>
-              </tr>
-              <tr>
-                <td>Ordonnence pour la maladie X</td>
-                <td>12 juillet 2020</td>
-                <td>Dr.Benrhou jalil</td>
-                <td>Certificats</td>
-              </tr>
-              <tr>
-                <td>Ordonnence pour la maladie X</td>
-                <td>12 juillet 2020</td>
-                <td>Dr.Benrhou jalil</td>
-                <td>Certificats</td>
-              </tr>
-            </tbody>
-          </table>
-          <button type="button" class="modif-table" id="modif-docs">Modifier</button>
+           <!-- -----------------filtring data--------------------------- -->
+           <div class="filters">
+                      <form action="" method="GET" id="by_date">
+                        <select name="byDate">
+                        <option name="tous" value="tous">Tous</option>
+                            <option name="cemois" value="cemois">ce mois</option>
+                            <option name="moisprec" value="moisprec">mois précédent</option>
+                            <option name="6mois" value="6mois">6 mois</option>
+                            <option name="ans" value="ans">ans</option>
+                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        </select>
+                        <input type="text" name="search" id="search" placeholder='nom du doc....'>
+                        <button type="submit" name="submit-searchA" class="searchBtn">
+                        <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
+                        </button>
+                      </form>
+                    </div>
+                  <?php
+                    $date = 'tous';
+                    $search = "";
+                      
+                    
+                    if(isset($_GET['byDate'])||isset($_GET['search']))
+                      {
+                        $date = $_GET['byDate'];
+                        $search = $_GET['search'];
+                       $doc = filter_by_date("documents",$date,$start_from,$num_per_page,"nomDoc",$search,$conn);
+                        if (mysqli_num_rows($doc) > 0) 
+                        { // output data of each row
+                              affich_doc($doc);
+                            
+                        }
+                            //=================afficher le tableau============================
+                       $doc1 = filter_by_date("documents",$date,$start_from,$num_per_page,"nomDoc",$search,$conn);
+
+                            if (mysqli_num_rows($doc1) > 0) 
+                            { table_doc($doc1); }
+                            else
+                            {
+                              echo"<div class='affichage-item-msg border'>
+                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
+                            </div>";
+                            } 
+                      }
+                      else
+                      {
+                           $doc = mysqli_query($conn,"SELECT * FROM documents limit $start_from,$num_per_page");
+                          if (mysqli_num_rows($doc) > 0) 
+                        { // output data of each row
+                              affich_doc($doc);
+                        }
+                            //=================afficher le tableau============================
+                           $doc1 = mysqli_query($conn,"SELECT * FROM documents limit $start_from,$num_per_page");
+                            if (mysqli_num_rows($doc1) > 0) 
+                            { table_doc($doc1); }
+                            else
+                            {
+                              echo"<div class='affichage-item-msg border'>
+                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
+                            </div>";
+                            } 
+                      } 
+                                          
+                      ?>
+                      <?php 
+          echo'<div class="pages-btn">';
+          pagination($conn,"documents","document.php",3,$page);
+
+          echo'</div>';
+          ?>
         </div>
      </div>
-   </div>
+     
+   
+</div>
    <footer>
     <div class="container">
       <div class="wrapper">
@@ -322,31 +480,6 @@
       </div>
     </div>
   </footer>    
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-   <script src="js/script.js" defer></script>
-   <script src="js/main.js" defer></script>
-   <script src="js/modal.js" defer></script>
-   <script>
-    const affichage =document.querySelector('.affichage');
-const modif_table =document.querySelector('.modif-table');
-const table =document.querySelector('table');
-let query2 = window.matchMedia("(max-width:767px)");
 
-
-    if (query2.matches) {
-    
-        table.style.display = 'none';
-        modif_table.style.display = 'none';
-        document.querySelector('.affich-docs').style.background = 'transparent';
-        document.querySelector('.affich-docs').style.padding = 0;
-        // document.querySelector('.affich-docs').style.boxshadow = 'none';
-
-
-      }
-      else{
-          affichage.style.display = 'none';
-      }
-        
-   </script>
 </body>
 </html>
