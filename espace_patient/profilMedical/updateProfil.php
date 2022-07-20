@@ -514,6 +514,7 @@ if(isset($_POST['updateD']) )
 {
   $idD = test_input($_POST["idD"]);
   $name = test_input($_POST["nomMed1"]);
+  $date = test_input($_POST["dateD1"]);
   $spec = test_input($_POST["spec1"]);
   $diag = test_input($_POST["diag1"]);
   $exam = test_input($_POST["exam1"]);
@@ -521,7 +522,7 @@ if(isset($_POST['updateD']) )
 
 
   //=======================error msg about empty fields===========
-    if($name == NULL || $spec == NULL || $diag == NULL || $traite==NULL )
+    if($name == NULL || $spec == NULL || $date == NULL|| $diag == NULL || $traite==NULL )
     {
         $res = [
             'status' => 422,
@@ -533,7 +534,7 @@ if(isset($_POST['updateD']) )
     //========================update to the new values===============
     else
 {
-    $update = "UPDATE diagnostic SET nomComplet='$name',specialite='$spec',diagnostic='$diag',exam='$exam',traitement='$traite'
+    $update = "UPDATE diagnostic SET nomComplet='$name',specialite='$spec',date='$date',diagnostic='$diag',exam='$exam',traitement='$traite'
                 WHERE idD='$idD'";
     $update_run = mysqli_query($conn, $update);
 

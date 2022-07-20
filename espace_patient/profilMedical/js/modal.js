@@ -1,6 +1,6 @@
 // =================MODAL PROFIL===================
 const popup = document.querySelector("#popup");
-const overlay = document.querySelector(".overlay");
+const overlay = document.querySelector(".prof");
 
 
 document.querySelector("#user").addEventListener("click", ()=>
@@ -22,7 +22,6 @@ function displayForm(overlay_id)
   
     //  let close_btn ="#"+overlay.id.slice(0)+"-btn";
     overlay.classList.remove("hide");
-    console.log("hello")
 // document.querySelector(`${close_btn}`).addEventListener("click", ()=>
 // {
 //     overlay.classList.add("hide");

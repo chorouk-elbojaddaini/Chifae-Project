@@ -1,0 +1,150 @@
+@media print {
+    *{
+        background-color: transparent !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+        font-size: 11pt !important;
+        line-height: 16pt !important;
+        background: none !important;
+        color: #000 !important;
+
+    }
+    @page {
+        size: A4;
+        margin:1.9cm;
+    }
+    html, body {
+        width: 210mm;
+        height: 297mm;
+      }
+    body {
+        background-image: url(../images/bg.png) !important;
+        
+    }
+
+    .logo
+    {
+        width:60px;
+        height: 60px;
+    }
+    button,nav,footer,.tabs,.filters,.pages-btn,#downloadDiv
+    {
+        display: none !important;
+    }
+    table {
+        display: table;
+        border-spacing: 2px;
+        /* border: solid 1px rgb(26, 26, 26) !important; */
+        padding: 2px;
+        height: max-content;
+        border-collapse: collapse !important;
+        page-break-inside: auto !important;
+        /* page-break-after: auto!important; */
+        }
+     
+        tbody
+        {
+            
+            page-break-inside: avoid !important;
+        }
+        .doctor-tables
+        {
+            display: block;
+            page-break-inside: avoid !important;
+        }
+        tr,th
+        {
+
+        page-break-inside: avoid !important;
+        page-break-after:auto !important;
+        /* page-break-before:avoid !important; */
+
+        }
+     
+            /* table,
+            table tr td,
+            table tr th {
+              page-break-inside: avoid !important;
+            } */
+     
+        td,th{
+            border: solid 2px rgb(41, 41, 41);
+        }
+        th:last-child, td:last-child
+        {
+          display: none;
+          border: none;
+        }
+  
+        /* table { page-break-after:auto }
+        tr    { page-break-inside:avoid; page-break-after:auto }
+        td    { page-break-inside:avoid; page-break-after:auto } */
+        /* thead { display:table-header-group } */
+        h1, h2, h3, h4
+        {
+          page-break-after: avoid !important;
+          
+        }
+
+        p, ul
+        {
+          page-break-inside: avoid;
+          overflow: visible
+        }
+        
+        .hid
+        {
+            display: block;
+            
+        }
+        .hid p
+        {
+            text-align: center;
+            font-size:20pt !important;
+            font-weight: 700;
+            padding:10px
+        }
+        .hid p:nth-child(3)
+        {
+            font-weight: 450;
+            font-size:16pt !important;
+            padding-bottom: 10px;
+            border-bottom:2px solid #000
+        }
+        .titlesD
+        {
+            padding-bottom: 10px;
+            border-bottom:1px solid #000;
+            width:max-content;
+            page-break-after:avoid !important;
+        }
+        .grid-mesure
+        {
+            display:flex !important;
+            flex-direction:row !important;
+            flex-wrap: wrap !important;
+            page-break-inside: avoid !important;
+        }
+        .mesure img {
+            display: none;
+        }
+        .mesure,.mesure p, .mesure span
+        {
+            page-break-inside: avoid !important;
+        }
+        .mesure span {
+            padding:0px 5px
+        }
+        .mesure
+        {
+            border:1px solid #000;
+        }
+        table {break-inside:auto }
+tr    { page-break-inside:avoid; page-break-after:auto }
+thead { display:table-header-group }
+tfoot { display:table-footer-group }
+#tableMal
+{
+    margin-left:0
+}
+}

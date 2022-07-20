@@ -65,10 +65,17 @@ function smallDevices(query) {
           }
         
     }
-console.log('hello')
 
  }
 
+//auto resizing textarea with
+ textarea = document.querySelectorAll("textarea");
+ textarea.addEventListener('input',autoResize());
+
+ function autoResize() {
+     this.style.height = 'auto';
+     this.style.height = this.scrollHeight + 'px';
+ }
 
 
 

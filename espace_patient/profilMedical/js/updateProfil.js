@@ -558,6 +558,7 @@ $(document).on('click', '#profilBtn', function () {
                console.log($('#diag'))
                $('#diag').val(res.data.idD);
                $('#nomMed1').val(res.data.nomComplet);
+               $('#dateD1').val(res.data.date);
                $('#spec1').val(res.data.specialite);
                $('#diag1').val(res.data.diagnostic);
                $('#exam1').val(res.data.exam);

@@ -1,4 +1,13 @@
 // ========================
+/*=============status numbers meaning:=====================
+200 => successful
+422 => empty fields
+100 => big format 
+110 => interdite format
+500=> db erroe while inserting
+550 => file error
+
+*/
 document.getElementById("docs-form").addEventListener("submit", function (e) {
 
   e.preventDefault();
@@ -18,7 +27,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
               let showName = document.getElementById("show-name");
               showName.style.display = "block";
               showName.textContent = resObject.fileName;
-              showName.insertAdjacentHTML('beforeend','<i class="fa-solid fa-circle-check"></i>')
+              showName.insertAdjacentHTML('afterbegin',' <i class="fa-solid fa-circle-check"></i>')
 
               //close the form-step
               let closeForm = document.getElementById("submit-docF");
@@ -35,13 +44,37 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
                   showName.textContent = "";
                   showName.style.display = "none";
                   //======================refresh after inserting so that we could see the lastest records
-                  // location.reload(true);
+                  location.reload(true);
               
               });
               
-            } 
+            } //=============if empty fields
+            else if( resObject.status==422){
+              alertify.set('notifier','position', 'top-right');
+              alertify.error(resObject.msgs);
+            }
+            //================== interdite extension =================
+            else if( resObject.status==110){
+              alertify.set('notifier','position', 'top-right');
+              alertify.error(resObject.msgs);
+            }
+            //================== big formats =================
+            else if( resObject.status==100){
+              alertify.set('notifier','position', 'top-right');
+              alertify.error(resObject.msgs);
+            }
+              //================== DB error =================
+              else if( resObject.status==500){
+                alertify.set('notifier','position', 'top-right');
+                alertify.error(resObject.msgs);
+              }
+               //================== file error =================
+               else if( resObject.status==550){
+                alertify.set('notifier','position', 'top-right');
+                alertify.error(resObject.msgs);
+              }
       //================if we failed we should display the reason================
-      //=================EMPTY FIELDS =================
+      
         else 
         {
         
@@ -56,7 +89,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
           })
           console.log("hello1")
       }
-
+     
     } 
     //============================if we have a probleme with the request itself : this.status != 200
     else if (this.readyState == 4) 
@@ -80,9 +113,9 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
 
     }
   };
-  for (const pair of data.entries()) {
-    console.log(`${pair[0]}, ${pair[1]}`);
-  }
+  // for (const pair of data.entries()) {
+  //   console.log(`${pair[0]}, ${pair[1]}`);
+  // }
 
   xhr.open("POST", "upload.php", true);
   xhr.responseType = "json";

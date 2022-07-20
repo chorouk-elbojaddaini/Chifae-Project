@@ -47,7 +47,7 @@
                         $(formsInsert[i])[0].reset();
                      
                          
-                        location.reload(true);
+                        
         
                     }    //=============db probleme query return falsy value
         
@@ -87,6 +87,12 @@ for (let i = 0; i < options.length; i++) {
   })
 }
 //===========================photo upload=====================
+// 200 => successful
+// 422 => empty fields
+// 100 => big format 
+// 110 => interdite format
+// 500=> db erroe while inserting
+// 550 => file error
 function uploadImage()
 {
 
@@ -113,24 +119,30 @@ function uploadImage()
                 location.reload(true);
             }    //=============db probleme query return falsy value
 
-            else if(res.status == 500) {
-                alertify.set('notifier','position', 'top-right');
-                alertify.error(res.message);
-
+          //=============if empty 
+          else if( res.status==422){
+            alertify.set('notifier','position', 'top-right');
+            alertify.error(res.message);
+          }
+          //================== interdite extension =================
+          else if( res.status==110){
+            alertify.set('notifier','position', 'top-right');
+            alertify.error(res.message);
+          }
+          //================== big formats =================
+          else if( res.status==100){
+            alertify.set('notifier','position', 'top-right');
+            alertify.error(res.message);
+          }
+            //================== DB error =================
+            else if( res.status==500){
+              alertify.set('notifier','position', 'top-right');
+              alertify.error(res.message);
             }
-            //--------------empty fields error---------
-            else if(res.status == 422)
-            {
-                alertify.set('notifier','position', 'top-right');
-                alertify.error(res.message);
-           
-            }//================erreur de serveur soit de taille ou erreur de sql insert
-            else {
-                alertify.set('notifier','position', 'top-right');
-                alertify.error(res.message);
-            }
+            
         }
     }
  )
+
 
 }

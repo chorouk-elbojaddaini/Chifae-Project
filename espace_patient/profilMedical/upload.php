@@ -2,32 +2,46 @@
 include '../../connexionDoc/cnx.php';
 $success = false;
 // $msgs = array();
+$status=200;
+/*=============status numbers meaning:=====================
+200 => successful
+422 => empty fields
+100 => big format 
+110 => interdite format
+500=> db erroe while inserting
+550 => file error
 
+*/
 $i=1;
 //defines our variables as an empty values:
 $name = $date = $add_by = $category = "";
 
-//check empty file
-if(empty($_FILES["file"]["size"]))
-{
-  $msgs="Veuillez choisir un fichier";
-  $res = ['success'=>$success,
-  'msgs' => $msgs];
-  echo json_encode( $res );
-  return;
- 
-}
 //check the empty fields:
 foreach($_POST as $key => $value)
 {
   if(empty($value))
   {
+    $status=422;
     $msgs="Tous les champs sonts obligatoires";
         $res = ['success'=>$success,
-        'msgs' => $msgs];
+        'msgs' => $msgs,
+        'status'=>$status];
         echo json_encode( $res );
         return;
   }
+}
+
+//check empty file
+if(empty($_FILES["file"]["size"]))
+{
+  $msgs="Veuillez choisir un fichier";
+  $status=422;
+  $res = ['success'=>$success,
+  'msgs' => $msgs,
+'status'=>$status];
+  echo json_encode( $res );
+  return;
+ 
 }
 //filter all the inputs and file input also: 
 //==================================================
@@ -113,9 +127,11 @@ if((!empty($_POST) ) AND (!empty($_FILES["file"]["size"])))
               // can't insert into db
               else
               {
+                $status = 500;
                 $msgs="une erreure est survenue, veuillez essayez ulterierement";
                 $res = ['success'=>$success,
-                 'msgs' => $msgs];
+                 'msgs' => $msgs,
+                'status'=>$status];
                  echo json_encode( $res );
                  return;
               }
@@ -125,17 +141,21 @@ if((!empty($_POST) ) AND (!empty($_FILES["file"]["size"])))
             //=========================LARGE FILE SIZE=================================== : 
              else
              {
-              $msgs="Fichier tres large , essayez de le compresser";
+              $status=100;
+              $msgs="❌Fichier tres large , essayez de le compresser";
                $res = ['success'=>$success,
-              'msgs' => $msgs];
+              'msgs' => $msgs,
+            'status'=>$status];
              }
         } 
         // else of $_FILE["file"]["error"]!=0
         else
            {
-            $msgs="une erreure est survenue, veuillez essayez ulterierement";
+            $status=550;
+            $msgs="❗❗ une erreure est survenue, veuillez essayez ulterierement ";
             $res = ['success'=>$success,
-            'msgs' => $msgs];
+            'msgs' => $msgs,
+          'status' =>$status];
             echo json_encode( $res );
             return;
            }
@@ -143,9 +163,11 @@ if((!empty($_POST) ) AND (!empty($_FILES["file"]["size"])))
        // else of unallowed extension
        else
          {
-          $msgs="le format de ce fichier est interdit";
+          $status=110;
+          $msgs="le format de ce fichier est interdit ⛔";
           $res = ['success'=>$success,
-          'msgs' => $msgs];
+          'msgs' => $msgs,
+        'status' =>$status];
             echo json_encode( $res );
             return;
 

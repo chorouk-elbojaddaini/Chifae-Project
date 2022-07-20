@@ -14,7 +14,7 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
   }
-  .overlay
+  .overlay,.prof
 
   {
       position: fixed;
@@ -156,7 +156,7 @@
       font-size:20px;
       box-shadow: 2px 2px 2px rgba(65, 65, 65, 0.679);
       cursor: pointer;
-      margin-left:400px;
+      margin-left:290px;
      margin-top:-100px;
       display: inline-block;
   }
@@ -169,7 +169,7 @@
     font-size:20px;
     box-shadow: 2px 2px 2px rgba(65, 65, 65, 0.679);
     cursor: pointer;
-    margin-left:400px;
+    margin-left:280px;
    margin-top:0px;
     display: inline-block;
   }
@@ -182,72 +182,35 @@
   {
     display: none;
   }
+  label
+  {
+    color:var(--green2);
+    font-weight:500;
+    text-align: center;
+  }
   /* ********************FORM-page1*********************** */
 .form
 {
-  display:grid;
-  grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(5,fit-content);
-  grid-template-areas: "close"
-                        "input"
-                        "input"
-               "describe "
-               "form-btn"
-               "form-btn";
- width:fit-content;
+  display:flex;
+  flex-direction:column;
  padding:20px 10px;
  position: absolute;
- top:50%;
+ top:55%;
  left:50%;
  transform: translate(-50%, -50%) scale(1);
  padding-bottom:10px;
  box-shadow: 10px 10px 300px rgba(96, 96, 96, 0.697);
- 
+ border-radius:8px;
+padding-left:15px;
+max-height:650px;overflow-y:auto;
 
-}
-form[class='maladie']
-{
-  display:grid;
-  grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(5,fit-content);
-  grid-template-areas: "close"
-                        "input"
-                        "input"
-                        "select"
-               "describe "
-               "form-btn"
-               "form-btn";
-}
-form[class='maladie'] select  {
-   grid-area:select;
-
-   }
-.form input:nth-child(1)
-{
-  grid-area:input;
-
-}
-.form textarea
-{
-  grid-area:describe;
-
-}
-.form input:nth-child(2)
-{
-  grid-area:input;
-  
-}
-.form .close_btn
-{
-  grid-area:close;
 }
 
 .form-btn
 {
-  grid-area: form-btn;
+ 
   width:150px;
   height:40px;
-  /* padding:10px; */
   border:2px solid var(--pink);
   background-color:var(--pink);
   color:white;
@@ -255,10 +218,13 @@ form[class='maladie'] select  {
   font-size:1rem;
   border-radius:30px;
   justify-self:center;
-
+  align-self: flex-end;
+  margin:5px auto;
   box-shadow: 6px 6px 6px rgba(65, 65, 65, 0.381);
   transition: transform 0.2s 0.1s ease-out;
-
+ padding-right: 10px;
+ padding-bottom: 20px;
+ line-height: 30px;
 }
 .form-btn:hover
 {
@@ -272,10 +238,17 @@ form[class='maladie'] select  {
 .form textarea,.form select
 
 {
-   border:1px solid var(--green);
-   border-radius: 8px;
-   padding:10px;
-   width:403px;
+   border:none;
+   
+   border-radius:5px;
+   padding:5px;
+   width:300px;
+   display:block;
+  margin:10px;
+  line-height:30px;
+  background-color:#e7edee;
+  box-shadow: inset 0px 1px 8px rgba(0, 0, 0, 0.2);
+
 }
 
 .form input:focus,
@@ -283,165 +256,21 @@ form[class='maladie'] select  {
 .form select:focus
 
 {
-   border:1px solid var(--green3);
-   background-color:#e7edee
+   border-bottom:2px solid var(--pink);
+   background-color:#d2e9ed
 
 
 }
 ::placeholder
 {
-  padding:5px
-}
-.form input,
-.form textarea,
-.form label,.form select
-{
-  display:block;
-  margin:5px
-  
-}
-.form label
-{
-  font-weight: bold;
-  color: var(--pink)
-}
-/* ========================TRAITEMENT-FORM================== */
-#traitement-form
-{
-  display:grid;
-  grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(7,fit-content);
-  grid-template-areas: "close"
-  "input"
-                        "input"
-                        "input"
-                        "input"
-               "describe "
-               "form-btn";
-               width:fit-content;
-               padding:20px 10px;
-               position: absolute;
-               top:55%;
-               left:50%;
-               transform: translate(-50%, -50%) scale(1)
-
-}
-#traitement-form input:nth-child(3)
-{
-  grid-area:input;
-  margin-left:10px
-  
-}
-#traitement-form input:nth-child(4)
-{
-  grid-area:input;
-  margin-left:10px
-  
-}
-#traitement-form label
-{
-  margin:0px 10px
+  line-height: 30px;
+  color: var(--dark-green)
 }
 
-/* ========================HOSPITALISATION-FORM================== */
-#hospital-form
-{
-  display:grid;
-  grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(6,fit-content);
-  grid-template-areas: "close"
-                        "input"
-                        "input"
-                        "input"
-                      "describe "
-                       "form-btn";
- 
-
-}
-#hospital-form input:nth-child(3)
-{
-  grid-area:input;
-  margin-left:10px
-  
-}
-/* ========================ALLERGIES-FORM================== */
-#allergy-form
-{
-  display:grid;
-  grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(4,fit-content);
-  grid-template-areas: "close"
-                "input"
-               "describe "
-               "form-btn";
-
-
-}
-/* ========================VACCINATION-FORM================== */
-#vaccin-form
-{
-  display:grid;
-  grid-template-columns: repeat(2,fit-content);
-  grid-template-rows: repeat(7,fit-content);
-  grid-template-areas: "close"
-                          "input"
-                        "input"
-                        "input"
-                        "input"
-               "describe "
-               "form-btn";
-               top:55%;
-
-}
-#vaccin-form input:nth-child(3)
-{
-  grid-area:input;
-  margin-left:10px
-  
-}
 /* ********************DOCUMENTS FORM*********************** */
-.docForm
- {
-   display:grid;
-   grid-template-columns: repeat(1,fit-content);
-   grid-template-rows: repeat(6,fit-content);
-   grid-template-areas: "close"
-                          "input"
-                         "input"
-                         "input"
-                   "select"
-                   "file"
-                "form-btn";
-                top:55%;
- 
- }
- #close-edit-doc,
- #close-add-doc{
-  grid-area:close;
- }
- .docForm input:nth-child(1)
- {
-   grid-area:input;
- 
- }
- .docForm input:nth-child(2)
- {
-   grid-area:input;
- 
- }
- .docForm input:nth-child(3)
- {
-   grid-area:input;
- 
- }
- .docForm select
- {
-   grid-area:select;
- 
- }
+
  .docForm input[id="add-file"]
  {
-  grid-area: file;
   display:none
  }
  .docForm  #choisir
@@ -465,6 +294,7 @@ form[class='maladie'] select  {
 .mesureForm
 {
   z-index: 15;
+  padding-left: 10px;
 }
 .mesureForm input,
 .profil input,
@@ -477,44 +307,22 @@ form[class='maladie'] select  {
    width:120px;
    margin-right:5px
 }
-.profil-inputs  label,
-.mesure-inputs
-label
-{
-  font-size:.8rem
-}
+
 .mesure-inputs
 input ::placeholder
 {
-  font-size:.7rem
+  font-size:.8rem
 }
 #mesure-form
 {
   z-index: 10;
 }
-/* ================================profil form=============================== */
-#profil-form-update
+form[name='mesure'] .closer
 {
-  display:grid;
-  grid-template-columns: repeat(2,fit-content);
-  /* grid-template-rows: repeat(5,fit-content);
-  grid-template-areas: "close"
-                        "input"
-                        "input"
-               "describe "
-               "form-btn"
-               "form-btn"; */
- width:fit-content;
- padding:20px 10px;
- position: absolute;
- /* top:25%;
- left:25%;
- transform: translate(75%, 5%) scale(1);
- padding-bottom:10px;
- box-shadow: 0px 0px 0px rgba(96, 96, 96, 0.697); */
-
-
+   margin-left: 250px;
 }
+/* ================================profil form=============================== */
+
 .over-prof
 {
 
@@ -540,6 +348,10 @@ input ::placeholder
   font-size:.9rem;
   background-color:rgb(182, 225, 208);
   border:1.5px solid rgb(42, 138, 99);
+  white-space: nowrap; 
+  width: 300px; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
   display:none;
  
 }
@@ -554,20 +366,15 @@ input ::placeholder
 {
   .form
 {
- /* padding: 5px; */
+ padding-left: 15px;
  top:50%;
  left:50%;
  transform: translate(-50%, -50%) scale(1);
  /* width:90% */
+ height:350px;overflow-y:auto;
 
 }
-.form input,
-.form textarea,.form select
 
-{
-   padding:5px;
-   width:200px;
-}
 
 #doc-btn
 {
@@ -579,29 +386,21 @@ input ::placeholder
 }
 .closeF
   {
+    margin-right:-10px;
      
-      margin-right:10px;
-      margin-left:250px;
 
-      /* margin-bottom:150px; */
       display: inline-block;
   }
   .closer
   {
     
-    margin-right:10px;
+    margin-right:-10px;
     margin-left:250px;
 
-    /* margin-bottom:150px; */
+    margin-top:-20px;
     display: inline-block;
   }
-  .form input,
-.form textarea,.form select
 
-{
-  
-   width:98%;
-}
 #hospital-form
 {
   top:60%
@@ -624,6 +423,13 @@ input ::placeholder
       background-color:rgba(39, 39, 39, 0.348);
       /* display: none; */
   
+}
+.form label span[id="show-name"]
+{
+
+  width: 250px; 
+
+ 
 }
 }
 

@@ -130,7 +130,7 @@ if (mysqli_num_rows($display) > 0)
           </div>
        <!-- ---------------------------update form--------------- -->
        <div class="overlay profil hide over-prof" id="profil" >
-                    <form action="#" method="post" name="profil" class="form border update" id="profil-form-update">
+                    <form action="" method="post" name="profil" class="form border update" id="profil-form-update">
                     <button class="close_form" id="profil-btn-close" name="close-update-profil" > <i class="uis uis-multiply closeF"></i> </button> 
                                   <input type="hidden" name="idP" id="idP" >
                                 
@@ -192,12 +192,16 @@ if (mysqli_num_rows($display) > 0)
               <li class="tab " ><a href="mesure.php" data-switcher data-tab="6">Mesures</a></li>
               <li class="tab "><a  href="antecedent.php" data-switcher data-tab="7">Antécédents familiaux</a></li>
               <li class="tab"><a  href="historique.php" data-switcher data-tab="8">Historique des soins</a></li>
-              <li  class="tab "><a href="info.php" data-switcher data-tab="9">Mon dossier global</a></li>
+              
             </ul>
          </div>
       <div class="perso-data">
             <div class="header">
                 <div class="photo">
+                <span id="id"><i class="fa-solid fa-address-card" id="card-id"></i> Id :
+                        
+                           <?php echo $row['id'] ;?>
+                         </span>
                         <!-- <img src="images/no.jpg" alt="profil" id="photo"> -->
                         <img  id="photo"  height="100" width="100" border-radius="50%"src="data:image;base64,<?php echo $row['photo'] ;?>">
                             <label for="add-photo">
@@ -207,6 +211,9 @@ if (mysqli_num_rows($display) > 0)
                                    <input type="hidden" name="idP" id="idP"  value='<?php echo $row['id'] ;?>'>
                                   <input type="file" id="add-photo"name="photo" onchange="uploadImage()">
                            </form>
+                        
+                        
+                           
                   </div>
                <div class="info-general">
                     <h1 class="data-text"><?php echo $row['nom']."  ".$row['prenom'];?></h1>

@@ -148,12 +148,13 @@ include('../pageAcceuil/cnx.php');
     
     
       if(isset($_POST['search'])){
+
         $_SESSION['ville'] = $_POST['ville'];
-$_SESSION['specialite'] = $_POST['specialite'];
-$ville = $_SESSION['ville'] ;
-$specialite = $_SESSION['specialite'] ; 
-$_SESSION['nom'] = "";
-$_SESSION['ville2'] = "";       
+        $_SESSION['specialite'] = $_POST['specialite'];
+        $ville = $_SESSION['ville'] ;
+        $specialite = $_SESSION['specialite'] ; 
+        $_SESSION['nom'] = "";
+        $_SESSION['ville2'] = "";       
       } 
       elseif (isset($_POST['search2'])){
             $_SESSION['nom'] = $_POST['nom'];

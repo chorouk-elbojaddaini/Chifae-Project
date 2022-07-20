@@ -21,6 +21,7 @@ if (mysqli_num_rows($display) > 0)
          <h4>".$row["nomDoc"]."
          <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
                      <div class='options' data-div='".$row["idDoc"]."'>
+                     <p><a href='download.php?file=". $row["nomDoc"]."'><i class='fa-solid fa-file-arrow-down'></i></a></p>
                          <button class='editDoc' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
                          <button class='deleteDoc' id='delete-'".$row["idDoc"]."' value='".$row["idDoc"]."'><i class='fa-solid fa-trash-can'></i></button>
                      </div>
@@ -60,6 +61,7 @@ function table_doc($doc)
                   <td>
                   <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
                   <div class='options' data-div='".$row["idDoc"]."'>
+                  <p><a href='download.php?file=". $row["nomDoc"]."'><i class='fa-solid fa-file-arrow-down'></i></a></p>
                       <button class='editDoc' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
                       <button class='deleteDoc' id='delete-'".$row["idDoc"]."' value='".$row["idDoc"]."'><i class='fa-solid fa-trash-can'></i></button>
                   </div>
@@ -133,31 +135,38 @@ echo"
     //    })
     //  }
     
-      const affichage =document.querySelector('.affichage');
-      const table =document.querySelector('table');
-      const show_tr =document.getElementById('show_tr');
-      const show_affiche =document.getElementById('show_affiche');
+      // const affichage =document.querySelector('.affichage');
+      // const table =document.querySelector('table');
+      // const show_tr =document.getElementById('show_tr');
+      // const show_affiche =document.getElementById('show_affiche');
 
-      let query2 = window.matchMedia("(max-width:767px)");
+      // let query2 = window.matchMedia("(max-width:767px)");
 
 
-          if (query2.matches) {
+      //     if (query2.matches) {
       
-          table.style.display = 'none';
-          show_tr.style.display = 'none';
-          document.querySelector('.affich-docs').style.background = 'transparent';
-          document.querySelector('.affich-docs').style.padding = 0;
-          // document.querySelector('.affich-docs').style.boxshadow = 'none';
+      //     table.style.display = 'none';
+      //     show_tr.style.display = 'none';
+      //     document.querySelector('.affich-docs').style.background = 'transparent';
+      //     document.querySelector('.affich-docs').style.padding = 0;
+      //     // document.querySelector('.affich-docs').style.boxshadow = 'none';
 
 
-      }
-        else{
-            affichage.style.display = 'none';
-            show_affiche.style.display = 'none';
+      // }
+      //   else{
+      //       affichage.style.display = 'none';
+      //       show_affiche.style.display = 'none';
 
-        }
+      //   }
         console.log("options");
-       
+       let options = document.querySelectorAll('.options-btn');
+       for (let i = 0; i < options.length; i++) {
+         options[i].addEventListener('click',()=>{
+         let div=options[i].nextElementSibling
+          $(div).toggle()
+   
+  })
+}
    </script>
     <title>Mes Documents| Chifae</title>
 </head>

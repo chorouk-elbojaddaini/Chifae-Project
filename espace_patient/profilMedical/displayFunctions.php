@@ -342,6 +342,7 @@ function table_doc($doc)
                   <td>
                   <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
                   <div class='options' data-div='".$row["idDoc"]."'>
+                  <p><a href='download.php?file=". $row["nomDoc"]."'><i class='fa-solid fa-file-arrow-down'></i></a></p>
                       <button class='editDoc' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
                       <button class='deleteDoc' id='delete-'".$row["idDoc"]."' value='".$row["idDoc"]."'><i class='fa-solid fa-trash-can'></i></button>
                   </div>
@@ -367,6 +368,7 @@ function table_diag($diag)
       <tr>
         <th>Nom et Prénom</th>
         <th>Spécialité</th>
+        <th>Date</th>
         <th>Diagnostique</th>
         <th>Examens complémentaires</th>
         <th>Traitement</th>
@@ -380,6 +382,7 @@ function table_diag($diag)
            <tr>
            <td>".$row["nomComplet"]."</td>
            <td>".$row["specialite"]."</td>
+           <td>".$row["date"]."</td>
            <td>".$row["diagnostic"]."</td>
            <td>".$row["exam"]."</td>
            <td>".$row["traitement"]."</td>
