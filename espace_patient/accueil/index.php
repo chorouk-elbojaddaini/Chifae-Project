@@ -1,5 +1,8 @@
 <?php 
+session_start();
+
 include '../../connexionDoc/cnx.php';
+$connect = mysqli_query($conn, "SELECT * FROM patient WHERE email='{$_SESSION['SESSION_EMAIL']}'");
 $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
 if (mysqli_num_rows($display) > 0) 
  { 
@@ -143,9 +146,11 @@ if (mysqli_num_rows($display) > 0)
                 <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
 
                    <a class="pop"href="../profilMedical/profil.php" target="_blank" id="monProfil">Mes infos</a>
+
                    <a class="pop" href="#" id="deconnect">Se déconnecter</a>
 
                    <a class="pop"href="../profilMedical/index.php" target="_blank" id="monProfil">Mes infos</a>
+
                    <a class="pop" href="../../connexionPat/logout.php" id="deconnect">Se déconnecter</a>
 
 
