@@ -3,10 +3,10 @@ include'pagination.php';
 include '../../connexionDoc/cnx.php';
 include'filter.php';
 //=============================diagno=============================
-function table_diag($diag)
+function table_diag($diag,$res)
 {
   echo"
-      
+      $res
     <table   class='show' id='diag-table'>
     <thead>
       <tr>
@@ -140,7 +140,7 @@ echo"
                       <div class="filters">
                       <form action="" method="GET" id="filter"name="diagnostic">
                       <input type="hidden" name="diagnostic">
-                      <select name="byDateDia">
+                      <select name="byDateDg">
                         <option name="tous" value="tous">Tous</option>
                             <option name="cemois" value="cemois">ce mois</option>
                             <option name="moisprec" value="moisprec">mois précédent</option>
@@ -148,98 +148,80 @@ echo"
                             <option name="ans" value="ans">ans</option>
                             <option name="plsans" value="plusieursAns">plus d'un an</option>
                         </select>
-                        <input type="text" name="searchDia" id="search" placeholder='nom du médecin...'>
+                        <input type="text" name="searchDg" id="search" placeholder='nom du médecin...'>
                        
-                        <button type="submit" name="submit-searhDia" class="searchBtn" >
+                        <button type="submit" name="searhDia" class="searchBtn" >
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
+                    <?php 
+               
+               $num_per_page=03;
+
+               if(empty( $_SESSION['dateDg']) && empty( $_SESSION['searchDg']))
+               {
+               $_SESSION['dateDg']='tous';
+               $_SESSION['searchDg']='';
+               }
+               if(isset($_POST['searchDia']))
+               {
+                 $_SESSION['dateDg'] = $_POST['byDateDg'];
+                 $_SESSION['searchDg'] = $_POST['searchDg'];
+               }
+               // echo "ana session". $_SESSION['searchDg']."<br>";
+
+               $pageDg = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+               // echo "ana page".$pageM."<br>";
+               $start_fromDg =   ($pageDg-1)*$num_per_page;
+               // echo "ana lbdya".$start_from;
+               $diag_array = filter_by_date("diagnostic",$_SESSION['dateDg'],$start_fromDg,$num_per_page,"nomComplet", $_SESSION['searchDg'],$conn);
+               $diag = $diag_array['query'];
+               $total_recordsDg=$diag_array['nb_rows'];
+               // echo $total_records;
+               $total_pages=ceil($total_recordsDg/$num_per_page);
+               $res = "<p class='response '>Il existe ". $total_recordsDg." enregistrement</p>";
+               if($total_recordsDg>0)
+               {
+                echo"<div class='doctor-tables' id='tableDiag'>";
+                 table_diag($diag,$res);
+                 echo"</div>"; 
+                 
+               }
+               else
+               {
+               echo"<div class='affichage-item-msg border'>
+               <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+               </div>";
+               } 
+
+                       echo'<div class="pages-btn">';
+
+                       for ($i=1; $i <= $total_pages ; $i++){  
+                           echo "<a class='pagination'href='?pageDg=".$i."#diagnosticS'>".$i."</a>" ;
+                         } 
+                         echo'</div>';
+
+               ?>
+        
            
-           
-            <?php
-            
-            $date = 'tous';
-            $search = "";
-              
-            if(isset($_GET["pageD"]))
-             {
-                 $page=$_GET["pageD"];
-             }
-             else
-             {
-                 $page=1;
-             }
-             $num_per_pageD=03;
-
-             $start_fromD=($page-1)*$num_per_pageD;
-
-            if(isset($_GET['byDateDia'])||isset($_GET['searchDia']))
-              {
-                $date = $_GET['byDateDia'];
-                $search = $_GET['searchDia'];
-               $diag = filter_by_date("diagnostic",$date,$start_fromD,$num_per_pageD,"nomComplet",$search,$conn);
-                if (mysqli_num_rows($diag) > 0) 
-                    { 
-                      echo"<div class='historique-table' id='tableD'>";
-                      table_diag($diag);
-                      echo"</div>"; }
-                    else
-                    {
-                    echo"<div class='affichage-item-msg border'>
-                    <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                    </div>";
-                    } 
-            }
-            else
-            {
-                    //=================afficher le tableau============================
-                    $diag = mysqli_query($conn,"SELECT * FROM diagnostic limit $start_fromD,$num_per_pageD");
-                    if (mysqli_num_rows($diag) > 0) 
-                    { 
-                      echo"<div class='historique-table' id='tableD'>";
-
-                      table_diag($diag);
-
-
-                      echo"</div>";}
-                    else
-                    {
-                    echo"<div class='affichage-item-msg border'>
-                    <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                    </div>";
-                    } 
-            } 
-            
-            
-             
-            ?>
-              <?php 
-                    echo'<div class="pages-btn">';
-                    // pagination_sections($conn,"documents","historique.php",3,$page,'#document');
-                   
-                        $sql="SELECT * FROM diagnostic";
-                        $rs_result=mysqli_query($conn,$sql);
-                        $total_records=mysqli_num_rows($rs_result);
-                        $total_pages=ceil($total_records/$num_per_page);
-                        if($page>1)
-                        {
-                            echo "<a class='pagination'href='historique.php?pageD=".($page-1)."#diagnosticS'>Précédent</a>" ;
-
-                        }
-                        for($i=1;$i<=$total_pages;$i++)
-                        {
-                            echo "<a class='pagination'href='historique.php?pageD=".$i."#diagnosticS'>".$i."</a>" ;
-                        }
-                        if($page<$i)
-                        {
-                            echo "<a class='pagination'href='historique.php?pageD=".($page+1)."#diagnosticS'>Suivant</a>" ;
-
-                        }
-                    echo'</div>';
-                    ?>
+         
                    </div>
                 </div>
                 </div>
 
  <?php include'footer.php';?>
+ <script type="text/javascript">
+  //=====================toogle to show the options div=============
+let options = document.querySelectorAll('.options-btn');
+console.log(options)
+for (let i = 0; i < options.length; i++) {
+  options[i].addEventListener('click',()=>{
+    let div=options[i].nextElementSibling
+    // div.style.display="block"
+    $(div).toggle()
+    console.log( )
+   
+  })
+}
+</script>

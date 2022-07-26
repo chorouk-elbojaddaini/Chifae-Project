@@ -3,11 +3,11 @@
  include '../../connexionDoc/cnx.php';
 include'filter.php';
  
- function affich_hospital($hospital)
+ function affich_hospital($hospital,$res)
  {
   echo' 
   <!-- -----------------------AFFICHAGE DES hospitalisation------------------------ -->
-   <div class="affichage">';
+   <div class="affichage">'.$res;
   while($row = mysqli_fetch_assoc($hospital)) 
   { 
      echo"
@@ -27,9 +27,10 @@ include'filter.php';
   }
   echo'</div>';
  }
- function table_hospital($hospital)
+ function table_hospital($hospital,$res)
  {
   echo"
+  $res
     <table id='hospital-table'>
     <thead>
       <tr>
@@ -144,8 +145,8 @@ echo"
                     <hr>
                       <!-- -----------------filtring data--------------------------- -->
                       <div class="filters">
-                      <form action="" method="GET" id="by_date">
-                        <select name="byDate">
+                      <form action="" method="POST" id="by_date">
+                        <select name="byDateH">
                         <option name="tous" value="tous">Tous</option>
                             <option name="cemois" value="cemois">ce mois</option>
                             <option name="moisprec" value="moisprec">mois précédent</option>
@@ -153,73 +154,93 @@ echo"
                             <option name="ans" value="ans">ans</option>
                             <option name="plsans" value="plusieursAns">plus d'un an</option>
                         </select>
-                        <input type="text" name="search" id="search" placeholder='cause ...'>
-                        <button type="submit" name="submit-searchA" class="searchBtn">
+                        <input type="text" name="searchH" id="search" placeholder='cause ...'>
+                        <button type="submit" name="searchHospi" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
-                    <?php 
+                     <?php 
 
+                      
+                    // $total_pages = 0;
+                    $num_per_page=03;
 
+                    if(empty( $_SESSION['dateH']) && empty( $_SESSION['searchH']))
+                    {
+                    $_SESSION['dateH']='tous';
+                    $_SESSION['searchH']='';
+                    }
+                    if(isset($_POST['searchHospi']))
+                    {
+                    
+                      $_SESSION['dateH'] = $_POST['byDateH'];
+                      $_SESSION['searchH'] = $_POST['searchH'];
+                    }
+                    // echo "ana session". $_SESSION['dateH']."<br>";
+                    // echo "ana search". $_SESSION['searchH']."<br>";
+                    
+                    $pageH = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+                    // echo "ana page".$pageH."<br>";
+                    
+                    $start_fromH =   ($pageH-1)*$num_per_page;
+                    // echo "ana lbdya".$start_fromH;
+                    $hospi_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$conn);
+                    $hospi = $hospi_array['query'];
+                    $total_recordsH=$hospi_array['nb_rows'];
+                    // echo $total_recordsH;
+                    $total_pages=ceil($total_recordsH/$num_per_page);
+                    $res = "<p class='response hideMe'>Il existe ". $total_recordsH." enregistrement</p>";
+                    if($total_recordsH>0)
+                    {
+                      
+                      table_hospital($hospi,$res);
+                          
 
-$date = 'tous';
-$search = "";
-  //--------hospitalisation-------------
- 
- if(isset($_GET['byDate'])||isset($_GET['search']))
-  {
-    $date = $_GET['byDate'];
-    $search = $_GET['search'];
-    $hospital = filter_by_date("hospitalisation",$date,$start_from,$num_per_page,"cause",$search,$conn);
-    if (mysqli_num_rows($hospital) > 0) 
-    { // output data of each row
-          affich_hospital($hospital);
-         
-    }
-        //=================afficher le tableau============================
-    $hospital1 = filter_by_date("hospitalisation",$date,$start_from,$num_per_page,"cause",$search,$conn);
+                    }
+                    $hospi1_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$conn);
+                    $hospi1 = $hospi1_array['query'];
+                    $total_pages=ceil($total_recordsH/$num_per_page);
+                    $res1 = "<p class='response'>Il existe ". $total_recordsH." enregistrement</p>";
+                    if (mysqli_num_rows($hospi) > 0) 
+                      { // output data of each row
+                        
+                            affich_hospital($hospi1,$res1);
+                          
+                      }
+                    else
+                    {
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
+                    } 
 
-        if (mysqli_num_rows($hospital1) > 0) 
-        { table_hospital($hospital1); }
-        else
-        {
-          echo"<div class='affichage-item border'>
-          <p>Aucun résultat n'est trouvé</p>
-          </div>";
-        } 
-        $referer_host = $_SERVER[ "HTTP_HOST" ];
-        $referer_uri = explode( "?", $_SERVER[ "REQUEST_URI" ] );
-        $referer = $referer_host . $referer_uri[ 0 ];
-  }
-  else
-  {
-        $hospital = mysqli_query($conn,"SELECT * FROM hospitalisation limit $start_from,$num_per_page");
-      if (mysqli_num_rows($hospital) > 0) 
-    { // output data of each row
-          affich_hospital($hospital);
-    }
-        //=================afficher le tableau============================
-        $hospital1 = mysqli_query($conn,"SELECT * FROM hospitalisation limit $start_from,$num_per_page");
-        if (mysqli_num_rows($hospital1) > 0) 
-        { table_hospital($hospital1); }
-        else
-        {
-          echo"<div class='affichage-item-msg border'>
-          <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-          </div>";
-        } 
-  } 
-?>
-      <?php 
-echo'<div class="pages-btn">';
-pagination($conn,"hospitalisation","hospital.php",3,$page);
-echo'</div>';
-?>
+                            echo'<div class="pages-btn">';
+
+                            for ($i=1; $i <= $total_pages ; $i++){  
+                                echo "<a class='pagination'href='?page=".$i."'>".$i."</a>" ;
+                              } 
+                              echo'</div>';
+
+                    ?>
+                  
 </div>
 
 </div>
 </div>
 
 <?php include'footer.php';?>
- 
+<script type="text/javascript">
+  //=====================toogle to show the options div=============
+let options = document.querySelectorAll('.options-btn');
+console.log(options)
+for (let i = 0; i < options.length; i++) {
+  options[i].addEventListener('click',()=>{
+    let div=options[i].nextElementSibling
+    // div.style.display="block"
+    $(div).toggle()
+    console.log( )
+   
+  })
+}
+</script>

@@ -142,22 +142,22 @@ include('../pageAcceuil/cnx.php');
         </form>
       </div>
     </div>
-    <div class="medecin-container1"><h3> <?php
-
-   
-    
-    
-      if(isset($_POST['search'])){
+    <div class="medecin-container1"><h3> 
+    <?php
+      if(isset($_POST['search']))
+      {
 
         $_SESSION['ville'] = $_POST['ville'];
         $_SESSION['specialite'] = $_POST['specialite'];
         $ville = $_SESSION['ville'] ;
         $specialite = $_SESSION['specialite'] ; 
         $_SESSION['nom'] = "";
-        $_SESSION['ville2'] = "";       
+        $_SESSION['ville2'] = "";  
+
       } 
-      elseif (isset($_POST['search2'])){
-            $_SESSION['nom'] = $_POST['nom'];
+      elseif (isset($_POST['search2']))
+      {
+             $_SESSION['nom'] = $_POST['nom'];
              $_SESSION['ville2'] = $_POST['ville2'];
              $_SESSION['ville'] = "";
              $_SESSION['specialite'] = "";

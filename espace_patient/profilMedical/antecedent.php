@@ -3,12 +3,13 @@
  include '../../connexionDoc/cnx.php';
 include'filter.php';
 
- function affich_antecedent($antecedent)
+ function affich_antecedent($antecedent,$res)
  {
   echo' 
   <!-- -----------------------AFFICHAGE DES antecedents------------------------ -->
    <div class="affichage">
-   <hr>';
+   
+   '.$res;
   while($row = mysqli_fetch_assoc($antecedent)) 
   { 
      echo"
@@ -28,10 +29,12 @@ include'filter.php';
   }
   echo'</div>';
 }
-function table_antecedent($antecedent)
+function table_antecedent($antecedent,$res)
 {
   echo"
-  <hr>
+  $res
+  
+
 <table id='antecedent-table'>
 <thead>
   <tr>
@@ -131,74 +134,102 @@ echo"
               <!-- -------------------------Contenu------------------------ -->
 
                      <div class="contenu" data-page="7">
+                     <hr>
                      <div class="filters">
-                      <form action="" method="GET" id="filter">
+                      <form action="" method="POST" id="filter">
                        
-                        <input type="text" name="search" id="search" placeholder='nom ...'>
-                        <button type="submit" name="submit-searchA" class="searchBtn">
+                        <input type="text" name="searchAn" id="search" placeholder='nom ...'>
+                        <button type="submit" name="searchAnt" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
-                    <hr>
-      
+                  
                     <?php 
 
 
+                    //===============================t=================================
 
-$date = 'tous';
+                    // $total_pages = 0;
+                    $num_per_page=03;
+                    
 
-  //--------antecedenties-------------
- 
- if(isset($_GET['search']))
-  {
-  
-    $search = $_GET['search'];
-    $antecedent = mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE'%$search%' limit $start_from,$num_per_page;");
-    if (mysqli_num_rows($antecedent) > 0) 
-    { // output data of each row
-          affich_antecedent($antecedent);
-         
-    }
-        //=================afficher le tableau============================
-    $antecedent1 = mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE'%$search%' limit $start_from,$num_per_page;");
+                    if(empty( $_SESSION['searchAn']))
+                    {
+                    $_SESSION['searchAn']='';
+                    }
+                    if(isset($_POST['searchAnt']))
+                    {
+                    
+                      $_SESSION['searchAn'] = $_POST['searchAn'];
+                    }
+                    // echo "ana session". $_SESSION['dateV']."<br>";
+                    // echo "ana search". $_SESSION['searchAn']."<br>";
+                    
+                    $pageAn = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+                    // echo "ana page".$pageH."<br>";
+                    
+                    $start_fromAn =   ($pageAn-1)*$num_per_page;
+                    // echo "ana lbdya".$start_fromH;
+                    $antece= mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' limit $start_fromAn,$num_per_page;");
+                    $antece_rows = mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' ;");
 
-        if (mysqli_num_rows($antecedent1) > 0) 
-        { table_antecedent($antecedent1); }
-        else
-        {
-          echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-        } 
-  }
-  else
-  {
-        $antecedent = mysqli_query($conn,"SELECT * FROM antecedents limit $start_from,$num_per_page");
-      if (mysqli_num_rows($antecedent) > 0) 
-    { // output data of each row
-          affich_antecedent($antecedent);
-    }
-        //=================afficher le tableau============================
-        $antecedent1 = mysqli_query($conn,"SELECT * FROM antecedents limit $start_from,$num_per_page");
-        if (mysqli_num_rows($antecedent1) > 0) 
-        { table_antecedent($antecedent1); }
-        else
-        {
-          echo"<div class='affichage-item-msg border'>
-          <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-          </div>";
-        } 
-  } 
-?>                   
-<?php 
-echo'<div class="pages-btn">';
-pagination($conn,"antecedents","antecedent",3,$page);
-echo'</div>';
-?>
+                    $total_recordsAn=mysqli_num_rows($antece_rows);
+                    // echo $total_records;
+                    $total_pages=ceil($total_recordsAn/$num_per_page);
+                    $res = "<p class='response hideMe'>Il existe ". $total_recordsAn." enregistrement</p>";
+                    if($total_recordsAn>0)
+                    {
+                      
+                      table_antecedent($antece,$res);
+                      
+                          
+
+                    }
+                    $antece1= mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' limit $start_fromAn,$num_per_page;");
+                    $antece_rows1 = mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' ;");
+
+                    $total_recordsAn1=mysqli_num_rows($antece_rows1);
+                    // echo $total_records;
+                    $total_pages=ceil($total_recordsAn1/$num_per_page);
+                    $res1 = "<p class='response '>Il existe ". $total_recordsAn1." enregistrement</p>";
+                    if($total_recordsAn1>0)
+                    {
+                      
+                      affich_antecedent($antece1,$res1);
+                    }
+                    else
+                    {
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
+                    } 
+
+                            echo'<div class="pages-btn">';
+
+                            for ($i=1; $i <= $total_pages ; $i++){  
+                                echo "<a class='pagination'href='?page=".$i."'>".$i."</a>" ;
+                              } 
+                              echo'</div>';
+                    ?>
+
 </div>
 
 </div>
 </div>
 
 <?php include'footer.php';?>
+<script type="text/javascript">
+  //=====================toogle to show the options div=============
+let options = document.querySelectorAll('.options-btn');
+console.log(options)
+for (let i = 0; i < options.length; i++) {
+  options[i].addEventListener('click',()=>{
+    let div=options[i].nextElementSibling
+    // div.style.display="block"
+    $(div).toggle()
+    console.log( )
+   
+  })
+}
+</script>

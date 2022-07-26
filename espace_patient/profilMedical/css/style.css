@@ -8,6 +8,7 @@
     list-style: none;
     box-sizing: border-box;
   }
+  
   :root {
     --dark-green :#0b2f34;
     --green: #13565f;
@@ -16,6 +17,7 @@
     --green2: #2b6a72;
     --green3: #4d9ca7;
     --transition: all 400ms ease;
+    
   }
 .loader{
     position: relative;
@@ -26,7 +28,7 @@
     height: 90px;
     margin-top: -45px;
     border-radius: 10px;
-    background-color: white;
+    background-color: var(--green3);
     animation: animate 0.8s infinite;
     animation-direction: alternate-reverse;
 }.loader span:nth-child(1){
@@ -64,7 +66,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-image: linear-gradient(315deg, #7fcec5 0%, #13565f 74%);
+  /* background-image: linear-gradient(315deg, #7fcec5 0%, #13565f 74%); */
 
   height: 100%;
   width: 100vw;
@@ -72,7 +74,14 @@
   justify-content: center;
   align-items: center;
   z-index: 20;
-  margin-left:0px
+  margin-left:0px;
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+/* border-radius: 16px; */
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3px);
+-webkit-backdrop-filter: blur(3px);
+/* border: 1px solid rgba(255, 255, 255, 0.3); */
 }
 
 .disppear{
@@ -149,7 +158,7 @@ hr {
   clear:both;
   display:block;
   width:98%;               
-  background-color:var(--pink);
+  background-color:var(--green3);
   height: 1px;
   margin:10px;
   
@@ -216,6 +225,40 @@ background-image: linear-gradient(315deg, #f9ccd6 0%, #fe6686 74%);
 .hid
 {
   display:none
+}
+.SelectBox{
+  position:relative;
+}
+.SelectBox select{
+  width:300px;
+  height:35px;
+  background-color:var(--green2);
+  color:#fff;
+  -webkit-appearance:none;
+  box-shadow:0px 0px 10px rgba(0,0,0,.2);
+  border:none;
+  outline:none;
+  padding-left:5px;
+  font-size:17px;
+  cursor:pointer;
+}
+.SelectBox .chevron{
+  position:absolute;
+  top:0px;
+  right:0px;
+  text-align:center;
+  line-height:35px;
+  width:30px;
+  height:100%;
+  background-color:var(--green3);
+  pointer-events:none;
+  color:#fff;
+}
+.SelectBox select option{
+  background-color:var(--green3);
+}
+option :hover{
+  color:var(--green3)
 }
   /* ---------------------GRID WRAPP----------------------------- */
   .wrapp
@@ -459,7 +502,7 @@ padding:10px 20px
 #mesureUpdate
 {
   width:150px;
-  margin-left: 50%;
+  /* margin-left: 50%; */
 }
 
 /* ----------------------------CONTENT------------------------- */
@@ -471,6 +514,7 @@ padding:10px 20px
  /* grid-template-rows: max-content ; */
  grid-template-areas: "filters"
                            "affichage"
+                           "hr"
                            "table"
                            "pagesBtn";
 margin-left:20px
@@ -561,7 +605,7 @@ font-size: 20px;
   flex-direction: row;
 }
 /* =============== 3 Dots small devices=================== */
-div>.fa-ellipsis-vertical,td>.fa-ellipsis-vertical
+div>.fa-ellipsis-vertical,table>.fa-ellipsis-vertical
 {
   position: relative;
 }
@@ -830,27 +874,31 @@ td
 }
 /* ============================OPTIONS UL STYLING================== */
 
-
+td > div[class="options"],
+td > div[class="op-doc"],{
+  position: relative;
+}
 .options-btn
 {
   color:var(--green3);
   cursor: pointer;
   font-size: 1rem;
   margin:5px auto;
-  position: relative;
+  /* position: relative; */
 }
 div[class="options"],.op-doc
 {
-  display:flex;
-  flex-direction:column;
+  display:inline;
+  flex-direction:column !important;
   padding:5px;
   /* width:70px; */
   /* height:110px; */
   background-color:rgba(255, 255, 255, 0.873);
   box-shadow: 6px 6px 9px rgba(65, 65, 65, 0.381);
-
+ right:2px;
+ top:1px;
  position: absolute;
- z-index: 1;
+ z-index: 9;
  text-align: center;
  display:none;
  
@@ -893,6 +941,13 @@ div[class="options"],.op-doc
 p
 {
   padding:10px
+}
+.response
+{
+  color:var(--dark-green);
+  font-size:1rem;
+  font-weight:600;
+  padding:5px;
 }
 /* =========================profil page============================== */
 .main-page {
@@ -1038,7 +1093,7 @@ margin-top:80px
   color:var(--green2);
 }
 
-#doctor-tabs #tabs
+#doctor-tabs #tabsD
 {
   grid-area:tabs;
   position: -webkit-sticky; /* Safari */
@@ -1048,6 +1103,7 @@ margin-top:80px
 #sections
 {
   grid-area:sections;
+  /* margin-left:20px */
 }
 
 
@@ -1140,6 +1196,7 @@ margin-top:80px
  hr
    {
      margin-top: 0%;
+     grid-area: hr;
    }
    .page
    {
@@ -1251,6 +1308,19 @@ table
       flex-wrap: wrap;
        
     }
+    #sections
+    {
+  
+      margin-left:20px
+    }
+    /* div[class="options"],.op-doc
+{
+
+  right:2px !important;
+  top:2px !important;
+ 
+ 
+} */
 }
 /* -------------------------large------------------------------ */
 @media (min-width:992px) and (max-width:1119px)
@@ -1295,7 +1365,12 @@ table
   {
     margin:10px
   }
+  #sections
+  {
 
+    margin-left:20px
+  }
+  
 }
 /* --------------------------------Xsmall & small----------------------- */
 @media (max-width:767px)
@@ -1600,10 +1675,12 @@ table
   margin-right:-70%
 
  }
- .options
+ div[class="options"],.op-doc
  {
-  left:250px;
-  top:-10px;
+  /* left:250px;
+  
+  /* position:absolute */
+  top:5px
  }
  .affichage-item .options
  {
@@ -1612,7 +1689,7 @@ table
  /* ===========================open form==================== */
  .open-form
  {
-  width:150px;
+  /* width:150px; */
   padding:5px 10px;
   height:35px;
   padding:5px;
@@ -1730,6 +1807,10 @@ table
   text-align: center;
   width:325px
 }
+.hideMe
+{
+  display:none;
+}
 }
 @media (max-width: 991px)
 {
@@ -1809,7 +1890,7 @@ th{
 
 }
 #downloadDiv,.tabs {
-  margin:10px auto;
+  margin-top:10px ;
  
   text-align:center;
 }
@@ -1822,17 +1903,14 @@ th{
 .pagination
 {
  
-  padding:5px  ;
+  padding:10px  ;
   margin:10px 3px;
  
   font-size: .8rem;
   font-weight: 400;
   /* color:var(--green2) */
 }
-.show div[class="options"],.show .op-doc
-{
-  left:300px
-}
+
 #id {
 background-color: #13565f4f;
 
@@ -1842,6 +1920,12 @@ margin:5px ;
 #cam{
   margin:5px auto
 }
+/* div[class="options"],.op-doc
+{
+
+ display:none;
+ 
+} */
 }
 .invisible
 {

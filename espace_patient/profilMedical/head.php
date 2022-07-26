@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include '../../connexionDoc/cnx.php';
 $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
 if (mysqli_num_rows($display) > 0) 
@@ -131,9 +132,9 @@ if (mysqli_num_rows($display) > 0)
           
         </div>
        <!-- --------------------TABS------------------->
-       <div class="tabs" >
+       <div class="tabs" id="divOfTabs" >
             <ul id="tabs">
-              <li class="tab is-active"><a  href="maladie.php" data-switcher data-tab="1">Maladies et sujets de santé</a></li>
+              <li class="tab is-active"><a  href="index.php" data-switcher data-tab="1">Maladies et sujets de santé</a></li>
               <li class="tab "><a  href="traite.php" data-switcher data-tab="2">Traitements</a></li>
               <li class="tab "><a  href="hospital.php" data-switcher data-tab="3">Hospitalisation et chirurgies</a></li>
               <li  class="tab "><a href="allergie.php" data-switcher data-tab="4">Allergies</a></li>

@@ -5,18 +5,15 @@
         //   $ville = $_SESSION['ville'] ;
         //   $specialite = $_SESSION['specialite'] ;
         // Start pagination
-        $perPage =10; 
+        $perPage =10 ; 
         $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
         $start = ($page > 1 ) ? ($page * $perPage) -$perPage : 0;
         $divs="SELECT * FROM medecin WHERE (specialite= '$_SESSION[specialite]' AND ville='$_SESSION[ville]' ) OR ( ( nom = '$_SESSION[nom]' OR prenom = '$_SESSION[nom]'  OR CONCAT(CONCAT(nom,' '),prenom) LIKE '%$_SESSION[nom]%') AND ville='$_SESSION[ville2]' )    lIMIT  $start , $perPage";
         $result2 = mysqli_query ($conn , $divs);
         $result3 = mysqli_query($conn, "SELECT * FROM medecin WHERE (specialite= '$_SESSION[specialite]' AND ville='$_SESSION[ville]' ) OR ( ( nom = '$_SESSION[nom]' OR prenom = '$_SESSION[nom]'  OR CONCAT(CONCAT(nom,' '),prenom) LIKE '%$_SESSION[nom]%') AND ville='$_SESSION[ville2]' )  ");
-      
         $total = mysqli_num_rows($result3);
         $pages = ceil($total/$perPage);
         // End pagination
-      
-
         // $query="SELECT * FROM medecin WHERE specialite= '$_SESSION[specialite]' AND ville='$_SESSION[ville]'";
         // $result= mysqli_query($conn,$query);
         // $queryResults = mysqli_num_rows($result);

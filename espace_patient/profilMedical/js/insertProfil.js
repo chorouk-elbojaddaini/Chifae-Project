@@ -37,8 +37,8 @@
                       console.log(document.querySelector(`button[name='insert-${nameBtn}']`))
                       //============================On click close the form=====================
                         $(submitForm).click(function(e){
-                          e.preventDefault();
-                            console.log('close')
+                          // e.preventDefault();
+                            console.log((overlay))
                             $(overlay).hide();
                         })
                          //------success msg-------------
@@ -77,15 +77,7 @@
         });
     }
 
-//=====================toogle to show the options div=============
-let options = document.querySelectorAll('.options-btn');
-for (let i = 0; i < options.length; i++) {
-  options[i].addEventListener('click',()=>{
-    let div=options[i].nextElementSibling
-    $(div).toggle()
-   
-  })
-}
+
 //===========================photo upload=====================
 // 200 => successful
 // 422 => empty fields

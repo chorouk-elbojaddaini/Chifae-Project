@@ -1,3 +1,11 @@
+<?php 
+include '../../connexionDoc/cnx.php';
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
+if (mysqli_num_rows($display) > 0) 
+ { 
+   $row = mysqli_fetch_assoc($display);
+ }
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +42,14 @@
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/modal.css">
-
+      <!-- Font Awesome CDN Link -->
+      <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>Bienvenu</title>
 </head>
 <body>
@@ -83,7 +98,19 @@
               </div>
               <!-- end drop down patient -->
               <!-------------------------------------------------->
-             <input type="image"  src="images/noprofil.jpg" alt="profile" id="user">
+              <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="user">
+               <?php
+               }
+                else{
+                  ?>
+              <input type="image" id="user" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
               <button class="open_menu_botton"><i class="uis uis-bars"></i></button>
               <button class="close_menu_botton">
                 <i class="uis uis-multiply"></i>
@@ -99,7 +126,20 @@
          <div id="popup" class="popup">
           <div class="modal-btn"  >
             <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
-              <img type="image"  src="images/noprofil.jpg" alt="profile" id="account">
+            <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="account">
+               <?php
+               }
+                else{
+                  ?>
+              <img id="account" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
+            
                 <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
                    <a class="pop"href="../profilMedical/profil.php" target="_blank" id="monProfil">Mes infos</a>
                    <a class="pop" href="#" id="deconnect">Se déconnecter</a>
@@ -113,40 +153,54 @@
 
            <div class="welcome border">
             <div class="hello">
-                <p id="salut" class="texte ">Salut,<span id="fullName">&nbsp;Najma Blqasm</span></p>
+                <p id="salut" class="texte ">Salut,<span id="fullName">&nbsp;<?php echo $row['nom']."  ".$row['prenom'];?></span></p>
                 <p class="texte hidden visibility1">Avez une bonne journée et n'oubliez pas de prendre soin de votre santé</p>
                 <p class="texte"><a href="../../pageAcceuil/index.html"id="prendre-rdv">Prendre un RDV ></a></p>
               </div>
+              
               <img class="" id="hello"src="images/doctor.png" alt="doctor">
+              
            </div>
-           
-               
-                <!-------------------Schedule2 for Mobile----------------------------->
-                <div class="schedule visibility">
+             <!-------------------Schedule2 for Mobile----------------------------->
+           <div class="schedule visibility">
                     <h2 class="titre-rdv ">Vos Rendez-vous:</h2>
-                    <div class="rdv border">
-                        <img src="images/dentiste.PNG" alt="specialite">
-                        <div id="doctor">
-                            <p id="specialite">Dentiste</p>
-                            <p id="specialiste">Dr.Hiba Lwazani</p>
-                    </div>
-                        <p id="time">10 AM</p>
-                    </div>
-                    <div class="rdv border">
-                        <img src="images/generaliste.PNG" alt="specialite">
-                        <div id="doctor">
-                            <p id="specialite">Generaliste</p>
-                            <p id="specialiste">Dr.Hiba Lwazani</p>
-                    </div>
-                        <p id="time">10 AM</p>
-                    </div>
-                
+           <?php
+              $sql = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3");
+              
+              if (mysqli_num_rows($sql) > 0) 
+                { 
+                  while($row = mysqli_fetch_assoc($sql))
+                  {
+                    $medecin = mysqli_query($conn,"SELECT nom,prenom,specialite FROM medecin WHERE id ='{$row['idMedecin']}';");
+                    if((mysqli_num_rows($medecin) > 0))
+                    {
+                      $result = mysqli_fetch_assoc($medecin);
+                    
+                    echo ' <div class="rdv border">
+                    <img src="images/generaliste.PNG" alt="specialite">
+                    <div id="doctor">
+                        <p id="specialite">'.$result['specialite'].'</p>
+                        <p id="specialiste">Dr.&nbsp;'.$result['nom'].'  '.$result['prenom'].'</p>
                 </div>
-                <!--===================links to FONCTIONNALITIES========================-->
-           
-        <!-- <a href="../profilMedical/document.html" target="_blank" id="doc-bt" class="btn"><img src="images/doc.PNG" class="icons"><span class="link">Ajouter un document</span></a> -->
-        <!-- <a href="../profilMedical/index.html" target="_blank"  id="mesure-bt" class="btn"><img src="images/mesure.PNG" class="icons"><span class="link">Ajouter une mesure</span></a> -->
-           <!-- <a href="../profilMedical/index.html" target="_blank" id="profil-bt" class="btn"><img src="images/profil.PNG" class="icons"><span class="link">Compléter mon profil médical</span></a>  -->
+                    <p id="time">'.$row['start_datetime'].'</p>
+                </div>';}
+                else
+                {
+                  echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
+                    </div>";
+                }
+                  }
+                }
+                else
+                {
+                  echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
+                    </div>";
+                }
+           ?>
+              </div> 
+    
            <!--------------------------------H2----------------------------->
              <h2 class="">Votre Espace de Santé</h2>
            <!--===================FONCTIONNALITES========================-->
@@ -160,40 +214,66 @@
             <h3 class="hover-underline-animation">Documents</h3>
             <p>Stockez ,classez et partagez votre documents de santé </p>
            </div>
-           <!-- <div class="appointement fct">
-            <img src="images/appointement.png" alt="appointement-image" class="imgs">
-            <h3 class="hover-underline-animation">Rendez-Vous</h3>
-            <p>Prendre un rendez-vous chez les professionnels de santé que vous choissisez et visualiser vos rendez-vous </p>
-           </div>  -->
-           
+          
        </div>
                <!-- ====================Aside========================= -->
 
        <div class="aside hidden border">
         <img src="images/c10.png" alt="bg" id="bg">
-        <img  class=" "src="images/noprofil.jpg" alt="profile" id="profile">
+        <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img id="profile"  src="data:image;base64,<?php echo $row['photo'] ;?>">
+            
+               <?php
+               }
+                else{
+                  ?>
+                    <img  src="images/noprofil.jpg" alt="profile" id="profile">
+              
+              
+              <?php
+            }?>
         
           <!-------------------Schedule----------------------------->
         <div class="schedule ">
             <p class="titre-rdv hover-underline-animation">Vos Rendez-vous:</p>
 
-          <div class="rdv borderColorful">
-              <img src="images/dentiste.PNG" alt="specialite">
-              <div id="doctor">
-                  <p id="specialite">Dentiste</p>
-                  <p id="specialiste">Dr.Hiba Lwazani</p>
-          </div>
-              <p id="time">10 AM</p>
-          </div>
-          <div class="rdv borderColorful">
-              <img src="images/generaliste.PNG" alt="specialite">
-              <div id="doctor">
-                  <p id="specialite">Generaliste</p>
-                  <p id="specialiste">Dr.Hiba Lwazani</p>
-          </div>
-              <p id="time">10 AM</p>
-          </div>
-      
+            <?php
+              $sql = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3");
+              // echo mysqli_num_rows($sql);
+              if (mysqli_num_rows($sql) > 0) 
+                { 
+                  while($row = mysqli_fetch_assoc($sql))
+                  {
+                    $medecin = mysqli_query($conn,"SELECT nom,prenom,specialite FROM medecin WHERE id ='{$row['idMedecin']}';");
+                    if((mysqli_num_rows($medecin) > 0))
+                    {
+                      $result = mysqli_fetch_assoc($medecin);
+                    
+                    echo ' <div class="rdv border">
+                    <img src="images/generaliste.PNG" alt="specialite">
+                    <div id="doctor">
+                        <p id="specialite">'.$result['specialite'].'</p>
+                        <p id="specialiste">Dr'.$result['nom'].'  '.$result['prenom'].'</p>
+                </div>
+                    <p id="time">'.$row['start_datetime'].'</p>
+                </div>';}
+                else
+                {
+                  echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
+                    </div>";
+                }
+                  }
+                }
+                else
+                {
+                  echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
+                    </div>";
+                }
+           ?>
       </div>
 
        </div>

@@ -1,4 +1,5 @@
 //============get the id of the row to edit=============
+
 $(document).on('click', '.editDoc', function () {
 
     let doc_id = $(this).val();
@@ -16,14 +17,14 @@ $(document).on('click', '.editDoc', function () {
             }else if(res.status == 200){
 
                 $('#doc_id').val(res.data.idDoc);
-                $('#nom').val(res.data.nomDoc);
-                $('#date').val(res.data.date);
-                $('#added').val(res.data.ajoutPar);
+                $('#nomDoc').val(res.data.nomDoc);
+                $('#dateDoc').val(res.data.date);
+                $('#addedDoc').val(res.data.ajoutPar);
                 $('#category-doc').val(res.data.categorieDoc);
                
                 $('#editDoc').show();
             }
-
+            
         }
     });
 

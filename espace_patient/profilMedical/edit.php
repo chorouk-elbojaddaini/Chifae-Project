@@ -1,22 +1,28 @@
 <?php
 include '../../connexionDoc/cnx.php';
 //===============================returning the old values==============================
+
+
+
 if(isset($_GET['doc_id']))
 {
     $doc_id = mysqli_real_escape_string($conn, $_GET['doc_id']);
 
     $query = "SELECT  idDoc,nomDoc,date,ajoutPar,categorieDoc FROM documents  WHERE idDoc='$doc_id' ";
     $query_run = mysqli_query($conn, $query);
-
+    
     if(mysqli_num_rows($query_run) == 1)
     {
-        $doc = mysqli_fetch_array($query_run);
-
+        $doc = mysqli_fetch_assoc($query_run);
         $res = [
             'status' => 200,
             'message' => 'le document existe',
             'data' => $doc
+          
         ];
+        
+        $_SESSION['fileName'] =$doc["nomDoc"];
+        
         echo json_encode($res);
         return;
     }
@@ -24,7 +30,7 @@ if(isset($_GET['doc_id']))
     {
         $res = [
             'status' => 404,
-            'message' => 'doc n exite pas'
+            'message' => 'doc n\' exite pas'
         ];
         echo json_encode($res);
         return;
@@ -53,12 +59,19 @@ if(isset($_POST['update_doc']) )
     //========================update to the new values===============
     else
 {
+    //get the doc old name
+    $query = "SELECT  nomDoc FROM documents  WHERE idDoc='$doc_id' ";
+    $query_run = mysqli_query($conn, $query);
+    $doc_info = mysqli_fetch_assoc($query_run);
+    $oldName = $doc_info['nomDoc'];
+    
     $update = "UPDATE documents SET nomDoc='$name',date='$date',ajoutPar='$added_by',categorieDoc='$category'
                 WHERE idDoc='$doc_id'";
     $update_run = mysqli_query($conn, $update);
 
     if($update_run)
     {
+        rename('uploads/'.$oldName,'uploads/'.$name);
         $res = [
             'status' => 200,
             'message' => 'Les informations du document sont modifiés',
@@ -84,17 +97,23 @@ if(isset($_POST['update_doc']) )
 if(isset($_POST['delete_doc']))
 {
     $doc_id = mysqli_real_escape_string($conn, $_POST['doc_id']);
-
+    $query = "SELECT  nomDoc FROM documents  WHERE idDoc='$doc_id' ";
+    $query_run = mysqli_query($conn, $query);
+    $doc_info = mysqli_fetch_assoc($query_run);
+    $Name = $doc_info['nomDoc'];
+    
     $delete = "DELETE FROM documents  WHERE idDoc='$doc_id'";
     $delete_run = mysqli_query($conn, $delete);
 
     if($delete_run)
     {
+        
         $res = [
             'status' => 200,
             'message' => 'le document est supprimé',
           
         ];
+        unlink('uploads/'.$Name);
         echo json_encode($res);
         return;
     }

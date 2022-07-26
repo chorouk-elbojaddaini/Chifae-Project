@@ -1,6 +1,6 @@
 <?php 
+session_start();
 include '../../connexionDoc/cnx.php';
-
 $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
 if (mysqli_num_rows($display) > 0) 
  { 
@@ -80,7 +80,7 @@ function vanish() {
     <nav>
         <div class="container nav_container">
           <div class="logo_cont">
-            <a href="index.html"
+            <a href="index.php"
               ><img src="./assets/logo.png" alt="logo" class="logo"
             /></a>
             <h4>Chifae</h4>
@@ -120,7 +120,19 @@ function vanish() {
           </div>
           <!-- end drop down patient -->
           <!-------------------------------------------------->
-         <input type="image"  src="images/profile.jpg" alt="profile" id="user">
+          <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="user">
+               <?php
+               }
+                else{
+                  ?>
+              <input type="image" id="user" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
           <button class="open_menu_botton"><i class="uis uis-bars"></i></button>
           <button class="close_menu_botton">
             <i class="uis uis-multiply"></i>
@@ -136,9 +148,21 @@ function vanish() {
             <div id="popup" class="popup">
              <div class="modal-btn"  >
                <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
-                 <img type="image"  src="images/profile.jpg" alt="profile" id="account">
+               <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="account">
+               <?php
+               }
+                else{
+                  ?>
+              <img id="account" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
                    <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
-                      <a class="pop"href="profil.php" target="_blank" id="monProfil">Mes infos</a>
+                      <a class="pop"href="profil.php" tarPOST="_blank" id="monProfil">Mes infos</a>
                       <a class="pop" href="#" id="deconnect">Se déconnecter</a>
            </div>
             </div>
@@ -148,7 +172,7 @@ function vanish() {
     <div class="main-doctor">
          <!-- --------------------TABS------------------->
        <div class="tabs " id="doctor-tabs">
-            <ul id="tabs">
+            <ul id="tabsD">
             <li class="tab "><a  href="#profilS" data-switcher data-tab="0">Données personnelles</a></li>
               <li class="tab "><a  href="#maladieS" data-switcher data-tab="1">Maladies et sujets de santé</a></li>
               <li class="tab "><a  href="#traiteS" data-switcher data-tab="2">Traitements</a></li>
@@ -180,7 +204,20 @@ function vanish() {
          
            <div id="profilD"class="border section" >
                  <div id="photo_name" >
-                   <img  id="photo"  height="100" width="100" border-radius="50%"src="data:image;base64,<?php echo $row['photo'] ;?>">
+                 <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="photo">
+               <?php
+               }
+                else{
+                  ?>
+              <img id="photo" height="100" width="100" border-radius="50%"src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
+                   
                    <h4 class="data-text pdf" id="nomComplet"><?php echo $row['nom']."  ".$row['prenom'];?></h4>
                   </div>
                     <div id="info-profilP">
@@ -229,7 +266,7 @@ function vanish() {
                   <button  class="open-form" id="profilBtn" name="update-profil" value='<?php echo $row['id'] ;?>'>Modifier</button>
                    <!-- ---------------------------update form--------------- -->
        <div class="overlay profil hide over-prof" id="profil" >
-                    <form action="" method="GET" name="profil" class="form border update" id="profil-form-update">
+                    <form action="" method="POST" name="profil" class="form border update" id="profil-form-update">
                     <button class="close_form" id="profil-btn-close" name="close-update-profil" > <i class="uis uis-multiply closeF"></i> </button> 
                                   <input type="hidden" name="idP" id="idP" >
                                 
@@ -288,129 +325,78 @@ function vanish() {
             
             <h2 class="titlesD t2" id="maladieS">Maladies et sujets de santé</h2>
            <div >
-           
+          
                <!-- -----------------filtring data--------------------------- -->
                <div class="filters">
-                      <form action="" method="POST"name="maladie">
+                      <form action="" method="POST"name="maladie" id="maladF">
                         <input type="hidden" name="maladie">
-                        <select name="byDateM">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
+                        <select name="byDateM" >
+                        <option name="tous" value="tous" >Tous</option>
+                            <option name="cemois" value="cemois" >ce mois</option>
+                            <option name="moisprec" value="moisprec" >mois précédent</option>
+                            <option name="6mois" value="6mois" > 6 mois</option>
+                            <option name="ans" value="ans" >ans</option>
                             <option name="plsans" value="plusieursAns">plus d'un an</option>
                         </select>
-                        <input type="text" name="searchM" id="search" placeholder='categorie ...'>
+                        <input type="text" name="searchM" id="search" placeholder='categorie ...' >
                           <button type="submit" name="searchMal" class="searchBtn" >
                             <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                             </button>
                           
                       </form>
                 </div>
+                
                 <button type="button" class="open-form" id="add-maladie" onclick="displayForm('maladie')">Ajouter </button>
                 <?php 
-                 
-                    // $date = 'tous';
-                    // $search = "";
-                    //--------maladies-------------
+                // echo  $_SESSION['date'] ;
                   
-                    
-                    // if(isset($_POST['searchMal'])==false)
-                    // {
-                    //   $date =  'tous';
-                    //   $search =  '';
-                    //   $dfcha = 'dfcha1';
-                    //   }
+                    $num_per_page=03;
                   
-
-
+                   if(empty( $_SESSION['date']) && empty( $_SESSION['search']))
+                   {
+                    $_SESSION['date']='tous';
+                    $_SESSION['search']='';
+                   }
                    if(isset($_POST['searchMal']))
                     {
                      
                       $_SESSION['date'] = $_POST['byDateM'];
-                       $_SESSION['search'] = $_POST['searchM'];
-                       $date =  $_SESSION['date'];
-                       $search =  $_SESSION['search'];
-                      $dfcha = 'dfcha li bghit';
-                      
+                      $_SESSION['search'] = $_POST['searchM'];
                     }
-                    elseif(!isset($_POST['searchMal']))
+                    // echo "ana session". $_SESSION['date']."<br>";
+
+                    $pageM = isset($_GET["pageM"]) ? (int)$_GET["pageM"] : 1;
+                    // echo "ana page".$pageM."<br>";
+                    $start_from =   ($pageM-1)*$num_per_page;
+                    // echo "ana lbdya".$start_from;
+                    $malad_array = filter_by_date("maladies",$_SESSION['date'],$start_from,$num_per_page,"categorie", $_SESSION['search'],$conn);
+                    $malad = $malad_array['query'];
+                    $total_records=$malad_array['nb_rows'];
+                    // echo $total_records;
+                    $total_pages=ceil($total_records/$num_per_page);
+                    if($total_records>0)
                     {
-                      $date =  'tous';
-                      $search =  '';
-                     $dfcha = 'dfcha li mabghitch';
-                    }
-                    $num_per_page=03;
-                    $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
-                    $start_from = ($page-1)*$num_per_page ;
-                            //=================afficher le tableau============================
-                            
-                        $malad_array = filter_by_date("maladies",$date,$start_from,$num_per_page,"categorie",$search,$conn);
-                         $malad = $malad_array['query'];
-                         $_SESSION['total_records']=$malad_array['nb_rows'];
-                         $total_pages=ceil($_SESSION['total_records']/$num_per_page);
-                         
-                            if($_SESSION['total_records']>0)
-                            {
-                              echo $dfcha;
-                              echo"<div class='doctor-tables' id='tableMal'>";
-                              table_maladie($malad);
-                              echo"</div>"; 
-                                   
+                      echo"<p class='response'>Il existe ". $total_records." enregistrement</p>";
+                     
+                      echo"<div class='doctor-tables' id='tableMal'>";
+                      table_maladie($malad);
+                      echo"</div>"; 
                            
-                            }
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
+                   
+                    }
+                    else
+                    {
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
+                    } 
+                 
                             echo'<div class="pages-btn">';
 
                             for ($i=1; $i <= $total_pages ; $i++){  
                                 echo "<a class='pagination'href='?pageM=".$i."#maladieS'>".$i."</a>" ;
                               } 
                               echo'</div>';
-                            // echo'<div class="pages-btn">';
-                        
-                      
-
-                 
-                   
-                
-                   
-                        //     if($page>1)
-                        //     {
-                        //         echo "<a class='pagination'href='doctor.php?pageM=".($page-1)."#maladieS'>Précédent</a>" ;
-    
-                        //     }
-                        //     for($i=1;$i<=$total_pages;$i++)
-                        //     {
-                        //         echo "<a class='pagination'href='doctor.php?pageM=".$i."#maladieS'>".$i."</a>" ;
-                        //     }
-                        //     if($page<$i)
-                        //     {
-                        //         echo "<a class='pagination'href='doctor.php?pageM=".($page+1)."#maladieS'>Suivant</a>" ;
-    
-                        //     }
-                        // echo'</div>';
-                   
-                    // elseif(!isset($_GET['byDateM'])&& !isset($_GET['searchM']))
-                    // {
-                    //         //=================afficher le tableau============================
-                    //         $malad = mysqli_query($conn,"SELECT * FROM maladies limit $start_from,$num_per_page");
-                    //         $_SESSION['total_records']=mysqli_num_rows($malad);
-
-                         
-                    //           echo"<div class='doctor-tables' id='tableMal'>";
-
-                    //           table_maladie($malad); 
-                    //           echo"</div>";
-                          
-                           
-                    // } 
-                   
                    
                     ?>
            </div>
@@ -420,19 +406,19 @@ function vanish() {
            <div  class="section">
                             <!-- -----------------filtring data--------------------------- -->
                             <div class="filters">
-                      <form action="doctor.php#traiteS" method="GET" name="traite">
+                      <form action="doctor.php#traiteS" method="POST" name="traite">
                         <input type="hidden" name="traite">
                         <select name="byDateT">
                         <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="cemois" value="cemois" >ce mois</option>
+                        <option name="moisprec" value="moisprec" >mois précédent</option>
+                        <option name="6mois" value="6mois" > 6 mois</option>
+                        <option name="ans" value="ans" >ans</option>
+                        <option name="plsans" value="plusieursAns" >plus d'un an</option>
                         </select>
                         <input type="text" name="searchT" id="search" placeholder='nom ...'>
                         
-                        <button type="submit" name="submit-searchT" class="searchBtn">
+                        <button type="submit" name="searchTraite" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
@@ -440,86 +426,56 @@ function vanish() {
                     <button type="button" class="open-form" id="add-traitement" onclick="displayForm('traitement')">Ajouter </button>
                 <?php 
 
-                       
-                    //================================display the fixed content=================================
-                    if(isset($_GET["pageT"]))
-                        {
-                            $page=$_GET["pageT"];
-                        }
-                        else
-                        {
-                            $page=1;
-                        }
-                        $num_per_pageT=03;
+                   
+                    $num_per_page=03;
 
-                        $start_fromT=($page-1)*$num_per_pageT;
-                    $date = 'tous';
-                    $search = "";
-                    
-                    if(isset($_GET['byDateT'])||isset($_GET['searchT']))
+                    if(empty( $_SESSION['dateT']) && empty( $_SESSION['searchT']))
                     {
-                     
-                      $date = $_GET['byDateT'];
-                      $search = $_GET['searchT'];
-                      //=================afficher le tableau============================
-                            $traite_array = filter_by_date("traitements",$date,$start_fromT,$num_per_pageT,"nom",$search,$conn);
-                            $traite =  $traite_array['query'];
+                    $_SESSION['dateT']='tous';
+                    $_SESSION['searchT']='';
+                    }
+                    if(isset($_POST['searchTraite']))
+                    {
+                    
+                      $_SESSION['dateT'] = $_POST['byDateT'];
+                      $_SESSION['searchT'] = $_POST['searchT'];
+                    }
+                    // echo "ana session". $_SESSION['dateT']."<br>";
+                    // echo "ana search". $_SESSION['searchT']."<br>";
+                    
+                    $pageT = isset($_GET["pageT"]) ? (int)$_GET["pageT"] : 1;
+                    // echo "ana page".$pageT."<br>";
+                    
+                    $start_fromT =   ($pageT-1)*$num_per_page;
+                    // echo "ana lbdya".$start_fromT;
+                    $traite_array = filter_by_date("traitements",$_SESSION['dateT'],$start_fromT,$num_per_page,"nom", $_SESSION['searchT'],$conn);
+                    $traite = $traite_array['query'];
+                    $total_recordsT=$traite_array['nb_rows'];
+                    // echo $total_records;
+                    $total_pages=ceil($total_recordsT/$num_per_page);
+                    if($total_recordsT>0)
+                    {
+                      echo"<p class='response'>Il existe ". $total_recordsT." enregistrement</p>";
+                      echo"<div class='doctor-tables' id='tableT'>";
+                      table_traite($traite);
+                      echo"</div>"; 
+                          
 
-                            if ($traite_array['nb_rows'] > 0) 
-                            { 
-                              echo"<div class='doctor-tables' id='tableT'>";
-                              table_traite($traite); 
-                              echo"</div>"; }
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
                     }
                     else
                     {
-                            //=================afficher le tableau============================
-                            $traite = mysqli_query($conn , "SELECT * from traitements  where nom  LIKE'%$search%' limit $start_fromT,$num_per_pageT;");
-
-                            if (mysqli_num_rows($traite) > 0) 
-                            { 
-                              echo"<div class='doctor-tables' id='tableT'>";
-
-                              table_traite($traite);  
-                              echo"</div>";}
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
                     } 
-                    ?>
-                    <?php 
-                    echo'<div class="pages-btn">';
-                    // pagination_sections($conn,"traitements","doctor.php",3,$page,'#traite');
-                   
 
-                        $sql="SELECT * FROM traitements";
-                        $rs_result=mysqli_query($conn,$sql);
-                        $total_records=mysqli_num_rows($rs_result);
-                        $total_pages=ceil($total_records/$num_per_page);
-                        if($page>1)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageT=".($page-1)."#traiteS'>Précédent</a>" ;
+                            echo'<div class="pages-btn">';
 
-                        }
-                        for($i=1;$i<=$total_pages;$i++)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageT=".$i."#traiteS'>".$i."</a>" ;
-                        }
-                        if($page<$i)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageT=".($page+1)."#traiteS'>Suivant</a>" ;
+                            for ($i=1; $i <= $total_pages ; $i++){  
+                                echo "<a class='pagination'href='?pageT=".$i."#traiteS'>".$i."</a>" ;
+                              } 
+                              echo'</div>';
 
-                        }
-                    echo'</div>';
                     ?>
            </div>
            <hr class="hrD">
@@ -528,19 +484,19 @@ function vanish() {
            <div  class="section">
                  <!-- -----------------filtring data--------------------------- -->
                  <div class="filters">
-                      <form action="doctor.php#hospitalS" method="GET" name="hospital">
+                      <form action="doctor.php#hospitalS" method="POST" name="hospital">
                       <input type="hidden" name="hospital">
 
                         <select name="byDateH">
                         <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="cemois" value="cemois" >ce mois</option>
+                        <option name="moisprec" value="moisprec">mois précédent</option>
+                        <option name="6mois" value="6mois" > 6 mois</option>
+                        <option name="ans" value="ans" >ans</option>
+                        <option name="plsans" value="plusieursAns">plus d'un an</option>
                         </select>
-                        <input type="text" name="searchH" id="search" placeholder='cause ...'>
-                        <button type="submit" name="submit-searchH" class="searchBtn">
+                        <input type="text" name="searchH" id="search" placeholder='cause...'>
+                        <button type="submit" name="searchHospi" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
@@ -548,86 +504,59 @@ function vanish() {
                     <button type="button" class="open-form" id="add-hospital" onclick="displayForm('hospital')">Ajouter</button>
                 <?php 
 
+                      
+                    // $total_pages = 0;
+                    $num_per_page=03;
 
-                    //================================display the fixed content=================================
-                    if(isset($_GET["pageH"]))
-                        {
-                            $page=$_GET["pageH"];
-                        }
-                        else
-                        {
-                            $page=1;
-                        }
-                        $num_per_pageH=03;
-
-                        $start_fromH=($page-1)*$num_per_pageH;
-                    $date = 'tous';
-                    $search = "";
-                    
-                    if(isset($_GET['byDateH'])||isset($_GET['searchH']))
+                    if(empty( $_SESSION['dateH']) && empty( $_SESSION['searchH']))
                     {
-                     
-                      $date = $_GET['byDateH'];
-                      $search = $_GET['searchH'];
-                            //=================afficher le tableau============================
-                            $hospital_array = filter_by_date("hospitalisation",$date,$start_fromH,$num_per_pageH,"cause",$search,$conn);
-                            $hospital =  $hospital_array['query'];
+                    $_SESSION['dateH']='tous';
+                    $_SESSION['searchH']='';
+                    }
+                    if(isset($_POST['searchHospi']))
+                    {
+                    
+                      $_SESSION['dateH'] = $_POST['byDateH'];
+                      $_SESSION['searchH'] = $_POST['searchH'];
+                    }
+                    // echo "ana session". $_SESSION['dateH']."<br>";
+                    // echo "ana search". $_SESSION['searchH']."<br>";
+                    
+                    $pageH = isset($_GET["pageH"]) ? (int)$_GET["pageH"] : 1;
+                    // echo "ana page".$pageH."<br>";
+                    
+                    $start_fromH =   ($pageH-1)*$num_per_page;
+                    // echo "ana lbdya".$start_fromH;
+                    $hospi_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$conn);
+                    $hospi = $hospi_array['query'];
+                    $total_recordsH=$hospi_array['nb_rows'];
+                    // echo $total_records;
+                    $total_pages=ceil($total_recordsH/$num_per_page);
+                    if($total_recordsH>0)
+                    {
+                      echo"<p class='response'>Il existe ". $total_recordsH." enregistrement</p>";
+                      echo"<div class='doctor-tables' id='tableH'>";
+                      table_hospital($hospi);
+                      echo"</div>"; 
+                          
 
-                            if ($hospital_array['nb_rows'] > 0)  
-                            { 
-                              echo"<div class='doctor-tables' id='tableH'>";
-                              table_hospital($hospital); 
-                              echo"</div>"; }
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
                     }
                     else
                     {
-                            //=================afficher le tableau============================
-                            $hospital = mysqli_query($conn , "SELECT * from hospitalisation  where cause  LIKE'%$search%' limit $start_fromH,$num_per_pageH;");
-                            if (mysqli_num_rows($hospital) > 0) 
-                            { 
-                              echo"<div class='doctor-tables' id='tableH'>";
-
-                              table_hospital($hospital);   
-                              echo"</div>";}
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
                     } 
+
+                            echo'<div class="pages-btn">';
+
+                            for ($i=1; $i <= $total_pages ; $i++){  
+                                echo "<a class='pagination'href='?pageH=".$i."#hospitalS'>".$i."</a>" ;
+                              } 
+                              echo'</div>';
+
                     ?>
-                    <?php 
-                    echo'<div class="pages-btn">';
-                    // pagination_sections($conn,"hospitalisation","doctor.php",3,$page,'#hospital');
-           
-
-                        $sql="SELECT * FROM hospitalisation";
-                        $rs_result=mysqli_query($conn,$sql);
-                        $total_records=mysqli_num_rows($rs_result);
-                        $total_pages=ceil($total_records/$num_per_page);
-                        if($page>1)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageH=".($page-1)."#hospitalS'>Précédent</a>" ;
-
-                        }
-                        for($i=1;$i<=$total_pages;$i++)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageH=".$i."#hospitalS'>".$i."</a>" ;
-                        }
-                        if($page<$i)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageH=".($page+1)."#hospitalS'>Suivant</a>" ;
-
-                        }
-                    echo'</div>';
-                    ?>
+                    
            </div>
            <hr class="hrD">
 
@@ -635,95 +564,69 @@ function vanish() {
            <div  class="section">
                <!-- -----------------filtring data--------------------------- -->
                <div class="filters">
-                      <form action="doctor.php#allergieS" method="GET" id="filter"name="allergie">
+                      <form action="doctor.php#allergieS" method="POST" id="filter"name="allergie">
                       <input type="hidden" name="allergie">
                        
-                        <input type="text" name="searchA" id="search" placeholder='nom ...'>
-                        <button type="submit" name="submit-searchA" class="searchBtn">
+                        <input type="text" name="searchA" id="search" placeholder='nom ...' >
+                        <button type="submit" name="searchAlg" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
                     <button type="button" class="open-form" id="add-allergy" onclick="displayForm('allergy')">Ajouter</button>
-                
-                <?php 
+                                        
+                      <?php 
 
+                        $num_per_page=03;
 
-                    //================================display the fixed content=================================
-                    if(isset($_GET["pageA"]))
+                        if( empty( $_SESSION['searchAl']))
                         {
-                            $page=$_GET["pageA"];
+                        $_SESSION['searchAl']='';
+                        }
+                        if(isset($_POST['searchAlg']))
+                        {
+
+                          $_SESSION['searchAl'] = $_POST['searchA'];
+                        }
+                        // echo "ana session". $_SESSION['dateH']."<br>";
+                        // echo "ana search". $_SESSION['searchAl']."<br>";
+
+                        $pageAl = isset($_GET["pageAl"]) ? (int)$_GET["pageAl"] : 1;
+                        // echo "ana page".$pageH."<br>";
+
+                        $start_fromAl =   ($pageAl-1)*$num_per_page;
+                        // echo "ana lbdya".$start_fromAl;
+                        $allergie = mysqli_query($conn , "SELECT * from allergies  where  nom  LIKE '%{$_SESSION['searchAl']}%' limit $start_fromAl,$num_per_page;");
+
+                          $query= mysqli_query($conn,"SELECT * from allergies  where  nom  LIKE '%{$_SESSION['searchAl']}%' ;");
+                          $total_recordsAl =mysqli_num_rows($query);
+                          // echo 'ana total'.$total_recordsAl;
+                        $total_pages=ceil($total_recordsAl/$num_per_page);
+                        if($total_recordsAl>0)
+                        {
+                          echo"<p class='response'>Il existe ". $total_recordsAl." enregistrement</p>";
+                          echo"<div class='doctor-tables' id='tableA'>";
+                          table_allergie($allergie); 
+                          echo"</div>"; 
+                              
+
                         }
                         else
                         {
-                            $page=1;
-                        }
-                        $num_per_pageA=03;
+                        echo"<div class='affichage-item-msg border'>
+                        <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                        </div>";
+                        } 
 
-                        $start_fromA=($page-1)*$num_per_pageA;
+                                echo'<div class="pages-btn">';
+
+                                for ($i=1; $i <= $total_pages ; $i++){  
+                                    echo "<a class='pagination'href='?pageAl=".$i."#allergieS'>".$i."</a>" ;
+                                  } 
+                                  echo'</div>';
+
+                        ?>
                    
-                    $search = "";
-                   
-                    
-                    if(isset($_GET['searchA']))
-                    {
-                      $search = $_GET['searchA'];
-                      //=================afficher le tableau============================
-                            $allergie = mysqli_query($conn , "SELECT * from allergies  where  nom  LIKE'%$search%' limit $start_fromA,$num_per_pageA;");
-                            if (mysqli_num_rows($allergie) > 0) 
-                            { 
-                              echo"<div class='doctor-tables' id='tableAlg'>";
-                              table_allergie($allergie); 
-                              echo"</div>"; }
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
-                    }
-                    else
-                    {
-                            //=================afficher le tableau============================
-                            $allergie = mysqli_query($conn , "SELECT * from allergies  where  nom  LIKE'%$search%' limit $start_fromA,$num_per_pageA;");
-                            if (mysqli_num_rows($allergie) > 0) 
-                            { 
-                              echo"<div class='doctor-tables' id='tableAlg'>";
-
-                              table_allergie($allergie);   
-                              echo"</div>";}
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
-                    } 
-                    ?>
-                    <?php 
-                    echo'<div class="pages-btn">';
-               
-
-                        $sql="SELECT * FROM allergies";
-                        $rs_result=mysqli_query($conn,$sql);
-                        $total_records=mysqli_num_rows($rs_result);
-                        $total_pages=ceil($total_records/$num_per_page);
-                        if($page>1)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageA=".($page-1)."#allergieS'>Précédent</a>" ;
-
-                        }
-                        for($i=1;$i<=$total_pages;$i++)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageA=".$i."#allergieS'>".$i."</a>" ;
-                        }
-                        if($page<$i)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageA=".($page+1)."#allergieS'>Suivant</a>" ;
-
-                        }
-                    echo'</div>';
-                    ?>
            </div>
            <hr class="hrD">
 
@@ -731,216 +634,152 @@ function vanish() {
            <div class="section">
                     <!-- -----------------filtring data--------------------------- -->
                     <div class="filters">
-                      <form action="doctor.php#allergieS" method="GET" name="vaccin">
+                      <form action="doctor.php#vaccinS" method="POST" name="vaccin">
                       <input type="hidden" name="vaccin">
 
                         <select name="byDateV">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="tous" value="tous" >Tous</option>
+                        <option name="cemois" value="cemois" >ce mois</option>
+                        <option name="moisprec" value="moisprec" >mois précédent</option>
+                        <option name="6mois" value="6mois" > 6 mois</option>
+                        <option name="ans" value="ans" >ans</option>
+                        <option name="plsans" value="plusieursAns" >plus d'un an</option>
                         </select>
-                        <input type="text" name="searchV" id="search" placeholder='nom du vaccin....'>
-                        <button type="submit" name="submit-searchV" class="searchBtn" >
+                        <input type="text" name="searchV" id="search" placeholder='cause...'>
+                        <button type="submit" name="searchVac" class="searchBtn" >
                            <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
                     <button type="button" class="open-form" id="add-vaccin" onclick="displayForm('vaccin')">Ajouter</button>
                 <?php 
-
-
-                    //================================display the fixed content=================================
-                    if(isset($_GET["pageV"]))
+                    // $total_pages = 0;
+                    $num_per_page=03;
+                    if(empty( $_SESSION['dateV']) && empty( $_SESSION['searchV']))
                     {
-                        $page=$_GET["pageV"];
+                    $_SESSION['dateV']='tous';
+                    $_SESSION['searchV']='';
                     }
-                    else
+                    if(isset($_POST['searchVac']))
                     {
-                        $page=1;
-                    }
-                    $num_per_pageV=03;
-
-                    $start_fromV=($page-1)*$num_per_pageV;
-                    $date = 'tous';
-                    $search = "";
-                    //--------maladies-------------
                     
-                    if(isset($_GET['searchV'])||isset($_GET['searchV']))
+                      $_SESSION['dateV'] = $_POST['byDateV'];
+                      $_SESSION['searchV'] = $_POST['searchV'];
+                    }
+                    // echo "ana session". $_SESSION['dateV']."<br>";
+                    // echo "ana search". $_SESSION['searchV']."<br>";
+                    
+                    $pageV = isset($_GET["pageV"]) ? (int)$_GET["pageV"] : 1;
+                    // echo "ana page".$pageH."<br>";
+                    
+                    $start_fromV =   ($pageV-1)*$num_per_page;
+                    // echo "ana lbdya".$start_fromH;
+                    $vaccin_array = filter_by_date("vaccins",$_SESSION['dateV'],$start_fromV,$num_per_page,"nom", $_SESSION['searchV'],$conn);
+                    $vaccin = $vaccin_array['query'];
+                    $total_recordsV=$vaccin_array['nb_rows'];
+                    // echo $total_records;
+                    $total_pages=ceil($total_recordsV/$num_per_page);
+                    if($total_recordsV>0)
                     {
-                      $date = $_GET['byDateV'];
-                      $search = $_GET['searchV'];
-                            //=================afficher le tableau============================
-                            $vaccin_array = filter_by_date("vaccins",$date,$start_fromV,$num_per_pageV,"nom",$search,$conn);
-                            $vaccin =  $vaccin_array['query'];
+                      echo"<p class='response'>Il existe ". $total_recordsV." enregistrement</p>";
+                      echo"<div class='doctor-tables' id='tableV'>";
+                      table_vaccin($vaccin);
+                      echo"</div>"; 
+                          
 
-                            if ($vaccin_array['nb_rows'] > 0)  
-                            { 
-                              echo"<div class='doctor-tables' id='tableV'>";
-                              table_vaccin($vaccin); 
-                              echo"</div>"; }
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
                     }
                     else
                     {
-                            //=================afficher le tableau============================
-                            $vaccin = mysqli_query($conn,"SELECT * FROM vaccins limit $start_fromV,$num_per_pageV");
-                           if (mysqli_num_rows($vaccin) > 0) 
-                            { 
-                              echo"<div class='doctor-tables' id='tableV'>";
-
-                              table_vaccin($vaccin);   
-                              echo"</div>";}
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
                     } 
+
+                            echo'<div class="pages-btn">';
+
+                            for ($i=1; $i <= $total_pages ; $i++){  
+                                echo "<a class='pagination'href='?pageV=".$i."#vaccinS'>".$i."</a>" ;
+                              } 
+                              echo'</div>';
+
                     ?>
-                    <?php 
-                    echo'<div class="pages-btn">';
-          
-
-                        $sql="SELECT * FROM vaccins";
-                        $rs_result=mysqli_query($conn,$sql);
-                        $total_records=mysqli_num_rows($rs_result);
-                        $total_pages=ceil($total_records/$num_per_page);
-                        if($page>1)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageV=".($page-1)."#vaccinS'>Précédent</a>" ;
-
-                        }
-                        for($i=1;$i<=$total_pages;$i++)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageV=".$i."#vaccinS'>".$i."</a>" ;
-                        }
-                        if($page<$i)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageV=".($page+1)."#vaccinS'>Suivant</a>" ;
-
-                        }
-                    echo'</div>';
-                    ?>
+                    
            </div>
            <hr class="hrD">
             <h2 class="titlesD t7" id="mesureS">Mesures</h2>
            <div  class="section">
                                    <!-- -----------------filtring data--------------------------- -->
                                    <div class="filters">
-                      <form action="doctor.php#mesureS" method="GET" name="mesure">
+                      <form action="doctor.php#mesureS" method="POST" name="mesure">
                       <input type="hidden" name="mesure">
 
                         <select name="byDateMes">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="tous" value="tous" >Tous</option>
+                        <option name="cemois" value="cemois" >ce mois</option>
+                        <option name="moisprec" value="moisprec">mois précédent</option>
+                        <option name="6mois" value="6mois" > 6 mois</option>
+                        <option name="ans" value="ans">ans</option>
+                        <option name="plsans" value="plusieursAns" >plus d'un an</option>
                         </select>
                         <!-- <input type="text" name="search" id="search" placeholder='ordinaire ...'>--> 
                        
-                        <button type="submit" name="submit-searchMes" class="searchBtn" >
+                        <button type="submit" name="searchMesure" class="searchBtn" >
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                           </button>
                       </form>
                     </div>
                     <button type="button" class="open-form" id="add-mesure" onclick="displayForm('mesure')">Ajouter </button>
-                <?php 
-
-
-                    //================================display the fixed content=================================
-                    
-                    $date = 'tous';
-                    if(isset($_GET["pageMes"]))
-                    {
-                        $page=$_GET["pageMes"];
-                    }
-                    else
-                    {
-                        $page=1;
-                    }
-                    $num_per_pageMes=01;
-
-                    $start_fromMes=($page-1)*$num_per_pageMes;
-                    
-                    if(isset($_GET['byDateMes']))
-                      {
-                        $date = $_GET['byDateMes'];
-                        $search = "";
-                        $mesure_array = filter_by_date("mesures",$date,$start_fromMes,1,"date",$search,$conn);
-                        $mesure =  $mesure_array['query'];
-
-                            if ($mesure_array['nb_rows'] > 0)   
-                            { 
-                             echo'<div class="contenu mesure contenue-mes" data-page="6" id="Mesure">
-                             <div class="grid-mesure">';
-                              affich_mesure($mesure); 
-                              echo"</div>"; 
-                               }
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
-                    }
-                    else
-                    {
-                            //=================afficher le tableau============================
-                            $mesure = mysqli_query($conn,"SELECT * FROM mesures limit $start_fromMes,1");
-                            if (mysqli_num_rows($mesure) > 0) 
-                            { 
-                              echo'<div class="contenu mesure contenue-mes" data-page="6" id="Mesure">
-                              <div class="grid-mesure">';
-                              affich_mesure($mesure);
-                              echo"</div>"; 
-
-                              }
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
-                    } 
-                    ?>
-                    
                     <?php 
-                     
-                    echo'<div class="pages-btn">';
-                    // pagination_sections($conn,"mesures","doctor.php",1,$page,'#mesure');
-       
+                    // $total_pages = 0;
+                    $num_per_page=01;
+                    if(empty( $_SESSION['dateMes']) )
+                    {
+                    $_SESSION['dateMes']='tous';
+                    }
+                    if(isset($_POST['searchMesure']))
+                    {
+                    
+                      $_SESSION['dateMes'] = $_POST['byDateMes'];
+                    }
+                    $_SESSION['searchMes'] = "";
+                    // echo "ana session". $_SESSION['dateM']."<br>";
+                    
+                    $pageM = isset($_GET["pageMes"]) ? (int)$_GET["pageMes"] : 1;
+                    // echo "ana page".$pageH."<br>";
+                    
+                    $start_fromM =   ($pageM-1)*$num_per_page;
+                    // echo "ana lbdya".$start_fromM;
+                    $mesure_array = filter_by_date("mesures",$_SESSION['dateMes'],$start_fromM,$num_per_page,"poids", $_SESSION['searchMes'],$conn);
+                    $mesure = $mesure_array['query'];
+                    $total_recordsM=$mesure_array['nb_rows'];
+                    // echo $total_recordsM;
+                    $total_pages=ceil($total_recordsM/$num_per_page);
+                    if($total_recordsM>0)
+                    {
+                      echo"<p class='response'>Il existe ". $total_recordsM." enregistrement</p>";
+                      echo'<div class="contenu mesure contenue-mes" data-page="6" id="Mesure">
+                      <div class="grid-mesure">';
+                       affich_mesure($mesure); 
+                       echo"</div>"; 
 
-                        $sql="SELECT * FROM mesures";
-                        $rs_result=mysqli_query($conn,$sql);
-                        $total_records=mysqli_num_rows($rs_result);
-                        $total_pages=ceil($total_records/$num_per_page);
-                        if($page>1)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageMes=".($page-1)."#mesureS'>Précédent</a>" ;
+                    }
+                    else
+                    {
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
+                    } 
 
-                        }
-                        for($i=1;$i<=$total_pages;$i++)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageMes=".$i."#mesureS'>".$i."</a>" ;
-                        }
-                        if($page<$i)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageMes=".($page+1)."#mesureS'>Suivant</a>" ;
+                            echo'<div class="pages-btn">';
 
-                        }
-                    echo'</div>';
+                            for ($i=1; $i <= $total_pages ; $i++){  
+                                echo "<a class='pagination'href='?pageMes=".$i."#mesureS'>".$i."</a>" ;
+                              } 
+                              echo'</div>';
+
                     ?>
+                    
+                
            </div>
            <hr class="hrD">
 
@@ -948,12 +787,12 @@ function vanish() {
            <div  class="section">
                <!-- -----------------filtring data--------------------------- -->
                <div class="filters">
-                      <form action="doctor.php#antecedentS" method="GET" id="filter"name="antecedent">
+                      <form action="doctor.php#antecedentS" method="POST" id="filter"name="antecedent">
                       <input type="hidden" name="antecedent">
                        
-                        <input type="text" name="searchAnt" id="search" placeholder='nom ...'>
+                      <input type="text" name="searchAn" id="search" placeholder='cause...'>
                        
-                        <button type="submit" name="submit-searhAnt" class="searchBtn" >
+                        <button type="submit" name="searchAnt" class="searchBtn" >
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
@@ -964,81 +803,57 @@ function vanish() {
 
                     //===============================t=================================
 
-                    $date = 'tous';
-                    $search = "";
-                    if(isset($_GET["pageAnt"]))
+                    // $total_pages = 0;
+                    $num_per_page=03;
+                    
+
+                    if(empty( $_SESSION['searchAn']))
                     {
-                        $page=$_GET["pageAnt"];
+                    $_SESSION['searchAn']='';
+                    }
+                    if(isset($_POST['searchAnt']))
+                    {
+                    
+                      $_SESSION['searchAn'] = $_POST['searchAn'];
+                    }
+                    // echo "ana session". $_SESSION['dateV']."<br>";
+                    // echo "ana search". $_SESSION['searchAn']."<br>";
+                    
+                    $pageAn = isset($_GET["pageAn"]) ? (int)$_GET["pageAn"] : 1;
+                    // echo "ana page".$pageH."<br>";
+                    
+                    $start_fromAn =   ($pageAn-1)*$num_per_page;
+                    // echo "ana lbdya".$start_fromH;
+                    $antece= mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' limit $start_fromAn,$num_per_page;");
+                    $antece_rows = mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' ;");
+
+                    $total_recordsAn=mysqli_num_rows($antece_rows);
+                    // echo $total_records;
+                    $total_pages=ceil($total_recordsAn/$num_per_page);
+                    if($total_recordsAn>0)
+                    {
+                      echo"<p class='response'>Il existe ". $total_recordsAn." enregistrement</p>";
+                      echo"<div class='doctor-tables' id='tableAn'>";
+                      table_antecedent($antece);
+                      echo"</div>"; 
+                          
+
                     }
                     else
                     {
-                        $page=1;
-                    }
-                    $num_per_pageAnt=03;
-
-                    $start_fromAnt=($page-1)*$num_per_pageAnt;
-                    
-                    if(isset($_GET['searchAnt']))
-                    {
-                    
-                      $search = $_GET['searchAnt'];
-                      $antecedent = mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE'%$search%' limit $start_fromAnt,$num_per_pageAnt;");
-                      if (mysqli_num_rows($antecedent) > 0) 
-                            { 
-                              echo"<div class='doctor-tables' id='tableAnt'>";
-                              table_antecedent($antecedent); 
-                              echo"</div>"; }
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
-                    }
-                    else
-                    {
-                            //=================afficher le tableau============================
-                            $antecedent = mysqli_query($conn,"SELECT * FROM antecedents limit $start_fromAnt,$num_per_pageAnt");
-                           if (mysqli_num_rows($antecedent) > 0) 
-                            { 
-                              echo"<div class='doctor-tables' id='tableAnt'>";
-
-                              table_antecedent($antecedent); 
-  
-                              echo"</div>";}
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
                     } 
+
+                            echo'<div class="pages-btn">';
+
+                            for ($i=1; $i <= $total_pages ; $i++){  
+                                echo "<a class='pagination'href='?pageAn=".$i."#antecedentS'>".$i."</a>" ;
+                              } 
+                              echo'</div>';
                     ?>
-                    <?php 
-                    echo'<div class="pages-btn">';
-                    // pagination_sections($conn,"antecedents","doctor.php",3,$page,'#antecedent');
-            
-
-                        $sql="SELECT * FROM antecedents";
-                        $rs_result=mysqli_query($conn,$sql);
-                        $total_records=mysqli_num_rows($rs_result);
-                        $total_pages=ceil($total_records/$num_per_page);
-                        if($page>1)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageAnt=".($page-1)."#antecedentS'>Précédent</a>" ;
-
-                        }
-                        for($i=1;$i<=$total_pages;$i++)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageAnt=".$i."#antecedentS'>".$i."</a>" ;
-                        }
-                        if($page<$i)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageAnt=".($page+1)."#antecedentS'>Suivant</a>" ;
-
-                        }
-                    echo'</div>';
-                    ?>
+                   
            </div>
            <hr class="hrD">
 
@@ -1046,215 +861,147 @@ function vanish() {
            <div  class="section">
             <!-- -----------------filtring data--------------------------- -->
             <div class="filters">
-                      <form action="doctor.php#documentS" method="GET" name="doc">
+                      <form action="doctor.php#documentS" method="POST" name="doc">
                       <input type="hidden" name="doc">
 
                         <select name="byDateD">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="tous" value="tous" >Tous</option>
+                        <option name="cemois" value="cemois">ce mois</option>
+                        <option name="moisprec" value="moisprec" >mois précédent</option>
+                        <option name="6mois" value="6mois" > 6 mois</option>
+                        <option name="ans" value="ans" >ans</option>
+                        <option name="plsans" value="plusieursAns" >plus d'un an</option>
                         </select>
-                        <input type="text" name="searchD" id="search" placeholder='nom du doc....'>
-                        <button type="submit" name="submit-searhD" class="searchBtn">
+                        <input type="text" name="searchD" id="search" placeholder='nom...'>
+                        <button type="submit" name="searchDoc" class="searchBtn">
                            <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
                     <button type="button" class="open-form" id="add-doc" onclick="displayForm('doc');">Ajouter</button>
-                <?php 
-
-
-                    //===============================t=================================
-
-                    $date = 'tous';
-                    $search = "";
-                      
-                    if(isset($_GET["pageDoc"]))
-                    {
-                        $page=$_GET["pageDoc"];
-                    }
-                    else
-                    {
-                        $page=1;
-                    }
-                    $num_per_pageDoc=03;
-
-                    $start_fromDoc=($page-1)*$num_per_pageDoc;
-                    if(isset($_GET['byDateD'])||isset($_GET['searchD']))
-                      {
-                        $date = $_GET['byDateD'];
-                        $search = $_GET['searchD'];
-                       $doc_array = filter_by_date("documents",$date,$start_fromDoc,$num_per_pageDoc,"nomDoc",$search,$conn);
-                       $doc =  $doc_array['query'];
-
-                            if ($doc_array['nb_rows'] > 0)  
-                            { 
-                              echo"<div class='doctor-tables' id='tableDoc'>";
-                              table_doc($doc);
-                              echo"</div>"; }
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
-                    }
-                    else
-                    {
-                            //=================afficher le tableau============================
-                            $doc = mysqli_query($conn,"SELECT * FROM documents limit $start_fromDoc,$num_per_pageDoc");
-                            if (mysqli_num_rows($doc) > 0) 
-                            { 
-                              echo"<div class='doctor-tables' id='tableD'>";
-
-                              table_doc($doc);
- 
-  
-                              echo"</div>";}
-                            else
-                            {
-                            echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
-                    } 
-                    ?>
                     <?php 
-                    echo'<div class="pages-btn">';
-                    // pagination_sections($conn,"documents","doctor.php",3,$page,'#document');
+
                   
+                    $num_per_page=03;
+                  
+                   if(empty( $_SESSION['dateD']) && empty( $_SESSION['searchD']))
+                   {
+                    $_SESSION['dateD']='tous';
+                    $_SESSION['searchD']='';
+                   }
+                   if(isset($_POST['searchDoc']))
+                    {
+                     
+                      $_SESSION['dateD'] = $_POST['byDateD'];
+                      $_SESSION['searchD'] = $_POST['searchD'];
+                    }
+                    // echo "ana session". $_SESSION['date']."<br>";
 
-                        $sql="SELECT * FROM documents";
-                        $rs_result=mysqli_query($conn,$sql);
-                        $total_records=mysqli_num_rows($rs_result);
-                        $total_pages=ceil($total_records/$num_per_page);
-                        if($page>1)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageDoc=".($page-1)."#documentS'>Précédent</a>" ;
+                    $pageD = isset($_GET["pageD"]) ? (int)$_GET["pageD"] : 1;
+                    // echo "ana page".$pageM."<br>";
+                    $start_fromD =   ($pageD-1)*$num_per_page;
+                    // echo "ana lbdya".$start_from;
+                    $doc_array = filter_by_date("documents",$_SESSION['dateD'],$start_fromD,$num_per_page,"nomDoc", $_SESSION['searchD'],$conn);
+                    $doc = $doc_array['query'];
+                    $total_recordsD=$doc_array['nb_rows'];
+                    // echo $total_records;
+                    $total_pages=ceil($total_recordsD/$num_per_page);
+                    if($total_recordsD>0)
+                    {
+                      echo"<p class='response'>Il existe ". $total_recordsD." enregistrement</p>";
+                      echo"<div class='doctor-tables' id='tableDoc'>";
+                      table_doc($doc);
+                      echo"</div>"; 
+                           
+                   
+                    }
+                    else
+                    {
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
+                    } 
+                 
+                            echo'<div class="pages-btn">';
 
-                        }
-                        for($i=1;$i<=$total_pages;$i++)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageDoc=".$i."#documentS'>".$i."</a>" ;
-                        }
-                        if($page<$i)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageDoc=".($page+1)."#documentS'>Suivant</a>" ;
-
-                        }
-                    echo'</div>';
+                            for ($i=1; $i <= $total_pages ; $i++){  
+                                echo "<a class='pagination'href='?pageD=".$i."#documentS'>".$i."</a>" ;
+                              } 
+                              echo'</div>';
+                   
                     ?>
+
            </div>
            <hr class="hrD">
             <h2 class="titlesD"  id="diagnosticS">Diagnostique</h2>
            <div  class="section">
              <!-- -----------------filtring data--------------------------- -->
              <div class="filters">
-                      <form action="doctor.php#diagnosticS" method="GET" id="filter"name="diagnostic">
+                      <form action="doctor.php#diagnosticS" method="POST" id="filter"name="diagnostic">
                       <input type="hidden" name="diagnostic">
-                      <select name="byDateDia">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                      <select name="byDateDg">
+                      <option name="tous" value="tous" >Tous</option>
+                        <option name="cemois" value="cemois" >ce mois</option>
+                        <option name="moisprec" value="moisprec" >mois précédent</option>
+                        <option name="6mois" value="6mois"> 6 mois</option>
+                        <option name="ans" value="ans" >ans</option>
+                        <option name="plsans" value="plusieursAns" >plus d'un an</option>
                         </select>
-                        <input type="text" name="searchDia" id="search" placeholder='nom du médecin...'>
-                       
-                        <button type="submit" name="submit-searhDia" class="searchBtn" >
+                        <input type="text" name="searchDg" id="search" placeholder='nom du médecin...'>
+                        <button type="submit" name="searchDia" class="searchBtn" >
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
            <button type="button" class="open-form" id="add-diagno" onclick="displayForm('diagno');">Ajouter </button> 
+                            <?php 
+               
+                  $num_per_page=03;
+
+                  if(empty( $_SESSION['DateDg']) && empty( $_SESSION['searchDg']))
+                  {
+                  $_SESSION['DateDg']='tous';
+                  $_SESSION['searchDg']='';
+                  }
+                  if(isset($_POST['searchDia']))
+                  {
+                    $_SESSION['DateDg'] = $_POST['byDateDg'];
+                    $_SESSION['searchDg'] = $_POST['searchDg'];
+                  }
+                  // echo "ana session". $_SESSION['searchDg']."<br>";
+
+                  $pageDg = isset($_GET["pageDg"]) ? (int)$_GET["pageDg"] : 1;
+                  // echo "ana page".$pageM."<br>";
+                  $start_fromDg =   ($pageDg-1)*$num_per_page;
+                  // echo "ana lbdya".$start_from;
+                  $diag_array = filter_by_date("diagnostic",$_SESSION['DateDg'],$start_fromDg,$num_per_page,"nomComplet", $_SESSION['searchDg'],$conn);
+                  $diag = $diag_array['query'];
+                  $total_recordsDg=$diag_array['nb_rows'];
+                  // echo $total_records;
+                  $total_pages=ceil($total_recordsDg/$num_per_page);
+                  if($total_recordsDg>0)
+                  {
+                    echo"<p class='response'>Il existe ". $total_recordsDg." enregistrement</p>";
+                    echo"<div class='doctor-tables' id='tableDiag'>";
+                    table_diag($diag);
+                    echo"</div>"; 
+                  }
+                  else
+                  {
+                  echo"<div class='affichage-item-msg border'>
+                  <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                  </div>";
+                  } 
+
+                          echo'<div class="pages-btn">';
+
+                          for ($i=1; $i <= $total_pages ; $i++){  
+                              echo "<a class='pagination'href='?pageDg=".$i."#diagnosticS'>".$i."</a>" ;
+                            } 
+                            echo'</div>';
+
+                  ?>
            
-            <?php
-            
-            $date = 'tous';
-            $search = "";
-              
-            if(isset($_GET["pageD"]))
-             {
-                 $page=$_GET["pageD"];
-             }
-             else
-             {
-                 $page=1;
-             }
-             $num_per_pageD=03;
-
-             $start_fromD=($page-1)*$num_per_pageD;
-
-            if(isset($_GET['byDateDia'])||isset($_GET['searchDia']))
-              {
-                $date = $_GET['byDateDia'];
-                $search = $_GET['searchDia'];
-               $diag_array = filter_by_date("diagnostic",$date,$start_fromDoc,$num_per_pageDoc,"nomComplet",$search,$conn);
-               $diag =  $diag_array['query'];
-
-                            if ($diag_array['nb_rows'] > 0)   
-                    { 
-                      echo"<div class='doctor-tables' id='tableD'>";
-                      table_diag($diag);
-                      echo"</div>"; }
-                    else
-                    {
-                    echo"<div class='affichage-item-msg border'>
-                    <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                    </div>";
-                    } 
-            }
-            else
-            {
-                    //=================afficher le tableau============================
-                    $diag = mysqli_query($conn,"SELECT * FROM diagnostic limit $start_fromDoc,$num_per_pageDoc");
-                    if (mysqli_num_rows($diag) > 0) 
-                    { 
-                      echo"<div class='doctor-tables' id='tableD'>";
-
-                      table_diag($diag);
-
-
-                      echo"</div>";}
-                    else
-                    {
-                    echo"<div class='affichage-item-msg border'>
-                    <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                    </div>";
-                    } 
-            } 
-            
-            
-             
-            ?>
-              <?php 
-                    echo'<div class="pages-btn">';
-                    // pagination_sections($conn,"documents","doctor.php",3,$page,'#document');
-                   
-                        $sql="SELECT * FROM diagnostic";
-                        $rs_result=mysqli_query($conn,$sql);
-                        $total_records=mysqli_num_rows($rs_result);
-                        $total_pages=ceil($total_records/$num_per_page);
-                        if($page>1)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageD=".($page-1)."#diagnosticS'>Précédent</a>" ;
-
-                        }
-                        for($i=1;$i<=$total_pages;$i++)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageD=".$i."#diagnosticS'>".$i."</a>" ;
-                        }
-                        if($page<$i)
-                        {
-                            echo "<a class='pagination'href='doctor.php?pageD=".($page+1)."#diagnosticS'>Suivant</a>" ;
-
-                        }
-                    echo'</div>';
-                    ?>
             </div>
          </div>
        
@@ -1275,8 +1022,29 @@ window.onload = function(){
 
   include'displayForms.php';
   include'footer.php';
-?>
+  // destroy the session
+// session_destroy();
 
+?>
+<script src="js/filter.js"></script>
+<script type="text/javascript">
+  //=====================toogle to show the options div=============
+let options = document.querySelectorAll('.options-btn');
+// console.log(options)
+for (let i = 0; i < options.length; i++) {
+  options[i].addEventListener('click',()=>{
+    let div=options[i].nextElementSibling
+    // div.style.display="block"
+    $(div).toggle()
+//     $(div).slideToggle('medium', function() {
+//     if ($(this).is(':visible'))
+//         $(this).css('display','inline-block');
+// });
+    // console.log( )
+   
+  })
+}
+</script>
 
 
 <!-- ================sripts================================================= -->

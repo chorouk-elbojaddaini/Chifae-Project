@@ -21,7 +21,7 @@ function table_maladie($malad)
       </tr>
     </thead>
     <tbody>";
-     while($row = mysqli_fetch_assoc($malad)) 
+    while($row = mysqli_fetch_assoc($malad)) 
     { 
        echo"
            <tr>

@@ -73,6 +73,12 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
                 alertify.set('notifier','position', 'top-right');
                 alertify.error(resObject.msgs);
               }
+               //================== file exist=================
+               else if( resObject.status==150){
+                alertify.set('notifier','position', 'top-right');
+                alertify.error(resObject.msgs);
+                console.log("hel")
+              }
       //================if we failed we should display the reason================
       
         else 
@@ -87,7 +93,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
             alertify.error(resObject.msgs);
             document.getElementById("doc").classList.add("hide");
           })
-          console.log("hello1")
+         
       }
      
     } 

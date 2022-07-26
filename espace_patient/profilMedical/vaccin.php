@@ -4,11 +4,13 @@ include '../../connexionDoc/cnx.php';
 include'filter.php';
 
 
-function affich_vaccin($vaccin)
+function affich_vaccin($vaccin,$res)
 {
   echo' 
   <!-- -----------------------AFFICHAGE DES vaccins------------------------ -->
-   <div class="affichage">';
+   <div class="affichage"> '.$res;
+  
+
   while($row = mysqli_fetch_assoc($vaccin)) 
   { 
      echo"
@@ -30,10 +32,11 @@ function affich_vaccin($vaccin)
   }
   echo'</div>';
 }
-function table_vaccin($vaccin)
+function table_vaccin($vaccin,$res)
 {
   echo
   "
+  $res
 <table id='vaccin-table'>
 <thead>
 <tr>
@@ -154,8 +157,8 @@ echo"
                       <div class="contenu" data-page="5">
                           <!-- -----------------filtring data--------------------------- -->
                     <div class="filters">
-                      <form action="" method="GET" id="by_date">
-                        <select name="byDate">
+                      <form action="" method="POST" id="by_date">
+                        <select name="byDateV">
                         <option name="tous" value="tous">Tous</option>
                             <option name="cemois" value="cemois">ce mois</option>
                             <option name="moisprec" value="moisprec">mois précédent</option>
@@ -163,69 +166,76 @@ echo"
                             <option name="ans" value="ans">ans</option>
                             <option name="plsans" value="plusieursAns">plus d'un an</option>
                         </select>
-                        <input type="text" name="search" id="search" placeholder='nom de vaccin....'>
-                        <button type="submit" name="submit-searchA" class="searchBtn">
+                        <input type="text" name="searchV" id="search" placeholder='nom de vaccin....'>
+                        <button type="submit" name="searchVac" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
                         <hr>
-<?php 
+                        <?php 
+                    // $total_pages = 0;
+                    $num_per_page=03;
+                    if(empty( $_SESSION['dateV']) && empty( $_SESSION['searchV']))
+                    {
+                    $_SESSION['dateV']='tous';
+                    $_SESSION['searchV']='';
+                    }
+                    if(isset($_POST['searchVac']))
+                    {
+                    
+                      $_SESSION['dateV'] = $_POST['byDateV'];
+                      $_SESSION['searchV'] = $_POST['searchV'];
+                    }
+                    // echo "ana session". $_SESSION['dateV']."<br>";
+                    // echo "ana search". $_SESSION['searchV']."<br>";
+                    
+                    $pageV = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+                    // echo "ana page".$pageH."<br>";
+                    
+                    $start_fromV =   ($pageV-1)*$num_per_page;
+                    // echo "ana lbdya".$start_fromH;
+                    $vaccin_array = filter_by_date("vaccins",$_SESSION['dateV'],$start_fromV,$num_per_page,"nom", $_SESSION['searchV'],$conn);
+                    $vaccin = $vaccin_array['query'];
+                    $total_recordsV=$vaccin_array['nb_rows'];
+                    // echo $total_records;
+                    $total_pages=ceil($total_recordsV/$num_per_page);
+                    $res = "<p class='response hideMe'>Il existe ". $total_recordsV." enregistrement</p>";
+                    if($total_recordsV>0)
+                    {
+                     
+                      table_vaccin($vaccin,$res);
+                          
 
-$date = 'tous';
-$search = "";
-  //--------vaccin-------------
- 
- if(isset($_GET['byDate'])||isset($_GET['search']))
-  {
-    $date = $_GET['byDate'];
-    $search = $_GET['search'];
-    $vaccin = filter_by_date("vaccins",$date,$start_from,$num_per_page,"nom",$search,$conn);
-    if (mysqli_num_rows($vaccin) > 0) 
-    { // output data of each row
-          affich_vaccin($vaccin);
-         
-    }
-        //=================afficher le tableau============================
-    $vaccin1 = filter_by_date("vaccins",$date,$start_from,$num_per_page,"nom",$search,$conn);
+                    }
+                    $vaccin_array1 = filter_by_date("vaccins",$_SESSION['dateV'],$start_fromV,$num_per_page,"nom", $_SESSION['searchV'],$conn);
+                    $vaccin1 = $vaccin_array1['query'];
+                    $total_pages=ceil($total_recordsV/$num_per_page);
+                    $res = "<p class='response '>Il existe ". $total_recordsV." enregistrement</p>";
 
-        if (mysqli_num_rows($vaccin1) > 0) 
-        { table_vaccin($vaccin1); }
-        else
-        {
-          echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-        } 
-        $referer_host = $_SERVER[ "HTTP_HOST" ];
-        $referer_uri = explode( "?", $_SERVER[ "REQUEST_URI" ] );
-        $referer = $referer_host . $referer_uri[ 0 ];
-  }
-  else
-  {
-        $vaccin = mysqli_query($conn,"SELECT * FROM vaccins limit $start_from,$num_per_page");
-      if (mysqli_num_rows($vaccin) > 0) 
-    { // output data of each row
-          affich_vaccin($vaccin);
-    }
-        //=================afficher le tableau============================
-        $vaccin1 = mysqli_query($conn,"SELECT * FROM vaccins limit $start_from,$num_per_page");
-        if (mysqli_num_rows($vaccin1) > 0) 
-        { table_vaccin($vaccin1); }
-        else
-        {
-          echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-        } 
-  } 
+                    if($total_recordsV>0)
+                    {
+                      // echo"<p class='response'>Il existe ". $total_recordsV." enregistrement</p>";
+                      affich_vaccin($vaccin1,$res);
+                      
+                    }
+                    else
+                    {
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
+                    } 
 
-    ?>
-  <?php 
-echo'<div class="pages-btn">';
-pagination($conn,"vaccins","vaccin",3,$page);
-echo'</div>';
-?>
+                            echo'<div class="pages-btn">';
+
+                            for ($i=1; $i <= $total_pages ; $i++){  
+                                echo "<a class='pagination'href='?page=".$i."'>".$i."</a>" ;
+                              } 
+                              echo'</div>';
+
+                    ?>
+                    
+
 </div>
 
 </div>
@@ -233,5 +243,18 @@ echo'</div>';
 
 <?php include'footer.php';?>
  
-
+<script type="text/javascript">
+  //=====================toogle to show the options div=============
+let options = document.querySelectorAll('.options-btn');
+console.log(options)
+for (let i = 0; i < options.length; i++) {
+  options[i].addEventListener('click',()=>{
+    let div=options[i].nextElementSibling
+    // div.style.display="block"
+    $(div).toggle()
+    console.log( )
+   
+  })
+}
+</script>
  

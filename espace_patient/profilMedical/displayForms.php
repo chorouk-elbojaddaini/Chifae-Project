@@ -151,16 +151,16 @@ echo'
 <input type="hidden" name="doc_id" id="doc_id" >
      <label >
          Nom du document : 
-         <input type="text" minlength="3" name="nom" id="nom" placeholder="Entrez le nom du document"  />
+         <input type="text" minlength="3" name="nom" id="nomDoc" placeholder="Entrez le nom du document"  />
          <!-- add condition about existing file name -->
      </label>
        <label >
            Date :
-           <input type="date"id="date"name="date"  />
+           <input type="date"id="dateDoc"name="date"  />
        </label>
        <label >
          Ajouté par :
-         <input type="text"id="added"name="added"  />
+         <input type="text"id="addedDoc"name="added"  />
      </label>
      <label >
          Catégorie :

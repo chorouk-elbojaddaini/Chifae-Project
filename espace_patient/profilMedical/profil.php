@@ -205,7 +205,7 @@ if (mysqli_num_rows($display) > 0)
                         <!-- <img src="images/no.jpg" alt="profil" id="photo"> -->
                         <img  id="photo"  height="100" width="100" border-radius="50%"src="data:image;base64,<?php echo $row['photo'] ;?>">
                             <label for="add-photo">
-                            <i class="fa-solid fa-camera" id="cam"></i></i>
+                            <i class="fa-solid fa-camera" id="cam"></i>
                             </label>
                             <form  method="post" enctype="multipart/form-data" id="photo-upload" onsubmit="return false">
                                    <input type="hidden" name="idP" id="idP"  value='<?php echo $row['id'] ;?>'>

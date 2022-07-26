@@ -363,6 +363,10 @@
   display: block;
   margin-top: -35%;
 }
+#doctor
+{
+  text-align: center
+}
 #doctor p {
   font-size: 1.2em;
   font-weight: bold;
@@ -381,7 +385,8 @@
   width:40px;
   height:40px;
   padding:5px 0;
-  margin:0 auto
+  margin:0 auto;
+  align-self: center;
 }
 #doctor p
 {
@@ -393,7 +398,7 @@ margin:5px
 {
 /* font-size: 16px; */
 font-weight:none;
-color:#fff
+color:var(--green);
 
 }
 #time
@@ -403,6 +408,20 @@ color:#fff
   text-align: center;
   margin:auto ;
  
+}
+.affichage-item-msg
+{
+  width:max-content;
+  margin:10px
+}
+.affichage-item-msg p
+{
+  padding: 10px;
+}
+.warning
+{
+  color:var(--pink);
+  margin:0px 5px;
 }
   /*===========END aside============*/
 
@@ -689,11 +708,7 @@ color:var(--green);
     {
 
       background-color:#9cb7ba;}
-      #doctor p[id="specialiste"]
-      {
-      
-      color:var(--green);
-      }
+  
       .fct
       {
         font-size:1.7rem

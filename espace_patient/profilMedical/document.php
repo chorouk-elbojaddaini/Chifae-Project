@@ -9,11 +9,11 @@ if (mysqli_num_rows($display) > 0)
    $row = mysqli_fetch_assoc($display);
  }
  //===============function to display content
- function affich_doc($doc) 
+ function affich_doc($doc,$res) 
 {
   echo' 
  <!-- -----------------------AFFICHAGE DES DOCUMENTS------------------------ -->
-  <div class="affichage">';
+  <div class="affichage">'.$res;
  while($row = mysqli_fetch_assoc($doc)) 
  { 
     echo"
@@ -35,10 +35,10 @@ if (mysqli_num_rows($display) > 0)
  echo'</div>';
  
 }
-function table_doc($doc)
+function table_doc($doc,$res)
 {
   echo"
-      
+      $res
     <table id='maladie-table'>
     <thead>
       <tr>
@@ -114,60 +114,7 @@ echo"
    <!----======== CSS ======== -->
    <link rel="stylesheet" href="css/style.css">
    <link rel="stylesheet" href="css/modal.css">
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script src="js/script.js" defer></script>
-   <!-- <script src="js/main.js" defer></script> -->
-   <script src="js/docDisplay.js" defer></script>
-   <script src="js/docEdit.js" defer></script>
-   <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
-   <script src="js/modal.js" defer></script>
-   <script>
-        //=====================toogle to show the options div=============
-    //   let options = document.querySelectorAll('.options-btn');
-     
-    //  for (let i = 0; i < options.length; i++) {
-    //    options[i].addEventListener('click',()=>{
-    //      let div=options[i].nextElementSibling
-    //      $(div).toggle()
-    //      console.log(options[i].nextElementSibling)
-    //    })
-    //  }
-    
-      // const affichage =document.querySelector('.affichage');
-      // const table =document.querySelector('table');
-      // const show_tr =document.getElementById('show_tr');
-      // const show_affiche =document.getElementById('show_affiche');
-
-      // let query2 = window.matchMedia("(max-width:767px)");
-
-
-      //     if (query2.matches) {
-      
-      //     table.style.display = 'none';
-      //     show_tr.style.display = 'none';
-      //     document.querySelector('.affich-docs').style.background = 'transparent';
-      //     document.querySelector('.affich-docs').style.padding = 0;
-      //     // document.querySelector('.affich-docs').style.boxshadow = 'none';
-
-
-      // }
-      //   else{
-      //       affichage.style.display = 'none';
-      //       show_affiche.style.display = 'none';
-
-      //   }
-        console.log("options");
-       let options = document.querySelectorAll('.options-btn');
-       for (let i = 0; i < options.length; i++) {
-         options[i].addEventListener('click',()=>{
-         let div=options[i].nextElementSibling
-          $(div).toggle()
-   
-  })
-}
-   </script>
+  
     <title>Mes Documents| Chifae</title>
 </head>
 <body>
@@ -225,19 +172,19 @@ echo"
         </div>
       </nav>
        <!-----------------PROFIL MODAL------------------>
-       <div class="overlay hide" >
+       <div class="prof hide" >
        
-        <div id="popup" class="popup">
-         <div class="modal-btn"  >
-           <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
-           <img  id="account"  height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
-               <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
-                  <a class="pop"href="profil.html" target="_blank" id="monProfil">Mon Profil</a>
-                  <a class="pop" href="#" id="deconnect">Se déconnecter</a>
-       </div>
-        </div>
-       
+       <div id="popup" class="popup">
+        <div class="modal-btn"  >
+          <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
+            <img type="image"  src="images/profile.jpg" alt="profile" id="account">
+              <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
+                 <a class="pop"href="profil.php" target="_blank" id="monProfil">Mes infos</a>
+                 <a class="pop" href="#" id="deconnect">Se déconnecter</a>
       </div>
+       </div>
+      
+     </div>
    <!-- ------------------------------------------ -->
 <div class="contenaire">
      <!--=====================FIXED CONTENT======================-->
@@ -345,8 +292,8 @@ echo"
         <div class="affich-docs">
            <!-- -----------------filtring data--------------------------- -->
            <div class="filters">
-                      <form action="" method="GET" id="by_date">
-                        <select name="byDate">
+                      <form action="" method="POST" id="by_date">
+                        <select name="byDateD">
                         <option name="tous" value="tous">Tous</option>
                             <option name="cemois" value="cemois">ce mois</option>
                             <option name="moisprec" value="moisprec">mois précédent</option>
@@ -354,65 +301,75 @@ echo"
                             <option name="ans" value="ans">ans</option>
                             <option name="plsans" value="plusieursAns">plus d'un an</option>
                         </select>
-                        <input type="text" name="search" id="search" placeholder='nom du doc....'>
-                        <button type="submit" name="submit-searchA" class="searchBtn">
+                        <input type="text" name="searchD" id="search" placeholder='nom du doc....'>
+                        <button type="submit" name="searchDoc" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
-                  <?php
-                    $date = 'tous';
-                    $search = "";
+                     <?php 
+
+                  
+                    $num_per_page=03;
+                  
+                   if(empty( $_SESSION['dateD']) && empty( $_SESSION['searchD']))
+                   {
+                    $_SESSION['dateD']='tous';
+                    $_SESSION['searchD']='';
+                   }
+                   if(isset($_POST['searchDoc']))
+                    {
+                     
+                      $_SESSION['dateD'] = $_POST['byDateD'];
+                      $_SESSION['searchD'] = $_POST['searchD'];
+                    }
+                    // echo "ana session". $_SESSION['date']."<br>";
+
+                    $pageD = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+                    // echo "ana page".$pageM."<br>";
+                    $start_fromD =   ($pageD-1)*$num_per_page;
+                    // echo "ana lbdya".$start_from;
+                    $doc_array = filter_by_date("documents",$_SESSION['dateD'],$start_fromD,$num_per_page,"nomDoc", $_SESSION['searchD'],$conn);
+                    $doc = $doc_array['query'];
+                    $total_recordsD=$doc_array['nb_rows'];
+                    // echo $total_records;
+                    $res = "<p class='response hideMe'>Il existe ". $total_recordsD." enregistrement</p>";
+                    $total_pages=ceil($total_recordsD/$num_per_page);
+                    if($total_recordsD>0)
+                    {
                       
+                      table_doc($doc,$res);
+                     
+                    }
+                    $doc1_array = filter_by_date("documents",$_SESSION['dateD'],$start_fromD,$num_per_page,"nomDoc", $_SESSION['searchD'],$conn);
+                    $doc1 = $doc1_array['query'];
+                    $total_recordsD1=$doc1_array['nb_rows'];
+                    // echo $total_records;
+                    $total_pages=ceil($total_recordsD1/$num_per_page);
+                    $res1 = "<p class='response '>Il existe ". $total_recordsD1." enregistrement</p>";
+                    if($total_recordsD1>0)
+                    {
                     
-                    if(isset($_GET['byDate'])||isset($_GET['search']))
-                      {
-                        $date = $_GET['byDate'];
-                        $search = $_GET['search'];
-                       $doc = filter_by_date("documents",$date,$start_from,$num_per_page,"nomDoc",$search,$conn);
-                        if (mysqli_num_rows($doc) > 0) 
-                        { // output data of each row
-                              affich_doc($doc);
-                            
-                        }
-                            //=================afficher le tableau============================
-                       $doc1 = filter_by_date("documents",$date,$start_from,$num_per_page,"nomDoc",$search,$conn);
+                      affich_doc($doc1,$res1);
+                     
+                    }
+                    else
+                    {
+                    echo"<div class='affichage-item-msg border'>
+                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                    </div>";
+                    } 
+                 
+                            echo'<div class="pages-btn">';
 
-                            if (mysqli_num_rows($doc1) > 0) 
-                            { table_doc($doc1); }
-                            else
-                            {
-                              echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
-                      }
-                      else
-                      {
-                           $doc = mysqli_query($conn,"SELECT * FROM documents limit $start_from,$num_per_page");
-                          if (mysqli_num_rows($doc) > 0) 
-                        { // output data of each row
-                              affich_doc($doc);
-                        }
-                            //=================afficher le tableau============================
-                           $doc1 = mysqli_query($conn,"SELECT * FROM documents limit $start_from,$num_per_page");
-                            if (mysqli_num_rows($doc1) > 0) 
-                            { table_doc($doc1); }
-                            else
-                            {
-                              echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-                            } 
-                      } 
-                                          
-                      ?>
-                      <?php 
-          echo'<div class="pages-btn">';
-          pagination($conn,"documents","document.php",3,$page);
+                            for ($i=1; $i <= $total_pages ; $i++){  
+                                echo "<a class='pagination'href='?page=".$i."'>".$i."</a>" ;
+                              } 
+                              echo'</div>';
+                   
+                    ?>
 
-          echo'</div>';
-          ?>
+                  
         </div>
      </div>
      
@@ -491,4 +448,27 @@ echo"
   </footer>    
 
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+   <script src="js/script.js" defer></script>
+   <!-- <script src="js/main.js" defer></script> -->
+   <script src="js/docDisplay.js" defer></script>
+   <script src="js/docEdit.js" defer></script>
+   <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+   <script src="js/modal.js" defer></script>
+   <script>
+
+        // console.log("options");
+       let options = document.querySelectorAll('.options-btn');
+       for (let i = 0; i < options.length; i++) {
+         options[i].addEventListener('click',()=>{
+         let div=options[i].nextElementSibling
+          $(div).toggle()
+   
+  })
+}
+   </script>
+   
 </html>

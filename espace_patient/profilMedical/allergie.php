@@ -3,10 +3,10 @@
  include '../../connexionDoc/cnx.php';
 include'filter.php';
 
- function affich_allergie($allergie) {
+ function affich_allergie($allergie,$res) {
   echo' 
   <!-- -----------------------AFFICHAGE DES allergies------------------------ -->
-   <div class="affichage">';
+   <div class="affichage">'.$res;
   while($row = mysqli_fetch_assoc($allergie)) 
   { 
      echo"
@@ -24,9 +24,10 @@ include'filter.php';
   }
   echo'</div>';
  }
- function table_allergie($allergie) {
+ function table_allergie($allergie,$res) {
 
   echo"
+  $res
     <table id='allergie-table'>
     <thead>
       <tr>
@@ -121,70 +122,92 @@ echo"
                     <hr>
                     <!-- -----------------filtring data--------------------------- -->
                     <div class="filters">
-                      <form action="" method="GET" id="filter">
+                      <form action="" method="POST" id="filter">
                        
-                        <input type="text" name="search" id="search" placeholder='nom ...'>
-                        <button type="submit" name="submit-searchA" class="searchBtn">
+                        <input type="text" name="searchA" id="search" placeholder='nom ...'>
+                        <button type="submit" name="searchAlg" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
-<?php 
+                    <?php 
 
-$date = 'tous';
-$search = "";
-  //--------allergie-------------
- 
- if(isset($_GET['search']))
-  {
-    $search = $_GET['search'];
-    $allergie = mysqli_query($conn , "SELECT * from allergies  where  nom  LIKE'%$search%' limit $start_from,$num_per_page;");
-    if (mysqli_num_rows($allergie) > 0) 
-    { // output data of each row
-          affich_allergie($allergie);
-         
-    }
-        //=================afficher le tableau============================
-    $allergie1 = mysqli_query($conn , "SELECT * from allergies  where  nom  LIKE'%$search%' limit $start_from,$num_per_page;");
+                        $num_per_page=03;
 
-        if (mysqli_num_rows($allergie1) > 0) 
-        { table_allergie($allergie1); }
-        else
-        {
-          echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-        } 
-  }
-  else
-  {
-        $allergie = mysqli_query($conn,"SELECT * FROM allergies limit $start_from,$num_per_page");
-      if (mysqli_num_rows($allergie) > 0) 
-    { // output data of each row
-          affich_allergie($allergie);
-    }
-        //=================afficher le tableau============================
-        $allergie1 = mysqli_query($conn,"SELECT * FROM allergies limit $start_from,$num_per_page");
-        if (mysqli_num_rows($allergie1) > 0) 
-        { table_allergie($allergie1); }
-        else
-        {
-          echo"<div class='affichage-item-msg border'>
-          <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-          </div>";
-        } 
-  } 
-?>
+                        if( empty( $_SESSION['searchAl']))
+                        {
+                        $_SESSION['searchAl']='';
+                        }
+                        if(isset($_POST['searchAlg']))
+                        {
 
-<?php 
-echo'<div class="pages-btn">';
-pagination($conn,"allergies","allergie.php",3,$page);
+                          $_SESSION['searchAl'] = $_POST['searchA'];
+                        }
+                        // echo "ana session". $_SESSION['dateH']."<br>";
+                        // echo "ana search". $_SESSION['searchAl']."<br>";
 
-echo'</div>';
-?>
+                        $pageAl = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+                        // echo "ana page".$page."<br>";
+                        $start_fromAl =   ($pageAl-1)*$num_per_page;
+                        // echo "ana lbdya".$start_fromAl;
+                        $allergie = mysqli_query($conn , "SELECT * from allergies  where  nom  LIKE '%{$_SESSION['searchAl']}%' limit $start_fromAl,$num_per_page;");
+                        $query= mysqli_query($conn,"SELECT * from allergies  where  nom  LIKE '%{$_SESSION['searchAl']}%' ;");
+                        $total_recordsAl =mysqli_num_rows($query);
+                          // echo 'ana total'.$total_recordsAl;
+                        $total_pages=ceil($total_recordsAl/$num_per_page);
+                        $res ="<p class='response hideMe'>Il existe ". $total_recordsAl." enregistrement</p>";
+                        if($total_recordsAl>0)
+                        {
+                          table_allergie($allergie,$res); 
+                        }
+                        //==================small devices================
+                        $allergie1 = mysqli_query($conn , "SELECT * from allergies  where  nom  LIKE '%{$_SESSION['searchAl']}%' limit $start_fromAl,$num_per_page;");
+                        // echo 'ana total'.$total_recordsAl;
+                      $total_pages=ceil($total_recordsAl/$num_per_page);
+                      $res1 ="<p class='response '>Il existe ". $total_recordsAl." enregistrement</p>";
+                      if($total_recordsAl>0)
+
+                      {
+                       
+                        
+                        affich_allergie($allergie1,$res1); 
+                        
+                            
+
+                      }
+                        else
+                        {
+                        echo"<div class='affichage-item-msg border'>
+                        <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                        </div>";
+                        } 
+
+                                echo'<div class="pages-btn">';
+
+                                for ($i=1; $i <= $total_pages ; $i++){  
+                                    echo "<a class='pagination'href='?page=".$i."'>".$i."</a>" ;
+                                  } 
+                                  echo'</div>';
+
+                        ?>
+
     </div>
 
 </div>
 </div>
 
 <?php include'footer.php';?>
+<script type="text/javascript">
+  //=====================toogle to show the options div=============
+let options = document.querySelectorAll('.options-btn');
+console.log(options)
+for (let i = 0; i < options.length; i++) {
+  options[i].addEventListener('click',()=>{
+    let div=options[i].nextElementSibling
+    // div.style.display="block"
+    $(div).toggle()
+    console.log( )
+   
+  })
+}
+</script>

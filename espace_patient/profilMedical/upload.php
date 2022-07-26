@@ -1,6 +1,7 @@
 <?php
 include '../../connexionDoc/cnx.php';
 $success = false;
+
 // $msgs = array();
 $status=200;
 /*=============status numbers meaning:=====================
@@ -12,7 +13,7 @@ $status=200;
 550 => file error
 
 */
-$i=1;
+
 //defines our variables as an empty values:
 $name = $date = $add_by = $category = "";
 
@@ -81,24 +82,35 @@ if((!empty($_POST) ) AND (!empty($_FILES["file"]["size"])))
           if($file_size<150000000)
             {
               //give the new name to the file 
-              $file_new_name = $file_new.".".$file_actual_exten;
+              $_SESSION['fileName'] = $file_new.".".$file_actual_exten;
+              //  $_SESSION['fileName'] =  $_SESSION['fileName'];
               //======add a uniq id to uploaded file================================
               
-             
-              //===================check if file name exists already===========
-            
-              // $exist = mysqli_query($conn, "SELECT nomDoc FROM documents GROUP BY nomDoc  HAVING COUNT(*) > 1");
-              //   if(mysqli_num_rows($exist)) {
-
-              //    $nb=mysqli_num_rows($exist);
-                 
-              //     $file_new_name = $file_new."(".$nb.").".$file_actual_exten;
-                 
-              //   }
-                 //give the file destination where it will be stored temporerly:
-              $file_dest = 'uploads/'.$file_new_name;
+              $name_duplicate = mysqli_query($conn,"SELECT * FROM  documents WHERE nomDoc LIKE '%$file_new%'");
+              $nb_duplicate = mysqli_num_rows($name_duplicate);
+     
+            if($nb_duplicate!=0){
+              $_SESSION['fileName']= $file_new."_".rand(1,20).".".$file_actual_exten;
+              }
+              //================existing file================
+              $file_duplicate = mysqli_query($conn,"SELECT * FROM  documents WHERE fileName = '$file_name'");
+              $nb_duplicate_file = mysqli_num_rows($file_duplicate);
+              if($nb_duplicate_file!=0)
+              {
+                
+                $status = 150;
+                $msgs="❗ Le document existe déja ";
+                $res = ['success'=>$success,
+                 'msgs' => $msgs,
+                'status'=>$status];
+                 echo json_encode( $res );
+                 return;
+              }
               //===================================INSERT DATA TO DB==============================
-              $doc_info = "INSERT INTO documents(nomDoc,date,ajoutPar,categorieDoc) VALUES ('$file_new_name','$date','$add_by','$category')";
+
+              $file_dest = 'uploads/'.$_SESSION['fileName'];
+              $fileName = $_SESSION['fileName'];
+              $doc_info = "INSERT INTO documents(nomDoc,date,ajoutPar,categorieDoc,fileName) VALUES ('$fileName','$date','$add_by','$category','$file_name')";
               $addedInfo = mysqli_query($conn,$doc_info);     
               //========document added================ 
               if($addedInfo)
@@ -109,13 +121,13 @@ if((!empty($_POST) ) AND (!empty($_FILES["file"]["size"])))
                  $msgs="le document est ajoute 👌";
 
                  //get the id of the doc:
-                 $idDoc = "SELECT idDoc FROM documents WHERE nomDoc = '$file_new_name'";
+                 $idDoc = "SELECT idDoc FROM documents WHERE nomDoc = '$fileName'";
                  $docQuery= mysqli_query($conn,$idDoc); 
                  $id = mysqli_fetch_assoc($docQuery);
                  $res = ['success'=>$success,
                  'msgs' => $msgs,
                  'fileName'=> $file_name,
-                 'name'=> $file_new_name,
+                 'name'=> $_SESSION['fileName'],
                  'date'=>$date,
                  'added_by'=>$add_by,
                  'category'=>$category,
@@ -173,7 +185,6 @@ if((!empty($_POST) ) AND (!empty($_FILES["file"]["size"])))
 
          }
   } 
-
 
 // Send info back about the http response:
 

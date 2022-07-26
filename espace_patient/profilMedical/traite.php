@@ -3,11 +3,11 @@ include'filter.php';
 
 include'pagination.php';
 include '../../connexionDoc/cnx.php';
-function affich_traite($traite) {
+function affich_traite($traite,$res) {
   // output data of each row
   echo' 
   <!-- -----------------------AFFICHAGE DES TRAITEMENTS------------------------ -->
-   <div class="affichage">';
+   <div class="affichage">'.$res;
   while($row = mysqli_fetch_assoc($traite)) 
   { 
      echo"
@@ -30,9 +30,9 @@ function affich_traite($traite) {
 // =========================================
 
 }
-function table_traite($traite) {
+function table_traite($traite,$res) {
       echo
-      "
+      "$res
     <table id='traitement-table'>
     <thead>
     <tr>
@@ -156,7 +156,7 @@ function table_traite($traite) {
                   <hr>
                           <!-- -----------------filtring data--------------------------- -->
                     <div class="filters">
-                      <form action="" method="GET" id="by_date">
+                      <form action="" method="POST" id="by_date">
                         <select name="byDate">
                         <option name="tous" value="tous">Tous</option>
                             <option name="cemois" value="cemois">ce mois</option>
@@ -166,72 +166,94 @@ function table_traite($traite) {
                             <option name="plsans" value="plusieursAns">plus d'un an</option>
                         </select>
                         <input type="text" name="search" id="search" placeholder='nom ...'>
-                        <label for="searchBtn"><i class="fa-solid fa-magnifying-glass " id="search_icon"></i></label>
-                        <input type="submit" name="submit-searh" id="searchBtn">
+                       
+                        <button type="submit" name="searchT" class="searchBtn">
+                        <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
+                        </button>
                       </form>
                     </div>
+  <?php 
 
-<?php 
+                  
+                  $num_per_page=03;
+
+                  if(empty( $_SESSION['date']) && empty( $_SESSION['search']))
+                  {
+                  $_SESSION['date']='tous';
+                  $_SESSION['search']='';
+                  }
+                  if(isset($_POST['searchT']))
+                  {
+                  
+                    $_SESSION['date'] = $_POST['byDate'];
+                    $_SESSION['search'] = $_POST['search'];
+                  }
+                  // echo "ana session". $_SESSION['date']."<br>";
+
+                  $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+                  // echo "ana page".$page."<br>";
+                  $start_from =   ($page-1)*$num_per_page;
+                  // echo "ana lbdya 0".$start_from;
+                  $traite_array = filter_by_date("traitements",$_SESSION['date'],$start_from,$num_per_page,"nom", $_SESSION['search'],$conn);
+                  $traite = $traite_array['query'];
+                  $total_records=$traite_array['nb_rows'];
+                  // echo "ana total".$total_records;
+                  $total_pages=ceil($total_records/$num_per_page);
+                  $res = "<p class='response hideMe'>Il existe ". $total_records." enregistrement</p>";
+                  if($total_records>0)
+                  {
+                   
+                    table_traite($traite,$res);
+                        
+
+                  }//====================small devices================
+                  $traite1_array = filter_by_date("traitements",$_SESSION['date'],$start_from,$num_per_page,"nom", $_SESSION['search'],$conn);
+                  $traite1 = $traite1_array['query'];
+                  $total_records1=$traite1_array['nb_rows'];
+                  $res1 = "<p class='response'>Il existe ". $total_records1." enregistrement</p>";
+                  if($total_records1>0)
+                  {
+                    
+                    affich_traite($traite1,$res1);
+                    // echo"</div>"; 
+                        
+
+                  }
+                  else
+                  {
+                  echo"<div class='affichage-item-msg border'>
+                  <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun résultat n'est trouvé</p>
+                  </div>";
+                  } 
+
+                          echo'<div class="pages-btn">';
+
+                          for ($i=1; $i <= $total_pages ; $i++){  
+                              echo "<a class='pagination'href='?page=".$i."'>".$i."</a>" ;
+                            } 
+                            echo'</div>';
+
+                  ?>
 
 
-//================================display the fixed content=================================
-
-$date = 'tous';
-$search = "";
-  //--------traitements-------------
- 
- if(isset($_GET['byDate'])||isset($_GET['search']))
-  {
-    $date = $_GET['byDate'];
-    $search = $_GET['search'];
-    $traite = filter_by_date("traitements",$date,$start_from,$num_per_page,"nom",$search,$conn);
-    if (mysqli_num_rows($traite) > 0) 
-    { // output data of each row
-          affich_traite($traite);
-         
-    }
-        //=================afficher le tableau============================
-    $traite1 = filter_by_date("traitements",$date,$start_from,$num_per_page,"nom",$search,$conn);
-
-        if (mysqli_num_rows($traite1) > 0) 
-        { table_traite($traite1); }
-        else
-        {
-          echo"<div class='affichage-item-msg border'>
-                            <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-                            </div>";
-        } 
-  }
-  else
-  {
-        $traite = mysqli_query($conn,"SELECT * FROM traitements limit $start_from,$num_per_page");
-      if (mysqli_num_rows($traite) > 0) 
-        { // output data of each row
-          affich_traite($traite);
-        }
-        //=================afficher le tableau============================
-        $traite1 = mysqli_query($conn,"SELECT * FROM traitements limit $start_from,$num_per_page");
-        if(mysqli_num_rows($traite1) > 0) 
-        { table_traite($traite1); }
-        else
-        {
-          echo"<div class='affichage-item-msg border'>
-          <p><i class='fa-solid fa-circle-exclamation warning'></i> Aucun résultat n'est trouvé</p>
-          </div>";
-        } 
-  } 
-?>
- 
- <?php 
-echo'<div class="pages-btn">';
-pagination($conn,"traitements","traite.php",3,$page);
-echo'</div>';
-?>
  </div>
 
 </div>
                   
 </div>
 <?php include'footer.php';?>
-
+<script type="text/javascript">
+  //=====================toogle to show the options div=============
+let options = document.querySelectorAll('.options-btn');
+console.log(options)
+for (let i = 0; i < options.length; i++) {
+  options[i].addEventListener('click',()=>{
+    let div=options[i].nextElementSibling
+    // div.style.display="block"
+    $(div).toggle()
+    console.log( )
+   
+  })
+}
+</script>
  
