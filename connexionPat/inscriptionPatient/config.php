@@ -94,7 +94,9 @@ if($motdepasse == $motdepasse2 ){
   }
   else {
     $sql ="INSERT INTO patient (nom,prenom ,email,motdepasse,sexe,datenaissace ,numero,code,code_patient,temp) VALUES ('{$firstname}' , '{$secondname}' ,  '{$email}', '{$motdepasse}', '{$genre}', '{$date}',  '{$numero}','{$code}','{$code_pat}','oui') ";
+    $sqli1 ="INSERT INTO dossiermedical (nom,prenom ,email,sexe,datenaissace ,tel,code_patient) VALUES ('{$firstname}' , '{$secondname}' ,  '{$email}', '{$genre}', '{$date}',  '{$numero}','{$code_pat}') ";
     $result=mysqli_query($conn,$sql);
+    $result11=mysqli_query($conn,$sqli1);
     if ($result) {
         echo "<div style='display: none;'>";
                 //Create an instance; passing `true` enables exceptions

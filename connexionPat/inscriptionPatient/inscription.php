@@ -142,6 +142,11 @@ include 'config.php';
                     <label for="">Confirmation  de  mot de passe</label>
                     <span>Confirmation de mot de passe</span>
                   </div>
+                  <div class="input-container">
+                  <input type="date" name="date"  class="input" value ="<?php if(isset($_POST['submit'])){ echo $date ;} ?>">
+                    <!-- <label for="">Date de naissance</label> -->
+                    <!-- <span>Date de naissanc</span> -->
+                  </div>
                   <!-- numero -->
                   <div class="input-container">
                   <input type="tel" class="input" name="numero" value ="<?php if(isset($_POST['submit'])){ echo $numero ;} ?>">
