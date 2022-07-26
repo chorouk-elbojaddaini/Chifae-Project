@@ -96,7 +96,7 @@ include "cnx.php";
             </h1>
             <!-- start bare de recherche  -->
             <form
-              action="../pageRecherche/recherche.php"
+              action="../pageRecherche/recherche.php?page=1"
               class="boxes"
               method="post"
               enctype="multipart/form-data"

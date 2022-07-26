@@ -35,6 +35,16 @@ $date = mysqli_real_escape_string($conn,$_POST['date']);
 $genre = mysqli_real_escape_string($conn,$_POST['genre']);
 $code = mysqli_real_escape_string($conn,md5(rand()));
 $isMobile = preg_match('#^0[6-7]{1}\d{8}$#', $numero);
+function generateRandomString($length = 10) {
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $charactersLength = strlen($characters);
+  $randomString = '';
+  for ($i = 0; $i < $length; $i++) {
+      $randomString .= $characters[rand(0, $charactersLength - 1)];
+  }
+  return $randomString;
+}
+$code_pat= generateRandomString();
 
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM patient WHERE email = '{$email}'"))>0){
     $msg ="<p class='alert-red'> {$email} -Cet email est déjà inscrit!</p> ";
@@ -83,7 +93,7 @@ if($motdepasse == $motdepasse2 ){
     $msg ="<p class='alert-red'> Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, et 8 caractères!</p> ";
   }
   else {
-    $sql ="INSERT INTO patient (nom,prenom ,email,motdepasse,sexe,datenaissace ,numero,code) VALUES ('{$firstname}' , '{$secondname}' ,  '{$email}', '{$motdepasse}', '{$genre}', '{$date}',  '{$numero}','{$code}') ";
+    $sql ="INSERT INTO patient (nom,prenom ,email,motdepasse,sexe,datenaissace ,numero,code,code_patient,temp) VALUES ('{$firstname}' , '{$secondname}' ,  '{$email}', '{$motdepasse}', '{$genre}', '{$date}',  '{$numero}','{$code}','{$code_pat}','oui') ";
     $result=mysqli_query($conn,$sql);
     if ($result) {
         echo "<div style='display: none;'>";

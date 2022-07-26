@@ -39,7 +39,19 @@ if (isset($_GET['verification'])){
             $row = mysqli_fetch_assoc($result);
             if(empty($row['code'])){
                 $_SESSION['SESSION_EMAIL'] = $email;
-                header("location: connected.php");
+                if(!empty($row['temp'])){
+
+        
+                    header("location: ../espace_patient/accueil/welcome.html");
+                   $query= mysqli_query($conn ,"UPDATE patient SET temp='' WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+
+                    die();
+                    }
+                    else{
+                        header("location: ../espace_patient/accueil/index.php");
+
+                        die();
+                    }
             }
             else{
                  $msg="<p class='alert-blue'>vérifier votre compte et essayé de se connecter!</p>";

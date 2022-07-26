@@ -8,9 +8,9 @@
     include 'cnx.php';
 
     $query = mysqli_query($conn, "SELECT * FROM patient WHERE email='{$_SESSION['SESSION_EMAIL']}'");
+    $row = mysqli_fetch_assoc($query);
 
     if (mysqli_num_rows($query) > 0) {
-        $row = mysqli_fetch_assoc($query);
 
         echo "Welcome " . $row['nom'] . " <a href='logout.php'>Logout</a>";
     }

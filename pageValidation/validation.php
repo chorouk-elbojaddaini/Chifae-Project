@@ -231,7 +231,7 @@
                     <div class="input-group input-number">
                         <label for="dob">Votre numéro 
                         </label>
-                        <input id="phone" type="tel" name="phone" class="number" value ="<?php if(isset($_POST['sub'])){ echo $_POST["phone"] ;} ?>" />
+                        <input id="phone" type="number" name="phone" class="number" value ="<?php if(isset($_POST['sub'])){ echo $_POST["phone"] ;} ?>" />
                       </div>
                       
 	                  	

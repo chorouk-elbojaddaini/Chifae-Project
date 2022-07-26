@@ -147,6 +147,13 @@ include('../pageAcceuil/cnx.php');
       if(isset($_POST['search']))
       {
 
+
+   
+    
+    
+      if(isset($_POST['search'])){
+        $_SESSION['search']=$_POST['search'];
+
         $_SESSION['ville'] = $_POST['ville'];
         $_SESSION['specialite'] = $_POST['specialite'];
         $ville = $_SESSION['ville'] ;
@@ -155,9 +162,15 @@ include('../pageAcceuil/cnx.php');
         $_SESSION['ville2'] = "";  
 
       } 
+
       elseif (isset($_POST['search2']))
       {
              $_SESSION['nom'] = $_POST['nom'];
+
+      elseif (isset($_POST['search2'])){
+        $_SESSION['search2']=$_POST['search2'];
+            $_SESSION['nom'] = $_POST['nom'];
+
              $_SESSION['ville2'] = $_POST['ville2'];
              $_SESSION['ville'] = "";
              $_SESSION['specialite'] = "";
@@ -166,7 +179,7 @@ include('../pageAcceuil/cnx.php');
         $query="SELECT * FROM medecin WHERE (specialite= '$_SESSION[specialite]' AND ville='$_SESSION[ville]' ) OR (( nom = '$_SESSION[nom]' OR prenom = '$_SESSION[nom]'  OR CONCAT(CONCAT(nom,' '),prenom) LIKE '%$_SESSION[nom]%' ) AND ville='$_SESSION[ville2]')  ";
         $result= mysqli_query($conn,$query);
       $queryResults = mysqli_num_rows($result);
-      echo $queryResults ; ?> médecins <?php if (isset($_POST['search'])){ echo "$_SESSION[specialite]";} elseif  (isset($_POST['search2'])) {echo "$_SESSION[nom]";}  ?>  <?php if (isset($_POST['search'])){ echo "à  "."$_SESSION[ville]";} elseif  (isset($_POST['search2'])) {echo "à  "."$_SESSION[ville2]";} ?> trouvés</h3></div>
+      echo $queryResults ; ?> médecins <?php if  (isset($_POST['search2'])) {echo "$_SESSION[nom]";} elseif (isset($_SESSION['search'])){ echo "$_SESSION[specialite]";}   ?>  <?php if  (isset($_POST['search2'])) {echo "à  "."$_SESSION[ville2]";} elseif (isset($_SESSION['search'])){ echo "à  "."$_SESSION[ville]";}  ?> trouvés</h3></div>
     <!-- <div class="popup" id="popup-1"> -->
       <!-- <section class="overlay"></section>
       <div class="content" scroll="no" style="overflow: hidden">
@@ -213,7 +226,7 @@ var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
       
         <?php for ($i=1; $i <= $pages ; $i++){ ?> 
         <li class="page-item current-page active">
-          <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+          <a class="page-link"  href="?var1=0&page=<?php echo $i; ?>"><?php echo $i; ?></a>
         </li>
         <?php } ?>
         
@@ -352,21 +365,41 @@ marker.bindPopup("<b><?php   if(isset($nom)){
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
 
+
+
+// console.log(myFunction());
+var l = document.querySelectorAll(".page-link");
+l.forEach(element => {
+  element.addEventListener("click", () =>{
+    var c=  element.textContent;
+    
+      })
+  
+  }
+  )
+ 
+
 $(document).ready(function(){
 var a;
 $('.medecin-info').mouseover(function(e) {
 window.setTimeout(function () {
 window.location.reload();
-}, 1000);
+}, 2200);
 
    a = this.id;
 var b = a;
-window.history.replaceState('', 'New Page Title', '?var1='+a);
+
+const params = new URLSearchParams(location.search);
+
+params.set('var1',a);
+window.history.replaceState({}, '', `${location.pathname}?${params}`);
+
 
 
 
 
 });
+
 
 $('.prendre-rdv').click(function() {
    a = this.id;

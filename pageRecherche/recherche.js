@@ -19,18 +19,18 @@
       };
       
       //   color  of nav and popup  change when i scroll
-      window.addEventListener("scroll", () => {
+    //   window.addEventListener("scroll", () => {
      
-        document
-        .querySelector(".content")
-        .classList.toggle("aa", window.scrollY > 0);
-    });
-      window.addEventListener("scroll", () => {
-        document
-          .querySelector("nav")
-          .classList.toggle("window-scroll", window.scrollY > 0);
+    //     document
+    //     .querySelector(".content")
+    //     .classList.toggle("aa", window.scrollY > 0);
+    // });
+    //   window.addEventListener("scroll", () => {
+    //     document
+    //       .querySelector("nav")
+    //       .classList.toggle("window-scroll", window.scrollY > 0);
          
-      });
+    //   });
     
       
       // show/hide menu
@@ -195,22 +195,22 @@ btn.forEach(element => {
 
 
 // poppup
-const pop1 =document.querySelector(".overlay");
-const pop2 =document.querySelector(".content");
-const popbtn =document.querySelectorAll('.prendre-rdv');
-const btnclose = document.querySelector('.close-btn');
-const showpopup = () => {
-  pop1.style.display = "block";
-  pop2.style.display = "inline-block";
-};
-popbtn.forEach((btn) =>{
-  btn.addEventListener("click",showpopup);
-})
+// const pop1 =document.querySelector(".overlay");
+// const pop2 =document.querySelector(".content");
+// const popbtn =document.querySelectorAll('.prendre-rdv');
+// const btnclose = document.querySelector('.close-btn');
+// const showpopup = () => {
+//   pop1.style.display = "block";
+//   pop2.style.display = "inline-block";
+// };
+// popbtn.forEach((btn) =>{
+//   btn.addEventListener("click",showpopup);
+// })
 
-btnclose.addEventListener("click",() =>{
-  pop1.style.display="none";
-  pop2.style.display="none";
-})
+// btnclose.addEventListener("click",() =>{
+//   pop1.style.display="none";
+//   pop2.style.display="none";
+// })
 
 // map loading 
 // function myMap() {

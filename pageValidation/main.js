@@ -130,7 +130,7 @@ let check = document.querySelector(".check");
 let number = document.querySelector(".number");
 let text = document.querySelector(".text");
 
-let regex = /^[\d,\s,\+,\-]{10}/;
+let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 
 check.addEventListener("click",()=>{
 	if(number.value ==""){
@@ -202,15 +202,20 @@ return false;
   }
 
  
-   if(number.value.length<12){
+   if(e.length!=10){
     alert("le numéro doit contenir 10 nombres");
 
     location.reload();
 return false;
 	}
-	else if(number.value.match(regex)){
+
+ 
+
+  if(number.value.match(regex)){
 		
 	}
+ 
+
  
 
 

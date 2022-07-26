@@ -141,8 +141,13 @@ if (mysqli_num_rows($display) > 0)
             }?>
             
                 <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
+
                    <a class="pop"href="../profilMedical/profil.php" target="_blank" id="monProfil">Mes infos</a>
                    <a class="pop" href="#" id="deconnect">Se déconnecter</a>
+
+                   <a class="pop"href="../profilMedical/index.php" target="_blank" id="monProfil">Mes infos</a>
+                   <a class="pop" href="../../connexionPat/logout.php" id="deconnect">Se déconnecter</a>
+
         </div>
          </div>
         
@@ -155,7 +160,7 @@ if (mysqli_num_rows($display) > 0)
             <div class="hello">
                 <p id="salut" class="texte ">Salut,<span id="fullName">&nbsp;<?php echo $row['nom']."  ".$row['prenom'];?></span></p>
                 <p class="texte hidden visibility1">Avez une bonne journée et n'oubliez pas de prendre soin de votre santé</p>
-                <p class="texte"><a href="../../pageAcceuil/index.html"id="prendre-rdv">Prendre un RDV ></a></p>
+                <p class="texte"><a href="../../pageAcceuil/index.php"id="prendre-rdv">Prendre un RDV ></a></p>
               </div>
               
               <img class="" id="hello"src="images/doctor.png" alt="doctor">
@@ -277,77 +282,77 @@ if (mysqli_num_rows($display) > 0)
       </div>
 
        </div>
-       <footer>
-        <div class="container">
-          <div class="wrapper">
-            <div class="footer-widget">
+      <footer>
+    <div class="container">
+      <div class="wrapper">
+        <div class="footer-widget">
+          <a href="#">
+              <div class="logo-footer">
+            <img src="assets/logo.png" class="logo" />
+            <p>Shifae</p></div>
+          </a>
+          <p class="desc">
+          </p>
+          <ul class="socials">
+            <li>
               <a href="#">
-                  <div class="logo-footer">
-                <img src="assets/Layer1.png" class="logo" />
-                <p>Shifae</p></div>
+                <i class="fab fa-facebook-f"></i>
               </a>
-              <p class="desc">
-              </p>
-              <ul class="socials">
-                <li>
-                  <a href="#">
-                    <i class="fab fa-facebook-f"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fab fa-twitter"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fab fa-instagram"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fab fa-linkedin-in"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="footer-widget">
-              <h6>des liens rapides</h6>
-              <ul class="links">
-                <li><a href="#">Acceuil</a></li>
-                <li><a href="#"></a>Se connecter</li>
-                <li><a href="#">services</a></li>
-                <!-- <li><a href="#">testimonial</a></li> -->
-                <li><a href="#">contact</a></li>
-              </ul>
-            </div>
-            <div class="footer-widget">
-              <h6>Services</h6>
-              <ul class="links">
-                <li><a href="#">SOS</a></li>
-                <li><a href="#">livraison de médicaments</a></li>
-                <li><a href="#">Pharmacies de garde</a></li>
-                <li><a href="#">Contacts de Laboratoires</a></li>
-              </ul>
-            </div>
-            <div class="footer-widget">
-              <h6>Aide &amp; Support</h6>
-              <ul class="links">
-                <!-- <li><a href="#">support center</a></li> -->
-                <!-- <li><a href="#">live chat</a></li> -->
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Conditions Générales d’Utilisation </a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="copyright-wrapper">
-            <p>
-                © 2022 Shifae.com - Tous les droits sont réservés
-              <a href="#" target="blank">Shifae</a>
-            </p>
-          </div>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </li>
+          </ul>
         </div>
-      </footer>      
+        <div class="footer-widget">
+          <h6>des liens rapides</h6>
+          <ul class="links">
+            <li><a href="../../pageAcceuil/index.php">Acceuil</a></li>
+            <li><a href="../../connexionDoc/index.php">Medecin</a></li>
+            <li><a href="../../connexionPat/index.php">Patient</a></li>
+            <!-- <li><a href="#">testimonial</a></li> -->
+            <li><a href="../../ContactPage/contact.php">contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-widget">
+          <h6>Services</h6>
+          <ul class="links">
+            <li><a href="../../pageAcceuil/index.php">prise de RDV</a></li>
+            <li><a href="../../connexionPat/index.php">Dossier médical</a></li>
+            <li><a href="../../connexionDoc/index.php">calendrier pour medecin</a></li>
+            <!-- <li><a href="#">Contacts de Laboratoires</a></li> -->
+          </ul>
+        </div>
+        <div class="footer-widget">
+          <h6>Aide &amp; Support</h6>
+          <ul class="links">
+            <!-- <li><a href="#">support center</a></li> -->
+            <!-- <li><a href="#">live chat</a></li> -->
+            <li><a href="../../pageAcceuil/index.php#qa">FAQ</a></li>
+            <li><a href="../../condition/condition.php">Conditions Générales d’Utilisation </a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright-wrapper">
+        <p>
+            © 2022 Shifae.com - Tous les droits sont réservés
+          <a href="#" target="blank">Shifae</a>
+        </p>
+      </div>
+    </div>
+  </footer>     
    </div>
 
 

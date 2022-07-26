@@ -149,9 +149,9 @@ include 'config.php';
                     <span>Numéro</span>
                   </div>
                   <div class="input-container">
-                  <select  class="input" id="genre" name="genre" value ="<?php if(isset($_POST['submit'])){ echo $genre ;} ?>">
-                            <option value="homme">homme</option>
-                            <option value="femme">femme</option>
+                  <select  class="input" id="genre" name="genre" >
+                            <option value="homme"  <?php if(isset($_POST["genre"])){if($_POST["genre"]=="homme"){echo "selected";} }?>>homme</option>
+                            <option value="femme" <?php if(isset($_POST["genre"])){if($_POST["genre"]=="femme"){echo "selected";}} ?>>femme</option>
                         </select>
                                             
                   </div>

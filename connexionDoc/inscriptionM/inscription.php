@@ -159,8 +159,8 @@ include 'config.php';
                   <!-- genre -->
                   <div class="input-container">
                   <select  class="input" id="genre" name="genre" value ="<?php if(isset($_POST['submit'])){ echo $genre ;} ?>">
-                            <option value="homme">homme</option>
-                            <option value="femme">femme</option>
+                            <option value="homme" <?php if(isset($_POST["genre"])){if($_POST["genre"]=="homme"){echo "selected";} }?>>homme</option>
+                            <option value="femme" <?php if(isset($_POST["genre"])){if($_POST["genre"]=="femme"){echo "selected";} }?>>femme</option>
                         </select>
                                             
                   </div>
@@ -174,7 +174,7 @@ include 'config.php';
                  $total = mysqli_num_rows($result);
                  echo $total;
                  while($row=mysqli_fetch_array($result)){
-                  echo '<option value="'."$row[specialite]".'">'."$row[specialite]".'</option>'; 
+                  echo '<option value="'."$row[specialite]".'" ';?><?php if(isset($_POST["submit"])){if($_POST["specialite"] == "$row[specialite]"){echo "selected";} } ?> <?php echo '>'."$row[specialite]".'</option>'; 
                  }
                  ?>
                     </select>
@@ -194,7 +194,7 @@ include 'config.php';
                  $total = mysqli_num_rows($result);
                  echo $total;
                  while($row=mysqli_fetch_array($result)){
-                  echo '<option value="'."$row[ville]".'">'."$row[ville]".'</option>'; 
+                  echo '<option value="'."$row[ville]".'" ';?><?php if(isset($_POST["submit"])){if($_POST["ville"] == "$row[ville]"){echo "selected";} } ?> <?php echo '>'."$row[ville]".'</option>'; 
                  }
                  ?>
                     </select>

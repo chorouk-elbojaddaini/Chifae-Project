@@ -45,7 +45,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM medecin WHERE gmail = '{$
 
 }
 elseif (!$isMobile){
-  $msg ="<p class='alert'> le numero doit contenir 10 chiffres et commence par 07 ou 06! </p> ";
+  $msg ="<p class='alert-red'> le numero doit contenir 10 chiffres et commence par 07 ou 06! </p> ";
 }
 elseif(empty($firstname) == true){
   $msg ="<p class='alert-red'> veuillez remplir le champ nom </p> ";
@@ -64,11 +64,11 @@ elseif(empty($email) == true){
 
 }
 elseif(empty($motdepasse) == true){
-  $msg ="<p class='alert'> veuillez remplir le champ mot de passe</p> ";
+  $msg ="<p class='alert-red'> veuillez remplir le champ mot de passe</p> ";
 
 }
 elseif(empty($motdepasse2) == true){
-  $msg ="<p class='alert'> veuillez remplir le champ confirmation mot de passe </p> ";
+  $msg ="<p class='alert-red'> veuillez remplir le champ confirmation mot de passe </p> ";
 
 }
 elseif(empty($genre) == true){
