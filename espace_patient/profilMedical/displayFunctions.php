@@ -16,7 +16,8 @@ function table_maladie($malad)
         <th>Catégorie</th>
 
         <th>Description</th>
-        <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+        <th>Actions</th>
+
         
       </tr>
     </thead>
@@ -30,12 +31,12 @@ function table_maladie($malad)
                  <td>".$row["categorie"]."</td>
 
                  <td>".$row["description"]."</td>
-                  <td>
-                  <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                  <div class='options' data-div='".$row["idMal"]."'>
-                      <button class='editM' value='".$row["idMal"]."'><i class='fa-solid fa-pen'></i></button>
-                      <button class='deleteM' id='delete-'".$row["idMal"]."' value='".$row["idMal"]."'><i class='fa-solid fa-trash-can'></i></button>
-                  </div>
+                 
+                  <td class='options'>
+          
+                      <button class='editM btn-option' value='".$row["idMal"]."'><i class='fa-solid fa-pen'></i></button>
+                      <button class='deleteM btn-option' id='delete-'".$row["idMal"]."' value='".$row["idMal"]."'><i class='fa-solid fa-trash-can'></i></button>
+                  
                  </td>
             </tr>
          ";       
@@ -59,7 +60,8 @@ function table_traite($traite) {
     <th>Durée</th>
     <th>Dose</th>
     <th>Description</th>
-    <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+            <th>Actions</th>
+
   </tr>
   </thead>
   <tbody>";
@@ -72,12 +74,11 @@ function table_traite($traite) {
             <td>".$row["duree"]."</td>
             <td>".$row["dose"]."</td>
             <td>".$row["description"]."</td>
-              <td>
-              <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-              <div class='options' data-div='".$row["idT"]."'>
-                  <button class='editT' value='".$row["idT"]."'><i class='fa-solid fa-pen'></i></button>
-                  <button class='deleteT' id='delete-'".$row["idT"]."' value='".$row["idT"]."'><i class='fa-solid fa-trash-can'></i></button>
-              </div>
+            <td class='options'>
+              
+                  <button class='editT btn-option' value='".$row["idT"]."'><i class='fa-solid fa-pen'></i></button>
+                  <button class='deleteT btn-option' id='delete-'".$row["idT"]."' value='".$row["idT"]."'><i class='fa-solid fa-trash-can'></i></button>
+            
             </td>
         </tr>
     ";       
@@ -100,7 +101,8 @@ function table_hospital($hospital)
        <th>Date d'admission</th>
        <th>Durée de séjour</th>
        <th>Description</th>
-       <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+               <th>Actions</th>
+
        
      </tr>
    </thead>
@@ -114,12 +116,11 @@ function table_hospital($hospital)
                 <td>".$row["duree"]."</td>
 
                 <td>".$row["description"]."</td>
-                 <td>
-                 <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                 <div class='options' data-div='".$row["idH"]."'>
-                     <button class='editH' value='".$row["idH"]."'><i class='fa-solid fa-pen'></i></button>
-                     <button class='deleteH' id='delete-'".$row["idH"]."' value='".$row["idH"]."'><i class='fa-solid fa-trash-can'></i></button>
-                 </div>
+                <td class='options'>
+               
+                     <button class='editH btn-option' value='".$row["idH"]."'><i class='fa-solid fa-pen'></i></button>
+                     <button class='deleteH btn-option' id='delete-'".$row["idH"]."' value='".$row["idH"]."'><i class='fa-solid fa-trash-can'></i></button>
+                 
                 </td>
            </tr>
         ";       
@@ -140,7 +141,8 @@ function table_allergie($allergie) {
         <tr>
           <th>Nom du allergie</th>
           <th>Description</th>
-          <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+                  <th>Actions</th>
+
           
         </tr>
       </thead>
@@ -151,12 +153,11 @@ function table_allergie($allergie) {
              <tr>
                   <td>".$row["nom"]."</td>
                    <td>".$row["description"]."</td>
-                    <td>
-                    <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                    <div class='options' data-div='".$row["idA"]."'>
-                        <button class='editA' value='".$row["idA"]."'><i class='fa-solid fa-pen'></i></button>
-                        <button class='deleteA' id='delete-'".$row["idA"]."' value='".$row["idA"]."'><i class='fa-solid fa-trash-can'></i></button>
-                    </div>
+                   <td class='options'>
+                    
+                        <button class='editA btn-option' value='".$row["idA"]."'><i class='fa-solid fa-pen'></i></button>
+                        <button class='deleteA btn-option' id='delete-'".$row["idA"]."' value='".$row["idA"]."'><i class='fa-solid fa-trash-can'></i></button>
+                   
                    </td>
               </tr>
            ";       
@@ -194,12 +195,11 @@ while($row = mysqli_fetch_assoc($vaccin))
            <td>".$row["protegeContre"]."</td>
            <td>".$row["nbRappel"]."</td>
            <td>".$row["description"]."</td>
-            <td>
-            <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-            <div class='options' data-div='".$row["idV"]."'>
-                <button class='editV' value='".$row["idV"]."'><i class='fa-solid fa-pen'></i></button>
-                <button class='deleteV' id='delete-'".$row["idV"]."' value='".$row["idV"]."'><i class='fa-solid fa-trash-can'></i></button>
-            </div>
+           <td class='options'>
+          
+                <button class='editV btn-option' value='".$row["idV"]."'><i class='fa-solid fa-pen'></i></button>
+                <button class='deleteV btn-option' id='delete-'".$row["idV"]."' value='".$row["idV"]."'><i class='fa-solid fa-trash-can'></i></button>
+            
            </td>
       </tr>
    ";       
@@ -286,7 +286,8 @@ function table_antecedent($antecedent)
     <th>Nom de la antecedentie</th>
     <th>Lien familiale</th>
     <th>Description</th>
-    <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+            <th>Actions</th>
+
     
   </tr>
 </thead>
@@ -298,12 +299,11 @@ function table_antecedent($antecedent)
             <td>".$row["nom"]."</td>
             <td>".$row["lien"]."</td>
              <td>".$row["description"]."</td>
-              <td>
-              <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-              <div class='options' data-div='".$row["idAnt"]."'>
-                  <button class='editAnt' value='".$row["idAnt"]."'><i class='fa-solid fa-pen'></i></button>
-                  <button class='deleteAnt' id='delete-'".$row["idAnt"]."' value='".$row["idAnt"]."'><i class='fa-solid fa-trash-can'></i></button>
-              </div>
+             <td class='options'>
+             
+                  <button class='editAnt btn-option' value='".$row["idAnt"]."'><i class='fa-solid fa-pen'></i></button>
+                  <button class='deleteAnt btn-option' id='delete-'".$row["idAnt"]."' value='".$row["idAnt"]."'><i class='fa-solid fa-trash-can'></i></button>
+              
              </td>
         </tr>
      ";       
@@ -327,7 +327,8 @@ function table_doc($doc)
         <th>Date</th>
         <th>Ajouté par</th>
         <th>Catégorie</th>
-        <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+                <th>Actions</th>
+
       </tr>
     </thead>
     <tbody>";
@@ -339,13 +340,12 @@ function table_doc($doc)
            <td>".$row["date"]."</td>
            <td>".$row["ajoutPar"]."</td>
            <td>".$row["categorieDoc"]."</td>
-                  <td>
-                  <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                  <div class='options' data-div='".$row["idDoc"]."'>
-                  <p><a href='download.php?file=". $row["nomDoc"]."'><i class='fa-solid fa-file-arrow-down'></i></a></p>
-                      <button class='editDoc' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
-                      <button class='deleteDoc' id='delete-'".$row["idDoc"]."' value='".$row["idDoc"]."'><i class='fa-solid fa-trash-can'></i></button>
-                  </div>
+           <td class='options'>
+                 
+                  <p class='btn-optionD'><a href='download.php?file=". $row["nomDoc"]."'><i class='fa-solid fa-file-arrow-down'></i></a></p>
+                      <button class='editDoc btn-optionD' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
+                      <button class='deleteDoc btn-optionD' id='delete-'".$row["idDoc"]."' value='".$row["idDoc"]."'><i class='fa-solid fa-trash-can'></i></button>
+                  
                  </td>
             </tr>
          ";       
@@ -372,7 +372,8 @@ function table_diag($diag)
         <th>Diagnostique</th>
         <th>Examens complémentaires</th>
         <th>Traitement</th>
-        <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+                <th>Actions</th>
+
       </tr>
     </thead>
     <tbody>";
@@ -387,12 +388,11 @@ function table_diag($diag)
            <td>".$row["exam"]."</td>
            <td>".$row["traitement"]."</td>
 
-                  <td>
-                  <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                  <div class='options' data-div='".$row["idD"]."'>
-                      <button class='editD' value='".$row["idD"]."'><i class='fa-solid fa-pen'></i></button>
-                      <button class='deleteD' id='delete-'".$row["idD"]."' value='".$row["idD"]."'><i class='fa-solid fa-trash-can'></i></button>
-                  </div>
+           <td class='options'>
+                 
+                      <button class='editD btn-option' value='".$row["idD"]."'><i class='fa-solid fa-pen'></i></button>
+                      <button class='deleteD btn-option' id='delete-'".$row["idD"]."' value='".$row["idD"]."'><i class='fa-solid fa-trash-can'></i></button>
+                  
                  </td>
             </tr>
          ";       

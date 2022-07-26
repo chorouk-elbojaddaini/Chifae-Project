@@ -674,8 +674,8 @@ th:nth-child(2) { background-color: #5a8389; }
 th:nth-child(3) { background-color: #71959a; }
 th:nth-child(4) { background-color: #89a7ab; }
 th:nth-child(5) { background-color: #a1b8bb; }
-th:nth-child(6) { background-color: #d0dcdd; }
-th:nth-child(7) { background-color: #dad5d5; }
+th:nth-child(6) { background-color: #a6b7bb; }
+th:nth-child(7) { background-color: #bcc9cc; }
 
 /* =========================PAGE 6===================== */
  .grid-mesure
@@ -874,8 +874,9 @@ td
 }
 /* ============================OPTIONS UL STYLING================== */
 
+
 td > div[class="options"],
-td > div[class="op-doc"],{
+td > div[class="op-doc"]{
   position: relative;
 }
 .options-btn
@@ -931,7 +932,8 @@ div[class="options"],.op-doc
   border:none;
   color:var(--green2);
   font-size:1rem;
-  margin: 5px;
+  margin-left: 5px;
+
 }
 .affichage
 {
@@ -948,6 +950,14 @@ p
   font-size:1rem;
   font-weight:600;
   padding:5px;
+}.btn-option{
+   margin-left: 25% !important;
+}
+.btn-optionD{
+  margin-left:5% !important;
+}
+p[class='btn-optionD']{
+  display: inline !important;
 }
 /* =========================profil page============================== */
 .main-page {

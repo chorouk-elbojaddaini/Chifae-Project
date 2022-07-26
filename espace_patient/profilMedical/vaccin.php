@@ -45,7 +45,7 @@ function table_vaccin($vaccin,$res)
   <th>Durée</th>
   <th>Nombre des rappels</th>
   <th>Description</th>
-  <th><i class='fa-solid fa-ellipsis-vertical'></i></th>
+  <th>Actions</th>
 </tr>
 </thead>
 <tbody>";
@@ -58,12 +58,11 @@ while($row = mysqli_fetch_assoc($vaccin))
            <td>".$row["protegeContre"]."</td>
            <td>".$row["nbRappel"]."</td>
            <td>".$row["description"]."</td>
-            <td>
-            <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-            <div class='options' data-div='".$row["idV"]."'>
-                <button class='editV' value='".$row["idV"]."'><i class='fa-solid fa-pen'></i></button>
-                <button class='deleteV' id='delete-'".$row["idV"]."' value='".$row["idV"]."'><i class='fa-solid fa-trash-can'></i></button>
-            </div>
+           <td class='options'>
+            
+                <button class='editV btn-option' value='".$row["idV"]."'><i class='fa-solid fa-pen'></i></button>
+                <button class='deleteV btn-option' id='delete-'".$row["idV"]."' value='".$row["idV"]."'><i class='fa-solid fa-trash-can'></i></button>
+         
            </td>
       </tr>
    ";       

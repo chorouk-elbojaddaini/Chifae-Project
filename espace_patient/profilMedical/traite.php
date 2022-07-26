@@ -41,7 +41,7 @@ function table_traite($traite,$res) {
       <th>Durée</th>
       <th>Dose</th>
       <th>Description</th>
-      <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+      <th> Actions</th>
     </tr>
     </thead>
     <tbody>";
@@ -54,12 +54,11 @@ function table_traite($traite,$res) {
               <td>".$row["duree"]."</td>
               <td>".$row["dose"]."</td>
               <td>".$row["description"]."</td>
-                <td>
-                <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                <div class='options' data-div='".$row["idT"]."'>
-                    <button class='editT' value='".$row["idT"]."'><i class='fa-solid fa-pen'></i></button>
-                    <button class='deleteT' id='delete-'".$row["idT"]."' value='".$row["idT"]."'><i class='fa-solid fa-trash-can'></i></button>
-                </div>
+              <td class='options'>
+            
+                    <button class='editT btn-option' value='".$row["idT"]."'><i class='fa-solid fa-pen'></i></button>
+                    <button class='deleteT btn-option' id='delete-'".$row["idT"]."' value='".$row["idT"]."'><i class='fa-solid fa-trash-can'></i></button>
+                
               </td>
           </tr>
       ";       

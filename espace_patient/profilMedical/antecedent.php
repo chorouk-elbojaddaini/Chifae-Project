@@ -41,7 +41,7 @@ function table_antecedent($antecedent,$res)
     <th>Nom de la antecedent</th>
     <th>Lien familiale</th>
     <th>Description</th>
-    <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+    <th> Actions</th>
     
   </tr>
 </thead>
@@ -53,12 +53,12 @@ function table_antecedent($antecedent,$res)
             <td>".$row["nom"]."</td>
             <td>".$row["lien"]."</td>
              <td>".$row["description"]."</td>
-              <td>
-              <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-              <div class='options' data-div='".$row["idAnt"]."'>
-                  <button class='editAnt' value='".$row["idAnt"]."'><i class='fa-solid fa-pen'></i></button>
-                  <button class='deleteAnt' id='delete-'".$row["idAnt"]."' value='".$row["idAnt"]."'><i class='fa-solid fa-trash-can'></i></button>
-              </div>
+             <td class='options'>
+
+             
+                  <button class='editAnt btn-option' value='".$row["idAnt"]."'><i class='fa-solid fa-pen'></i></button>
+                  <button class='deleteAnt btn-option' id='delete-'".$row["idAnt"]."' value='".$row["idAnt"]."'><i class='fa-solid fa-trash-can'></i></button>
+           
              </td>
         </tr>
      ";       

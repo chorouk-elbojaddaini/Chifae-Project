@@ -46,7 +46,7 @@ function table_doc($doc,$res)
         <th>Date</th>
         <th>Ajouté par</th>
         <th>Catégorie</th>
-        <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+        <th> Actions</th>
       </tr>
     </thead>
     <tbody>";
@@ -58,13 +58,12 @@ function table_doc($doc,$res)
            <td>".$row["date"]."</td>
            <td>".$row["ajoutPar"]."</td>
            <td>".$row["categorieDoc"]."</td>
-                  <td>
-                  <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                  <div class='options' data-div='".$row["idDoc"]."'>
-                  <p><a href='download.php?file=". $row["nomDoc"]."'><i class='fa-solid fa-file-arrow-down'></i></a></p>
-                      <button class='editDoc' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
-                      <button class='deleteDoc' id='delete-'".$row["idDoc"]."' value='".$row["idDoc"]."'><i class='fa-solid fa-trash-can'></i></button>
-                  </div>
+           <td class='options'>
+                 
+                  <p class='btn-optionD'><a href='download.php?file=". $row["nomDoc"]."'><i class='fa-solid fa-file-arrow-down'></i></a></p>
+                      <button class='editDoc btn-optionD' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
+                      <button class='deleteDoc btn-optionD' id='delete-'".$row["idDoc"]."' value='".$row["idDoc"]."'><i class='fa-solid fa-trash-can'></i></button>
+                  
                  </td>
             </tr>
          ";       

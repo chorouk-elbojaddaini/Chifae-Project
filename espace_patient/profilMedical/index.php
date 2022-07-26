@@ -78,7 +78,7 @@ function table_maladie($malad1,$res)
         <th>Catégorie</th>
 
         <th>Description</th>
-        <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+        <th> Actions</th>
         
       </tr>
     </thead>
@@ -92,12 +92,11 @@ function table_maladie($malad1,$res)
                  <td>".$row["categorie"]."</td>
 
                  <td>".$row["description"]."</td>
-                  <td>
-                  <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                  <div class='options' data-div='".$row["idMal"]."'>
-                      <button class='editM' value='".$row["idMal"]."'><i class='fa-solid fa-pen'></i></button>
-                      <button class='deleteM' id='delete-'".$row["idMal"]."' value='".$row["idMal"]."'><i class='fa-solid fa-trash-can'></i></button>
-                  </div>
+                 <td class='options'>
+                 
+                      <button class='editM btn-option' value='".$row["idMal"]."'><i class='fa-solid fa-pen'></i></button>
+                      <button class='deleteM btn-option' id='delete-'".$row["idMal"]."' value='".$row["idMal"]."'><i class='fa-solid fa-trash-can'></i></button>
+                
                  </td>
             </tr>
          ";       

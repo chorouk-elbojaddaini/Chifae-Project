@@ -16,7 +16,7 @@ function table_diag($diag,$res)
         <th>Diagnostique</th>
         <th>Examens complémentaires</th>
         <th>Traitement</th>
-        <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+        <th> Actions</th>
       </tr>
     </thead>
     <tbody>";
@@ -31,12 +31,11 @@ function table_diag($diag,$res)
            <td>".$row["exam"]."</td>
            <td>".$row["traitement"]."</td>
 
-                  <td>
-                  <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                  <div class='options' data-div='".$row["idD"]."'>
-                      <button class='editD' value='".$row["idD"]."'><i class='fa-solid fa-pen'></i></button>
-                      <button class='deleteD' id='delete-'".$row["idD"]."' value='".$row["idD"]."'><i class='fa-solid fa-trash-can'></i></button>
-                  </div>
+           <td class='options'>
+                  
+                      <button class='editD btn-option' value='".$row["idD"]."'><i class='fa-solid fa-pen'></i></button>
+                      <button class='deleteD btn-option' id='delete-'".$row["idD"]."' value='".$row["idD"]."'><i class='fa-solid fa-trash-can'></i></button>
+                 
                  </td>
             </tr>
          ";       

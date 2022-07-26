@@ -16,7 +16,7 @@ if (mysqli_num_rows($display) > 0)
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/nav.css" />
-    <link rel="icon" type="image/png" href="./images/logo.png" />
+    <link rel="icon" type="image/png" href="./assets/logo.png" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
   <link
   rel="stylesheet"
@@ -27,7 +27,7 @@ if (mysqli_num_rows($display) > 0)
       rel="stylesheet"
       href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
     />
-    <title>Accueil | Shifae</title>
+    <title>Accueil | Chifae</title>
       <!-- Font Awesome CDN Link -->
       <link
       rel="stylesheet"
@@ -59,7 +59,7 @@ if (mysqli_num_rows($display) > 0)
             <div class="container nav_container">
               <div class="logo_cont">
                 <a href="index.html"
-                  ><img src="./assets/Layer1.png" alt="logo" class="logo"
+                  ><img src="./assets/logo.png" alt="logo" class="logo"
                 /></a>
                 <h4>Shifae</h4>
               </div>
@@ -148,6 +148,11 @@ if (mysqli_num_rows($display) > 0)
                    <a class="pop"href="../profilMedical/index.php" target="_blank" id="monProfil">Mes infos</a>
                    <a class="pop" href="../../connexionPat/logout.php" id="deconnect">Se déconnecter</a>
 
+
+
+                   <a class="pop"href="../profilMedical/index.php" target="_blank" id="monProfil">Mes infos</a>
+                   <a class="pop" href="../../connexionPat/logout.php" id="deconnect">Se déconnecter</a>
+
         </div>
          </div>
         
@@ -225,17 +230,23 @@ if (mysqli_num_rows($display) > 0)
 
        <div class="aside hidden border">
         <img src="images/c10.png" alt="bg" id="bg">
+      
         <?php
+        $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
+        if (mysqli_num_rows($display) > 0) 
+         { 
+           $row = mysqli_fetch_assoc($display);
+         }
                if(empty($row['photo'] )){
                ?>
-              <img id="profile"  src="data:image;base64,<?php echo $row['photo'] ;?>">
+              <img  src="images/noprofil.jpg" alt="profile" id="profile">
             
                <?php
                }
                 else{
                   ?>
-                    <img  src="images/noprofil.jpg" alt="profile" id="profile">
-              
+                   
+               <img id="profile"  src="data:image;base64,<?php echo $row['photo'] ;?>">
               
               <?php
             }?>

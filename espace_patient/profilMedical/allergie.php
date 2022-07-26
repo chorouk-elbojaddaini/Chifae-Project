@@ -33,7 +33,7 @@ include'filter.php';
       <tr>
         <th>Nom du allergie</th>
         <th>Description</th>
-        <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+        <th>Actions</th>
         
       </tr>
     </thead>
@@ -44,12 +44,9 @@ include'filter.php';
            <tr>
                 <td>".$row["nom"]."</td>
                  <td>".$row["description"]."</td>
-                  <td>
-                  <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                  <div class='options' data-div='".$row["idA"]."'>
-                      <button class='editA' value='".$row["idA"]."'><i class='fa-solid fa-pen'></i></button>
-                      <button class='deleteA' id='delete-'".$row["idA"]."' value='".$row["idA"]."'><i class='fa-solid fa-trash-can'></i></button>
-                  </div>
+                  <td class='options'>
+                      <button class='editA btn-option' value='".$row["idA"]."'><i class='fa-solid fa-pen'></i></button>
+                      <button class='deleteA btn-option' id='delete-'".$row["idA"]."' value='".$row["idA"]."'><i class='fa-solid fa-trash-can'></i></button>
                  </td>
             </tr>
          ";       

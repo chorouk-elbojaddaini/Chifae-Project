@@ -38,7 +38,7 @@ include'filter.php';
         <th>Date d'admission</th>
         <th>Durée de séjour</th>
         <th>Description</th>
-        <th> <i class='fa-solid fa-ellipsis-vertical'></i></th>
+        <th> Actions</th>
         
       </tr>
     </thead>
@@ -52,12 +52,11 @@ include'filter.php';
                  <td>".$row["duree"]."</td>
 
                  <td>".$row["description"]."</td>
-                  <td>
-                  <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
-                  <div class='options' data-div='".$row["idH"]."'>
-                      <button class='editH' value='".$row["idH"]."'><i class='fa-solid fa-pen'></i></button>
-                      <button class='deleteH' id='delete-'".$row["idH"]."' value='".$row["idH"]."'><i class='fa-solid fa-trash-can'></i></button>
-                  </div>
+                 <td class='options'>
+                 
+                      <button class='editH btn-option' value='".$row["idH"]."'><i class='fa-solid fa-pen'></i></button>
+                      <button class='deleteH btn-option' id='delete-'".$row["idH"]."' value='".$row["idH"]."'><i class='fa-solid fa-trash-can'></i></button>
+                
                  </td>
             </tr>
          ";       
