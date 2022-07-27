@@ -133,27 +133,40 @@ echo"
               <!-- -------------------------Contenu------------------------ -->
 
                       <div class="contenu" data-page="8">
-                        <hr>
+   
                         <!-- -----------------filtring data--------------------------- -->
-  
+                      <?php
+                      if(empty( $_SESSION['dateDg']) && empty( $_SESSION['searchDg']))
+                      {
+                      $_SESSION['dateDg']='tous';
+                      $_SESSION['searchDg']='';
+                      }
+                      if(isset($_POST['searchDia']))
+                      {
+                        $_SESSION['dateDg'] = $_POST['byDateDg'];
+                        $_SESSION['searchDg'] = $_POST['searchDg'];
+                        $_SESSION['searchDia'] = $_POST['searchDia'];
+
+                      }
+                      ?>
                       <div class="filters">
-                      <form action="" method="GET" id="filter"name="diagnostic">
-                      <input type="hidden" name="diagnostic">
+                      <form action="" method="POST" id="filter"name="diagnostic">
                       <select name="byDateDg">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                      <option name="tous" value="tous" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchDg" id="search" placeholder='nom du médecin...'>
+                        <input type="text" name="searchDg" id="search" placeholder='nom du médecin...' value="<?php if(isset($_SESSION['searchDia'])){echo $_SESSION['searchDg'];}?>">
                        
-                        <button type="submit" name="searhDia" class="searchBtn" >
+                        <button type="submit" name="searchDia" class="searchBtn" >
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
+                    <hr class="hideMe">
                     <?php 
                
                $num_per_page=03;

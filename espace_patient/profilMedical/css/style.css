@@ -1560,7 +1560,12 @@ table
 {
   font-size:.9rem;
 }
-
+#info-profilP
+{
+  grid-area:infoD;
+  display:grid;
+  grid-template-columns:1fr
+}
   /* ===============the big title==================== */
   .profil-text h1[id="profil-medical"],#docs-title
 {

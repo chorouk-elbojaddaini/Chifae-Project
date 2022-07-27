@@ -1,5 +1,7 @@
 <?php 
 session_start();
+error_reporting(E_ALL ^ E_WARNING);
+
 include '../../connexionDoc/cnx.php';
 $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
 
@@ -188,6 +190,7 @@ function vanish() {
               <li class="tab "><a  href="#diagnosticS" data-switcher data-tab="9">Ajouter une diagnostique</a></li>
             </ul>
         </div>
+        
         <div id="heading" class="hid">
         <img src="./images/logo1.png" alt="logo" class="logo" width="100px" height="100px"/>
           <p>Dossier Médical :</p>
@@ -327,52 +330,58 @@ function vanish() {
            <hr class="hrD">
             
             <h2 class="titlesD t2" id="maladieS">Maladies et sujets de santé</h2>
-           <div >
+            <div  class="section">
           
                <!-- -----------------filtring data--------------------------- -->
-               <div class="filters">
-                      <form action="" method="POST"name="maladie" id="maladF">
-                        <input type="hidden" name="maladie">
-                        <select name="byDateM" >
-                        <option name="tous" value="tous" >Tous</option>
-                            <option name="cemois" value="cemois" >ce mois</option>
-                            <option name="moisprec" value="moisprec" >mois précédent</option>
-                            <option name="6mois" value="6mois" > 6 mois</option>
-                            <option name="ans" value="ans" >ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+               <?php
+                  if(empty( $_SESSION['dateMal']) && empty( $_SESSION['word']))
+                  {
+                  $_SESSION['dateMal']='tous';
+                  $_SESSION['word']='';
+                  }
+                  if(isset($_POST['searchM']))
+                  {
+                  $_SESSION['searchM']=$_POST['searchM'];
+                    $_SESSION['dateMal'] = $_POST['byDate'];
+                    $_SESSION['word'] = $_POST['word'];
+                  }
+                  ?>
+
+                  <!-- -------------------------Contenu------------------------ -->
+                  <!-- <div class="contenu " data-page="1"> -->
+                    
+                    <!-- -----------------filtring data--------------------------- -->
+                    <div class="filters">
+                      <form action="doctor.php#maladieS" method="POST" id="by_date" >
+                        <select name="byDate">
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchM'])){if($_SESSION['dateMal']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchM'])){if($_SESSION['dateMal']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchM'])){if($_SESSION['dateMal']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchM'])){if($_SESSION['dateMal']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchM'])){if($_SESSION['dateMal']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchM'])){if($_SESSION['dateMal']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchM" id="search" placeholder='categorie ...' >
-                          <button type="submit" name="searchMal" class="searchBtn" >
-                            <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
-                            </button>
-                          
+                        <input type="text" name="word" id="search" placeholder='ordinaire ...' value="<?php if(isset($_SESSION['searchM'])){echo $_SESSION['word'];}?>">
+                        <button type="submit" name="searchM" class="searchBtn">
+                        <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
+                        </button>
                       </form>
-                </div>
+                    </div>
                 
                 <button type="button" class="open-form" id="add-maladie" onclick="displayForm('maladie')">Ajouter </button>
                 <?php 
-                // echo  $_SESSION['date'] ;
+                // echo  $_SESSION['dateMal'] ;
                   
                     $num_per_page=03;
                   
-                   if(empty( $_SESSION['date']) && empty( $_SESSION['search']))
-                   {
-                    $_SESSION['date']='tous';
-                    $_SESSION['search']='';
-                   }
-                   if(isset($_POST['searchMal']))
-                    {
-                     
-                      $_SESSION['date'] = $_POST['byDateM'];
-                      $_SESSION['search'] = $_POST['searchM'];
-                    }
-                    // echo "ana session". $_SESSION['date']."<br>";
+               
+                    // echo "ana session". $_SESSION['dateMal']."<br>";
 
                     $pageM = isset($_GET["pageM"]) ? (int)$_GET["pageM"] : 1;
                     // echo "ana page".$pageM."<br>";
                     $start_from =   ($pageM-1)*$num_per_page;
                     // echo "ana lbdya".$start_from;
-                    $malad_array = filter_by_date("maladies",$_SESSION['date'],$start_from,$num_per_page,"categorie", $_SESSION['search'],$conn);
+                    $malad_array = filter_by_date("maladies",$_SESSION['dateMal'],$start_from,$num_per_page,"categorie", $_SESSION['word'],$conn);
                     $malad = $malad_array['query'];
                     $total_records=$malad_array['nb_rows'];
                     // echo $total_records;
@@ -408,20 +417,36 @@ function vanish() {
 
            <div  class="section">
                             <!-- -----------------filtring data--------------------------- -->
-                            <div class="filters">
-                      <form action="doctor.php#traiteS" method="POST" name="traite">
-                        <input type="hidden" name="traite">
-                        <select name="byDateT">
-                        <option name="tous" value="tous">Tous</option>
-                        <option name="cemois" value="cemois" >ce mois</option>
-                        <option name="moisprec" value="moisprec" >mois précédent</option>
-                        <option name="6mois" value="6mois" > 6 mois</option>
-                        <option name="ans" value="ans" >ans</option>
-                        <option name="plsans" value="plusieursAns" >plus d'un an</option>
+                            
+                            <?php
+                    if(empty( $_SESSION['dateT']) && empty( $_SESSION['searchT']))
+                    {
+                    $_SESSION['dateT']='tous';
+                    $_SESSION['searchT']='';
+                    }
+                    if(isset($_POST['searchT']))
+                    {
+                    
+                      $_SESSION['dateT'] = $_POST['byDate'];
+                      $_SESSION['searchT'] = $_POST['searchT'];
+                      $_SESSION['searchTr'] = $_POST['searchTr'];
+
+                    }
+                  ?>
+                          <!-- -----------------filtring data--------------------------- -->
+                    <div class="filters">
+                      <form action="doctor.php#traiteS" method="POST" id="by_date">
+                        <select name="byDate">
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchT" id="search" placeholder='nom ...'>
-                        
-                        <button type="submit" name="searchTraite" class="searchBtn">
+                        <input type="text" name="searchT" id="search" placeholder='nom du traitement...' value="<?php if(isset($_SESSION['searchTr'])){echo $_SESSION['searchT'];}?>">
+                       
+                        <button type="submit" name="searchTr" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
@@ -432,20 +457,6 @@ function vanish() {
                    
                     $num_per_page=03;
 
-                    if(empty( $_SESSION['dateT']) && empty( $_SESSION['searchT']))
-                    {
-                    $_SESSION['dateT']='tous';
-                    $_SESSION['searchT']='';
-                    }
-                    if(isset($_POST['searchTraite']))
-                    {
-                    
-                      $_SESSION['dateT'] = $_POST['byDateT'];
-                      $_SESSION['searchT'] = $_POST['searchT'];
-                    }
-                    // echo "ana session". $_SESSION['dateT']."<br>";
-                    // echo "ana search". $_SESSION['searchT']."<br>";
-                    
                     $pageT = isset($_GET["pageT"]) ? (int)$_GET["pageT"] : 1;
                     // echo "ana page".$pageT."<br>";
                     
@@ -486,19 +497,33 @@ function vanish() {
 
            <div  class="section">
                  <!-- -----------------filtring data--------------------------- -->
-                 <div class="filters">
-                      <form action="doctor.php#hospitalS" method="POST" name="hospital">
-                      <input type="hidden" name="hospital">
-
+                 <?php
+                      if(empty( $_SESSION['dateH']) && empty( $_SESSION['searchH']))
+                      {
+                      $_SESSION['dateH']='tous';
+                      $_SESSION['searchH']='';
+                      }
+                      if(isset($_POST['searchHospi']))
+                      {
+                        $_SESSION['searchHos'] = $_POST['searchHospi'];
+                        $_SESSION['dateH'] = $_POST['byDateH'];
+                        $_SESSION['searchH'] = $_POST['searchH'];
+                      }
+                  ?>
+                  <!-- <div class="contenu" data-page="3"> -->
+                 
+                      <!-- -----------------filtring data--------------------------- -->
+                      <div class="filters">
+                      <form action="doctor.php#hospitalS" method="POST" id="by_date">
                         <select name="byDateH">
-                        <option name="tous" value="tous">Tous</option>
-                        <option name="cemois" value="cemois" >ce mois</option>
-                        <option name="moisprec" value="moisprec">mois précédent</option>
-                        <option name="6mois" value="6mois" > 6 mois</option>
-                        <option name="ans" value="ans" >ans</option>
-                        <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchH" id="search" placeholder='cause...'>
+                        <input type="text" name="searchH" id="search" placeholder='cause ...' value="<?php if(isset($_SESSION['searchHos'])){echo $_SESSION['searchH'];}?>">
                         <button type="submit" name="searchHospi" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
@@ -511,19 +536,7 @@ function vanish() {
                     // $total_pages = 0;
                     $num_per_page=03;
 
-                    if(empty( $_SESSION['dateH']) && empty( $_SESSION['searchH']))
-                    {
-                    $_SESSION['dateH']='tous';
-                    $_SESSION['searchH']='';
-                    }
-                    if(isset($_POST['searchHospi']))
-                    {
-                    
-                      $_SESSION['dateH'] = $_POST['byDateH'];
-                      $_SESSION['searchH'] = $_POST['searchH'];
-                    }
-                    // echo "ana session". $_SESSION['dateH']."<br>";
-                    // echo "ana search". $_SESSION['searchH']."<br>";
+                
                     
                     $pageH = isset($_GET["pageH"]) ? (int)$_GET["pageH"] : 1;
                     // echo "ana page".$pageH."<br>";
@@ -566,11 +579,23 @@ function vanish() {
             <h2 class="titlesD t5" id="allergieS">Allergies</h2>
            <div  class="section">
                <!-- -----------------filtring data--------------------------- -->
-               <div class="filters">
-                      <form action="doctor.php#allergieS" method="POST" id="filter"name="allergie">
-                      <input type="hidden" name="allergie">
+               <?php
+                    if( empty( $_SESSION['searchAl']))
+                    {
+                    $_SESSION['searchAl']='';
+                    }
+                    if(isset($_POST['searchAlg']))
+                    {
+
+                      $_SESSION['searchAl'] = $_POST['searchA'];
+                      $_SESSION['searchAlg'] = $_POST['searchAlg'];
+
+                    }
+                    ?>
+                    <div class="filters"> 
+                      <form action="doctor.php#allergieS" method="POST" id="filter">
                        
-                        <input type="text" name="searchA" id="search" placeholder='nom ...' >
+                        <input type="text" name="searchA" id="search" placeholder='nom ...'value="<?php if(isset($_SESSION['searchAlg'])){echo $_SESSION['searchAl'];}?>">
                         <button type="submit" name="searchAlg" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
@@ -582,15 +607,7 @@ function vanish() {
 
                         $num_per_page=03;
 
-                        if( empty( $_SESSION['searchAl']))
-                        {
-                        $_SESSION['searchAl']='';
-                        }
-                        if(isset($_POST['searchAlg']))
-                        {
-
-                          $_SESSION['searchAl'] = $_POST['searchA'];
-                        }
+                   
                         // echo "ana session". $_SESSION['dateH']."<br>";
                         // echo "ana search". $_SESSION['searchAl']."<br>";
 
@@ -636,21 +653,34 @@ function vanish() {
             <h2 class="titlesD t6" id="vaccinS">Vaccinations</h2>
            <div class="section">
                     <!-- -----------------filtring data--------------------------- -->
-                    <div class="filters">
-                      <form action="doctor.php#vaccinS" method="POST" name="vaccin">
-                      <input type="hidden" name="vaccin">
+                    <?php
+                                   if(empty( $_SESSION['dateV']) && empty( $_SESSION['searchV']))
+                                   {
+                                   $_SESSION['dateV']='tous';
+                                   $_SESSION['searchV']='';
+                                   }
+                                   if(isset($_POST['searchVac']))
+                                   {
+                                   
+                                     $_SESSION['dateV'] = $_POST['byDateV'];
+                                     $_SESSION['searchV'] = $_POST['searchV'];
+                                     $_SESSION['searchVac'] = $_POST['searchVac'];
 
+                                   }
+                          ?>
+                    <div class="filters">
+                      <form action="doctor.php#vaccinS" method="POST" id="by_date">
                         <select name="byDateV">
-                        <option name="tous" value="tous" >Tous</option>
-                        <option name="cemois" value="cemois" >ce mois</option>
-                        <option name="moisprec" value="moisprec" >mois précédent</option>
-                        <option name="6mois" value="6mois" > 6 mois</option>
-                        <option name="ans" value="ans" >ans</option>
-                        <option name="plsans" value="plusieursAns" >plus d'un an</option>
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchV" id="search" placeholder='cause...'>
-                        <button type="submit" name="searchVac" class="searchBtn" >
-                           <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
+                        <input type="text" name="searchV" id="search" placeholder='nom du vaccin...' value="<?php if(isset($_SESSION['searchVac'])){echo $_SESSION['searchT'];}?>">
+                        <button type="submit" name="searchVac" class="searchBtn">
+                        <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
@@ -658,17 +688,7 @@ function vanish() {
                 <?php 
                     // $total_pages = 0;
                     $num_per_page=03;
-                    if(empty( $_SESSION['dateV']) && empty( $_SESSION['searchV']))
-                    {
-                    $_SESSION['dateV']='tous';
-                    $_SESSION['searchV']='';
-                    }
-                    if(isset($_POST['searchVac']))
-                    {
-                    
-                      $_SESSION['dateV'] = $_POST['byDateV'];
-                      $_SESSION['searchV'] = $_POST['searchV'];
-                    }
+                   
                     // echo "ana session". $_SESSION['dateV']."<br>";
                     // echo "ana search". $_SESSION['searchV']."<br>";
                     
@@ -712,41 +732,42 @@ function vanish() {
             <h2 class="titlesD t7" id="mesureS">Mesures</h2>
            <div  class="section">
                                    <!-- -----------------filtring data--------------------------- -->
-                                   <div class="filters">
-                      <form action="doctor.php#mesureS" method="POST" name="mesure">
-                      <input type="hidden" name="mesure">
+                                   <?php
+               if(empty( $_SESSION['dateMes']) )
+               {
+               $_SESSION['dateMes']='tous';
+               }
+               if(isset($_POST['searchMes']))
+               {
+               
+                 $_SESSION['dateMes'] = $_POST['byDateM'];
+                 $_SESSION['searchMes'] = $_POST['searchMes'];
 
-                        <select name="byDateMes">
-                        <option name="tous" value="tous" >Tous</option>
-                        <option name="cemois" value="cemois" >ce mois</option>
-                        <option name="moisprec" value="moisprec">mois précédent</option>
-                        <option name="6mois" value="6mois" > 6 mois</option>
-                        <option name="ans" value="ans">ans</option>
-                        <option name="plsans" value="plusieursAns" >plus d'un an</option>
+               }
+              ?>
+              <!-- -------------------------Contenu------------------------ -->
+              <div class="filters">
+                      <form action="doctor.php#mesureS" method="POST" id="by_date">
+                        <select name="byDateM">
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
+                        
                         <!-- <input type="text" name="search" id="search" placeholder='ordinaire ...'>--> 
-                       
-                        <button type="submit" name="searchMesure" class="searchBtn" >
+                        <button type="submit" name="searchMes" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
-                          </button>
+                        </button>
                       </form>
                     </div>
                     <button type="button" class="open-form" id="add-mesure" onclick="displayForm('mesure')">Ajouter </button>
                     <?php 
                     // $total_pages = 0;
                     $num_per_page=01;
-                    if(empty( $_SESSION['dateMes']) )
-                    {
-                    $_SESSION['dateMes']='tous';
-                    }
-                    if(isset($_POST['searchMesure']))
-                    {
-                    
-                      $_SESSION['dateMes'] = $_POST['byDateMes'];
-                    }
-                    $_SESSION['searchMes'] = "";
-                    // echo "ana session". $_SESSION['dateM']."<br>";
-                    
+                  
                     $pageM = isset($_GET["pageMes"]) ? (int)$_GET["pageMes"] : 1;
                     // echo "ana page".$pageH."<br>";
                     
@@ -789,13 +810,23 @@ function vanish() {
             <h2 class="titlesD t8" id="antecedentS">Antécédents familiaux</h2>
            <div  class="section">
                <!-- -----------------filtring data--------------------------- -->
-               <div class="filters">
-                      <form action="doctor.php#antecedentS" method="POST" id="filter"name="antecedent">
-                      <input type="hidden" name="antecedent">
+               <?php 
+                     if(empty( $_SESSION['searchAn']))
+                     {
+                     $_SESSION['searchAn']='';
+                     }
+                     if(isset($_POST['searchAnt']))
+                     {
+                     
+                       $_SESSION['searchAn'] = $_POST['searchAn'];
+                       $_SESSION['searchAnt'] = $_POST['searchAnt'];
+                     }
+                     ?>
+                     <div class="filters">
+                      <form action="doctor.php#antecedentS" method="POST" id="filter">
                        
-                      <input type="text" name="searchAn" id="search" placeholder='cause...'>
-                       
-                        <button type="submit" name="searchAnt" class="searchBtn" >
+                        <input type="text" name="searchAn" id="search" placeholder='nom ...'value="<?php if(isset($_SESSION['searchAnt'])){echo $_SESSION['searchAn'];}?>">
+                        <button type="submit" name="searchAnt" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
@@ -808,20 +839,6 @@ function vanish() {
 
                     // $total_pages = 0;
                     $num_per_page=03;
-                    
-
-                    if(empty( $_SESSION['searchAn']))
-                    {
-                    $_SESSION['searchAn']='';
-                    }
-                    if(isset($_POST['searchAnt']))
-                    {
-                    
-                      $_SESSION['searchAn'] = $_POST['searchAn'];
-                    }
-                    // echo "ana session". $_SESSION['dateV']."<br>";
-                    // echo "ana search". $_SESSION['searchAn']."<br>";
-                    
                     $pageAn = isset($_GET["pageAn"]) ? (int)$_GET["pageAn"] : 1;
                     // echo "ana page".$pageH."<br>";
                     
@@ -863,43 +880,43 @@ function vanish() {
             <h2 class="titlesD t9" id="documentS">Documents</h2>
            <div  class="section">
             <!-- -----------------filtring data--------------------------- -->
-            <div class="filters">
-                      <form action="doctor.php#documentS" method="POST" name="doc">
-                      <input type="hidden" name="doc">
+            <?php
+            if(empty( $_SESSION['dateD']) && empty( $_SESSION['searchD']))
+            {
+             $_SESSION['dateD']='tous';
+             $_SESSION['searchD']='';
+            }
+            if(isset($_POST['searchDoc']))
+             {
+              
+               $_SESSION['dateD'] = $_POST['byDateD'];
+               $_SESSION['searchD'] = $_POST['searchD'];
+               $_SESSION['searchDoc'] = $_POST['searchDoc'];
 
+             }
+           ?>
+           <div class="filters">
+                      <form action="doctor.php#documentS" method="POST" id="by_date">
                         <select name="byDateD">
-                        <option name="tous" value="tous" >Tous</option>
-                        <option name="cemois" value="cemois">ce mois</option>
-                        <option name="moisprec" value="moisprec" >mois précédent</option>
-                        <option name="6mois" value="6mois" > 6 mois</option>
-                        <option name="ans" value="ans" >ans</option>
-                        <option name="plsans" value="plusieursAns" >plus d'un an</option>
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchD" id="search" placeholder='nom...'>
+                        <input type="text" name="searchD" id="search" placeholder='nom du doc...' value="<?php if(isset($_SESSION['searchDoc'])){echo $_SESSION['searchD'];}?>">
                         <button type="submit" name="searchDoc" class="searchBtn">
-                           <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
+                        <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
+                    
                     <button type="button" class="open-form" id="add-doc" onclick="displayForm('doc');">Ajouter</button>
                     <?php 
 
                   
                     $num_per_page=03;
-                  
-                   if(empty( $_SESSION['dateD']) && empty( $_SESSION['searchD']))
-                   {
-                    $_SESSION['dateD']='tous';
-                    $_SESSION['searchD']='';
-                   }
-                   if(isset($_POST['searchDoc']))
-                    {
-                     
-                      $_SESSION['dateD'] = $_POST['byDateD'];
-                      $_SESSION['searchD'] = $_POST['searchD'];
-                    }
-                    // echo "ana session". $_SESSION['date']."<br>";
-
                     $pageD = isset($_GET["pageD"]) ? (int)$_GET["pageD"] : 1;
                     // echo "ana page".$pageM."<br>";
                     $start_fromD =   ($pageD-1)*$num_per_page;
@@ -939,18 +956,32 @@ function vanish() {
             <h2 class="titlesD"  id="diagnosticS">Diagnostique</h2>
            <div  class="section">
              <!-- -----------------filtring data--------------------------- -->
-             <div class="filters">
+             <?php
+                      if(empty( $_SESSION['dateDg']) && empty( $_SESSION['searchDg']))
+                      {
+                      $_SESSION['dateDg']='tous';
+                      $_SESSION['searchDg']='';
+                      }
+                      if(isset($_POST['searchDia']))
+                      {
+                        $_SESSION['dateDg'] = $_POST['byDateDg'];
+                        $_SESSION['searchDg'] = $_POST['searchDg'];
+                        $_SESSION['searchDia'] = $_POST['searchDia'];
+
+                      }
+                      ?>
+                      <div class="filters">
                       <form action="doctor.php#diagnosticS" method="POST" id="filter"name="diagnostic">
-                      <input type="hidden" name="diagnostic">
                       <select name="byDateDg">
-                      <option name="tous" value="tous" >Tous</option>
-                        <option name="cemois" value="cemois" >ce mois</option>
-                        <option name="moisprec" value="moisprec" >mois précédent</option>
-                        <option name="6mois" value="6mois"> 6 mois</option>
-                        <option name="ans" value="ans" >ans</option>
-                        <option name="plsans" value="plusieursAns" >plus d'un an</option>
+                      <option name="tous" value="tous" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchDg" id="search" placeholder='nom du médecin...'>
+                        <input type="text" name="searchDg" id="search" placeholder='nom du médecin...' value="<?php if(isset($_SESSION['searchDia'])){echo $_SESSION['searchDg'];}?>">
+                       
                         <button type="submit" name="searchDia" class="searchBtn" >
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
@@ -960,24 +991,11 @@ function vanish() {
                             <?php 
                
                   $num_per_page=03;
-
-                  if(empty( $_SESSION['DateDg']) && empty( $_SESSION['searchDg']))
-                  {
-                  $_SESSION['DateDg']='tous';
-                  $_SESSION['searchDg']='';
-                  }
-                  if(isset($_POST['searchDia']))
-                  {
-                    $_SESSION['DateDg'] = $_POST['byDateDg'];
-                    $_SESSION['searchDg'] = $_POST['searchDg'];
-                  }
-                  // echo "ana session". $_SESSION['searchDg']."<br>";
-
                   $pageDg = isset($_GET["pageDg"]) ? (int)$_GET["pageDg"] : 1;
                   // echo "ana page".$pageM."<br>";
                   $start_fromDg =   ($pageDg-1)*$num_per_page;
                   // echo "ana lbdya".$start_from;
-                  $diag_array = filter_by_date("diagnostic",$_SESSION['DateDg'],$start_fromDg,$num_per_page,"nomComplet", $_SESSION['searchDg'],$conn);
+                  $diag_array = filter_by_date("diagnostic",$_SESSION['dateDg'],$start_fromDg,$num_per_page,"nomComplet", $_SESSION['searchDg'],$conn);
                   $diag = $diag_array['query'];
                   $total_recordsDg=$diag_array['nb_rows'];
                   // echo $total_records;
@@ -1007,6 +1025,7 @@ function vanish() {
            
             </div>
          </div>
+    </div>
        
     </div>
     <script type="text/javascript">
@@ -1047,6 +1066,42 @@ for (let i = 0; i < options.length; i++) {
    
   })
 }
+//=============select 
+let divD = document.createElement("div");
+const divTabD = document.getElementById("doctor-tabs");
+function ul_to_selectD(divD, divTabD) {
+  $(divD).html(`
+    <select id="selectTab" onChange="window.location.href=this.value">
+    <option class="tab is-active"value="#maladieS" >Maladies et sujets de santé</option>
+              <option class="tab "value="#traiteS" >Traitements</option>
+              <option class="tab "value="#hospitalS" >Hospitalisation et chirurgies</option>
+              <option  class="tab" value="#allergieS" >Allergies</option>
+              <option class="tab "value="#vaccinS" >Vaccinations</option>
+              <option class="tab "value="#mesureS" >Mesures</option>
+              <option class="tab "value="#antecedentS" >Antécédents familiaux</option>
+              <option class="tab "value="#documentS" >Documents</option>
+              <option class="tab"value="#diagnosticS" >Ajouter une diagnostique</option>
+</select>
+<div class="chevron">
+        <img src ="images/arrow.PNG" alt="arrow" >
+      </div>
+`);
+  divD.setAttribute("class", "SelectBox");
+  // Build a reference to the existing node to be replaced
+  const ul_old = document.getElementById("tabsD");
+  console.log(divTabD);
+  // Replace existing node ul with the new element option
+  divTabD.replaceChild(divD, ul_old);
+}
+function smallDevicesD(query1) {
+    if (query1.matches) {
+      // If media query matches
+      ul_to_selectD(divD, divTabD);
+    }
+  }
+
+let query1 = window.matchMedia("(max-width:767px)");
+smallDevicesD(query1);
 </script>
 
 

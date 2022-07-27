@@ -155,37 +155,42 @@ echo"
 
                       <div class="contenu" data-page="5">
                           <!-- -----------------filtring data--------------------------- -->
+                          <?php
+                                   if(empty( $_SESSION['dateV']) && empty( $_SESSION['searchV']))
+                                   {
+                                   $_SESSION['dateV']='tous';
+                                   $_SESSION['searchV']='';
+                                   }
+                                   if(isset($_POST['searchVac']))
+                                   {
+                                   
+                                     $_SESSION['dateV'] = $_POST['byDateV'];
+                                     $_SESSION['searchV'] = $_POST['searchV'];
+                                     $_SESSION['searchVac'] = $_POST['searchVac'];
+
+                                   }
+                          ?>
                     <div class="filters">
                       <form action="" method="POST" id="by_date">
                         <select name="byDateV">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchV" id="search" placeholder='nom de vaccin....'>
+                        <input type="text" name="searchV" id="search" placeholder='nom du vaccin...' value="<?php if(isset($_SESSION['searchVac'])){echo $_SESSION['searchT'];}?>">
                         <button type="submit" name="searchVac" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
-                        <hr>
+                        <hr class="hideMe">
                         <?php 
                     // $total_pages = 0;
                     $num_per_page=03;
-                    if(empty( $_SESSION['dateV']) && empty( $_SESSION['searchV']))
-                    {
-                    $_SESSION['dateV']='tous';
-                    $_SESSION['searchV']='';
-                    }
-                    if(isset($_POST['searchVac']))
-                    {
-                    
-                      $_SESSION['dateV'] = $_POST['byDateV'];
-                      $_SESSION['searchV'] = $_POST['searchV'];
-                    }
+           
                     // echo "ana session". $_SESSION['dateV']."<br>";
                     // echo "ana search". $_SESSION['searchV']."<br>";
                     

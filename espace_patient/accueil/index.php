@@ -7,6 +7,8 @@ $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESS
 if (mysqli_num_rows($display) > 0) 
  { 
    $row = mysqli_fetch_assoc($display);
+   $_SESSION['idPatient'] =$row['id'];
+
  }
  ?>
 <!DOCTYPE html>
@@ -144,6 +146,7 @@ if (mysqli_num_rows($display) > 0)
             }?>
             
                 <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
+               
 
                    <a class="pop"href="../profilMedical/profil.php" target="_blank" id="monProfil">Mes infos</a>
 
@@ -179,17 +182,28 @@ if (mysqli_num_rows($display) > 0)
              <!-------------------Schedule2 for Mobile----------------------------->
            <div class="schedule visibility">
                     <h2 class="titre-rdv ">Vos Rendez-vous:</h2>
+                    <hr>
            <?php
-              $sql = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3");
+            $num_per_page=03;
+            $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+            $start_from =   ($page-1)*$num_per_page;
+            $sql = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3 AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
+            $nbRows = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3 AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
+
+            $total_records=mysqli_num_rows($nbRows);
+            $total_pages=ceil($total_records/$num_per_page);
+      
               
-              if (mysqli_num_rows($sql) > 0) 
-                { 
-                  while($row = mysqli_fetch_assoc($sql))
-                  {
-                    $medecin = mysqli_query($conn,"SELECT nom,prenom,specialite FROM medecin WHERE id ='{$row['idMedecin']}';");
-                    if((mysqli_num_rows($medecin) > 0))
-                    {
-                      $result = mysqli_fetch_assoc($medecin);
+              if ($total_records > 0) 
+             { 
+              echo "<p class='urRDV'>Vous avez ".$total_records." rendez-vous";
+
+               while($row = mysqli_fetch_assoc($sql))
+               {
+                 $medecin = mysqli_query($conn,"SELECT nom,prenom,specialite FROM medecin WHERE id ='{$row['idMedecin']}';");
+                 if((mysqli_num_rows($medecin) > 0))
+                 {
+                   $result = mysqli_fetch_assoc($medecin);
                     
                     echo ' <div class="rdv border">
                     <img src="images/generaliste.PNG" alt="specialite">
@@ -213,11 +227,19 @@ if (mysqli_num_rows($display) > 0)
                     <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
                     </div>";
                 }
+                //=======pagination
+                echo'<div class="pages-btn">';
+
+                for ($i=1; $i <= $total_pages ; $i++){  
+                    echo "<a class='pagination'href='?page=".$i."'>".$i."</a>" ;
+                  } 
+                  echo'</div>'
            ?>
               </div> 
     
            <!--------------------------------H2----------------------------->
-             <h2 class="">Votre Espace de Santé</h2>
+             <h2 class="">Votre Espace de Santé<hr class="hideMe"></h2>
+             
            <!--===================FONCTIONNALITES========================-->
            <div class="profil fct">
             <img src="images/profi.png" alt="profil-image" class="imgs">
@@ -261,17 +283,26 @@ if (mysqli_num_rows($display) > 0)
             <p class="titre-rdv hover-underline-animation">Vos Rendez-vous:</p>
 
             <?php
-              $sql = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3");
-              // echo mysqli_num_rows($sql);
-              if (mysqli_num_rows($sql) > 0) 
+               $num_per_page=03;
+               $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+               $start_from =   ($page-1)*$num_per_page;
+               $sql = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3 AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
+               $nbRows = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3 AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
+
+               $total_records=mysqli_num_rows($nbRows);
+               $total_pages=ceil($total_records/$num_per_page);
+         
+                 
+                 if ($total_records > 0) 
                 { 
+                  echo "<p class='urRDV'>Vous avez ".$total_records." rendez-vous";
+
                   while($row = mysqli_fetch_assoc($sql))
                   {
                     $medecin = mysqli_query($conn,"SELECT nom,prenom,specialite FROM medecin WHERE id ='{$row['idMedecin']}';");
                     if((mysqli_num_rows($medecin) > 0))
                     {
                       $result = mysqli_fetch_assoc($medecin);
-                    
                     echo ' <div class="rdv border">
                     <img src="images/generaliste.PNG" alt="specialite">
                     <div id="doctor">
@@ -294,6 +325,13 @@ if (mysqli_num_rows($display) > 0)
                     <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
                     </div>";
                 }
+                //=======pagination
+                echo'<div class="pages-btn">';
+
+                for ($i=1; $i <= $total_pages ; $i++){  
+                    echo "<a class='pagination'href='?page=".$i."'>".$i."</a>" ;
+                  } 
+                  echo'</div>'
            ?>
       </div>
 

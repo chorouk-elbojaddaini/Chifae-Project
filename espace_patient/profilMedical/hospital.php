@@ -139,47 +139,58 @@ echo"
                   </form>
                   </div>
                   <!-- -------------------------Contenu------------------------ -->
-                  
+                  <?php
+                      if(empty( $_SESSION['dateH']) && empty( $_SESSION['searchH']))
+                      {
+                      $_SESSION['dateH']='tous';
+                      $_SESSION['searchH']='';
+                      }
+                      if(isset($_POST['searchHospi']))
+                      {
+                        $_SESSION['searchHos'] = $_POST['searchHospi'];
+                        $_SESSION['dateH'] = $_POST['byDateH'];
+                        $_SESSION['searchH'] = $_POST['searchH'];
+                      }
+                  ?>
                   <div class="contenu" data-page="3">
-                    <hr>
+                 
                       <!-- -----------------filtring data--------------------------- -->
                       <div class="filters">
                       <form action="" method="POST" id="by_date">
                         <select name="byDateH">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchH" id="search" placeholder='cause ...'>
+                        <input type="text" name="searchH" id="search" placeholder='cause ...' value="<?php if(isset($_SESSION['searchHos'])){echo $_SESSION['searchH'];}?>">
                         <button type="submit" name="searchHospi" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
+                    <hr class="hideMe">
                      <?php 
 
                       
                     // $total_pages = 0;
                     $num_per_page=03;
 
-                    if(empty( $_SESSION['dateH']) && empty( $_SESSION['searchH']))
-                    {
-                    $_SESSION['dateH']='tous';
-                    $_SESSION['searchH']='';
-                    }
-                    if(isset($_POST['searchHospi']))
-                    {
-                    
-                      $_SESSION['dateH'] = $_POST['byDateH'];
-                      $_SESSION['searchH'] = $_POST['searchH'];
-                    }
+                   
                     // echo "ana session". $_SESSION['dateH']."<br>";
                     // echo "ana search". $_SESSION['searchH']."<br>";
                     
-                    $pageH = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
+                    if(isset($_GET["page"]))
+                  {
+                      $pageH=$_GET["page"];
+                     
+                  }
+                  else
+                  {
+                      $pageH=1;
+                  }
                     // echo "ana page".$pageH."<br>";
                     
                     $start_fromH =   ($pageH-1)*$num_per_page;

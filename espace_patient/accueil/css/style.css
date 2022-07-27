@@ -86,8 +86,13 @@
 .titre-rdv
 {
   text-align: center;
-  font-size:1.5;
+  font-size:1.2rem;
   font-weight: bold;
+}
+.pages-btn{
+  margin:20px 40% !important;
+  margin-top:40px;
+  display:block;
 }
 
 /*========visibility=============*/
@@ -132,10 +137,15 @@
       background-color: transparent;
       display:grid;
       grid-template-columns: repeat(2,1fr);
-      grid-template-rows:.75fr .75fr .25 1fr ;
+      grid-template-rows:.75fr .1fr .25fr 1fr ;
       grid-template-areas: "welcome  welcome"
                          /* "doc-bt  profil-bt " */
                          "h2  h2 "
+                         "profil doc "
+                         "profil doc "
+                         "profil doc "
+                         "profil doc "
+                         "profil doc "
 
                          "profil doc "
 
@@ -189,7 +199,22 @@
     grid-area: appointement;
     /* background-color: #51686d; */
   }
-
+.urRDV{
+  font-weight:600;
+  margin-left: 20px;
+  color:var(--green3)
+}
+hr{
+  border: 0;
+  clear:both;
+  display:block;
+  width:90%;               
+  height: 1px;
+  margin:10px;
+  padding-top: 3px;
+  background-color: #7fcec5;
+  background-image: linear-gradient(315deg, #7fcec5 0%, #13565f 74%);
+}
   /*-----------welcome--------------*/
   #hello
 {
@@ -216,8 +241,9 @@
   height:fit-content
 }
 #salut {
+  font-size: 1.2rem;
+
   padding-top: 20px;
-  font-size: 1.7rem;
   font-weight: bold;
   color: rgb(30, 30, 30);
 }
@@ -299,6 +325,7 @@
     margin:10px;
     
   }
+
   /*===========END main============*/
   /*===========aside============*/
   /********************************ASIDE*********************************/
@@ -353,8 +380,8 @@
 
 #bg
 {
-  height: 200px;
-  width: 200px;
+  height: 300px;
+  width: 300px;
   display: block;
   margin:10px auto
 }
@@ -422,6 +449,23 @@ color:var(--green);
 {
   color:var(--pink);
   margin:0px 5px;
+}
+.pagination
+{
+  background-color:#89a7ab;
+  padding:5px 10px ;
+  margin:10px 5px;
+  box-shadow: 4px 4px 4px rgba(65, 65, 65, 0.674);
+  border:2px solid #ffffff;
+  border-radius:20px;
+  font-size: 1rem;
+  font-weight: 500;
+  /* color:var(--green2) */
+}
+.pagination:hover
+{
+  cursor: pointer;
+background-color:#fe6687c3
 }
   /*===========END aside============*/
 
@@ -545,7 +589,7 @@ color:var(--green);
            }
            .logo
            {
-            margin-top:20px;
+            margin-top:-10px;
             margin-left:20px;
             align-self:center
            }
@@ -585,10 +629,7 @@ color:var(--green);
     height:150px; */
     margin-left:90px
   }
-  .texte
-  {
-    font-size: 1rem;
-  }
+
   a[class="btn"]
   {
     display:flex;
@@ -635,6 +676,9 @@ color:var(--green);
   {
     font-size: 1.5rem;
     font-weight: 600;
+  }
+  .rdv ,.rdv #doctor p{
+    font-size:.9rem !important;
   }
 }
  /* all devices (tablets, 768px and up)*/
@@ -718,6 +762,22 @@ color:var(--green);
         font-size:1.2rem;
         font-weight:500
       }
+      .pagination
+{
+ 
+  padding:10px  ;
+  margin:10px 3px;
+ 
+  font-size: .8rem;
+  font-weight: 400;
+  /* color:var(--green2) */
+}
+#salut,.texte {
+
+  font-size: 1.3rem !important;
+ 
+}
+
    }
 
  /* Medium devices (tablets, 768px and up)*/
@@ -810,6 +870,21 @@ color:var(--green);
 {
 
 color:var(--green);
+}
+.pagination
+{
+ 
+  padding:10px  ;
+  margin:10px 3px;
+ 
+  font-size: .8rem;
+  font-weight: 400;
+  /* color:var(--green2) */
+}
+#salut,.texte{
+
+  font-size: 1.3rem !important;
+ 
 }
  }
 
@@ -915,4 +990,21 @@ color:var(--green);
   border-radius: 50%;
   border: 3px solid var(--color);
 }
+.aside .titre-rdv{
+  font-size:1.5rem;
+}
+#salut{
+  font-size: 1.7rem;
+
+}
   }
+@media (min-width: 991px)
+{
+  .urRDV{
+   color:#7fcec5;
+   font-size:1.1rem
+  }
+  .hideMe{
+    display: none
+  }
+}

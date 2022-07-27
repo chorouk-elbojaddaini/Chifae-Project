@@ -165,29 +165,41 @@ echo"
                             
                   </form>
                   </div>
-                  
+                  <?php
+                  if(empty( $_SESSION['date']) && empty( $_SESSION['word']))
+                  {
+                  $_SESSION['date']='tous';
+                  $_SESSION['word']='';
+                  }
+                  if(isset($_POST['searchM']))
+                  {
+                  $_SESSION['searchM']=$_POST['searchM'];
+                    $_SESSION['date'] = $_POST['byDate'];
+                    $_SESSION['word'] = $_POST['word'];
+                  }
+                  ?>
 
                   <!-- -------------------------Contenu------------------------ -->
                   <div class="contenu " data-page="1">
                     
                     <!-- -----------------filtring data--------------------------- -->
                     <div class="filters">
-                      <form action="index.php" method="POST" id="by_date">
+                      <form action="index.php" method="POST" id="by_date" class="filter">
                         <select name="byDate">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchM'])){if($_SESSION['date']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchM'])){if($_SESSION['date']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchM'])){if($_SESSION['date']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchM'])){if($_SESSION['date']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchM'])){if($_SESSION['date']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchM'])){if($_SESSION['date']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="search" id="search" placeholder='ordinaire ...'>
+                        <input type="text" name="word" id="search" placeholder='ordinaire ...' value="<?php if(isset($_SESSION['searchM'])){echo $_SESSION['word'];}?>">
                         <button type="submit" name="searchM" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
-                    <hr>
+                    <hr class="hideMe">
                     <!-- -----------------------AFFICHAGE DES MALADIES------------------------ -->
                     
                     <?php 
@@ -195,24 +207,14 @@ echo"
                   
                   $num_per_page=03;
 
-                  if(empty( $_SESSION['date']) && empty( $_SESSION['search']))
-                  {
-                  $_SESSION['date']='tous';
-                  $_SESSION['search']='';
-                  }
-                  if(isset($_POST['searchM']))
-                  {
                   
-                    $_SESSION['date'] = $_POST['byDate'];
-                    $_SESSION['search'] = $_POST['search'];
-                  }
                   // echo "ana session". $_SESSION['date']."<br>";
 
                   $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
                   // echo "ana page".$page."<br>";
                   $start_from =   ($page-1)*$num_per_page;
                   // echo "ana lbdya 0".$start_from;
-                  $malad_array = filter_by_date("maladies",$_SESSION['date'],$start_from,$num_per_page,"categorie", $_SESSION['search'],$conn);
+                  $malad_array = filter_by_date("maladies",$_SESSION['date'],$start_from,$num_per_page,"categorie", $_SESSION['word'],$conn);
                   $malad = $malad_array['query'];
                   $total_records=$malad_array['nb_rows'];
                   // echo "ana total".$total_records;
@@ -226,7 +228,7 @@ echo"
                         
 
                   }//====================small devices================
-                  $malad1_array = filter_by_date("maladies",$_SESSION['date'],$start_from,$num_per_page,"categorie", $_SESSION['search'],$conn);
+                  $malad1_array = filter_by_date("maladies",$_SESSION['date'],$start_from,$num_per_page,"categorie", $_SESSION['word'],$conn);
                   $malad1 = $malad1_array['query'];
                   $total_records1=$malad1_array['nb_rows'];
                   $res1 ="<p class='response'>Il existe ". $total_records1." enregistrement</p>";
@@ -274,3 +276,4 @@ for (let i = 0; i < options.length; i++) {
   })
 }
 </script>
+<!-- <script src="js/filter.js"></script> -->

@@ -116,30 +116,36 @@ echo"
                   
 
                     <div class="contenu" data-page="4">
-                    <hr>
+                 
                     <!-- -----------------filtring data--------------------------- -->
-                    <div class="filters">
+                    <?php
+                    if( empty( $_SESSION['searchAl']))
+                    {
+                    $_SESSION['searchAl']='';
+                    }
+                    if(isset($_POST['searchAlg']))
+                    {
+
+                      $_SESSION['searchAl'] = $_POST['searchA'];
+                      $_SESSION['searchAlg'] = $_POST['searchAlg'];
+
+                    }
+                    ?><hr class="hideMe">
+                    <div class="filters"> 
                       <form action="" method="POST" id="filter">
                        
-                        <input type="text" name="searchA" id="search" placeholder='nom ...'>
+                        <input type="text" name="searchA" id="search" placeholder='nom ...'value="<?php if(isset($_SESSION['searchAlg'])){echo $_SESSION['searchAl'];}?>">
                         <button type="submit" name="searchAlg" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
+                   
                     <?php 
 
                         $num_per_page=03;
 
-                        if( empty( $_SESSION['searchAl']))
-                        {
-                        $_SESSION['searchAl']='';
-                        }
-                        if(isset($_POST['searchAlg']))
-                        {
-
-                          $_SESSION['searchAl'] = $_POST['searchA'];
-                        }
+                        
                         // echo "ana session". $_SESSION['dateH']."<br>";
                         // echo "ana search". $_SESSION['searchAl']."<br>";
 

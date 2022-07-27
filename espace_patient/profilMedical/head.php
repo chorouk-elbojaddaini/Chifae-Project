@@ -1,5 +1,7 @@
 <?php 
 session_start();
+error_reporting(E_ALL ^ E_WARNING);
+
 include '../../connexionDoc/cnx.php';
 $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
 $_SESSION['idPatient'] ='';

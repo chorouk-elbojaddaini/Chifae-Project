@@ -152,48 +152,63 @@ function table_traite($traite,$res) {
                   <!-- -------------------------Contenu------------------------ -->
 
                   <div class="contenu" data-page="2">
-                  <hr>
+                  
+                  <?php
+                    if(empty( $_SESSION['dateT']) && empty( $_SESSION['searchT']))
+                    {
+                    $_SESSION['dateT']='tous';
+                    $_SESSION['searchT']='';
+                    }
+                    if(isset($_POST['searchT']))
+                    {
+                    
+                      $_SESSION['dateT'] = $_POST['byDate'];
+                      $_SESSION['searchT'] = $_POST['searchT'];
+                      $_SESSION['searchTr'] = $_POST['searchTr'];
+
+                    }
+                  ?>
                           <!-- -----------------filtring data--------------------------- -->
                     <div class="filters">
                       <form action="" method="POST" id="by_date">
                         <select name="byDate">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="search" id="search" placeholder='nom ...'>
+                        <input type="text" name="searchT" id="search" placeholder='nom du traitement...' value="<?php if(isset($_SESSION['searchTr'])){echo $_SESSION['searchT'];}?>">
                        
-                        <button type="submit" name="searchT" class="searchBtn">
+                        <button type="submit" name="searchTr" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
-                    </div>
+                    </div><hr class="hideMe">
   <?php 
 
                   
                   $num_per_page=03;
 
-                  if(empty( $_SESSION['date']) && empty( $_SESSION['search']))
+                  if(empty( $_SESSION['dateT']) && empty( $_SESSION['searchT']))
                   {
-                  $_SESSION['date']='tous';
-                  $_SESSION['search']='';
+                  $_SESSION['dateT']='tous';
+                  $_SESSION['searchT']='';
                   }
                   if(isset($_POST['searchT']))
                   {
                   
-                    $_SESSION['date'] = $_POST['byDate'];
-                    $_SESSION['search'] = $_POST['search'];
+                    $_SESSION['dateT'] = $_POST['byDate'];
+                    $_SESSION['searchT'] = $_POST['searchT'];
                   }
-                  // echo "ana session". $_SESSION['date']."<br>";
+                  // echo "ana session". $_SESSION['dateT']."<br>";
 
                   $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
                   // echo "ana page".$page."<br>";
                   $start_from =   ($page-1)*$num_per_page;
                   // echo "ana lbdya 0".$start_from;
-                  $traite_array = filter_by_date("traitements",$_SESSION['date'],$start_from,$num_per_page,"nom", $_SESSION['search'],$conn);
+                  $traite_array = filter_by_date("traitements",$_SESSION['dateT'],$start_from,$num_per_page,"nom", $_SESSION['searchT'],$conn);
                   $traite = $traite_array['query'];
                   $total_records=$traite_array['nb_rows'];
                   // echo "ana total".$total_records;
@@ -206,7 +221,7 @@ function table_traite($traite,$res) {
                         
 
                   }//====================small devices================
-                  $traite1_array = filter_by_date("traitements",$_SESSION['date'],$start_from,$num_per_page,"nom", $_SESSION['search'],$conn);
+                  $traite1_array = filter_by_date("traitements",$_SESSION['dateT'],$start_from,$num_per_page,"nom", $_SESSION['searchT'],$conn);
                   $traite1 = $traite1_array['query'];
                   $total_records1=$traite1_array['nb_rows'];
                   $res1 = "<p class='response'>Il existe ". $total_records1." enregistrement</p>";

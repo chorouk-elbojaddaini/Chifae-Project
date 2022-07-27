@@ -1,5 +1,6 @@
 <?php 
 session_start();
+error_reporting(E_ALL ^ E_WARNING);
 
 include '../../connexionDoc/cnx.php';
 include'pagination.php';
@@ -307,38 +308,44 @@ echo"
         <h2 id="docs-title">Mes derniers documents</h2>
         <div class="affich-docs">
            <!-- -----------------filtring data--------------------------- -->
+           <?php
+            if(empty( $_SESSION['dateD']) && empty( $_SESSION['searchD']))
+            {
+             $_SESSION['dateD']='tous';
+             $_SESSION['searchD']='';
+            }
+            if(isset($_POST['searchDoc']))
+             {
+              
+               $_SESSION['dateD'] = $_POST['byDateD'];
+               $_SESSION['searchD'] = $_POST['searchD'];
+               $_SESSION['searchDoc'] = $_POST['searchDoc'];
+
+             }
+           ?>
            <div class="filters">
                       <form action="" method="POST" id="by_date">
                         <select name="byDateD">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchD" id="search" placeholder='nom du doc....'>
+                        <input type="text" name="searchD" id="search" placeholder='nom du doc...' value="<?php if(isset($_SESSION['searchDoc'])){echo $_SESSION['searchD'];}?>">
                         <button type="submit" name="searchDoc" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>
                       </form>
                     </div>
+                    
                      <?php 
 
                   
                     $num_per_page=03;
                   
-                   if(empty( $_SESSION['dateD']) && empty( $_SESSION['searchD']))
-                   {
-                    $_SESSION['dateD']='tous';
-                    $_SESSION['searchD']='';
-                   }
-                   if(isset($_POST['searchDoc']))
-                    {
-                     
-                      $_SESSION['dateD'] = $_POST['byDateD'];
-                      $_SESSION['searchD'] = $_POST['searchD'];
-                    }
+                  
                     // echo "ana session". $_SESSION['date']."<br>";
 
                     $pageD = isset($_GET["page"]) ? (int)$_GET["page"] : 1;

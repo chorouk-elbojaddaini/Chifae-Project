@@ -199,17 +199,31 @@ echo"</div> ";
                         <button type="submit" class="form-btn"  id="update-mesure"name="update-mesure">Modifier</button>
                </form>
               </div>
+              <?php
+               if(empty( $_SESSION['dateMes']) )
+               {
+               $_SESSION['dateMes']='tous';
+               }
+               if(isset($_POST['searchMes']))
+               {
+               
+                 $_SESSION['dateMes'] = $_POST['byDateM'];
+                 $_SESSION['searchMes'] = $_POST['searchMes'];
+
+               }
+              ?>
               <!-- -------------------------Contenu------------------------ -->
               <div class="filters">
                       <form action="" method="POST" id="by_date">
                         <select name="byDateM">
-                        <option name="tous" value="tous">Tous</option>
-                            <option name="cemois" value="cemois">ce mois</option>
-                            <option name="moisprec" value="moisprec">mois précédent</option>
-                            <option name="6mois" value="6mois">6 mois</option>
-                            <option name="ans" value="ans">ans</option>
-                            <option name="plsans" value="plusieursAns">plus d'un an</option>
+                        <option name="tous" value="tous" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="tous"){echo "selected";} }?>>Tous</option>
+                            <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="cemois"){echo "selected";} }?>>ce mois</option>
+                            <option name="moisprec" value="moisprec" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="moisprec"){echo "selected";} }?>>mois précédent</option>
+                            <option name="6mois" value="6mois" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="6mois"){echo "selected";} }?>>6 mois</option>
+                            <option name="ans" value="ans" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="ans"){echo "selected";} }?>>ans</option>
+                            <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
+                        
                         <!-- <input type="text" name="search" id="search" placeholder='ordinaire ...'>--> 
                         <button type="submit" name="searchMes" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
@@ -223,24 +237,24 @@ echo"</div> ";
                        <?php 
                     // $total_pages = 0;
                     $num_per_page=01;
-                    if(empty( $_SESSION['dateM']) )
+                    if(empty( $_SESSION['dateMes']) )
                     {
-                    $_SESSION['dateM']='tous';
+                    $_SESSION['dateMes']='tous';
                     }
                     if(isset($_POST['searchMes']))
                     {
                     
-                      $_SESSION['dateM'] = $_POST['byDateM'];
+                      $_SESSION['dateMes'] = $_POST['byDateM'];
                     }
-                    $_SESSION['searchM'] = "";
-                    // echo "ana session". $_SESSION['dateM']."<br>";
+                
+                    // echo "ana session". $_SESSION['dateMes']."<br>";
                     
                     $pageM = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
                     // echo "ana page".$pageH."<br>";
                     
                     $start_fromM =   ($pageM-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromM;
-                    $mesure_array = filter_by_date("mesures",$_SESSION['dateM'],$start_fromM,$num_per_page,"poids", $_SESSION['searchM'],$conn);
+                    $mesure_array = filter_by_date("mesures",$_SESSION['dateMes'],$start_fromM,$num_per_page,"poids", $_SESSION['searchM'],$conn);
                     $mesure = $mesure_array['query'];
                     $total_recordsM=$mesure_array['nb_rows'];
                     // echo $total_recordsM;
