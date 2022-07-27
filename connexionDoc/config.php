@@ -39,8 +39,8 @@ if (isset($_GET['verification'])){
         if(mysqli_num_rows($result)== 1){
             $row = mysqli_fetch_assoc($result);
             if(empty($row['code'])){
-                $_SESSION['SESSION_EMAIL'] = $email;
-                header("location: connected.php");
+                $_SESSION['SESSION_EM'] = $email;
+                header("location: ../espace Medecin/page_profil_medecin/php");
             }
             else{
                  $msg="<p class='alert-blue'>vérifier votre compte et essayé de se connecter!</p>";

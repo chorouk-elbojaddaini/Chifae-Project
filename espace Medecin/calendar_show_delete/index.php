@@ -1,4 +1,8 @@
-<?php require_once('db-connect.php') ?>
+<?php 
+include('database/functions.php');
+require_once('db-connect.php');
+$medecin_shuffle = $medecin->getData();
+?>
 <!DOCTYPE html>
 <html lang="en">
  
@@ -6,10 +10,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scheduling</title>
+    <title>calendrier</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="images/logo.png" />
+
     <link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
+    <link rel="stylesheet" href="style.css">
+
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
     <script src="./fullcalendar/lib/main.min.js"></script>
@@ -38,17 +46,48 @@
 </head>
  
 <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient" id="topNavBar">
-        <div class="container">
-            <a class="navbar-brand" href="https://sourcecodester.com">
-            Sourcecodester
-            </a>
- 
-            <div>
-                <b class="text-light">Sample Scheduling</b>
-            </div>
-        </div>
-    </nav>
+    
+<div class="containere" id = "blur">
+
+<div class="navbare">
+  <section class="top-nav"><!--nav bar-->
+      <div class="navLogo">
+          <img class="logo" src="images/logo.png" alt="#">
+          <span class="chifaeNav">Shifae</span>
+      </div>
+      <input id="menu-toggle" type="checkbox" />
+      <label class='menu-button-container' for="menu-toggle">
+      <div class='menu-button'></div>
+      </label>
+      <ul class="menu">
+          <li>
+              <a  class="nav-links pink" href="#">Acceuil</a>
+          </li>
+          <li>
+              <a  class="nav-links " href="#"><i class="fa-solid fa-arrow-right-from-bracket icon .logout "></i> Deconnexion</a>
+          </li>
+          
+          
+      </ul>
+      <a href="#">
+      <?php
+         if($medecin_shuffle[0]['photo'] != null){
+         ?>
+        <img id="photo"  src="data:image;base64,<?php echo $medecin_shuffle[0]['photo'] ;?>" width = "90px" class="imageNavbar">
+      
+         <?php
+         }
+          else{
+            ?>
+              <img  src="images/avatar.jpeg" alt="profile" id="photo" style="width:55px;" class="imageNavbar">
+        
+        
+        <?php
+      }?>
+          
+  </a>
+  </section> <!--nav bar end-->
+</div>
     <div class="container py-5" id="page-container">
         <div class="row">
             <div class="col-md-9">
