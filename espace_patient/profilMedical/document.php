@@ -1,12 +1,17 @@
 <?php 
+session_start();
+
 include '../../connexionDoc/cnx.php';
 include'pagination.php';
 include'filter.php';
 
-$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+
 if (mysqli_num_rows($display) > 0) 
  { 
-   $row = mysqli_fetch_assoc($display);
+  $row = mysqli_fetch_assoc($display);
+
+  $_SESSION['idPatient'] =$row['id'];
  }
  //===============function to display content
  function affich_doc($doc,$res) 
@@ -161,7 +166,19 @@ echo"
           </div>
           <!-- end drop down patient -->
           <!-------------------------------------------------->
-          <img  id="user"  height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+          <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="user">
+               <?php
+               }
+                else{
+                  ?>
+              <input type="image" id="user" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
           <button class="open_menu_botton"><i class="uis uis-bars"></i></button>
           <button class="close_menu_botton">
             <i class="uis uis-multiply"></i>

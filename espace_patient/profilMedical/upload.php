@@ -1,5 +1,14 @@
 <?php
+session_start();
+
 include '../../connexionDoc/cnx.php';
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+$_SESSION['idPatient'] ='';
+if (mysqli_num_rows($display) > 0) 
+ { 
+   $row = mysqli_fetch_assoc($display);
+   $_SESSION['idPatient'] =$row['id'];
+ }
 $success = false;
 
 // $msgs = array();
@@ -86,14 +95,14 @@ if((!empty($_POST) ) AND (!empty($_FILES["file"]["size"])))
               //  $_SESSION['fileName'] =  $_SESSION['fileName'];
               //======add a uniq id to uploaded file================================
               
-              $name_duplicate = mysqli_query($conn,"SELECT * FROM  documents WHERE nomDoc LIKE '%$file_new%'");
+              $name_duplicate = mysqli_query($conn,"SELECT * FROM  documents WHERE  id='{$_SESSION['idPatient']}' AND nomDoc LIKE '%$file_new%'");
               $nb_duplicate = mysqli_num_rows($name_duplicate);
      
             if($nb_duplicate!=0){
               $_SESSION['fileName']= $file_new."_".rand(1,20).".".$file_actual_exten;
               }
               //================existing file================
-              $file_duplicate = mysqli_query($conn,"SELECT * FROM  documents WHERE fileName = '$file_name'");
+              $file_duplicate = mysqli_query($conn,"SELECT * FROM  documents WHERE  id='{$_SESSION['idPatient']}' AND fileName = '$file_name'");
               $nb_duplicate_file = mysqli_num_rows($file_duplicate);
               if($nb_duplicate_file!=0)
               {
@@ -110,7 +119,7 @@ if((!empty($_POST) ) AND (!empty($_FILES["file"]["size"])))
 
               $file_dest = 'uploads/'.$_SESSION['fileName'];
               $fileName = $_SESSION['fileName'];
-              $doc_info = "INSERT INTO documents(nomDoc,date,ajoutPar,categorieDoc,fileName) VALUES ('$fileName','$date','$add_by','$category','$file_name')";
+              $doc_info = "INSERT INTO documents(nomDoc,date,ajoutPar,categorieDoc,fileName,id) VALUES ('$fileName','$date','$add_by','$category','$file_name',{$_SESSION['idPatient']})  ";
               $addedInfo = mysqli_query($conn,$doc_info);     
               //========document added================ 
               if($addedInfo)
@@ -121,7 +130,7 @@ if((!empty($_POST) ) AND (!empty($_FILES["file"]["size"])))
                  $msgs="le document est ajoute 👌";
 
                  //get the id of the doc:
-                 $idDoc = "SELECT idDoc FROM documents WHERE nomDoc = '$fileName'";
+                 $idDoc = "SELECT idDoc FROM documents WHERE  id='{$_SESSION['idPatient']}' AND nomDoc = '$fileName'";
                  $docQuery= mysqli_query($conn,$idDoc); 
                  $id = mysqli_fetch_assoc($docQuery);
                  $res = ['success'=>$success,

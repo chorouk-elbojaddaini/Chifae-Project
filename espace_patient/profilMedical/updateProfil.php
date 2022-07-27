@@ -1,7 +1,15 @@
 <?php 
+session_start();
+
 include '../../connexionDoc/cnx.php';
 
-
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+$_SESSION['idPatient'] ='';
+if (mysqli_num_rows($display) > 0) 
+ { 
+   $row = mysqli_fetch_assoc($display);
+   $_SESSION['idPatient'] =$row['id'];
+ }
 //================================filter function=================
 //test input function:
 function test_input($data) 
@@ -18,7 +26,7 @@ function fetchData($id,$tabName,$idName,$conn)
    {
     $idFetch = mysqli_real_escape_string($conn, $id);
 
-    $query = "SELECT  * FROM $tabName  WHERE $idName='$idFetch' ";
+    $query = "SELECT  * FROM $tabName  WHERE  id='{$_SESSION['idPatient']}' AND $idName='$idFetch' ";
     $query_run = mysqli_query($conn, $query);
 
     if(mysqli_num_rows($query_run) == 1)
@@ -46,7 +54,7 @@ function fetchData($id,$tabName,$idName,$conn)
 function deleteRow($conn,$id,$idName,$tabName){
     $idDel = mysqli_real_escape_string($conn, $id);
 
-    $delete = "DELETE FROM $tabName  WHERE $idName='$idDel'";
+    $delete = "DELETE FROM $tabName  WHERE   $idName='$idDel'AND id='{$_SESSION['idPatient']}' ";
     $delete_run = mysqli_query($conn, $delete);
 
     if($delete_run)
@@ -142,7 +150,7 @@ if(isset($_GET['idP']))
    
     $idFetch = mysqli_real_escape_string($conn, $id);
 
-    $query = "SELECT  * FROM dossiermedical  WHERE id = '$idFetch' ";
+    $query = "SELECT  * FROM dossiermedical  WHERE  id='{$_SESSION['idPatient']}' AND id = '$idFetch' ";
     $query_run = mysqli_query($conn, $query);
 
     // if(mysqli_num_rows($query_run))
@@ -185,7 +193,7 @@ if(isset($_POST['updateMal']) )
     else
 {
     $update = "UPDATE maladies SET nom='$name',date='$date',categorie='$categorie',description='$desc'
-                WHERE idMal='$idMal'";
+                WHERE  id='{$_SESSION['idPatient']}' AND idMal='$idMal'";
     $update_run = mysqli_query($conn, $update);
 
     if($update_run)
@@ -235,7 +243,7 @@ if(isset($_POST['updateT']) )
     else
 {
     $update = "UPDATE traitements SET nom='$name',date='$date',duree='$duree',dose='$dose',description='$desc'
-                WHERE idT='$idT'";
+                WHERE  id='{$_SESSION['idPatient']}' AND idT='$idT'";
     $update_run = mysqli_query($conn, $update);
 
     if($update_run)
@@ -284,7 +292,7 @@ if(isset($_POST['updateH']) )
     else
 {
     $update = "UPDATE hospitalisation SET cause='$cause',date='$date',duree='$duree',description='$desc'
-                WHERE idH='$idH'";
+                WHERE  id='{$_SESSION['idPatient']}' AND idH='$idH'";
     $update_run = mysqli_query($conn, $update);
 
     if($update_run)
@@ -331,7 +339,7 @@ if(isset($_POST['updateA']) )
     else
 {
     $update = "UPDATE allergies SET nom='$nom',description='$desc'
-                WHERE idA='$idA'";
+                WHERE  id='{$_SESSION['idPatient']}' AND idA='$idA'";
     $update_run = mysqli_query($conn, $update);
 
     if($update_run)
@@ -381,7 +389,7 @@ if(isset($_POST['updateV']) )
     else
 {
     $update = "UPDATE vaccins SET nom='$nom',date='$date',protegeContre='$protege',nbRappel='$nb',description='$desc'
-                WHERE idV='$idV'";
+                WHERE  id='{$_SESSION['idPatient']}' AND idV='$idV'";
     $update_run = mysqli_query($conn, $update);
 
     if($update_run)
@@ -435,7 +443,7 @@ if(isset($_POST['updateM']) )
     else
 {
     $update = "UPDATE mesures SET poids='$poids',taille='$taille',icm='$icm',tour='$tour',temp='$temp',tension='$tension',frqCard='$frq',gly='$gly',date='$date'
-                WHERE idMes='$idM'";
+                WHERE  id='{$_SESSION['idPatient']}' AND idMes='$idM'";
     $update_run = mysqli_query($conn, $update);
 
     if($update_run)
@@ -483,7 +491,7 @@ if(isset($_POST['updateAnt']) )
     else
 {
     $update = "UPDATE antecedents SET nom='$nom',lien='$lien',description='$desc'
-                WHERE idAnt='$idAnt'";
+                WHERE  id='{$_SESSION['idPatient']}' AND idAnt='$idAnt'";
     $update_run = mysqli_query($conn, $update);
 
     if($update_run)
@@ -535,7 +543,7 @@ if(isset($_POST['updateD']) )
     else
 {
     $update = "UPDATE diagnostic SET nomComplet='$name',specialite='$spec',date='$date',diagnostic='$diag',exam='$exam',traitement='$traite'
-                WHERE idD='$idD'";
+                WHERE  id='{$_SESSION['idPatient']}' AND idD='$idD'";
     $update_run = mysqli_query($conn, $update);
 
     if($update_run)
@@ -620,7 +628,7 @@ if(isset($_POST['updateP']) )
     else
 {
     $update = "UPDATE dossiermedical SET nom='$nom',prenom='$pre',dateNaissance='$nais',sexe='$sexe',email='$mail',tel='$tel',adresse='$adr',etatCivil='$etat',groupSanguin='$grp',mutuelle='$mut'
-                WHERE id='$id'";
+                WHERE  id='{$_SESSION['idPatient']}' AND id='$id'";
     $update_run = mysqli_query($conn, $update);
 
     if($update_run)
@@ -658,6 +666,7 @@ if(isset($_POST['deleteMal']))
 if(isset($_POST['deleteT']))
 {
     $id=$_POST['id'];
+   
     $tabName="traitements";
     $idName="idT";
     deleteRow($conn,$id,$idName,$tabName);

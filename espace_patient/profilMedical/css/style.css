@@ -228,6 +228,7 @@ background-image: linear-gradient(315deg, #f9ccd6 0%, #fe6686 74%);
 }
 .SelectBox{
   position:relative;
+  margin:10px auto
 }
 .SelectBox select{
   width:300px;
@@ -256,6 +257,9 @@ background-image: linear-gradient(315deg, #f9ccd6 0%, #fe6686 74%);
 }
 .SelectBox select option{
   background-color:var(--green3);
+}
+.selectTab{
+  margin:10px auto!important;
 }
 option :hover{
   color:var(--green3)
@@ -1048,13 +1052,13 @@ p
 #cam
 {
   cursor: pointer;
- font-size: 1.2rem;
- color:white;
+ font-size: 1.5rem;
+ color:var(--dark-green);
 margin-top:80px
 }
 #cam:hover
 {
- color:var(--green);
+  color:#88eefc;
 
 
 }
@@ -1078,10 +1082,13 @@ margin-top:80px
   
   display:flex;
  align-self: end;
- background-color:#0b2f348a;
+ background-color:#0b2f34c0;
  width:max-content;
  padding:5px;
  border-radius:5px
+}
+#urId{
+  color:var(--pink)!important;
 }
 #card-id
 {
@@ -1817,10 +1824,7 @@ table
   text-align: center;
   width:325px
 }
-.hideMe
-{
-  display:none;
-}
+
 }
 @media (max-width: 991px)
 {
@@ -1922,7 +1926,7 @@ th{
 }
 
 #id {
-background-color: #13565f4f;
+background-color: #13565fa4;
 
 margin:5px ;
 /* margin-left:-50px */
@@ -1936,6 +1940,10 @@ margin:5px ;
  display:none;
  
 } */
+.hideMe
+{
+  display:none;
+}
 }
 .invisible
 {

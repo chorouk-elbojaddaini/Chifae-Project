@@ -1,6 +1,13 @@
 <?php 
+session_start();
 include '../../connexionDoc/cnx.php';
-
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+$_SESSION['idPatient'] ='';
+if (mysqli_num_rows($display) > 0) 
+ { 
+   $row = mysqli_fetch_assoc($display);
+   $_SESSION['idPatient'] =$row['id'];
+ }
 
 //================================insert data ================
 $status=200;
@@ -39,7 +46,7 @@ if(!empty($_FILES["photo"]["size"]) )
            //========file size 150mb
            if($photo_size<150000000)
            {
-               $sql = "UPDATE dossiermedical SET photo ='$photo' where id='$id'";
+               $sql = "UPDATE dossiermedical SET photo ='$photo' WHERE id='{$_SESSION['idPatient']}' AND id='$id'";
                $addedPh = mysqli_query($conn,$sql);     
                //========photo added================ 
                if($addedPh)
@@ -125,7 +132,7 @@ if(isset($_POST['insert']) )
         $categorie = test_input($_POST["category"]);
         $desc = test_input($_POST["desc-maladie"]);
         //--------maladies-------------
-        $malad = mysqli_query($conn,"INSERT INTO maladies(nom,date,description,categorie) VALUES ('$name','$date','$desc','$categorie')");
+        $malad = mysqli_query($conn,"INSERT INTO maladies(nom,date,description,categorie,id) VALUES ('$name','$date','$desc','$categorie','{$_SESSION['idPatient']}') ");
         
         if($malad)
         {
@@ -160,7 +167,7 @@ if(isset($_POST['insert']) )
         $desc = test_input($_POST["desc-traitement"]);
         
         //--------traitements-------------
-        $traite = mysqli_query($conn,"INSERT INTO traitements(nom,date,duree,dose,description) VALUES ('$name','$date','$duree','$dose','$desc')");
+        $traite = mysqli_query($conn,"INSERT INTO traitements(nom,date,duree,dose,description,id) VALUES ('$name','$date','$duree','$dose','$desc','{$_SESSION['idPatient']}') ");
         
         if($traite)
         {
@@ -194,7 +201,7 @@ if(isset($_POST['insert']) )
         $desc = test_input($_POST["desc-hospital"]);
 
         //--------hospitalisation-------------
-        $hospital = mysqli_query($conn,"INSERT INTO hospitalisation(cause,date,duree,description) VALUES ('$cause','$date','$duree','$desc')");
+        $hospital = mysqli_query($conn,"INSERT INTO hospitalisation(cause,date,duree,description,id) VALUES ('$cause','$date','$duree','$desc','{$_SESSION['idPatient']}') ");
 
         if($hospital)
         {
@@ -224,7 +231,7 @@ if(isset($_POST['insert']) )
         $nom = test_input($_POST["nom-allergy"]);
         $desc = test_input($_POST["desc-allergy"]);
         //--------allergies-------------
-        $allergie = mysqli_query($conn,"INSERT INTO allergies(nom,description) VALUES ('$nom','$desc')");
+        $allergie = mysqli_query($conn,"INSERT INTO allergies(nom,description,id) VALUES ('$nom','$desc','{$_SESSION['idPatient']}') ");
         if($allergie)
         {
             $res = [
@@ -259,7 +266,7 @@ if(isset($_POST['insert']) )
         $desc = test_input($_POST["desc-vaccin"]);
     
     //--------vaccins-------------
-    $vaccin = mysqli_query($conn,"INSERT INTO vaccins(nom,date,protegeContre,nbRappel,description) VALUES ('$name','$date','$protegeC','$nbRappel','$desc')");
+    $vaccin = mysqli_query($conn,"INSERT INTO vaccins(nom,date,protegeContre,nbRappel,description,id) VALUES ('$name','$date','$protegeC','$nbRappel','$desc','{$_SESSION['idPatient']}') ");
     if($vaccin)
     {
         $res = [
@@ -297,7 +304,7 @@ if(isset($_POST['insert']) )
         $date = test_input($_POST["date"]);
 
         
-        $mesure = mysqli_query($conn,"INSERT INTO mesures(poids,taille,tour,icm,temp,tension,frqCard,gly,date) VALUES ('$poids','$taille','$icm','$tour','$temp','$tension','$frqCard','$gly','$date')");
+        $mesure = mysqli_query($conn,"INSERT INTO mesures(poids,taille,tour,icm,temp,tension,frqCard,gly,date,id) VALUES ('$poids','$taille','$icm','$tour','$temp','$tension','$frqCard','$gly','$date','{$_SESSION['idPatient']}') ");
         if($mesure)
         {
         $res = [
@@ -327,7 +334,7 @@ if(isset($_POST['insert']) )
         $desc = test_input($_POST["desc-antecedent"]);
     
         //--------antecedents-------------
-    $antecedent = mysqli_query($conn,"INSERT INTO antecedents(nom,lien,description) VALUES ('$nom','$lien','$desc')");
+    $antecedent = mysqli_query($conn,"INSERT INTO antecedents(nom,lien,description,id) VALUES ('$nom','$lien','$desc','{$_SESSION['idPatient']}') ");
         if($antecedent)
         {
             $res = [
@@ -363,7 +370,7 @@ if(($_POST['formType'])=='diagno')
     $traite = test_input($_POST["traite"]);
 
     //--------maladies-------------
-    $malad = mysqli_query($conn,"INSERT INTO diagnostic(nomComplet,specialite,date,diagnostic,exam,traitement) VALUES ('$name','$spec','$date','$diag','$exam','$traite')");
+    $malad = mysqli_query($conn,"INSERT INTO diagnostic(nomComplet,specialite,date,diagnostic,exam,traitement,id) VALUES ('$name','$spec','$date','$diag','$exam','$traite','{$_SESSION['idPatient']}') ");
     
     if($malad)
     {

@@ -1,10 +1,12 @@
 <?php 
 session_start();
 include '../../connexionDoc/cnx.php';
-$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+$_SESSION['idPatient'] ='';
 if (mysqli_num_rows($display) > 0) 
  { 
    $row = mysqli_fetch_assoc($display);
+   $_SESSION['idPatient'] =$row['id'];
  }
 ?>
 <!DOCTYPE html>
@@ -95,7 +97,19 @@ if (mysqli_num_rows($display) > 0)
           </div>
           <!-- end drop down patient -->
           <!-------------------------------------------------->
-         <input type="image"  src="images/profile.jpg" alt="profile" id="user">
+          <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="user">
+               <?php
+               }
+                else{
+                  ?>
+              <input type="image" id="user" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
           <button class="open_menu_botton"><i class="uis uis-bars"></i></button>
           <button class="close_menu_botton">
             <i class="uis uis-multiply"></i>
@@ -110,7 +124,20 @@ if (mysqli_num_rows($display) > 0)
             <div id="popup" class="popup">
              <div class="modal-btn"  >
                <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
-                 <img type="image"  src="images/profile.jpg" alt="profile" id="account">
+               <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="account">
+               <?php
+               }
+                else{
+                  ?>
+              <img id="account" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
+            
                    <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
                       <a class="pop"href="profil.php" target="_blank" id="monProfil">Mes infos</a>
                       <a class="pop" href="#" id="deconnect">Se déconnecter</a>

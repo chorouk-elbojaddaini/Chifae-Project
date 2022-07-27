@@ -147,8 +147,8 @@ echo"
                         // echo "ana page".$page."<br>";
                         $start_fromAl =   ($pageAl-1)*$num_per_page;
                         // echo "ana lbdya".$start_fromAl;
-                        $allergie = mysqli_query($conn , "SELECT * from allergies  where  nom  LIKE '%{$_SESSION['searchAl']}%' limit $start_fromAl,$num_per_page;");
-                        $query= mysqli_query($conn,"SELECT * from allergies  where  nom  LIKE '%{$_SESSION['searchAl']}%' ;");
+                        $allergie = mysqli_query($conn , "SELECT * from allergies  where id='{$_SESSION['idPatient']}' AND nom  LIKE '%{$_SESSION['searchAl']}%' limit $start_fromAl,$num_per_page;");
+                        $query= mysqli_query($conn,"SELECT * from allergies  where  id='{$_SESSION['idPatient']}' AND nom  LIKE '%{$_SESSION['searchAl']}%' ;");
                         $total_recordsAl =mysqli_num_rows($query);
                           // echo 'ana total'.$total_recordsAl;
                         $total_pages=ceil($total_recordsAl/$num_per_page);
@@ -158,7 +158,7 @@ echo"
                           table_allergie($allergie,$res); 
                         }
                         //==================small devices================
-                        $allergie1 = mysqli_query($conn , "SELECT * from allergies  where  nom  LIKE '%{$_SESSION['searchAl']}%' limit $start_fromAl,$num_per_page;");
+                        $allergie1 = mysqli_query($conn , "SELECT * from allergies  where id='{$_SESSION['idPatient']}' AND nom  LIKE '%{$_SESSION['searchAl']}%' limit $start_fromAl,$num_per_page;");
                         // echo 'ana total'.$total_recordsAl;
                       $total_pages=ceil($total_recordsAl/$num_per_page);
                       $res1 ="<p class='response '>Il existe ". $total_recordsAl." enregistrement</p>";

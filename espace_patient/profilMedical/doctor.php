@@ -1,10 +1,13 @@
 <?php 
 session_start();
 include '../../connexionDoc/cnx.php';
-$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+
 if (mysqli_num_rows($display) > 0) 
  { 
    $row = mysqli_fetch_assoc($display);
+   $_SESSION['idPatient'] =$row['id'];
+
  }
 
 ?>
@@ -596,9 +599,9 @@ function vanish() {
 
                         $start_fromAl =   ($pageAl-1)*$num_per_page;
                         // echo "ana lbdya".$start_fromAl;
-                        $allergie = mysqli_query($conn , "SELECT * from allergies  where  nom  LIKE '%{$_SESSION['searchAl']}%' limit $start_fromAl,$num_per_page;");
+                        $allergie = mysqli_query($conn , "SELECT * from allergies  where  id='{$_SESSION['idPatient']}' AND  nom  LIKE '%{$_SESSION['searchAl']}%' limit $start_fromAl,$num_per_page;");
 
-                          $query= mysqli_query($conn,"SELECT * from allergies  where  nom  LIKE '%{$_SESSION['searchAl']}%' ;");
+                          $query= mysqli_query($conn,"SELECT * from allergies  where  id='{$_SESSION['idPatient']}' AND  nom  LIKE '%{$_SESSION['searchAl']}%' ;");
                           $total_recordsAl =mysqli_num_rows($query);
                           // echo 'ana total'.$total_recordsAl;
                         $total_pages=ceil($total_recordsAl/$num_per_page);
@@ -824,8 +827,8 @@ function vanish() {
                     
                     $start_fromAn =   ($pageAn-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromH;
-                    $antece= mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' limit $start_fromAn,$num_per_page;");
-                    $antece_rows = mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' ;");
+                    $antece= mysqli_query($conn , "SELECT * from antecedents  where  id='{$_SESSION['idPatient']}'  AND nom  LIKE '%{$_SESSION['searchAn']}%' limit $start_fromAn,$num_per_page;");
+                    $antece_rows = mysqli_query($conn , "SELECT * from antecedents  where  id='{$_SESSION['idPatient']}' AND  nom  LIKE '%{$_SESSION['searchAn']}%' ;");
 
                     $total_recordsAn=mysqli_num_rows($antece_rows);
                     // echo $total_records;

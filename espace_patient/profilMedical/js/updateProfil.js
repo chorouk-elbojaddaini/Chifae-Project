@@ -239,12 +239,12 @@ $(document).on('click', '.editH', function () {
         console.log(idH);
         let data = {
             'id':idH,
-            'deleteT':true
+            'deleteH':true
         }
       //===========to specifiy wich table we will delete from
        
         deleteRow('updateProfil.php',data)
-          console.log(this.data)
+          console.log(data)
     });
     
 //=========================================allergie===========================================
@@ -387,8 +387,7 @@ $(document).on('click', '.editMes', function () {
                $('#m6').val(res.data.tension);
                $('#m7').val(res.data.frqCard);
                $('#m8').val(res.data.gly);
-               $('#date1').val(res.data.date1);
-
+               $('#date1').val(res.data.date);
                $('#mesure1').show();
            }
        }
@@ -403,6 +402,8 @@ $(document).on('click', '.editMes', function () {
         // for (const pair of formData.entries()) {
         //     console.log(`${pair[0]}, ${pair[1]}`);}
         update('updateProfil.php','#update-mesure','#mesure1','#mesure-btn-close',formData)
+        location.reload(true);
+
     });
     // //=============================deleting ===========================
     

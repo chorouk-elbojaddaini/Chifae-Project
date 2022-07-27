@@ -1,7 +1,3 @@
- <!-- -----------------------------forms to allow doctor modify the content----------------------------------- -->
- 
- <!-- -----------------------------insert allergy----------------------------------- -->
-
  <?php 
 
 function insert_allergie(){

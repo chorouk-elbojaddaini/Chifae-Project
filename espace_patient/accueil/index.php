@@ -2,8 +2,8 @@
 session_start();
 
 include '../../connexionDoc/cnx.php';
-$connect = mysqli_query($conn, "SELECT * FROM patient WHERE email='{$_SESSION['SESSION_EMAIL']}'");
-$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
+
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
 if (mysqli_num_rows($display) > 0) 
  { 
    $row = mysqli_fetch_assoc($display);
@@ -237,7 +237,7 @@ if (mysqli_num_rows($display) > 0)
         <img src="images/c10.png" alt="bg" id="bg">
       
         <?php
-        $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
+        $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
         if (mysqli_num_rows($display) > 0) 
          { 
            $row = mysqli_fetch_assoc($display);

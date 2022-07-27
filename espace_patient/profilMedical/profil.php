@@ -1,6 +1,8 @@
 <?php 
+session_start();
+
 include '../../connexionDoc/cnx.php';
-$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE id=1 ");
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
 if (mysqli_num_rows($display) > 0) 
  { 
    $row = mysqli_fetch_assoc($display);
@@ -103,7 +105,19 @@ if (mysqli_num_rows($display) > 0)
           </div>
           <!-- end drop down patient -->
           <!-------------------------------------------------->
-         <img  id="user"  height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+          <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="user">
+               <?php
+               }
+                else{
+                  ?>
+              <input type="image" id="user" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
 
           <button class="open_menu_botton"><i class="uis uis-bars"></i></button>
           <button class="close_menu_botton">
@@ -113,21 +127,34 @@ if (mysqli_num_rows($display) > 0)
         
         </div>
 </nav>
-          <!-----------------PROFIL MODAL------------------>
-          <div class="overlay hide" >
+         <!-----------------PROFIL MODAL------------------>
+         <div class="prof hide" >
        
-            <div id="popup" class="popup">
-             <div class="modal-btn"  >
-               <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
-                 <!-- <img type="image"  src="images/noprofil.jpg" alt="profile" id="account"> -->
-                 <img  id="account"  height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
-                   <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
-                      <a class="pop"href="profil.html" target="_blank" id="monProfil">Mes infos</a>
-                      <a class="pop" href="#" id="deconnect">Se déconnecter</a>
-           </div>
-            </div>
-           
-          </div>
+       <div id="popup" class="popup">
+        <div class="modal-btn"  >
+          <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
+          <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="account">
+               <?php
+               }
+                else{
+                  ?>
+              <img id="account" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
+            
+              <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
+                 <a class="pop"href="profil.php" target="_blank" id="monProfil">Mes infos</a>
+                 <a class="pop" href="#" id="deconnect">Se déconnecter</a>
+      </div>
+       </div>
+      
+     </div>
+  <!-- ------------------------------------------ -->
        <!-- ---------------------------update form--------------- -->
        <div class="overlay profil hide over-prof" id="profil" >
                     <form action="" method="post" name="profil" class="form border update" id="profil-form-update">
@@ -182,9 +209,9 @@ if (mysqli_num_rows($display) > 0)
       
        <div class="main-page">
          <!-- --------------------TABS------------------->
-       <div class="tabs " id="profil-tabs">
+       <div class="tabs " id="divOfTabs">
             <ul id="tabs">
-              <li class="tab is-active"><a  href="maladie.php" data-switcher data-tab="1">Maladies et sujets de santé</a></li>
+              <li class="tab is-active"><a  href="index.php" data-switcher data-tab="1">Maladies et sujets de santé</a></li>
               <li class="tab "><a  href="traite.php" data-switcher data-tab="2">Traitements</a></li>
               <li class="tab "><a  href="hospital.php" data-switcher data-tab="3">Hospitalisation et chirurgies</a></li>
               <li  class="tab "><a href="allergie.php" data-switcher data-tab="4">Allergies</a></li>
@@ -198,12 +225,24 @@ if (mysqli_num_rows($display) > 0)
       <div class="perso-data">
             <div class="header">
                 <div class="photo">
-                <span id="id"><i class="fa-solid fa-address-card" id="card-id"></i> Id :
+                <span id="id"><i class="fa-solid fa-address-card" id="card-id"></i>Votre id :
                         
-                           <?php echo $row['id'] ;?>
+                           <span id="urId"><?php echo $row['code_patient'] ;?></span>
                          </span>
                         <!-- <img src="images/no.jpg" alt="profil" id="photo"> -->
-                        <img  id="photo"  height="100" width="100" border-radius="50%"src="data:image;base64,<?php echo $row['photo'] ;?>">
+                        <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="photo">
+               <?php
+               }
+                else{
+                  ?>
+              <img id="photo" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
                             <label for="add-photo">
                             <i class="fa-solid fa-camera" id="cam"></i>
                             </label>

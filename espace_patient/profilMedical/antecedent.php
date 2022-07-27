@@ -171,8 +171,8 @@ echo"
                     
                     $start_fromAn =   ($pageAn-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromH;
-                    $antece= mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' limit $start_fromAn,$num_per_page;");
-                    $antece_rows = mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' ;");
+                    $antece= mysqli_query($conn , "SELECT * from antecedents  where id='{$_SESSION['idPatient']}' AND nom  LIKE '%{$_SESSION['searchAn']}%' limit $start_fromAn,$num_per_page;");
+                    $antece_rows = mysqli_query($conn , "SELECT * from antecedents  where id='{$_SESSION['idPatient']}' AND nom  LIKE '%{$_SESSION['searchAn']}%' ;");
 
                     $total_recordsAn=mysqli_num_rows($antece_rows);
                     // echo $total_records;
@@ -186,8 +186,8 @@ echo"
                           
 
                     }
-                    $antece1= mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' limit $start_fromAn,$num_per_page;");
-                    $antece_rows1 = mysqli_query($conn , "SELECT * from antecedents  where  nom  LIKE '%{$_SESSION['searchAn']}%' ;");
+                    $antece1= mysqli_query($conn , "SELECT * from antecedents  where id='{$_SESSION['idPatient']}' AND nom  LIKE '%{$_SESSION['searchAn']}%' limit $start_fromAn,$num_per_page;");
+                    $antece_rows1 = mysqli_query($conn , "SELECT * from antecedents  where id='{$_SESSION['idPatient']}' AND nom  LIKE '%{$_SESSION['searchAn']}%' ;");
 
                     $total_recordsAn1=mysqli_num_rows($antece_rows1);
                     // echo $total_records;

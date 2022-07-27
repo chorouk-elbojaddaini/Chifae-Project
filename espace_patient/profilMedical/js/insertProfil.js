@@ -35,6 +35,7 @@
                     if(res.status == 200){
                       
                       console.log(document.querySelector(`button[name='insert-${nameBtn}']`))
+                      console.log((overlay))
                       //============================On click close the form=====================
                         $(submitForm).click(function(e){
                           // e.preventDefault();
@@ -45,30 +46,52 @@
                         alertify.set('notifier','position', 'top-right');
                         alertify.success(res.message);
                         $(formsInsert[i])[0].reset();
-                     
+                        location.reload(true);
                          
                         
         
                     }    //=============db probleme query return falsy value
         
                     else if(res.status == 500) {
-                        alertify.set('notifier','position', 'top-right');
-                        alertify.error(res.message);
-                        $(closeForm).click(function() {
-                            
-                            $(overlay).hide();
-                        })
-                    }
+                      alertify.set('notifier','position', 'top-right');
+              alertify.error(res.message);
+                 $(submitForm).click(function() {
+                
+                  $(overlay).hide();
+              location.reload(true);
+
+              })
+                   
+                   $(closeForm).click(function() {
+                     
+                     alertify.set('notifier','position', 'top-right');
+                   alertify.error(res.message);
+                   
+                       $(overlay).hide();
+                   location.reload(true);
+
+                   })
+               }
                     //--------------empty fields error---------
                     else if(res.status == 422)
                     {
-                        alertify.set('notifier','position', 'top-right');
-                        alertify.error(res.message);
-                        
+                           alertify.set('notifier','position', 'top-right');
+                   alertify.error(res.message);
+                      $(submitForm).click(function() {
+                     
+                       $(overlay).hide();
+                   location.reload(true);
+
+                   })
                         
                         $(closeForm).click(function() {
                           
+                          alertify.set('notifier','position', 'top-right');
+                        alertify.error(res.message);
+                        
                             $(overlay).hide();
+                        location.reload(true);
+
                         })
                     }
                 }
