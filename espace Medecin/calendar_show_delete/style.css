@@ -10,7 +10,10 @@
       --text-color: #707070;
       --color-pink:#fe6686;
   }
-  
+  a{
+    text-decoration: none;
+
+  }
   .imageNavbar{
     clip-path: circle();
     width: 70px;
