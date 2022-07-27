@@ -48,7 +48,7 @@
         </p>
       </div>
         </div>
-        <script src="../scripts/profil.js"></script>
+        <script src="../script.js"></script>
    </footer>
    </div>
    <div id="boite" >
