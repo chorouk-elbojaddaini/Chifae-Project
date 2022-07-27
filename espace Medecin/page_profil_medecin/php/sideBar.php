@@ -68,7 +68,7 @@ $arrayData = $medecin->getData();
 
 
                 <li class="nav-item">
-                    <a class = "nav-link"  href="#">
+                    <a class = "nav-link"  href="../../../connexionDoc/logout.php" >
                         <i class="fa-solid fa-arrow-right-from-bracket icon .logout "></i>
                         <span class="text nav-text">log out</span>
                     </a>

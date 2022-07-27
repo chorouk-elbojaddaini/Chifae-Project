@@ -1,7 +1,6 @@
 <?php
 session_start();
 $medecin_shuffle = $medecin->getData();
-echo $_SESSION['SESSION_EM'];
 ?>
 
 <!DOCTYPE html>
