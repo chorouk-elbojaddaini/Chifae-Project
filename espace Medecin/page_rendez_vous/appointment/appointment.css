@@ -1,0 +1,526 @@
+
+
+#boite{
+    position: fixed;
+    top:3%;
+    left: 50%;
+    background: linear-gradient(0deg, rgb(139, 180, 185) 5%, rgba(222, 236, 238, 1) 85%);
+
+    
+    transform: translate(-50%,-50%);
+    width: 665px;
+    height: 455px;
+    z-index: 100;
+    border-radius: 10px;
+    border: 1px solid #13565f;
+    transition: 0.5s;;
+    box-shadow: 0 10px 30px rgba(0,0,0,.30);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    display: grid;
+    grid-template-rows: 100px 85px 75px 100px 1fr;
+    
+}
+.c1 {
+    background-color: #13565F;
+    border-radius: 9px 9px 0px 0px;
+}
+div .c2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0;
+    margin: 0;
+    
+}
+div .c2 #nom , div .c2 #prenom ,div .c2 #age {
+
+position: relative;
+width: 100%;
+height: 100%; 
+
+}
+div .c2 #nom input , div .c2 #prenom input, div .c2 #age input{
+    position: relative;
+    top: 15px;
+    width: 90%;
+    left: 11px;
+    padding: 10px 0px;
+    border: 0.5px solid #13565f;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+div .c2 #nom input::placeholder , div .c2 #prenom input::placeholder , div .c2 #age input::placeholder
+{
+color: #13565f;
+position: relative;
+left: 4px;
+}
+
+div .c2 #nom input:focus::placeholder,div .c2 #prenom input:focus::placeholder,div .c2 #age input:focus::placeholder{
+    visibility: hidden;
+    }
+    
+    div .c2 #nom input:focus,div .c2 #prenom input:focus,div .c2 #age input:focus{
+        border-color:#022125;
+        padding-inline: 15px;
+        }
+        
+
+
+
+
+div .c2 #nom label ,div .c2 #prenom label, div .c2 #age label{
+font-size:18px;
+position: relative;
+top: 5px;
+left: 14px;
+}
+.text-danger{
+    color: rgb(226, 21, 21);
+}
+/*partie 2 */
+
+div .c3 #email input{
+position: relative;
+top: 9px;
+width: 96%;
+left: 10px;
+padding: 10px 152px;
+border-radius: 8px;
+font-size: 16px;
+border: 0.5px solid #13565f;
+outline: none;
+
+}
+div .c3 #email input:focus{
+    border-color:#022125;
+    padding-inline: 15px;
+}
+
+div .c3 #email input::placeholder{
+    color: #13565f;
+    position: relative;
+    left: -142px;
+
+}
+div .c3 #email input:focus::placeholder{
+visibility: hidden;
+}
+
+
+
+div .c3 #email label{
+    font-size:18px;
+    position: relative;
+    top: -1px;
+    left: 14px;
+    }
+
+
+div .c4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0;
+    margin: 0;
+    
+}
+div .c4 #date , div .c4 #time ,div .c4 #phone {
+position: relative;
+width: 100%;
+height: 100%;
+
+}
+ div .c4 #phone input{
+    position: relative;
+    top: 10px;
+    left: 11px;
+    width: 90%;
+    padding: 10px 0px;
+    border-radius: 8px;
+    font-size: 15px;
+    border: none;
+    border: 0.5px solid #13565f;
+    outline: none;
+}
+div .c4 #phone input:focus::placeholder{
+visibility: hidden;
+}
+div .c4 #phone input:focus{
+    border-color:#022125;
+    padding-inline: 14px;
+}
+
+
+div .c4 #date input[type="date"],div .c4 #time input[type="time"]{
+    position: relative;
+    top: 9px;
+    left: 10px;
+    width: 90%;
+    padding: 9px 35px;
+    border-radius: 8px;
+    font-size: 15px;
+    border: 0.5px solid #13565f;
+    outline: none;
+    
+}
+
+div .c4 #date input[type="date"]:focus,div .c4 #time input[type="time"]:focus{
+    border-color:#022125;
+}
+
+div .c4 #time input[type="time"]{
+    position: relative;
+    top: 9px;
+    left: 15px;
+    padding: 8px 60px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    border: 0.5px solid #13565f;
+}
+
+
+
+ div .c4 #phone input::placeholder
+{
+color: #13565f;
+}
+
+div .c4 #date label ,div .c4 #time label, div .c4 #phone label{
+font-size:18px;
+position: relative;
+top: -1px;
+left: 14px;
+}
+
+
+input[type="radio"]{
+    position: relative;
+    left: 13px;
+    top: -15px;
+    padding: 10px;
+}
+.c5 label{
+    position: relative;
+    font-family: 'Poppins',sans-serif;
+    font-size: 18px;
+    top: -15px;
+    border-radius: 5px;
+    left:20px;
+    
+
+}
+#f{
+    position: relative;
+    left: 30px;
+}
+#fr{
+    position: relative;
+    left: 25px;
+}
+.circal-title{
+    font-size:18px;
+    position: relative;
+    top: -22px;
+    left: 14px;
+}
+
+.ajouter{
+    position: relative;
+    left: 220px;
+    padding: 7px 85px;
+    font-size: 20px;
+    border:none;
+    background-color: #13565f;
+    border-radius: 35px;
+    color: #fff;
+    cursor: pointer;
+    
+}
+
+input[type="submit"]:hover {
+    background-color: #0e3f46;
+  }
+
+/*close button*/
+.close {
+    width: 25px;
+    position: absolute;
+    top:4px;
+    right: 4px;
+    cursor: pointer;
+}
+.appointment{
+ position: relative;
+ left:65px;
+ top: 35px;
+ font-size: 30px;
+ color: transparent;
+ -webkit-text-stroke: 1px #fff;
+ background: url(back.png);
+ -webkit-background-clip: text;
+ background-position: 0 0;
+ animation: back 20s linear infinite;
+}
+@keyframes back {
+    100% {
+        background-position: 2000px 0;
+    }
+}
+.appointment::before{
+content: '';
+position: absolute;
+left: 0;
+bottom: -10px;
+width: 80px;
+height: 3px;
+background: #fff;
+}
+
+
+
+.patient{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 25px;
+    left: 8px;
+}
+.container#blur.active {
+    filter: blur(20px);
+    pointer-events: none;
+    user-select: none;
+}
+
+#boite.active {
+    top:50%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+
+/*=====SMALL=====*/
+@media (min-width:673px) and (max-width:991px)
+{
+    #boite {
+        width: 600px;
+        height: 465px;
+        grid-template-rows: 95px 95px 95px 95px 95px 1fr;
+    }
+    .c4{
+       
+        position: relative;
+        top: -10px;
+    }
+    .ajouter{
+        left: 180px;
+        top:-6px;
+    }
+}
+
+/*=====SMALEST=====*/
+@media  (min-width:390px) and (max-width:500px) {
+    #boite {
+        width: 370px;
+        height: 950px;
+        position: relative;
+        display: grid;
+        left: 95px;
+        margin-top: 250px;
+        grid-template-rows:80px 300px 100px 300px 1fr ;
+        background-color: #d7f7fc;
+        
+    }
+/*section 1*/
+div .c1{
+width: 369px;
+}
+
+/*section 2*/
+div .c2 {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr ;
+    grid-template-columns: 1fr;
+    width: 369px;
+}
+
+div .c2 #nom label,div .c2 #prenom label,div .c2 #age label{
+font-size: 27px;
+}
+div .c2 #nom input,div .c2 #prenom input,div .c2 #age input{
+    font-size: 23px;
+    width: 339px;
+    left:15px;
+    }
+    
+
+/*section 3*/
+div .c3{
+    width: 369px;
+}
+
+div .c3 #email label {
+font-size:27px;
+}
+div .c3 #email input {
+font-size: 23px;
+width: 339px;
+padding-inline: 0px;
+left:15px;
+}
+div .c3 #email input::placeholder{
+left: 11px;
+}
+
+div .c4 {
+display: grid;
+grid-template-rows: 1fr 1fr 1fr ;
+grid-template-columns: 1fr;
+width: 369px;
+}
+div .c4 #date label,div .c4 #time label,div .c4 #phone label{
+ font-size: 27px;
+}
+div .c4 #phone input{
+font-size: 23px;
+width: 339px;
+}
+div .c4 #date input[type="date"],div .c4 #time input[type="time"]{
+    font-size: 27px;
+    width: 339px;
+    left:15px;
+}
+
+div .c4 #time input[type="time"]{
+    font-size: 27px;
+    width: 337px;
+    left:15px;
+}
+div .c5 .circal-title{
+    font-size: 27px;
+    top: 6px;
+}
+div .c5  label{
+    font-size: 27px;
+    top :8px;
+}
+div .c5 input[type="radio"]{
+    top:8px;
+    font-size: 12px;
+}
+input[type="submit"]{
+    left:35px;
+    top: 35px;
+    font-size: 27px;
+    width: 300px;
+    border-radius: 8px;
+
+}
+}
+
+@media  (max-width:375px) {
+    #boite {
+        width: 345px;
+        height: 950px;
+        position: relative;
+        display: grid;
+        left: 90px;
+        margin-top: 300px;
+        grid-template-rows:80px 300px 100px 300px 1fr ;
+        background-color: #d7f7fc;
+        
+    }
+/*section 1*/
+div .c1{
+width: 345px;
+}
+
+/*section 2*/
+div .c2 {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr ;
+    grid-template-columns: 1fr;
+    width: 345px;
+}
+
+div .c2 #nom label,div .c2 #prenom label,div .c2 #age label{
+font-size: 27px;
+}
+div .c2 #nom input,div .c2 #prenom input,div .c2 #age input{
+    font-size: 23px;
+    width: 320px;
+    left:15px;
+    }
+    
+
+/*section 3*/
+div .c3{
+    width: 345px;
+}
+
+div .c3 #email label {
+font-size:27px;
+}
+div .c3 #email input {
+font-size: 23px;
+width: 320px;
+padding-inline: 0px;
+left:15px;
+}
+div .c3 #email input::placeholder{
+left: 11px;
+}
+
+div .c4 {
+display: grid;
+grid-template-rows: 1fr 1fr 1fr ;
+grid-template-columns: 1fr;
+width: 345px;
+}
+div .c4 #date label,div .c4 #time label,div .c4 #phone label{
+ font-size: 27px;
+}
+div .c4 #phone input{
+font-size: 23px;
+width: 322px;
+}
+div .c4 #date input[type="date"],div .c4 #time input[type="time"]{
+    font-size: 27px;
+    width: 320px;
+    left:15px;
+}
+
+div .c4 #time input[type="time"]{
+    font-size: 27px;
+    width: 320px;
+    left:15px;
+}
+div .c5 .circal-title{
+    font-size: 27px;
+    top: 6px;
+}
+div .c5  label{
+    font-size: 27px;
+    top :8px;
+}
+div .c5 input[type="radio"]{
+    top:8px;
+    font-size: 12px;
+}
+input[type="submit"]{
+    left:22px;
+    top: 35px;
+    font-size: 27px;
+    width: 300px;
+    border-radius: 8px;
+
+}
+
+.appointment{
+    font-size: 25px;
+}
+
+} 

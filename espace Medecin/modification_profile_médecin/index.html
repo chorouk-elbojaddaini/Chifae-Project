@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Anton&family=Josefin+Sans:wght@100&family=Lexend+Deca:wght@100&family=Livvic:wght@100&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>modif profile</title>
+</head>
+<body>
+    <div class="container">
+
+        <section class="top-nav"><!--nav bar-->
+            <div class="navLogo">
+                <img class="logo" src="./images/Layer 1.png" alt="#">
+                <span class="chifaeNav">Chifae</span>
+            </div>
+            <input id="menu-toggle" type="checkbox" />
+            <label class='menu-button-container' for="menu-toggle">
+            <div class='menu-button'></div>
+            </label>
+            <ul class="menu">
+                <li>
+                    <a  class="nav-links" href="#">Acceuil</a>
+                </li>
+                <li>
+                    <a  class="nav-links pink" href="#">Médecin</a>
+                </li>
+                <li>
+                    <a class="nav-links pink" href="#">Patient</a>
+                </li>
+                <li>
+                    <a class="nav-links" href="#">Contact</a>
+                </li>
+            </ul>
+        </section> <!--nav bar end-->
+
+      <div class="sidebar"><!--Side bar-->
+        <div class="top"><!--Top section-->
+           
+            <img class="imgTop" src="./images/doctor.png" alt="#">
+            
+            <div class="profile">
+                <img src="./images/profile2.jpeg" alt="#">
+            </div>
+            <div class="text">
+                <h3>Dr.Rim Hassani</h3>
+                <p>orthopedic</p>
+            </div>
+        </div><!--Top section end-->
+        <div class="line"></div>
+        <div class="bottom"><!--bottom section-->
+            
+            <ul >
+                <li class = "nav-item">
+                    <a  class = "nav-link"  href="#">
+                        <i class="fa-solid fa-user icon"></i>
+                        <span class="text nav-text">profile</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class = "nav-link"  href="#">
+                        <i class="fa-solid fa-calendar-check icon googleFont"></i>
+                        <span class="text nav-text">rendez-vous</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class = "nav-link"  href="#">
+                        <i class="fa-solid fa-hospital-user icon"></i>
+                        <span class="text nav-text">patients</span>
+                    </a>
+                </li>
+                
+                <li class = "nav-item">
+                    <a class = "nav-link"  href="#">
+                        <i class="fa-solid fa-blog icon"></i>
+                        <span class="text nav-text">blog</span>
+                    </a>
+                </li>
+                 
+                <li class = "nav-item">
+                    <a  class = "nav-link" href="#">
+                        <i class="fa-solid fa-gear icon"></i>
+                        <span class="text nav-text">parametres</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class = "nav-link"  href="#">
+                        <i class="fa-solid fa-arrow-right-from-bracket icon .logout "></i>
+                        <span class="text nav-text">log out</span>
+                    </a>
+                </li>
+            </ul>
+        </div><!--bottom section end-->
+        
+    </div> <!--side bar end-->
+
+      <main>
+        <div class="tabs">
+            <div class="tabs__head">
+              <div class="tabs__toggle is-active">
+                <span class="tabs__name">Information</span>
+              </div>
+              <div class="tabs__toggle">
+                <span class="tabs__name">Experience</span>
+              </div>
+              <div class="tabs__toggle">
+                <span class="tabs__name">Horraire/Tarif</span>
+              </div>
+            </div>
+            <div class="tabs__body">
+              <div class="tabs__content is-active">
+                <h2 class="tabs__title">Information</h2>
+                <div class="tabs__text">
+                   <form action="#">
+                       <div class="wrapper">
+                        
+                            <div class="column_form topSec col1">
+                               
+                                    <img class="imgDoctor" src="./images/profile2.jpeg" alt="#">
+                               
+                                <div class="rightSec">
+                                    <h2 class="doctorName">Dr.Rim Hassani</h2>
+                                    <a class="uploadBtn btn" href="#">changer la photo de profile</a>
+                                </div>
+                            </div>
+                        
+                        
+
+                            <div class="column_form other col2">
+                                <input class="input_form" type="text" id="nom" autocomplete="off" placeholder=" ">
+                                <label class="label_form" type="text" for="nom">nom</label>
+                            </div>
+                            <div class="column_form other col3">
+                                <input class="input_form" type="text" id="prenom" autocomplete="off" placeholder=" ">
+                                <label class="label_form" type="text" for="prenom">prenom</label>
+                            </div>
+                       
+
+                       
+                            <div class="column_form other col4">
+                                <input class="input_form" type="email" id="email" autocomplete="off" placeholder=" ">
+                                <label class="label_form" type="email" for="email">email</label>
+                            </div>
+                            <div class="column_form other col5">
+                                <input class="input_form" type="text" id="telephone" autocomplete="off" placeholder=" ">
+                                <label class="label_form" type="text" for="telephone">telephone</label>
+                            </div>
+                            
+                        
+                        
+                            <div class="column_form other col6">
+                                <input class="input_form" type="date" id="date_nais" autocomplete="off" placeholder=" ">
+                                <label class="label_form" type="text" for="date_nais"></label>
+                            </div>
+
+                            <div class="column_form other col7">
+                                <input class="input_form" type="text" id="localisation" autocomplete="off" placeholder=" ">
+                                <label class="label_form" type="localisation" for="localisation">localisation</label>
+                            </div>
+                        
+
+                        
+                            <div class="column_form other col8">
+                                <input class="input_form" type="password" id="old_pass" autocomplete="off" placeholder=" ">
+                                <label class="label_form"  for="old_password">old password</label>
+                            </div>
+                            <div class="column_form other col9">
+                                <input class="input_form" type="password" id="new_pass" autocomplete="off" placeholder=" ">
+                                <label class="label_form" type="text" for="new_pass">new password</label>
+                            </div>
+                            
+                        
+                    </div>
+                       
+                         
+
+                        <button  class="save_changes_btn" type="submit">save changes</button>
+                   </form>
+
+                </div>
+              </div>
+              <div class="tabs__content">
+                <h2 class="tabs__title">Experience</h2>
+                <div class="tabs__text experience">
+                    <div class="lines expLine">
+                        <form action="#">
+                        <div class="column_form ajouter">
+                            <div class="top">
+                                <input class="input_form exp_input" type="text" id="formation" autocomplete="off" placeholder=" ">
+                                <label class="label_form" for="formation" type = "text">formation</label>
+                                <button class="save_change" type="submit" onclick="addLi('formation','formationLi')">Ajouter</button>
+                            </div>
+                            <div class="bottoms">
+                                <ul class="liste listeExperience" id="formationLi">
+                                    <li>MASTER EN REPRODUCTION HUMAINE, IVI - UNIVERSIDAD JUAN CARLOS I MADRID, 2007</li>
+                                    
+                                </ul>
+                            </div>
+                            <a class="voir_plus" href="#">voir plus</a>
+                        </div>
+                    </form>
+                    </div>
+                    <div class="lines expLine">
+                        <form action="">
+                        <div class="column_form ajouter">
+                            <div class="top">
+                                <input class="input_form exp_input" type="text" id="specialite" autocomplete="off" placeholder=" ">
+                                <label class="label_form" for="specialite" type = "text">specialite</label>
+                                <button class="save_change" type="submit" onclick="addLi('specialite','specialiteLi')">Ajouter</button>
+                            </div>
+                            <div class="bottoms">
+                                
+                                    <ul class="liste specialite" id="specialiteLi">
+                                        <li>géneraliste</li>
+                                        <li>cardiologue</li>
+                                        <li>chirurgien</li>
+                                    </ul>
+                            </div>
+                            <a class="voir_plus" href="#">voir plus</a>
+                        </div>
+                    </form>
+                    </div>
+                    <div class="lines expLine">
+                        <form action="">
+                        <div class="column_form ajouter">
+                            <div class="top">
+                                <input class="input_form exp_input" type="text" id="maladie" autocomplete="off" placeholder=" ">
+                                <label class="label_form" for="maladie" type = "text">maladie traitée</label>
+                                <button class="save_change" type="submit" onclick="addLi('maladie','maladieLi')">Ajouter</button>
+                            </div>
+                            <div class="bottoms">
+                                
+                                    <ul class="liste maladie" id="maladieLi">
+                                        <li>fièvre</li>
+                                    </ul>
+                                
+                            </div>
+                            <a class="voir_plus" href="#">voir plus</a>
+                        </div>
+                    </form>
+                    </div>
+                    <div class="lines expLine">
+                        <form action="#">
+                            <div class="column_form ajouter descr">
+                                <div class="top">
+                                <input class="input_form exp_input" type="text" id="description" autocomplete="off" placeholder=" ">
+                                <label class="label_form" for="description" type = "text">description</label>
+                                <button class="save_change " type="submit">Ajouter</button>
+                            </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                </div>
+              </div>
+              <div class="tabs__content">
+                <h2 class="tabs__title">Horraire</h2>
+                <div class="tabs__text">
+                    <div class="horraire">
+                        <form action="#">
+                        <table>
+                            <thead class="head">
+                                <tr>
+                                    <th>jour</th>
+                                    <th>heure d'entrée</th>
+                                    <th>heure de sortie</th>
+                                </tr>
+                           
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>lundi</td>
+                                    <td><input class="timing" type="time" id="entree_1" autocomplete="off" ></td>
+                                    <td><input  class="timing"  type="time" id="sortie_1" autocomplete="off"></td>
+                                </tr>
+                                <tr>
+                                    <td>mardi</td>
+                                    <td><input class="timing"  type="time" id="entree_1" autocomplete="off" ></td>
+                                    <td><input class="timing"  type="time" id="sortie_1" autocomplete="off"></td>
+                                </tr>
+                                <tr>
+                                    <td>mercredi</td>
+                                    <td><input  class="timing" type="time" id="entree_1" autocomplete="off" ></td>
+                                    <td><input  class="timing" type="time" id="sortie_1" autocomplete="off"></td>
+                                </tr>
+                                <tr>
+                                    <td>jeudi</td>
+                                    <td><input  class="timing" type="time" id="entree_1" autocomplete="off" ></td>
+                                    <td><input class="timing"  type="time" id="sortie_1" autocomplete="off"></td>
+                                </tr>
+                                <tr>
+                                    <td>vendredi</td>
+                                    <td><input class="timing"  type="time" id="entree_1" autocomplete="off" ></td>
+                                    <td><input class="timing"  type="time" id="sortie_1" autocomplete="off"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    
+                        <h2 class="tarif_title tabs__title">Tarif </h2>
+                            <div class="lines tarif_ligne">
+                                
+                                <div class="column_form tarif">
+                                    <p class="type_consu">au cabinet</p>
+                                </div>
+                                <div class="column_form tarif">
+                                    <input class="input_form" type="text" id="prenom" autocomplete="off" placeholder=" ">
+                                    <label class="label_form" type="text" for="prenom">prix</label>
+                                    <!-- <button class="save_change btn_tarif" type="submit">Ajouter</button> -->
+                                </div>
+                            </div>
+                        <div class="lines tarif_ligne">
+                                
+                            <div class="column_form tarif">
+                                <p class="type_consu">en ligne</p>
+                            </div>
+                            <div class="column_form tarif">
+                                <input class="input_form" type="text" id="prenom" autocomplete="off" placeholder=" ">
+                                <label class="label_form" type="text" for="prenom">prix</label>
+                                <!-- <button class="save_change btn_tarif" type="submit">Ajouter</button> -->
+                            </div>
+                        </div>
+                        <div class="lines tarif_ligne">
+                                
+                            <div class="column_form tarif">
+                                <p class="type_consu">à domicile</p>
+                            </div>
+                            <div class="column_form tarif">
+                                <input class="input_form" type="text" id="prenom" autocomplete="off" placeholder=" ">
+                                <label class="label_form" type="text" for="prenom">prix</label>
+                                <!-- <button class="save_change btn_tarif"  type="submit">Ajouter</button> -->
+                            </div>
+                        </div> 
+                        <button  class="save_changes_btn tarif_btn" type="submit">save changes</button>
+                    </form>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+     </main>
+
+
+     <footer class="footer">
+        <div class="content">
+            <div class="row">
+             <div class="footer-col">
+                <div class="logoChifae">
+                    <img class="logo" src="./images/Layer 1.png" alt="#">
+                    <span class="chifae">Chifae</span>
+                </div>
+                 <div class="social-links">
+                     <a href="#"><i class="fab fa-facebook-f"></i></a>
+                     <a href="#"><i class="fab fa-twitter"></i></a>
+                     <a href="#"><i class="fab fa-instagram"></i></a>
+                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                 </div>
+             </div>
+                <div class="footer-col">
+                    <h4>des liens rapides</h4>
+                    <ul>
+                        <li><a href="#">Acceuil </a></li>
+                        <li><a href="#">Se connecter</a></li>
+                        <li><a href="#">services</a></li>
+                        <li><a href="#">contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">SOS</a></li>
+                        <li><a href="#">livraison de médicaments</a></li>
+                        <li><a href="#">Pharmacies de garde</a></li>
+                        <li><a href="#">Contacts de Laboratoires</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Aide &amp; Support</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Conditions Générales d’Utilisation </a></li>
+                        
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+   </footer>
+
+
+    </div>
+
+
+
+    <script src="./script.js"></script>
+</body>
+</html>

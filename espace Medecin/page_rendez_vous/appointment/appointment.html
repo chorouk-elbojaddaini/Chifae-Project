@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <link rel="stylesheet" href="appointment.css">
+</head>
+<body >
+    <div class="container" id="blur" > 
+            <a href="#" onclick="toggle()">click here</a>
+            <input type="text" name="g" id="f">
+    </div>
+    <div id="boite" >
+          <div class="c1">
+            <!--input type="submit" value="ajouter"/-->
+              <p class="appointment">Make an appointment</p>
+            <img src="calendar.png" class="patient" alt="patientIcon">
+            
+            <img src="close.png" class="close" onclick="toggle()">
+            
+          </div>
+          <div class="c2">
+            <div id="nom">
+              <label class="form-nom" >Nom <span class="text-danger">*</span></label>
+              <input type="text" placeholder=" Nom du patient">
+            </div>
+            <div id="prenom">
+              <label class="from-prenom">Prénom <span class="text-danger">*</span></label>
+              <input type="text" placeholder=" Prenom du patient" id="start">
+            </div>
+            <div id="age">
+              <label class="from-age">Age <span class="text-danger">*</span></label>
+              <input type="text" placeholder=" Age du patient">
+            </div>
+          </div>
+          <div class="c3">
+            <div id="email">
+              <label class="from-email">Adresse email <span class="text-danger">*</span></label>
+              <input type="text" placeholder="Adresse email du patient">
+            </div>
+          </div>
+          <div class="c4">
+            <div id="date">
+              <label class="form-nom" >Date <span class="text-danger">*</span></label>
+              <input type="date" value="yyyy-jj-mm" min="2022-03-06" >
+            </div>
+            <div id="time">
+              <label class="from-prenom">Time <span class="text-danger">*</span></label>
+              <input type="time" min="08:00" max="16:00">
+            </div>
+            <div id="phone">
+              <label class="from-age">Phone <span class="text-danger">*</span></label>
+              <input type="tel" placeholder=" Phone number">
+            </div>
+          </div>
+          <div class="c5">
+              <span class="circal-title">Genre <span class="text-danger">*</span></span>
+              <div class="category">
+                <input type="radio" name="gender" ><label >homme</label> 
+                <input type="radio" name="gender" id="fr"><label id="f">femme</label>
+              </div>
+              <input type="submit" value="ajouter" class="ajouter">
+          </div>
+
+
+    </div>
+
+    <script src="test.js"></script>
+</body>
+</html>
+
