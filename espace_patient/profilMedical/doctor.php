@@ -3,11 +3,13 @@ session_start();
 error_reporting(E_ALL ^ E_WARNING);
 
 include '../../connexionDoc/cnx.php';
-$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient ='{$_SESSION['codePatient']}' ");
+
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient ='{$_GET['code_patient']}' ");
 
 if (mysqli_num_rows($display) > 0) 
  { 
    $row = mysqli_fetch_assoc($display);
+   print_r($row);
    $_SESSION['idPatient'] =$row['id'];
 
  }
@@ -195,7 +197,7 @@ function vanish() {
         <div id="heading" class="hid">
         <img src="./images/logo1.png" alt="logo" class="logo" width="100px" height="100px"/>
           <p>Dossier Médical :</p>
-          <p><?php echo $row['nom']."  ".$row['prenom'];?></p>
+          <p><?php echo $row['nom']."  ".$row['prenom']; ?></p>
           <hr>
         </div>
         
@@ -225,7 +227,8 @@ function vanish() {
               <?php
             }?>
                    
-                   <h4 class="data-text pdf" id="nomComplet"><?php echo $row['nom']."  ".$row['prenom'];?></h4>
+                   <h4 class="data-text pdf" id="nomComplet"><?php echo $row['nom']."  ".$row['prenom'];
+                   echo $_SESSION['codePatient']; ?></h4>
                   </div>
                     <div id="info-profilP">
                             <div class='informations'>
@@ -1027,7 +1030,7 @@ function vanish() {
             </div>
          </div>
     </div>
-       
+    
     </div>
     <script type="text/javascript">
 

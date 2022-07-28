@@ -15,9 +15,9 @@ session_start();
         $patient->deletePatient('medecin',$idsPatient,$_SESSION['SESSION_EM'],$id);
         // $patient_shuffle = $patient->getData('patient',$arrayTest);
     }
-    if(isset($_POST["insertPatient"])){
-        $code_pat = $_POST["code_patient"];
-        $_SESSION['codePatient'] = $_POST["code_patient"];
+    if(isset($_GET["insertPatient"])){
+        $code_pat = $_GET["code_patient"];
+        $_SESSION['codePatient'] = $_GET["code_patient"];
         $result = $patient->db->con->query("select * from patient where code_patient = '{$code_pat}'");
         $resultArray = array();
         //fetch data one by one
