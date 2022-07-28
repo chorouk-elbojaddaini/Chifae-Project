@@ -53,7 +53,6 @@ $_SESSION["heure"] = $time;
              // echo "<db> <db>";
              $column_horaire = array("Horaires");
              $horaire_medecin = $calendrier->getDataCalendrier("medecin",$column_horaire[0],"id",$idMed);
-             print_r($horaire_medecin);
              $string_rendez_vous_medecin = "start_datetime,end_datetime";
              $start_end_rendezvous = $calendrier->getDataCalendrier("schedule_list",$string_rendez_vous_medecin,"idMedecin",$idMed);
             
