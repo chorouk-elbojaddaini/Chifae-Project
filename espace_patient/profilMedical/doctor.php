@@ -59,6 +59,7 @@ if (mysqli_num_rows($display) > 0)
     href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!----======== CSS ======== -->
     <!-- ================sripts================================================= -->
+    <link rel="icon" type="image/png" href="./images/logo.png" />
 
 
 </head>
