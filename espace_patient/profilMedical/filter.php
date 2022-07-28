@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include '../../connexionDoc/cnx.php';
 // include'pagination.php';
 //================function to select which date filter we want ==============

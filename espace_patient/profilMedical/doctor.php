@@ -1,7 +1,8 @@
 <?php 
 session_start();
 error_reporting(E_ALL ^ E_WARNING);
-
+$_SESSION['idPatient']='100000';
+  
 include '../../connexionDoc/cnx.php';
 
 $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient ='{$_GET['code_patient']}' ");
@@ -9,9 +10,8 @@ $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient =
 if (mysqli_num_rows($display) > 0) 
  { 
    $row = mysqli_fetch_assoc($display);
-   print_r($row);
    $_SESSION['idPatient'] =$row['id'];
-   $id =  $_SESSION['idPatient'] ;
+   
  }
 
 ?>
@@ -227,8 +227,7 @@ function vanish() {
               <?php
             }?>
                    
-                   <h4 class="data-text pdf" id="nomComplet"><?php echo $row['nom']."  ".$row['prenom'];
-                   echo $_SESSION['codePatient']; ?></h4>
+                   <h4 class="data-text pdf" id="nomComplet"><?php echo $row['nom']."  ".$row['prenom'];?></h4>
                   </div>
                     <div id="info-profilP">
                             <div class='informations'>
@@ -385,7 +384,7 @@ function vanish() {
                     // echo "ana page".$pageM."<br>";
                     $start_from =   ($pageM-1)*$num_per_page;
                     // echo "ana lbdya".$start_from;
-                    $malad_array = filter_by_date("maladies",$_SESSION['dateMal'],$start_from,$num_per_page,"categorie", $_SESSION['word'],$conn,$idPat);
+                    $malad_array = filter_by_date("maladies",$_SESSION['dateMal'],$start_from,$num_per_page,"categorie", $_SESSION['word'],$conn,$_SESSION['idPatient']);
                     $malad = $malad_array['query'];
                     $total_records=$malad_array['nb_rows'];
                     // echo $total_records;
@@ -466,7 +465,7 @@ function vanish() {
                     
                     $start_fromT =   ($pageT-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromT;
-                    $traite_array = filter_by_date("traitements",$_SESSION['dateT'],$start_fromT,$num_per_page,"nom", $_SESSION['searchT'],$conn,$idPat);
+                    $traite_array = filter_by_date("traitements",$_SESSION['dateT'],$start_fromT,$num_per_page,"nom", $_SESSION['searchT'],$conn,$_SESSION['idPatient']);
                     $traite = $traite_array['query'];
                     $total_recordsT=$traite_array['nb_rows'];
                     // echo $total_records;
@@ -547,7 +546,7 @@ function vanish() {
                     
                     $start_fromH =   ($pageH-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromH;
-                    $hospi_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$conn,$idPat);
+                    $hospi_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$conn,$_SESSION['idPatient']);
                     $hospi = $hospi_array['query'];
                     $total_recordsH=$hospi_array['nb_rows'];
                     // echo $total_records;
@@ -701,7 +700,7 @@ function vanish() {
                     
                     $start_fromV =   ($pageV-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromH;
-                    $vaccin_array = filter_by_date("vaccins",$_SESSION['dateV'],$start_fromV,$num_per_page,"nom", $_SESSION['searchV'],$conn,$idPat);
+                    $vaccin_array = filter_by_date("vaccins",$_SESSION['dateV'],$start_fromV,$num_per_page,"nom", $_SESSION['searchV'],$conn,$_SESSION['idPatient']);
                     $vaccin = $vaccin_array['query'];
                     $total_recordsV=$vaccin_array['nb_rows'];
                     // echo $total_records;
@@ -777,7 +776,7 @@ function vanish() {
                     
                     $start_fromM =   ($pageM-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromM;
-                    $mesure_array = filter_by_date("mesures",$_SESSION['dateMes'],$start_fromM,$num_per_page,"poids", $_SESSION['searchMes'],$conn,$idPat);
+                    $mesure_array = filter_by_date("mesures",$_SESSION['dateMes'],$start_fromM,$num_per_page,"poids", $_SESSION['searchMes'],$conn,$_SESSION['idPatient']);
                     $mesure = $mesure_array['query'];
                     $total_recordsM=$mesure_array['nb_rows'];
                     // echo $total_recordsM;
@@ -925,7 +924,7 @@ function vanish() {
                     // echo "ana page".$pageM."<br>";
                     $start_fromD =   ($pageD-1)*$num_per_page;
                     // echo "ana lbdya".$start_from;
-                    $doc_array = filter_by_date("documents",$_SESSION['dateD'],$start_fromD,$num_per_page,"nomDoc", $_SESSION['searchD'],$conn,$idPat);
+                    $doc_array = filter_by_date("documents",$_SESSION['dateD'],$start_fromD,$num_per_page,"nomDoc", $_SESSION['searchD'],$conn,$_SESSION['idPatient']);
                     $doc = $doc_array['query'];
                     $total_recordsD=$doc_array['nb_rows'];
                     // echo $total_records;
@@ -999,7 +998,7 @@ function vanish() {
                   // echo "ana page".$pageM."<br>";
                   $start_fromDg =   ($pageDg-1)*$num_per_page;
                   // echo "ana lbdya".$start_from;
-                  $diag_array = filter_by_date("diagnostic",$_SESSION['dateDg'],$start_fromDg,$num_per_page,"nomComplet", $_SESSION['searchDg'],$conn,$idPat);
+                  $diag_array = filter_by_date("diagnostic",$_SESSION['dateDg'],$start_fromDg,$num_per_page,"nomComplet", $_SESSION['searchDg'],$conn,$_SESSION['idPatient']);
                   $diag = $diag_array['query'];
                   $total_recordsDg=$diag_array['nb_rows'];
                   // echo $total_records;
