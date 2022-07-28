@@ -19,11 +19,12 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
 // $idsPatient = $patient->getDataPatientMed("medecin"); 
  
  $patient_shuffle = $patient->getDataPagination("patient",$patient_shuffle);
-
     if(isset($_GET['s']) AND !empty($_GET['s'])){
         $recherche = htmlspecialchars($_GET['s']);
         $patient_shuffle = $patient->db->con->query('SELECT * from patient where nom LIKE "%'.$recherche.'%"  and id IN ('.$arrayTest.')ORDER BY id DESC');
+       
     }
+    
   ?>
 <main>
             <div class="top_section">
@@ -49,7 +50,7 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
 
                                 <?php 
                                 if($item['photo'] != null){
-                                    echo'<img class ="doctorImg" src = "data:image/jpg;base64,' . base64_encode("$item[photo]") . '" width = "300px" height="80px" />';	
+                                    echo'<img class ="doctorImg" src = "data:image/jpg;base64,' . $item['photo'] . '" width = "300px" height="80px" />';	
                                  }
                                  else { ?>
                                  <img class ="" src = "../images/avatar.jpeg" width = "150px" height="85px"/>

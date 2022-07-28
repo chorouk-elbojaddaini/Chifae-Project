@@ -33,6 +33,7 @@
         }
         
     }
+    
 
     //delete patient
     public function deletePatient($table='medecin',$arrayIds,$email,$idPatient){
