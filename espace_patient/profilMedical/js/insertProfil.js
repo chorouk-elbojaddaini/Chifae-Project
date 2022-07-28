@@ -131,7 +131,7 @@ function uploadImage()
                 alertify.set('notifier','position', 'top-right');
                 alertify.success(res.message);
                 document.getElementById('photo').style.borderRadius='50%'
-                // location.reload(true);
+                location.reload(true);
             }    //=============db probleme query return falsy value
 
           //=============if empty 
