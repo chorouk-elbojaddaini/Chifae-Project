@@ -99,9 +99,10 @@ error_reporting(E_ALL & ~E_NOTICE);
                         //if the image exists
                         if($patientInfo[0]["photo"]!= NULL){
                             //printing the image
-                            foreach ($patientInfo as $itemPhoto) {
-                                echo'<img class = "patientImg" src = "data:image/jpeg;base64,' . base64_encode("$itemPhoto[photo]") . '" />'; 
-                            }
+                            echo'<img class ="patientImg" src = "data:image/jpg;base64,' .$patientInfo[0]["photo"] . '" width = "100px" height="100px" "/>';	
+                            // foreach ($patientInfo as $itemPhoto) {
+                            //     echo'<img class = "patientImg" src = "data:image/jpeg;base64,' . base64_encode("$itemPhoto[photo]") . '" />'; 
+                            // }
                         }
                         else{
                              echo  '<img class = "patientImg"   src = "../images/default-avatar.jpg"/>'; 

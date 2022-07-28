@@ -142,7 +142,7 @@ if (mysqli_num_rows($display) > 0)
             
                    <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
                       <a class="pop"href="profil.php" target="_blank" id="monProfil">Mes infos</a>
-                      <a class="pop" href="#" id="deconnect">Se déconnecter</a>
+                      <a class="pop" href="../../connexionPat/logout.php" id="deconnect">Se déconnecter</a>
            </div>
             </div>
            

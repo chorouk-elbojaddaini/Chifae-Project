@@ -1343,6 +1343,10 @@ table
  
  
 } */
+div[class="options"]{
+  left:2px;
+  top:5px
+}
 }
 /* -------------------------large------------------------------ */
 @media (min-width:992px) and (max-width:1119px)

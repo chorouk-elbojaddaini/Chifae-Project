@@ -628,10 +628,12 @@ if(isset($_POST['updateP']) )
     else
 {
     $update = "UPDATE dossiermedical SET nom='$nom',prenom='$pre',dateNaissance='$nais',sexe='$sexe',email='$mail',tel='$tel',adresse='$adr',etatCivil='$etat',groupSanguin='$grp',mutuelle='$mut'
-                WHERE  id='{$_SESSION['idPatient']}' AND id='$id'";
+                WHERE   id='$id'";
+    $updatePat = "UPDATE patient SET nom='$nom',prenom='$pre',datenaissace='$nais',sexe='$sexe',email='$mail',numero='$tel'
+                 WHERE   email='{$_SESSION['SESSION_EMAIL']}'";
     $update_run = mysqli_query($conn, $update);
-
-    if($update_run)
+    $update_run_pat = mysqli_query($conn, $updatePat);
+    if($update_run==true && $update_run_pat==true)
     {
         $res = [
             'status' => 200,
