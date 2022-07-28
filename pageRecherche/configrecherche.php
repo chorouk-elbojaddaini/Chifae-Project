@@ -57,7 +57,7 @@
           }
           
           echo '<div class="voirplus plus1">
-          <button class="btn-voirplus btn1 voirprof">voir le profile</button>
+          <button class="btn-voirplus btn1 voirprof" id="'."$row[id]".'">voir le profile</button>
         </div>
       </div>
       <div class="div-info" >
