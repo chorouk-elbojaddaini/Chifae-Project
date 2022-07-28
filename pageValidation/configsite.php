@@ -150,6 +150,7 @@ function test_input($data)
     if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
         $_SESSION["idpat"] = $row["id"];
+        $_SESSION["codePatient"]= $row["code_patient"];        
 
         
         $div ="INSERT INTO schedule_list (nom, prenom, email,code,telephone,idMedecin,start_datetime,end_datetime,idPatient)

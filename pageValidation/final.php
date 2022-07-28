@@ -119,7 +119,7 @@ include('../pageAcceuil/cnx.php');
         </div>
         <p class="confirmation"><i class="uil uil-calender"></i>Confirmation de rendez-vous</p>
         <div class="confirmation-info">
-            <h3><?php echo $_SESSION['nom']." ".$_SESSION['prenom'] ; ?> </h3>
+            <h3><?php  echo $_SESSION['nom']." ".$_SESSION['prenom'] ; ?> </h3>
             <p>Nous confirmons votre rendez-vous du  </br>
             <span><?php echo $_SESSION["date"]." à ".$_SESSION['heure'] ; ?></span>
         avec <span>Dr. <?php echo $row['nom']." ".$row['prenom'] ; ?> </span>  à <span><?php echo $row['adresse']." , ".$row['ville'] ; ?>  </span></p>

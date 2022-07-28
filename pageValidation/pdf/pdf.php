@@ -57,7 +57,17 @@ include('../../pageAcceuil/cnx.php');
                             <div class="col-sm-6">
                                 <div class="mb-4 ">
                                     <div class="text-sm-right">
-                                        <h4 class="invoice-color mb-2 mt-md-2">Votre ID : #BBB1243</h4>
+                                        <h4 class="invoice-color mb-2 mt-md-2">
+
+                                        <?php  
+
+                                        if(isset($_SESSION["codePatient"])){
+                                            echo ' Votre ID : '.$_SESSION["codePatient"].'</h4>';
+                                        }  
+                                        else{
+                                        echo 'Votre ID : </h4>';
+                                        }
+                                        ?>
                                         <ul class="list list-unstyled mb-0">
                                    
                                         </ul>
