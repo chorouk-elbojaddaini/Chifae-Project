@@ -96,7 +96,7 @@ include "cnx.php";
             </h1>
             <!-- start bare de recherche  -->
             <form
-              action="../pageRecherche/recherche.php?page=1"
+              action="../pageRecherche/recherche.php?var1=0&page=1"
               class="boxes"
               method="post"
               enctype="multipart/form-data"
@@ -111,7 +111,7 @@ include "cnx.php";
                  $total = mysqli_num_rows($result);
                  echo $total;
                  while($row=mysqli_fetch_array($result)){
-                  echo '<option value="'."$row[ville]".'">'."$row[ville]".'</option>'; 
+                  echo '<option value="'."$row[ville]".'" ';?><?php if(isset($_POST['search'])){if($_POST["ville"] == "$row[ville]"){echo "selected";} } ?> <?php echo '>'."$row[ville]".'</option>'; 
                  }
                  ?>
                 </select>
@@ -126,7 +126,8 @@ include "cnx.php";
                  $total = mysqli_num_rows($result);
                  echo $total;
                  while($row=mysqli_fetch_array($result)){
-                  echo '<option value="'."$row[specialite]".'">'."$row[specialite]".'</option>'; 
+                  echo '<option value="'."$row[specialite]".'" ';?><?php if(isset($_POST['search'])){if($_POST["specialite"] == "$row[specialite]"){echo "selected";} } ?> <?php echo '>'."$row[specialite]".'</option>'; 
+
                  }
                  ?>
                 </select>

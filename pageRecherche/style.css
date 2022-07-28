@@ -896,6 +896,15 @@ transition: var(--transition);
 }
 .iconnav{
   font-size: 20px !important;}
+  .precedent{
+    background-color: var(--color-pink);
+    font-size: larger;
+  }
+  .numberpage{
+    color:white;
+    background-color: rgba(106, 177, 171, 0.45) ;
+    padding: 5px;
+  }
 /* ========  Start pagination section ============*/
 /* ===================== end  medecin section ======================= */
 /* ========= End Search card  ================= */

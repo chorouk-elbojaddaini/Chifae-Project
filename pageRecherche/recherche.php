@@ -114,12 +114,13 @@ include('../pageAcceuil/cnx.php');
     <!-- search section  -->
     <div class="search-container">
       <div class="search">
-        <form action="" method="post">
+        <form action="?var1=0&page=1" method="post">
           <input
             type="text"
             name="nom"
             id="nom"
             placeholder="cherchez médecin"
+            value ="<?php if(isset($_SESSION['search2'])){ echo $_POST['nom'];} ?>" 
           />
           <select id="villes" name="ville2">
             <option value=" (ville?)" class="ville">Ville</option>
@@ -129,7 +130,7 @@ include('../pageAcceuil/cnx.php');
                  $total = mysqli_num_rows($result);
                  echo $total;
                  while($row=mysqli_fetch_array($result)){
-                  echo '<option value="'."$row[ville]".'">'."$row[ville]".'</option>'; 
+                  echo '<option value="'."$row[ville]".'" ';?><?php if(isset($_SESSION['search2'])){if($_POST["ville2"] == "$row[ville]"){echo "selected";} } ?> <?php echo '>'."$row[ville]".'</option>'; 
                  }
                  ?>
           </select>
@@ -222,13 +223,30 @@ var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
       <!-- ====  pagination Bar =======  -->
       
       <div class="pagination">
-     
-      
-        <?php for ($i=1; $i <= $pages ; $i++){ ?> 
-        <li class="page-item current-page active">
-          <a class="page-link"  href="?var1=0&page=<?php echo $i; ?>"><?php echo $i; ?></a>
+    <?php 
+    if($_GET["page"] > 1){
+    ?>
+    <li class="">
+          <a class="precedent"  href="?var1=0&page=<?php echo ($_GET["page"]-1); ?>"><i class="uil uil-previous"></i></a>
         </li>
-        <?php } ?>
+      <?php } 
+        $i=1;
+        if( $i <$pages){ ?>
+        <li class="">
+          <a class="numberpage"  href="?var1=0&page=<?php echo $_GET["page"]; ?>"> page <?php echo $_GET["page"]; ?> de <?php echo $pages; ?></a>
+        </li>
+         <?php } ?>
+        <?php
+        if($_GET["page"] < $pages){
+          ?>
+        <li class="">
+          <a class="precedent"  href="?var1=0&page=<?php echo ($_GET["page"]+1); ?>"><i class="uil uil-step-forward"></i></a>
+        </li>
+        <?php
+        $i++;
+        }
+        ?>
+
         
       </div>
     </div>
