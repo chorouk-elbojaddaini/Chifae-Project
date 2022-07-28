@@ -133,7 +133,7 @@ error_reporting(E_ALL & ~E_NOTICE);
                     ?>
                  </td>
                  <td><?php echo $patientInfo[0]["sexe"] ?></td>
-                 <td><?php echo $patientInfo[0]["telephone"] ?></td>
+                 <td><?php echo $patientInfo[0]["numero"] ?></td>
 
                  <td class="accept">
                  <form method = "post">
