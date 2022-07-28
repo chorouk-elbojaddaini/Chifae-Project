@@ -8,7 +8,7 @@ include 'config.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <link rel="icon" type="image/png" href="assets/logo.png" />
     <script
     src="https://kit.fontawesome.com/64d58efce2.js"
     crossorigin="anonymous"
@@ -97,11 +97,11 @@ include 'config.php';
                 <div class="info">
                   <div class="information">
                     <img src="assets/location-point.svg" class="icon" alt="" />
-                    <p>Hay 06 aklim Berkane, Maroc</p>
+                    <p>Hay Elqodss Oujda, Maroc</p>
                   </div>
                   <div class="information">
                     <img src="assets/envelope-edit.svg" class="icon" alt="" />
-                    <p>shifae@gmail.com</p>
+                    <p>chifae091@gmail.com</p>
                   </div>
                   <div class="information">
                     <img src="assets/envelope-edit.svg" class="icon" alt="" />

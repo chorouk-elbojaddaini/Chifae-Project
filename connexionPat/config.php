@@ -44,7 +44,7 @@ if (isset($_GET['verification'])){
         
                     header("location: ../espace_patient/accueil/welcome.html");
                    $query= mysqli_query($conn ,"UPDATE patient SET temp='' WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
-
+                    
                     die();
                     }
                     else{

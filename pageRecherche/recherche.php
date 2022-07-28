@@ -426,6 +426,12 @@ window.history.pushState('', 'New Page Title', '../pageValidation/validation.php
 // document.location.href = '../pageValidation/validation.php';
 
 });
+$('.voir-rdv').click(function() {
+    ide = this.id;
+window.history.pushState('', 'New Page Title', '../pageValidation/site.php?id='+ide);
+// document.location.href = '../pageValidation/validation.php';
+
+});
 
 });   
 </script>
