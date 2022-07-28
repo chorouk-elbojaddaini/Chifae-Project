@@ -40,7 +40,7 @@
                     <a  class="nav-links pink" href="#">Acceuil</a>
                 </li>
                 <li>
-                    <a  class="nav-links " href="#"><i class="fa-solid fa-arrow-right-from-bracket icon .logout "></i> Deconnexion</a>
+                    <a  class="nav-links " href="../../../connexionDoc/logout.php"><i class="fa-solid fa-arrow-right-from-bracket icon .logout "></i> Deconnexion</a>
                 </li>
                 
                 

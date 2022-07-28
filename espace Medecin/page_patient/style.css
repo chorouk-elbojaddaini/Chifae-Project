@@ -289,7 +289,7 @@ a{
   }
   .container .sidebar .top .text p {
     color: rgb(175, 171, 171);
-    margin-left: 13px;
+    margin-left: 8px;
     margin-top: -20px;
     margin-right: 17px;
     margin-bottom: 0;
@@ -316,6 +316,10 @@ a{
   
     color: white;
   }
+  .bottom ul{
+    margin-left: -8px;
+
+  }
   .bottom ul li {
     text-decoration: none;
     font-size: 16px;
@@ -324,17 +328,21 @@ a{
     letter-spacing: 1px;
     position: relative;
     background-color: #0b737f;
-    width: 77%;
+    width: 74.5%;
     padding: 5px 12px;
     border-radius: 25px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
       rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-    margin-left: 5px;
+    margin-left: 11px;
   }
+
   .bottom ul li:hover {
     background: #13565f;
   
     color: white;
+  }
+  .bottom ul li a{
+    margin-left: -2px;
   }
 
 
