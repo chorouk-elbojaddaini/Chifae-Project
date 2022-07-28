@@ -36,7 +36,10 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
                     <input type="submit" name = "envoyer" value="rechercher" style="background:#fe6686; border:none; color:white; padding:3px 9px; cursor:pointer; border-radius:10px; ">
                 </form>
            <div class="patient_wrapper">
-            <?php if($patient_shuffle !=null){ ?>
+            <?php 
+
+
+            if($patient_shuffle !=null){ ?>
                 <?php foreach($patient_shuffle as $item) {  ?>
                     <div class="patient">
                         
@@ -46,7 +49,7 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
 
                                 <?php 
                                 if($item['photo'] != null){
-                                    echo'<img class ="doctorImg" src = "data:image/jpg;base64,' . base64_encode("$item[photo]") . '" width = "300px" height="80px" "/>';	
+                                    echo'<img class ="doctorImg" src = "data:image/jpg;base64,' . base64_encode("$item[photo]") . '" width = "300px" height="80px" />';	
                                  }
                                  else { ?>
                                  <img class ="" src = "../images/avatar.jpeg" width = "150px" height="85px"/>
