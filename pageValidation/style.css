@@ -693,7 +693,7 @@ margin-right: 10%;
  "date-jour"
  "disponibilites";
  position: relative;
- width: 100% !important; 
+ /* width: 100% !important;  */
  background-color: white; 
 }
 .containerDispCal{
@@ -777,10 +777,151 @@ margin-right: 10%;
 }
 .afficherdisponibilite{
   margin-bottom: 50px;
+
 }
  .clickable{
-  background: #421330;
+  background: red;
 } 
+
+
+
+
+
+
+
+.boite-cal{
+  padding: 0 25px;
+  display: grid;
+  grid-template-rows: 30px 30px 1fr 29px 45px;
+ grid-template-areas: "days "
+ "date-jour"
+ "disponibilites"
+ "afficher"
+ "prendreRdv";
+ position: relative;
+ width : 500px;
+ height: 269px;
+ background: #ffffff;
+ box-shadow: 0 0 9px #e3e5e6;
+ overflow-y: auto;
+ border-radius: 10px;
+ top:-8px;
+ /* margin-left: 10px; */
+
+ 
+}
+
+.containerDispCal{
+  grid-area: disponibilites;
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  /* gap: .1rem; */
+  
+  }
+.disponibilitesCal{
+  
+  display: flex;
+  flex-direction: column; 
+  
+  text-align: center;
+}
+.weekdays {
+  grid-area: days;
+}
+.days {
+  grid-area: date-jour;
+  font-size: 15px;
+  color: #707070;
+}
+.weekdays , .days{
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  
+  text-align: center;
+  
+}
+
+
+.disponibilitesCal button {
+  margin-bottom: 5px;
+ margin-left: 5px;
+  width : 50px;
+  border: none ;
+  font-size: 14px;
+  background: #ffffff;
+
+}
+.disponibilitesCal button.Disponible {
+  
+  background : #e3e5e6;
+  cursor: pointer;
+  
+  
+
+}
+.showHide {
+  display : none;
+}
+.disponibilitesCal button.Disponible:hover{
+  background: var(--color-green);
+  color: #ffffff;
+}
+.next{
+  position: absolute;
+  top: 20px;
+  right: 9px;
+  color: #525151;
+  cursor: pointer;
+}
+.prev {
+  position: absolute;
+  color: #525151;
+  top: 20px;
+  left: 9px;
+  cursor: pointer;
+}
+.prev.hide {
+  visibility: hidden;
+}
+.rdv{
+  grid-area : prendreRdv;
+  margin-top: 12px;
+  
+}
+.prendre-rdv {
+ background: var(--color-pink);
+ color: #ffffff;
+ text-align: center;
+ margin-left: 120px;
+ padding: 5px;
+ border-radius: 5px;
+
+
+
+}
+.prendre-rdv:hover{
+  color: var(--color-pink);
+  background: #ffffff;
+  border-color: var(--color-pink);
+}
+.afficherdisponibilite {
+  grid-area : afficher ;
+  background-color: var(--color-green);
+  cursor: pointer;
+  border: var(--color-green);
+font-size: 15px;
+
+color: var(--color-pink);
+border-radius: 5px;
+margin-left: 100px;
+}
+.none {
+  display : none;
+}
+.clickable{
+  color: white;
+  background-color: var(--color-green3) !important;
+}
 
 
 /* ============================= media query===================== */
@@ -861,7 +1002,7 @@ margin-right: 10%;
     .form{
         margin-top: -5rem !important;
         width: 100%;
-        background-color: red;
+        /* background-color: red; */
        
     }
     .information-medecin {
@@ -1101,6 +1242,21 @@ margin-bottom: 1%;
 
   /* ==================  end Step 4 ======================== */
 
- 
+  @media (max-width:906px){
+  .boite-cal{
+    margin-left: -40px;
+  }
+ }
+ @media(max-width:762px){
+  /* .time{
+    width: 100%;
+    
+  } */
+   .boite-cal {
+    
+    margin-left: -55px;
+   width: 300px;
+   }
+ }
 
-  
+   

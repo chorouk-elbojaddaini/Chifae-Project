@@ -34,8 +34,8 @@ class Calendrier{
         return $times;
     }
 
-     public function getDataCalendrier($table,$column,$condition){
-        $query_string = sprintf("select %s from %s where %s = '1' ",$column,$table,$condition);
+     public function getDataCalendrier($table,$column,$condition,$id){
+        $query_string = sprintf("select %s from %s where %s = '$id' ",$column,$table,$condition,$id);
         $result = $this->db->con->query($query_string);
         $resultArray = array();
         while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){

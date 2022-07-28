@@ -124,7 +124,13 @@ function test_input($data)
 
     
     }
-  
+     //add 30mins to endDatetime
+     $minutes_to_add = 30;
+     $time = new DateTime($_SESSION['dateTime']);
+     $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
+     $dateTimeEnd = $time->format('Y-m-d H:i');
+      echo $dateTimeEnd;
+
   
     
     // isset submit
@@ -140,17 +146,20 @@ function test_input($data)
     
     elseif( $_SESSION["codee"] === $_SESSION["code"]){
         $query = mysqli_query($conn, "SELECT * FROM patient WHERE email='$_SESSION[email]'");
+
     if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
         $_SESSION["idpat"] = $row["id"];
-        $div ="INSERT INTO schedule_list (nom, prenom, email,code,telephone,idMedecin,start_datetime,idPatient)
-        VALUES ('$_SESSION[nom]', '$_SESSION[prenom]','$_SESSION[email]','$_SESSION[code]', '$_SESSION[phone]', '$_SESSION[id]','$_SESSION[dateTime]','$_SESSION[idpat]')";
+
+        
+        $div ="INSERT INTO schedule_list (nom, prenom, email,code,telephone,idMedecin,start_datetime,end_datetime,idPatient)
+        VALUES ('$_SESSION[nom]', '$_SESSION[prenom]','$_SESSION[email]','$_SESSION[code]', '$_SESSION[phone]', '$_SESSION[id]','$_SESSION[dateTime]','$dateTimeEnd','$_SESSION[idpat]')";
               $result = mysqli_query ($conn , $div);
             header("location: final.php");
     }
     else {
-      $div ="INSERT INTO schedule_list (nom, prenom, email,code,telephone,idMedecin,start_datetime)
-      VALUES ('$_SESSION[nom]', '$_SESSION[prenom]','$_SESSION[email]','$_SESSION[code]', '$_SESSION[phone]', '$_SESSION[id]','$_SESSION[dateTime]')";
+      $div ="INSERT INTO schedule_list (nom, prenom, email,code,telephone,idMedecin,start_datetime,end_datetime)
+      VALUES ('$_SESSION[nom]', '$_SESSION[prenom]','$_SESSION[email]','$_SESSION[code]', '$_SESSION[phone]', '$_SESSION[id]','$_SESSION[dateTime]','$dateTimeEnd')";
             $result = mysqli_query ($conn , $div);
           header("location: final.php");
     }

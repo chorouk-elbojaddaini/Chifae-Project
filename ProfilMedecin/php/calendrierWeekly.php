@@ -272,7 +272,7 @@
     var minOut = "0"
     $('.prendre-rdv').click(function() {
 
-window.history.pushState('', 'New Page Title', '../../terminer/pageValidation/validation.php?id='+idMedec+'&year='+yearOut+'&month='+monthOut+'&day='+dayOut+'&hour='+hourOut+'&min='+minOut);
+window.history.pushState('', 'New Page Title', '../../pageValidation/validation.php?id='+idMedec+'&year='+yearOut+'&month='+monthOut+'&day='+dayOut+'&hour='+hourOut+'&min='+minOut);
 
 
 });

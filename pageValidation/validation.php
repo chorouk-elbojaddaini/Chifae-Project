@@ -2,7 +2,7 @@
 <?php
  session_start();
  $_SESSION["id"] = $_GET["id"];
- echo $_SESSION["id"];
+ $idMed = $_GET["id"];
  $hour = $_GET["hour"];
  $min = $_GET["min"];
 
@@ -52,10 +52,10 @@ $_SESSION["heure"] = $time;
              // print_r($time);
              // echo "<db> <db>";
              $column_horaire = array("Horaires");
-             $horaire_medecin = $calendrier->getDataCalendrier("medecin",$column_horaire[0],"id");
-             // print_r($horaire_medecin);
+             $horaire_medecin = $calendrier->getDataCalendrier("medecin",$column_horaire[0],"id",$idMed);
+             print_r($horaire_medecin);
              $string_rendez_vous_medecin = "start_datetime,end_datetime";
-             $start_end_rendezvous = $calendrier->getDataCalendrier("schedule_list",$string_rendez_vous_medecin,"idMedecin");
+             $start_end_rendezvous = $calendrier->getDataCalendrier("schedule_list",$string_rendez_vous_medecin,"idMedecin",$idMed);
             
      
      
@@ -293,13 +293,13 @@ $_SESSION["heure"] = $time;
 
         </div>
 
-        
+        <p class="afficherdisponibilite" onclick="showHideDisp()" >afficher plus de disponibilités</p>
     </div>
 
-       
+    
       </div>
       
-      <p class="see-more">voir plus</p>
+      
           
       
       <button type="button"  name = "submitDateTime" class="btn btn-next width-50 ml-auto"  >Suivant</button>
@@ -561,7 +561,7 @@ validate.style.display = "none";
 })
       </script>
 
-<script>
+<script async defer>
     //ghadi njibo les horaires fo9Ach khdam wn7tolo les horaires dyawlo tmak 
     //wmoraha njibo les rendez vous dyawlo bla la date wndbro 3la la date tmak fl calendrier dyalna
     // wila kant l'heure deja kayna fles horaires dyawlna ndiro fblastha tire
@@ -820,12 +820,17 @@ validate.style.display = "none";
             let n = 0
             
             for (n = 0; n < week.length; n++) {
-              var idElmt = x 
+              if(week.length == 1){
+                    week.length = 21
+                    week[n] = "--"
+                }
+                var idElmt = x 
                 if (week[n] == null) {
                     week[n] = "--"
                     
 
-                } else {
+                }
+               else {
                     if ("1:00:00" <= week[n] && week[n] <= "9:30:00") {
                         week[n] = "0" + week[n]
 
@@ -852,6 +857,10 @@ validate.style.display = "none";
                 input.setAttribute("type","hidden")
                 input.setAttribute("name","heure")
                 input.setAttribute("value",week[n])
+                e.classList.add("Disponible")
+                if(week[n] == "--") {
+                e.classList.remove("Disponible")
+                 }
 
                 
                  if(n >= 4){
@@ -861,7 +870,7 @@ validate.style.display = "none";
                 //  e.appendChild(input)
                  e.setAttribute("id",idElmt)
                  if(year == date.getFullYear() && month-1 == date.getMonth() && day ==date.getDate() && e.innerHTML == time){
-                    console.log("oui")
+                    
                     e.classList.add("clickable")
 
                  }
