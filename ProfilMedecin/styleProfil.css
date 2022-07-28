@@ -1,0 +1,1000 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+:root{
+    --color-green:#13565f;
+    --color-green2: #2b6a72;
+    --color-green3: #4d9ca7;
+    --color-black:#262626;
+    --color-background:#f3f8fe;
+    --shadow:rgba(100,100,111,0.2) 0px 7px 29px 0px;
+    --text-color: #707070;
+    --color-pink:#fe6686;
+    --color-white: white;
+    --container_width_lg: 80%;
+    --container_width_mg: 90%;
+    --container_width_sm: 94%;
+  
+    --transition: all 400ms ease;
+}
+
+
+
+h2 {
+  vertical-align: center;
+  text-align: center;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background-color: #e6edee;
+}
+
+* {
+  font-family: "poppins",sans-serif;
+  box-sizing: border-box;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 80px 120px auto 300px;
+    grid-template-areas: 
+    "navbar navbar"
+    "carte carte"
+    "main right"
+    "footer footer";
+    
+    
+    
+}
+
+nav{
+    grid-area: navbar;
+    
+}
+.container .carte {
+  grid-area: carte;
+  
+  
+}
+
+.container main{
+   padding: 5px 15px;
+    grid-area: main;
+    margin-bottom: 50px !important;
+    height:90vh;
+    background-color: #ffffff;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    box-shadow: 0 0 2px var(--color-green2);
+    height: auto;
+    margin-bottom: auto;
+    border-radius: 10px;
+}
+.container .right{
+  grid-area: right ;
+    
+    margin-right: 1rem;
+    margin-left : 1rem;
+    
+    
+    
+    
+}
+
+.container footer{
+    
+    grid-area: footer;
+    height: 380px;
+    
+}
+
+/* logo */
+.logo {
+  width: 40px;
+
+}
+/* logo */
+/* drop_down with on click on image   */
+.dropbtn {
+  border-radius: 50%;
+  color: white;
+  padding: 14px;
+  border: 1px solid white;
+  cursor: pointer;
+  background: url(https://i1.sndcdn.com/avatars-4xEcq7Z6NyPN6ceg-8b8GOg-t500x500.jpg);
+  background-repeat: no-repeat;
+  background-size: 100px 50px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 200px;
+  z-index: 1;
+  margin-top: 10px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 2px 2px;
+  text-decoration: none;
+  display: block;
+}
+
+hr.solid {
+  border-left: none;
+  border-right: none;
+  border-top: 1px solid #000000;
+  border-bottom: none;
+}
+
+.show {
+  display: block;
+}
+/* end drop down with images */
+
+
+h4 {
+  font-size: 1.3rem;
+  line-height: 1.2;
+  color: white;
+}
+a {
+  color: white;
+}
+/* container */
+/* =============== nav =================== */
+nav {
+  background-color: var(--color-green);
+  /* width: 100vw; */
+  /* height: 5rem; */
+  /* position: fixed; */
+  top: 0;
+  /* z-index: 1200; */
+  padding-top: 1rem;
+}
+.logo_cont {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  margin-left: 5rem;
+   margin-top: -0.8rem;
+}
+.nav_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav button {
+  display: none;
+}
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  margin-left: 36rem;
+  margin-top: 0.2rem;
+  
+}
+.iconnav{
+  font-size: 20px !important;
+}
+.nav-menu a {
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+.nav-menu a:hover {
+  color: var(--color-green3);
+}
+.medecin {
+  background-color: var(--color-pink);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.patient {
+  background-color: var(--color-pink);
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 3px 7px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.patient:hover {
+  padding: 4px 8px;
+}
+.medecin:hover {
+  padding: 4px 6px;
+}
+/* ============end nav============= */
+
+/* ===========================nav bar end======================================== */
+
+/* /==========================START MAIN SECTION=======================/ */
+.infos-spec , .infos-tarifs, .langue, .about-d{
+  color: var(--color-pink);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.one-name{
+  font-weight: 600;
+  color: var(--color-green3);
+}
+.span-desc{
+ font-weight: 550;
+ color: var(--color-green);
+ background: rgba(19, 86, 95, .1);
+
+
+}
+.description {
+  font-weight: 400;
+}
+
+
+.middle a{
+  text-decoration: underline;
+}
+span.r {
+  display: hidden;
+}
+.class-spec span {
+  width: 40%;
+  padding: 5px;
+  background: #4d9ca7;
+  margin-right: 4px;
+  color:#fff;
+  font-weight: 600;
+  border-radius: 5px;
+  display: block;
+  margin-top: 5px;
+}
+.voir{
+  cursor: pointer;
+  text-decoration: underline;
+  color: #13565f;
+}
+.class-spec span.ds {
+ display: none;
+}
+#table{
+  font-size: 1.2rem;
+  border-collapse: collapse ;
+  text-align: center;
+  width: 50rem;
+  padding-bottom: 50rem;
+  
+
+}
+table, td, th {
+  width: 50%;
+}
+
+th{
+  background-color: var(--color-green3);
+  font-weight: 600;
+  color: #ffffff;
+}
+tr th:first-child{
+  border-top-left-radius: 1rem;
+}
+tr th:nth-child(2){
+  border-top-right-radius: 1rem;
+}
+ tr:nth-child(even) {
+  background-color: rgb(139, 180, 185);
+  
+  font-weight: 400;
+}
+tr:nth-child(odd) {
+  background-color:rgb(248, 246, 246);
+  font-weight: 400;
+} 
+.paiment {
+  margin-top: 5px;
+  font-weight: 400;
+  
+  
+}
+
+.paiment span {
+  background: #c4c3c3;
+  margin-right: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.paiment-div {
+  text-decoration: underline;
+  color: var(--color-green3);
+  font-weight: 580;
+}
+
+.class-langues span{
+  width: auto;
+  padding: 5px;
+  background: #4d9ca7;
+  margin-right: 4px;
+  color:#fff;
+  font-weight: 600;
+  border-radius: 5px;
+}
+
+
+.experiences-content , .diplome {
+  color: var(--color-pink);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+.ul-experiences , .ul-diplome {
+  background: rgb(77,156,167);
+   color:white;  
+  padding: 10px;
+  font-weight: 400;
+  list-style: inside;
+  border-radius: 10px;
+}
+.ul-experiences li,.ul-diplome li {
+  list-style: inside;
+}
+/* /=================END CONTENT 2=====================/
+/=============START CONTENT 3=======================/ */
+.adresse {
+  color: var(--color-pink);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.p-adresse{
+  height: auto;
+  font-weight: 400;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  color: black !important;
+}
+.iframe-map{
+width: 99%;
+}
+/* /=============END CONTENT 3===========================/
+
+/==============START CONTENT 4==========================/ */
+.horaires-left{
+
+}
+.daysHoraires{
+  background: var(--color-green2);
+  padding: 2px 10px;
+  width: 100px;
+  text-align: center;
+  margin: 0;
+  color:white;
+  border-radius: 10px;
+
+}
+.horaires , .contact{
+  color: var(--color-pink);
+  font-weight: 600;
+  font-size: 1.2rem;
+  display: inline;
+} 
+.hours{
+  margin: 0;
+  width: 270px;
+  text-align: center;
+  margin-left: -15px;
+  padding: 2px 10px;
+  background :var(--color-green3);
+  border-radius: 10px;
+  color: white;
+}
+
+/* .contact{
+  display: inline;
+  margin-left: 29%;
+} */
+
+
+/* .clock ul {
+  list-style: none;
+  background: #fff;
+
+} */
+.clock ul li {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  padding: 2px;
+  color: rgb(12, 12, 12);
+  gap : 2rem;
+  margin-right: 0;
+
+} 
+
+.contact-side > div > span {
+  color: var(--color-green2);
+}
+
+.fa-phone , .fa-envelope{
+  background: var(--color-green3);
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 10px;
+  margin-top: 8px;
+  
+
+}
+
+
+
+
+/* /=============================calendrier====================================/ */
+
+.boite-cal{
+  padding: 0 25px;
+  display: grid;
+  grid-template-rows: 30px 30px 1fr 29px 45px;
+ grid-template-areas: "days "
+ "date-jour"
+ "disponibilites"
+ "afficher"
+ "prendreRdv";
+ position: relative;
+ width : 450px;
+ height: 269px;
+ background: #ffffff;
+ box-shadow: 0 0 7px var(--color-green2);
+ overflow-y: auto;
+ border-radius: 10px;
+ top:-8px;
+
+ 
+}
+
+.containerDispCal{
+  grid-area: disponibilites;
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  /* gap: .1rem; */
+  
+  }
+.disponibilitesCal{
+  
+  display: flex;
+  flex-direction: column; 
+  
+  text-align: center;
+}
+.weekdays {
+  grid-area: days;
+}
+.days {
+  grid-area: date-jour;
+  font-size: 15px;
+  color: #707070;
+}
+.weekdays , .days{
+  display: grid;
+  grid-template-columns: repeat(7,1fr);
+  
+  text-align: center;
+  
+}
+
+
+.disponibilitesCal button {
+  margin-bottom: 5px;
+ margin-left: 5px;
+  width : 50px;
+  border: none ;
+  font-size: 14px;
+  background: #ffffff;
+
+}
+.disponibilitesCal button.Disponible {
+  
+  background : rgb(139, 180, 185);
+  cursor: pointer;
+  
+  
+
+}
+.showHide {
+  display : none;
+}
+.disponibilitesCal button.Disponible:hover{
+  background: var(--color-green);
+  color: #ffffff;
+}
+.next{
+  position: absolute;
+  top: 20px;
+  right: 9px;
+  color: #525151;
+  cursor: pointer;
+}
+.prev {
+  position: absolute;
+  color: #525151;
+  top: 20px;
+  left: 9px;
+  cursor: pointer;
+}
+.prev.hide {
+  visibility: hidden;
+}
+.rdv{
+  grid-area : prendreRdv;
+  margin-top: 12px;
+  
+}
+.prendre-rdv {
+ background: var(--color-pink);
+ color: #ffffff;
+ text-align: center;
+ margin-left: 120px;
+ padding: 5px;
+ border-radius: 5px;
+
+
+
+}
+.prendre-rdv:hover{
+  color: var(--color-pink);
+  background: #ffffff;
+  border-color: var(--color-pink);
+}
+.afficherdisponibilite {
+  grid-area : afficher ;
+  background-color: var(--color-green);
+  cursor: pointer;
+  border: var(--color-green);
+font-size: 15px;
+color: #e6edee;
+border-radius: 5px;
+}
+.none {
+  display : none;
+}
+
+
+
+
+/* /======================END MAIN SECTION============================/ */
+
+
+/* ===================================FOOTER =========================== */
+
+
+.footer .content{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color: white;
+    padding: 70px 0;
+    height: 300px ;
+    margin-top: -5px;
+    width: 100% !important;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 20px;
+	color: #585978;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 700;
+	position: relative;
+}
+/* .footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+} */
+.footer-col h4:hover{
+  color: #037ef3;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #585978;
+	text-decoration: none;
+	font-weight: 300;
+
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #037ef3;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: var(--color-green3);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: white;
+	transition: all 0.3s ease;
+}
+.footer-col .social-links a:hover{
+	background-color: #88b8c0;
+
+}
+.footer .footer-col .logo{
+  width: 40px;
+}
+.footer .footer-col .chifae{
+  color: var(--color-pink);
+  font-weight: 700;
+}
+.footer .footer-col .logoChifae{
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.copyright-wrapper{
+  margin-left: 390px;
+  margin-top: 15px;
+}
+.copyright-wrapper::before{
+  content: "";
+  position: absolute;
+  
+  width: 1050px;
+  height: 1px;
+  background:rgba(182, 181, 181, 0.6);
+  animation: animate 5s linear infinite;
+  margin-left: -350px;
+}
+.copyright-wrapper p {
+  color: rgba(88, 89, 120, 0.6);
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.copyright-wrapper p a {
+  color: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+}
+
+.copyright-wrapper p a:hover {
+  color: #037ef3;
+}
+/* ===================================footer end =============================================*/
+
+/* /===========================Main section=========================/ */
+
+.carte {
+  padding:0 80px;
+  display: flex;
+  gap: 0.5rem;
+  box-shadow: 0 0 8px var(--color-green);
+  background: rgb(139, 180, 185) !important;
+}
+.carte .avatar {
+  width:99px; 
+  margin-top: 5px;
+  background-color: #ffffff;
+  clip-path: circle();
+}
+.name-spec{
+ display: flex;
+ flex-direction: column;
+ margin-top: 10px;
+ margin-left: 18px;
+}
+.name , .spec {
+  height: 10px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+.spec{
+  font-size: 1.2rem;
+  
+
+}
+.specInfo{
+  font-size: 1rem;
+  color: var(--color-green3);
+
+}
+
+#boiteAffichage{
+  background: #fff;
+  z-index: 500;
+  width: 40%;
+  padding-bottom: 50%;
+  position: absolute;
+  top:120px;
+  left:40%;
+  position: fixed;
+  visibility: hidden;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#boiteAffichage.act {
+ visibility: visible;
+ opacity: 1;
+transition: 0.5s;
+}
+.close {
+  width: 25px;
+  position: absolute;
+  top:4px;
+  right: 4px;
+  cursor: pointer;
+} 
+
+.container#blur.act {
+  filter: blur(1px);
+  pointer-events: none;
+  user-select: none;
+  
+}
+
+#boite2{
+  background: #fff;
+  z-index: 500;
+  width: 40%;
+  padding-bottom: 50%;
+  position: absolute;
+  top:220px;
+  position: fixed;
+  left:40%;
+  visibility: hidden;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#boite2.act {
+ visibility: visible;
+ opacity: 1;
+transition: 0.5s;
+}
+
+
+
+#boite3{
+  background: #fff;
+  z-index: 500;
+  width: 40%;
+  padding-bottom: 50%;
+  position: fixed;
+  top:60px;
+  left:40%;
+  visibility: hidden;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#boite3.act {
+ visibility: visible;
+ opacity: 1;
+transition: 0.5s;
+}
+
+
+/*boite 4 cursus et diplome*/
+
+#boite4{
+  background: #fff;
+  z-index: 500;
+  width: 40%;
+  padding-bottom: 50%;
+  position: fixed;
+  top:60px;
+  left:40%;
+  visibility: hidden;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#boite4.act {
+ visibility: visible;
+ opacity: 1;
+transition: 0.5s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======================NAV BAR RESPONSIVE=================================== */
+
+
+@media (max-width: 900px) {
+    .menu-button-container {
+      display: flex;
+      position: relative;
+    }
+    .menu {
+      position: absolute;
+      top: 0;
+      margin-top: 50px;
+      left: 0;
+      flex-direction: column;
+      width: 841px;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      z-index: 10;
+      
+    }
+    main .left{
+      margin-right: 3% !important;
+      margin-left: 3% !important;
+      margin-top: 2% !important;
+    }
+    
+    label.menu .menu-button-container{
+        margin-right: 500px;
+        position: absolute;
+        right: 150px;
+    }
+    #menu-toggle ~ .menu li {
+      height: 0;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    #menu-toggle:checked ~ .menu li {
+      border: 1px solid #333;
+      height: 2.5em;
+      padding: 0.5em;
+      transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+      
+    }
+    .menu > li {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0.5em 0;
+      width: 100%;
+      color: white;
+      background-color: #222;
+    }
+    .menu > li:not(:last-child) {
+      border-bottom: 1px solid #444;
+    }
+   
+  }
+
+
+  
+  /* ============================nav bar end======================================= */ 
+
+/* ================================Footer RESPONSIVE================================ */
+
+
+/* footer */
+
+@media(max-width: 767px){
+    .footer{
+      height: auto !important;
+      width: 100%;
+    }
+      .footer-col{
+        width: 50%;
+        margin-bottom: 30px;
+        
+    }
+    }
+    @media(max-width: 574px){
+      .footer-col{
+        width: 100%;
+        height: 190px !important;
+    }
+    }
