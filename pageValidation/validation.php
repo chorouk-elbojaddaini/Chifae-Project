@@ -331,7 +331,7 @@ $_SESSION["heure"] = $time;
                   <div class="input-group ">
                         <label for="dob">Votre email
                         </label>
-                        <input  type="email" name="email" class="number" placeholder="ex: mohammed@gmail.com" value ="<?php if(isset($_POST['sub'])){ echo $_POST["email"] ;} ?>"/>
+                        <input  type="text" name="email" class="number" placeholder="ex: mohammed@gmail.com" value ="<?php if(isset($_POST['sub'])){ echo $_POST["email"] ;} ?>"/>
                       </div>
                     <div class="input-group input-number">
                         <label for="dob">Votre numéro 
@@ -470,7 +470,6 @@ $_SESSION["heure"] = $time;
     </div>
   </footer>
 
-    <script src="main.js"></script>
     <script>
 
 
@@ -948,6 +947,8 @@ validate.style.display = "none";
       <script src="http://code.jquery.com/jquery-latest.js"></script>
    
     <script src="./app.js"></script>
+    <script src="main.js"></script>
+
 
 </body>
 

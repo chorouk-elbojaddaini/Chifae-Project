@@ -130,7 +130,7 @@ let check = document.querySelector(".check");
 let number = document.querySelector(".number");
 let text = document.querySelector(".text");
 
-let regex = /^[\d,\s,\+,\-]{10}/;
+let regex = '#^0[6-7]{1}\d{8}$#';
 
 // check.addEventListener("click",()=>{
 // 	if(number.value ==""){
@@ -161,9 +161,21 @@ function validateForm() {
   var y = document.forms["formm"]["prenom"].value;
   var z = document.forms["formm"]["email"].value;
   var e = document.forms["formm"]["phone"].value;
-  var f = document.forms["formm"]["date"].value;
-  var j = document.forms["formm"]["heure"].value;
+  // var f = document.forms["formm"]["date"].value;
+  // var j = document.forms["formm"]["heure"].value;
   var mail_format = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  function validateEmail(email) 
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+    function validateNUM(num) 
+    {
+        var re = /^0[6-7]{1}\d{8}$/;
+        return re.test(num);
+    }
+    console.log(x);
+    console.log(validateEmail(z));
   if (x == "" || x == null) {
     alert("Le nom doit être remplit");
 
@@ -188,53 +200,45 @@ return false;
     location.reload();
 return false;
   }
-  if (f == "" || f == null) {
-    alert("La date doit être remplit");
-
-    location.reload();
-return false;
-  }
-  if (j == "" || j == null) {
-    alert("L'heure doit être remplit");
-
-    location.reload();
-return false;
-  }
-
- 
-   if(number.value.length<12){
+  if(e.length >10){
     alert("le numéro doit contenir 10 nombres");
 
     location.reload();
 return false;
 	}
-	else if(number.value.match(regex)){
-		
+  if(e.length <9){
+    alert("le numéro doit contenir 10 nombres");
+
+    location.reload();
+return false;
 	}
+	if(!validateNUM(e)){
+    alert("le numéro doit commencer par 06 ou 07");
+
+    location.reload();
+return false;
+	}
+
+  if(validateEmail(z))
+  {
+    return true;
+  }
+  else
+{
+    alert("Entrer un email valide");
+
+    location.reload();
+    return false;
+  }
+ 
+
+
  
 
 
 
-if(z.match(mail_format))
-
-{
 
 
 
-return true;
-
-}
-
-else
-
-{
-
-alert('Entrer un email valide');
-
-
-location.reload();
-return false;
-
-}
 
 }
