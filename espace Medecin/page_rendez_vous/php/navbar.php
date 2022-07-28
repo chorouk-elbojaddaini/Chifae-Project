@@ -1,6 +1,6 @@
 <?php 
   
-  $medecin_shuffle = $medecin->getData();
+  $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
 
 ?>
 
@@ -55,7 +55,7 @@
                }
                 else{
                   ?>
-                    <img  src="../images/avatar.jpeg" alt="profile" id="photo" style="width:100px; height:100px; margin-left:90px;" class="imageNavbar">
+                    <img  src="../images/avatar.jpeg" alt="profile" id="photo" style="width:55px;" class="imageNavbar">
               
               
               <?php

@@ -3,7 +3,7 @@ session_start();
 error_reporting(E_ALL ^ E_WARNING);
 
 include '../../connexionDoc/cnx.php';
-$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient ='{$_SESSION['codePatient']}' ");
 
 if (mysqli_num_rows($display) > 0) 
  { 

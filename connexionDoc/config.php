@@ -40,6 +40,14 @@ if (isset($_GET['verification'])){
             $row = mysqli_fetch_assoc($result);
             if(empty($row['code'])){
                 $_SESSION['SESSION_EM'] = $email;
+                $result = mysqli_query($conn,"select * from medecin where gmail = '{$_SESSION['SESSION_EM']}'  ");
+                $resultArray = array();
+                //fetch data one by one
+                while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+                    $resultArray[] = $item;
+                }
+                $idMed = $resultArray[0]['id'];
+                $_SESSION['id'] = $idMed;
                 header("location: ../espace Medecin/page_profil_medecin/php");
             }
             else{

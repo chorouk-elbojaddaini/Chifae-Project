@@ -1,5 +1,6 @@
 <?php 
-$medecin_shuffle = $medecin->getData();
+
+$medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
 
 $lat = $medecin_shuffle[0]['lat'];
 $lon = $medecin_shuffle[0]['lon'];
@@ -18,13 +19,13 @@ $_SESSION["prenom"] = $prenom;
 $_SESSION["adresse"] =$adresse;
 $_SESSION["ville"] = $ville;
 
-$patient_shuffle = $patient->getData();
-$arrayspec = $medecin->displayData('medecin','specialites');
-$arrayDesc = $medecin->displayData('medecin','description');
-$arrayLangue = $medecin->displayData('medecin','langue');
-$arrayExperience = $medecin->displayData('medecin','experience');
-$arrayDiplome = $medecin->displayData('medecin','diplome');
-$arrayHoraires = $medecin->displayData('medecin','horaires');
+$patient_shuffle = $patient->getData('medecin',$_SESSION['SESSION_EM']);
+$arrayspec = $medecin->displayData('medecin','specialites',$_SESSION['SESSION_EM']);
+$arrayDesc = $medecin->displayData('medecin','description',$_SESSION['SESSION_EM']);
+$arrayLangue = $medecin->displayData('medecin','langue',$_SESSION['SESSION_EM']);
+$arrayExperience = $medecin->displayData('medecin','experience',$_SESSION['SESSION_EM']);
+$arrayDiplome = $medecin->displayData('medecin','diplome',$_SESSION['SESSION_EM']);
+$arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_EM']);
 $days = array('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche');
 ?>
 <main>

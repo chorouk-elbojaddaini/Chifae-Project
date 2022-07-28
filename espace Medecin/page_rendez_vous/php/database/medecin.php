@@ -8,8 +8,8 @@ class Medecin {
          $this->db = $db;
      }
  
-     public function getData($table ='medecin'){
-         $result = $this->db->con->query("select * from {$table}   ");
+     public function getData($table ='medecin',$email){
+         $result = $this->db->con->query("select * from {$table} where gmail = '{$email}'  ");
          $resultArray = array();
          //fetch data one by one
          while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -102,11 +102,11 @@ class Medecin {
             $arrayPatientsUnique = array_unique($arrayPatients);
             $arrayTest = implode(" ",$arrayPatientsUnique);
             // echo "hi".$arrayTest;
-            $query_string = sprintf("update {$table} set patient = '%s'   where id = '1' ",$arrayTest);
+            $query_string = sprintf("update {$table} set patient = '%s'   where id = '{$id}' ",$arrayTest);
             $result =$this->db->con->query($query_string);
         }
         else{
-            $query_string = sprintf("update {$table} set patient = '%s'   where id = '1' ",$idPatient);
+            $query_string = sprintf("update {$table} set patient = '%s'   where id = '{$id}' ",$idPatient);
             $result =$this->db->con->query($query_string);
         }
     }
@@ -243,28 +243,30 @@ class Medecin {
         }
     }
 
-    public function getDataChoix($table ='schedule_list',$choix){
+    public function getDataChoix($table ='schedule_list',$choix,$id){
         if($choix != null){
 
         
         $todayStart =  date('Y-m-d 00:00:00');
+        
         $todayEnd  =  date('Y-m-d 23:59:59');
+       
         if($choix == "all"){
-            $result = $this->db->con->query("select * from schedule_list  ");
-        }
-        if($choix == "today"){
-           
-            $result = $this->db->con->query("select * from schedule_list  where start_datetime > '{$todayStart}' and start_datetime < '{$todayEnd}' ");
-        }
-        if($choix == "yesterday"){
-            $yesterdayStart = date('Y-m-d 00:00:00', strtotime($todayStart. ' - 1 days'));
-            $yesterdayEnd   = date('Y-m-d 23:59:59', strtotime($todayEnd. ' - 1 days'));
-            $result = $this->db->con->query("select * from schedule_list where start_datetime > '{$yesterdayStart}' and start_datetime < '{$yesterdayEnd}' ");
+            $result = $this->db->con->query("select * from schedule_list where idMedecin = '{$id}' ");
         }
         if($choix == "tomorrow"){
-            $tomorrowStart = date('Y-m-d 00:00:00', strtotime($todayStart. ' + 1 days'));
-            $tomorrowEnd   = date('Y-m-d 23:59:59', strtotime($todayEnd. ' + 1 days'));
-            $result = $this->db->con->query("select * from schedule_list  where start_datetime > '{$tomorrowStart}' and start_datetime < '{$tomorrowEnd}' ");
+           
+            $result = $this->db->con->query("select * from schedule_list  where start_datetime > '{$todayStart}' and start_datetime < '{$todayEnd}' and idMedecin = '{$id}'");
+        }
+        if($choix == "today"){
+            $yesterdayStart = date('Y-m-d 00:00:00', strtotime($todayStart. ' - 1 days'));
+            $yesterdayEnd   = date('Y-m-d 23:59:59', strtotime($todayEnd. ' - 1 days'));
+            $result = $this->db->con->query("select * from schedule_list where start_datetime > '{$yesterdayStart}' and start_datetime < '{$yesterdayEnd}' and idMedecin = '{$id}' ");
+        }
+        if($choix == "yesterday"){
+            $tomorrowStart = date('Y-m-d 00:00:00', strtotime($todayStart. ' - 2 days'));
+            $tomorrowEnd   = date('Y-m-d 23:59:59', strtotime($todayEnd. ' - 2 days'));
+            $result = $this->db->con->query("select * from schedule_list  where start_datetime > '{$tomorrowStart}' and start_datetime < '{$tomorrowEnd}' and idMedecin = '{$id}' ");
         }
         
         $resultArray = array();

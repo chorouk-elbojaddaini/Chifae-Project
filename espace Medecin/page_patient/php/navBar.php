@@ -1,5 +1,5 @@
 <?php
-$medecin_shuffle = $medecin->getData();
+$medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
 
 ?>
 

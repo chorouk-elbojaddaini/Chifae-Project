@@ -1,11 +1,11 @@
 <?php 
 // require("./database/functions.php");
- $arrayExperience = $medecin->displayData('medecin','experience');
- $arrayspec = $medecin->displayData('medecin','specialites');
-$arrayMaladie = $medecin->displayData('medecin','diplome');
-$arrayDesc = $medecin->displayData('medecin','description');
-$arrayData = $medecin->getData();
-$arrayHoraires = $medecin->displayData('medecin','horaires');
+ $arrayExperience = $medecin->displayData('medecin','experience',$_SESSION['SESSION_EM']);
+ $arrayspec = $medecin->displayData('medecin','specialites',$_SESSION['SESSION_EM']);
+$arrayMaladie = $medecin->displayData('medecin','diplome',$_SESSION['SESSION_EM']);
+$arrayDesc = $medecin->displayData('medecin','description',$_SESSION['SESSION_EM']);
+$arrayData = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
+$arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_EM']);
 
 
 ?>
@@ -114,13 +114,12 @@ $arrayHoraires = $medecin->displayData('medecin','horaires');
                      $nom= $_POST["nom"];
                      $prenom= $_POST["prenom"];
                       $gmail= $_POST["gmail"];
-                     
+                    
                     $numero= $_POST["numero"];
                    $ville = $_POST["ville"];
                       $adresse= $_POST["adresse"];
                       $motdepasse= $_POST["motdepasse"];
                      $specialite = 'chir';
-
                      
 
                      $insertInformation = array("nom"=>$nom,"prenom"=>$prenom,"gmail"=>$gmail,"numero"=>$numero,"ville"=>$ville,"adresse"=>$adresse,"motdepasse"=>$motdepasse);
@@ -128,13 +127,18 @@ $arrayHoraires = $medecin->displayData('medecin','horaires');
                             foreach($insertInformation as $all_keys => $all_values){
                             $teste = $all_keys;
                             
-                            $all_values = $medecin->verifyEmpty($all_values,$teste);
+                            $all_values = $medecin->verifyEmpty($all_values,$teste,$_SESSION['SESSION_EM']);
                             $insertInformation[$all_keys] = $all_values;
                         }
                       
-                   $medecin->update(1,$insertInformation,'medecin',"information");
-                   }
-                 
+                   $medecin->update($_SESSION['SESSION_EM'],$insertInformation,'medecin',"information");
+                   if($gmail != null){
+                    
+                    $_SESSION['SESSION_EM'] = $gmail;
+                    
+                 }
+                }
+               
                 //    $arrayFormation = $medecin->displayData('medecin','experience');
                   
                 //    print_r($arrayFormation);
@@ -172,12 +176,11 @@ $arrayHoraires = $medecin->displayData('medecin','horaires');
                        if($for == null){
                         echo "<script>
                   
-                  swal({
-                      title: 'vous avez rien entré!',
-                      text: '',
-                      icon: 'error',
-                      
-                  });
+                        Swal.fire({
+                            title: 'Vous n avez rien entré!',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                          })
                   
       </script>";
                  }
@@ -212,12 +215,11 @@ $arrayHoraires = $medecin->displayData('medecin','horaires');
                        if($specialite == null){
                         echo "<script>
                   
-                  swal({
-                      title: 'vous avez rien entré!',
-                      text: '',
-                      icon: 'error',
-                      
-                  });
+                        Swal.fire({
+                            title: 'Vous n avez rien entré!',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                          })
                   
       </script>";
                  }
@@ -249,16 +251,15 @@ $arrayHoraires = $medecin->displayData('medecin','horaires');
                     <?php if(isset($_POST['submit_maladie'])){
                        $maladie = $_POST['maladie'];
                           if($maladie == null){
-                              echo "<script>
-                        
-                        swal({
-                            title: 'vous avez rien entré!',
-                            text: '',
+                            echo "<script>
+                  
+                        Swal.fire({
+                            title: 'Vous n avez rien entré!',
                             icon: 'error',
-                            
-                        });
-                        
-            </script>";
+                            confirmButtonText: 'Ok'
+                          })
+                  
+      </script>";
                        }
                        $medecin->ajout($arrayMaladie,$maladie,'diplome');
                          }     ?>
@@ -280,12 +281,11 @@ $arrayHoraires = $medecin->displayData('medecin','horaires');
                        if($description == null){
                         echo "<script>
                   
-                  swal({
-                      title: 'vous avez rien entré!',
-                      text: '',
-                      icon: 'error',
-                      
-                  });
+                        Swal.fire({
+                            title: 'Vous n avez rien entré!',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                          })
                   
       </script>";
                  }
@@ -365,17 +365,16 @@ $arrayHoraires = $medecin->displayData('medecin','horaires');
                                             $tarifCabinet = $_POST['cabinet'];
                                             if($tarifCabinet == null){
                                                 echo "<script>
-                                          
-                                          swal({
-                                              title: 'vous avez rien entré!',
-                                              text: '',
-                                              icon: 'error',
-                                              
-                                          });
+                  
+                                                Swal.fire({
+                                                    title: 'Vous n avez rien entré!',
+                                                    icon: 'error',
+                                                    confirmButtonText: 'Ok'
+                                                  })
                                           
                               </script>";
                                          }
-                                            $medecin->updateTarif('tarif_cabinet',$tarifCabinet);
+                                            $medecin->updateTarif('tarif_cabinet',$tarifCabinet,$_SESSION['SESSION_EM']);
                                         }
                                
                              ?>
@@ -396,17 +395,16 @@ $arrayHoraires = $medecin->displayData('medecin','horaires');
                                             $tarifEnLigne = $_POST['enLigne'];
                                             if($tarifEnLigne == null){
                                                 echo "<script>
-                                          
-                                          swal({
-                                              title: 'vous avez rien entré!',
-                                              text: '',
-                                              icon: 'error',
-                                              
-                                          });
-                                          
-                              </script>";
+                  
+                        Swal.fire({
+                            title: 'Vous n avez rien entré!',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                          })
+                  
+      </script>";
                                          }
-                                            $medecin->updateTarif('tarif_enLigne',$tarifEnLigne);
+                                            $medecin->updateTarif('tarif_enLigne',$tarifEnLigne,$_SESSION['SESSION_EM']);
                                         }
                                
                              ?>
@@ -427,17 +425,16 @@ $arrayHoraires = $medecin->displayData('medecin','horaires');
                                             $tarifDomicile = $_POST['domicile'];
                                             if($tarifDomicile == null){
                                                 echo "<script>
-                                          
-                                          swal({
-                                              title: 'vous avez rien entré!',
-                                              text: '',
-                                              icon: 'error',
-                                              
-                                          });
+                  
+                                                Swal.fire({
+                                                    title: 'Vous n avez rien entré!',
+                                                    icon: 'error',
+                                                    confirmButtonText: 'Ok'
+                                                  })
                                           
                               </script>";
                                          }
-                                            $medecin->updateTarif('tarif_dom',$tarifDomicile);
+                                            $medecin->updateTarif('tarif_dom',$tarifDomicile,$_SESSION['SESSION_EM']);
                                         }
                                
                              ?>
@@ -447,50 +444,50 @@ $arrayHoraires = $medecin->displayData('medecin','horaires');
                         <?php 
                                         if(isset($_POST['saveAll'])){
                                             $tarifEnLigne = $_POST['enLigne'];
-                                            $medecin->updateTarif('tarif_enLigne',$tarifEnLigne);
+                                            $medecin->updateTarif('tarif_enLigne',$tarifEnLigne,$_SESSION['SESSION_EM']);
                                             $tarifDomicile = $_POST['domicile'];
-                                            $medecin->updateTarif('tarif_dom',$tarifDomicile);
+                                            $medecin->updateTarif('tarif_dom',$tarifDomicile,$_SESSION['SESSION_EM']);
                                             $tarifCabinet = $_POST['cabinet'];
-                                            $medecin->updateTarif('tarif_cabinet',$tarifCabinet);
+                                            $medecin->updateTarif('tarif_cabinet',$tarifCabinet,$_SESSION['SESSION_EM']);
                                                 //changer les horaires
                                                 //lundi
                                                 $horaireLunE = $_POST['dateLunEnt'];
                                                 $horaireLunS =$_POST['dateLunSor'];
-                                                  $medecin->changeHoraire($arrayHoraires,$horaireLunE,$horaireLunS,'Lundi');
+                                                  $medecin->changeHoraire($arrayHoraires,$horaireLunE,$horaireLunS,'Lundi',$_SESSION['SESSION_EM']);
                                                  
                                                  //mardi
                                                 $horaireMarE = $_POST['dateMarEnt'];
                                                 $horaireMarS =$_POST['dateMarSor'];
-                                                  $medecin->changeHoraire($arrayHoraires,$horaireMarE,$horaireMarS,'Mardi');
+                                                  $medecin->changeHoraire($arrayHoraires,$horaireMarE,$horaireMarS,'Mardi',$_SESSION['SESSION_EM']);
 
                                                 // //mercredi
                                                  $horaireMerE = $_POST['dateMerEnt'];
                                                  $horaireMerS =$_POST['dateMerSor'];
-                                                  $medecin->changeHoraire($arrayHoraires,$horaireMerE,$horaireMerS,'Mercredi');
+                                                  $medecin->changeHoraire($arrayHoraires,$horaireMerE,$horaireMerS,'Mercredi',$_SESSION['SESSION_EM']);
                                                 
                                                  //jeudi
                                                  $horaireJeuE = $_POST['dateJeuEnt'];
                                                  $horaireJeuS =$_POST['dateJeuSor'];
-                                                  $medecin->changeHoraire($arrayHoraires,$horaireJeuE,$horaireJeuS,'Jeudi');
+                                                  $medecin->changeHoraire($arrayHoraires,$horaireJeuE,$horaireJeuS,'Jeudi',$_SESSION['SESSION_EM']);
 
                                                  //vendredi 
                                                  $horaireVenE = $_POST['dateVenEnt'];
                                                  $horaireVenS =$_POST['dateVenSor'];
-                                                 $medecin->changeHoraire($arrayHoraires,$horaireVenE,$horaireVenS,'Vendredi');
+                                                 $medecin->changeHoraire($arrayHoraires,$horaireVenE,$horaireVenS,'Vendredi',$_SESSION['SESSION_EM']);
                                                  //vendredi 
                                                  $horaireSamE = $_POST['dateSamEnt'];
                                                  $horaireSamS =$_POST['dateSamSor'];
-                                                 $medecin->changeHoraire($arrayHoraires,$horaireSamE,$horaireSamS,'Samedi');
+                                                 $medecin->changeHoraire($arrayHoraires,$horaireSamE,$horaireSamS,'Samedi',$_SESSION['SESSION_EM']);
                                                 
                                                  //dimanche
                                                  $horaireDimE = $_POST['dateDimEnt'];
                                                  $horaireDimS =$_POST['dateDimSor'];
-                                                 $medecin->changeHoraire($arrayHoraires,$horaireDimE,$horaireDimS,'Dimanche');
+                                                 $medecin->changeHoraire($arrayHoraires,$horaireDimE,$horaireDimS,'Dimanche',$_SESSION['SESSION_EM']);
 
 
                                                 $arrayEntree = Array ($horaireLunE,$horaireMarE,$horaireMerE,$horaireJeuE,$horaireVenE,$horaireSamE,$horaireDimE);
                                                  $arraySortie = Array ($horaireLunS,$horaireMarS,$horaireMerS,$horaireJeuS,$horaireVenS,$horaireSamS,$horaireDimS);
-                                                 $medecin->updateH($arrayHoraires,$arrayEntree,$arraySortie);
+                                                 $medecin->updateH($arrayHoraires,$arrayEntree,$arraySortie,$_SESSION['SESSION_EM']);
                                                 }
 
                                           

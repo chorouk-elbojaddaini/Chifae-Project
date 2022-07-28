@@ -98,7 +98,7 @@
                 // if(isset($_POST["boite_submit"])){
                 //     $medecin->insertBoite("yamna","yzaa","05242");
                 // }
-                $boite_array = array("nom"=>$nom,"prenom"=>$prenom,"telephone"=>$telephone,"start_datetime"=>$dateTimeStart,"end_datetime"=>$dateTimeEnd);
+                $boite_array = array("nom"=>$nom,"prenom"=>$prenom,"telephone"=>$telephone,"start_datetime"=>$dateTimeStart,"end_datetime"=>$dateTimeEnd,"idMedecin"=>$_SESSION['id']);
                 // print_r($boite_array);
                 $medecin->insertInto($boite_array,'schedule_list');
             }

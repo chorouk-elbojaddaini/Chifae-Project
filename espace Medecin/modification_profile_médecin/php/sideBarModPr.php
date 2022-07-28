@@ -1,5 +1,5 @@
 <?php 
-$arrayData = $medecin->getData();
+$arrayData = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
 ?>
 <div class="sidebar"><!--Side bar-->
         <div class="top"><!--Top section-->
@@ -16,7 +16,7 @@ $arrayData = $medecin->getData();
                }
                 else{
                   ?>
-                    <img  src="../images/avatar.jpeg" alt="profile" id="photo" style="width:100px; height:100px; margin-left:90px;" class="medecinNophoto">
+                    <img  src="../images/avatar.jpeg" alt="profile" id="photo" style="width:100px; height:100px; margin-left:-9px; margin-top:-110px" class="medecinNophoto">
               
               
               <?php
@@ -53,9 +53,9 @@ $arrayData = $medecin->getData();
                 </li>
                 
                 <li class = "nav-item">
-                    <a class = "nav-link"  href="#">
-                        <i class="fa-solid fa-blog icon"></i>
-                        <span class="text nav-text">blog</span>
+                    <a class = "nav-link"  href="../../calendar">
+                    <i class="fa-solid fa-calendar-days icon"></i>
+                        <span class="text nav-text">Calendrier</span>
                     </a>
                 </li>
                  

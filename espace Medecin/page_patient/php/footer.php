@@ -59,8 +59,8 @@
           </div> -->
           <i class="fa-solid fa-circle-xmark fa-xl" onclick="toggle()"></i>
           <div class="column_form other col2">
-            <input class="input_form" type="text" name = "idPatient" autocomplete="off" placeholder=" ">
-            <label class="label_form" type="text" for="idPatient">id</label>
+            <input class="input_form" type="text" name = "code_patient" autocomplete="off" placeholder=" ">
+            <label class="label_form" type="text" for="idPatient">code</label>
             </div>
 
             <button type="submit" name = "ajouterPatButton" id = "ajouterParId" class="ajouterPatient">ajouter</button>
@@ -129,7 +129,7 @@ $(document).on('click','.deletePat', function (e) {
             
             e.preventDefault();
             
-           console.log("hi");
+           
             let formData = new FormData(this);
             formData.append('insertPatient', true);
            

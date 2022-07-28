@@ -1,10 +1,14 @@
-      <?php require("./database/functions.php")?>
-      <?php include("./navBar.php")  ?>
-      <?php include("./sideBar.php")  ?>
-      <?php include("./mainProfil.php")  ?>
+      <?php 
+      session_start();
+      require("./database/functions.php");
+      
+      
+      include("./navBar.php");
+      include("./sideBar.php");
+      include("./mainProfil.php");
      
-      <?php include("./footer.php") ?>
-
+      include("./footer.php"); ?>
+          
    
 
 

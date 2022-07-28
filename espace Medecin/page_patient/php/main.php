@@ -1,5 +1,5 @@
 <?php 
-$patientResn = $patient->getDataPatientMed("medecin");
+$patientResn = $patient->getDataPatientMed("medecin",$_SESSION['SESSION_EM']);
 
 
 
@@ -83,13 +83,16 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
                                     ?></p>
                                 </div>
                                 <div class="ligne">
+                                    
                                     <p><i class="fa-solid fa-folder-medical icones circle"></i></p> 
-                                    <a class= "dossier" id = "medicale" href="#">dossier médicale</a>
+                                    <form action="../../../espace_patient/profilMedical/doctor.php" method="get">
+                                    <button type="submit" class= "dossier" id = "medicale" value="<?php echo $item["code_patient"] ?>" name="id">dossier médicale</button>
+                                 </form>
                                 </div>
                             </div>
                             
                         </div>
-                    
+                        
                     </div>
                 <?php } ?> 
                 <?php } ?> 

@@ -7,6 +7,21 @@ error_reporting(E_ALL & ~E_NOTICE);
         }
     }
     
+
+
+
+    if(empty( $_SESSION['choixOption']))
+    {
+    $_SESSION['choixOption']='all';
+    
+    }
+    if(isset($_POST['submit']))
+    {
+    $_SESSION['submit']=$_POST['submit'];
+      $_SESSION['choixOption'] = $_POST['choix'];
+      
+    }
+
 ?>
 
 <div class="main"><!--main-->
@@ -20,10 +35,10 @@ error_reporting(E_ALL & ~E_NOTICE);
      <a class="appointment" href="#"  onclick= "toggle()"><i class="fa-solid fa-calendar-plus"></i> RDV</a>
         <form method= "post" id="frm">
             <select class="select" name="choix" id="dateFilter">
-                <option name = "all" value="all">all</option>
-                <option name = "today" value="today">Today</option>
-                <option name = "yesterday" value="yesterday">Yesterday</option>
-                <option name = "tomorrow" value="tomorrow">Tomorrow</option>
+                <option name = "all" value="all" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="all"){echo "selected";} }?>>all</option>
+                <option name = "today" value="today" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="today"){echo "selected";} }?>>Today</option>
+                <option name = "yesterday" value="yesterday" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="yesterday"){echo "selected";} }?>>Yesterday</option>
+                <option name = "tomorrow" value="tomorrow" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="tomorrow"){echo "selected";} }?>>Tomorrow</option>
             </select>
             <button class="ok" type = "submit" name = "submit" id = "buttonSubmit"><i class="fa-solid fa-circle-check fa-xl"></i></button>
             
@@ -33,20 +48,8 @@ error_reporting(E_ALL & ~E_NOTICE);
 
 <?php 
 
-   if(empty( $_SESSION['choixOption']))
-   {
-    $_SESSION['choixOption']='all';
-    $_SESSION['search']='';
-   }
-   if(isset($_POST['submit']))
-    {
-      
-      $_SESSION['choixOption'] = $_POST['choix'];
-      
-    
-    }
-   
-   $arrayToday = $medecin->getDataChoix("events", $_SESSION["choixOption"]);
+ 
+   $arrayToday = $medecin->getDataChoix("events", $_SESSION["choixOption"],$_SESSION['id']);
    
    $sortedRendezVous = $medecin->sortRendezVous($arrayToday);
    
@@ -142,7 +145,7 @@ error_reporting(E_ALL & ~E_NOTICE);
                     if(isset($_POST["ajouter_patient"])){
                         $idPatientMed = $_POST["idPatient"];
                        
-                        $medecin->ajouterPatient(1,$idPatientMed,'medecin');
+                        $medecin->ajouterPatient($_SESSION['id'],$idPatientMed,'medecin');
                     }
                 ?>    
                    <td>

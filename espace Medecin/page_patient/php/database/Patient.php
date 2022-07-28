@@ -8,8 +8,8 @@
     }
    
 
-    public function getDataPatientMed($table ='medecin'){
-        $result = $this->db->con->query("select * from medecin where id = '1' ");
+    public function getDataPatientMed($table ='medecin',$email){
+        $result = $this->db->con->query("select * from medecin where gmail = '{$email}' ");
         $resultArray = array();
         //fetch data one by one
         while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -35,14 +35,14 @@
     }
 
     //delete patient
-    public function deletePatient($table='medecin',$arrayIds,$idPatient){
+    public function deletePatient($table='medecin',$arrayIds,$email,$idPatient){
         if (($key = array_search($idPatient, $arrayIds)) !== false) {
             unset($arrayIds[$key]);
           
         }
         $ids = implode(" ",$arrayIds);
      
-        $query = sprintf("update {$table} set patient = '%s' where id='1' ",$ids);
+        $query = sprintf("update {$table} set patient = '%s' where gmail ='{$email}' ",$ids);
         $result = $this->db->con->query($query);
         if($result)
             {
@@ -75,27 +75,27 @@
         }
         if($resultArray[0]["idMedecin"]!=""){
             $idMedecin = $resultArray[0]["idMedecin"];
-            echo $idMedecin."<br>";
+           
             $arrayIdMedecin = explode(" ",$idMedecin);
             array_push($arrayIdMedecin,$id);
-            echo "hadi string 9bl unique <br> <br>";
-            print_r($arrayIdMedecin);
+            
+            
             $arrayPatientsUnique = array_unique($arrayIdMedecin);
             $stringIdMedecin = implode(" ",$arrayPatientsUnique);
-            echo "hadi string".$stringIdMedecin."<br>";
+            
 
             $result =$this->db->con->query("update patient set idMedecin = '{$stringIdMedecin}'   where id = '{$idPatient}' ");
         } 
         else{
-            echo "hi else";
+            
             $query_string = sprintf("update patient set idMedecin = '{$id}'   where id = '{$idPatient}' ");
             $result =$this->db->con->query($query_string);
         }
     }
    
-    public function ajouterPatient($id,$idPatient,$table = "medecin"){
+    public function ajouterPatient($idPatient,$table = "medecin",$email){
         // $this->ajouterPatientTablePat(1,$idPatient);
-        $arrayPatients = $this->getDataPatientMed("medecin");
+        $arrayPatients = $this->getDataPatientMed("medecin",$email);
         //  print_r($arrayPatients);
 
         // HNA KHAS TZAD ID MEDECIN
@@ -107,11 +107,11 @@
             $arrayPatientsUnique = array_unique($arrayPatients);
             $arrayTest = implode(" ",$arrayPatientsUnique);
             // echo "hi".$arrayTest;
-            $query_string = sprintf("update {$table} set patient = '%s'   where id = '1' ",$arrayTest);
+            $query_string = sprintf("update {$table} set patient = '%s'   where gmail = '{$email}' ",$arrayTest);
             $result =$this->db->con->query($query_string);
         }
         else{
-            $query_string = sprintf("update {$table} set patient = '%s'   where id = '1' ",$idPatient);
+            $query_string = sprintf("update {$table} set patient = '%s'   where gmail = '{$email}' ",$idPatient);
             $result =$this->db->con->query($query_string);
         }
     

@@ -83,6 +83,11 @@ a {
 
 
 }
+.imgNav{
+  width: 55px;
+  height: 55px;
+  clip-path: circle();
+}
 .navbar{
   /* position: relative; */
 }
@@ -320,6 +325,9 @@ color:white;
   background: #13565f;
 
   color: white;
+}
+.bottom ul {
+  margin-left: 15px;
 }
 .bottom ul li {
   text-decoration: none;

@@ -88,6 +88,10 @@ a {
 
 
 }
+.imgNav{
+  width: 55px;
+  height: 55px;
+}
 .navbar{
   /* position: relative; */
 }

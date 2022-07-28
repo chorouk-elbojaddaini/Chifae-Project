@@ -9,7 +9,7 @@ class Medecin {
      }
  
      public function getData($table ='medecin',$email){
-         $result = $this->db->con->query("select * from {$table} where gmail = '{$email}'   ");
+         $result = $this->db->con->query("select * from {$table} where gmail ='{$email}' ");
          $resultArray = array();
          //fetch data one by one
          while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -18,8 +18,8 @@ class Medecin {
          return $resultArray;
      }
 
-     public function displayData($table ,$column,$email){
-        $result = $this->db->con->query("select {$column} from {$table} where gmail='{$email}' ");
+     public function displayData($table ,$column){
+        $result = $this->db->con->query("select {$column} from {$table} where id='1' ");
          $resultArray = array();
          //fetch data one by one
          while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){

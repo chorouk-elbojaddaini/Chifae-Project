@@ -1,6 +1,6 @@
 
 <?php
-$medecin_shuffle = $medecin->getData();
+$medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
 
 ?>
 <div class="sidebar"><!--Side bar-->
@@ -56,9 +56,9 @@ $medecin_shuffle = $medecin->getData();
                 </li>
                 
                 <li class = "nav-item">
-                    <a class = "nav-link"  href="#">
-                        <i class="fa-solid fa-blog icon"></i>
-                        <span class="text nav-text">blog</span>
+                    <a class = "nav-link"  href="../../calendar">
+                    <i class="fa-solid fa-calendar-days icon"></i>
+                        <span class="text nav-text">Calendrier</span>
                     </a>
                 </li>
                  

@@ -9,8 +9,8 @@ class Medecin {
          $this->db = $db;
      }
  
-     public function getData($table ='medecin'){
-         $result = $this->db->con->query("select * from {$table} where id='1' ");
+     public function getData($table ='medecin',$email){
+         $result = $this->db->con->query("select * from {$table} where gmail='{$email}' ");
          $resultArray = array();
          //fetch data one by one
          while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -18,9 +18,9 @@ class Medecin {
          }
          return $resultArray;
      }
-     public function deleteData($table="medecin",$column){
+     public function deleteData($table="medecin",$column,$email){
         
-        $result = mysqli_query($this->db->con,"UPDATE {$table} SET {$column} =NULL WHERE `id`='1';");
+        $result = mysqli_query($this->db->con,"UPDATE {$table} SET {$column} =NULL WHERE `gmail`='{$email}';");
     if($result){
         // echo "deleted succefuly";
     }
@@ -28,10 +28,10 @@ class Medecin {
         // echo "nope";
     }
  }
- public function deleteDataHoraires(){
+ public function deleteDataHoraires($email){
     
         // echo "IAM WORKING BABYY" ;
-        $result = mysqli_query($this->db->con,"UPDATE medecin SET Horaires = '00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00'  WHERE `id`='1';");
+        $result = mysqli_query($this->db->con,"UPDATE medecin SET Horaires = '00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00'  WHERE `gmail`='{$email}';");
         if($result)
         {
             $res = [
@@ -54,8 +54,8 @@ class Medecin {
         }
  }
 
-     public function displayData($table ,$column){
-        $result = $this->db->con->query("select {$column} from {$table} where id='1' ");
+     public function displayData($table ,$column,$email){
+        $result = $this->db->con->query("select {$column} from {$table} where gmail = '{$email}' ");
          $resultArray = array();
          //fetch data one by one
          while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){

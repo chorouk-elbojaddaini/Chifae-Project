@@ -1,6 +1,5 @@
 <?php
 
-
 class Medecin {
      public $db;
      
@@ -9,8 +8,8 @@ class Medecin {
          $this->db = $db;
      }
  
-     public function getData($table ='medecin'){
-         $result = $this->db->con->query("select * from {$table} where id='1' ");
+     public function getData($table ='medecin',$email){
+         $result = $this->db->con->query("select * from {$table} where gmail ='{$email}' ");
          $resultArray = array();
          //fetch data one by one
          while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -19,8 +18,8 @@ class Medecin {
          return $resultArray;
      }
 
-     public function displayData($table ,$column){
-        $result = $this->db->con->query("select {$column} from {$table} where id='1' ");
+     public function displayData($table ,$column,$email){
+        $result = $this->db->con->query("select {$column} from {$table} where gmail ='{$email}' ");
          $resultArray = array();
          //fetch data one by one
          while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -66,11 +65,11 @@ class Medecin {
             }
         }
     }
-    public function update($id=null,$data=array(),$table='medecin',$choix){
+    public function update($email,$data=array(),$table='medecin',$choix){
         if($this->db->con != null){
-            if($id !=null && isset($data)){
+            if($email !=null && isset($data)){
                 if($choix == "information"){
-                $query_string = sprintf("update {$table} set nom = '%s' ,prenom = '%s' , gmail = '%s',numero = '%s' , ville = '%s',adresse = '%s',motdepasse = '%s'  where id = '%d' ",$data['nom'],$data['prenom'] ,$data['gmail'] ,$data['numero'], $data['ville'],$data['adresse'],$data['motdepasse'],$id);
+                $query_string = sprintf("update {$table} set nom = '%s' ,prenom = '%s' , gmail = '%s',numero = '%s' , ville = '%s',adresse = '%s',motdepasse = '%s'  where gmail = '%s' ",$data['nom'],$data['prenom'] ,$data['gmail'] ,$data['numero'], $data['ville'],$data['adresse'],$data['motdepasse'],$email);
                 $res =$this->db->con->query($query_string); 
                 if($res){
                     
@@ -93,10 +92,10 @@ class Medecin {
         }
     } 
     //if the input value is empty then  we replace it with its old value in the database 
-    public function verifyEmpty($champ,$column){
+    public function verifyEmpty($champ,$column,$email){
         if(!isset($_REQUEST[$column]) || strlen(trim($_REQUEST[$column])) == 0){
             
-            $result = $this->db->con->query("select {$column} from medecin where id='1' ");
+            $result = $this->db->con->query("select {$column} from medecin where gmail = '{$email}' ");
             $resultArray = array();
             //fetch data one by one
             while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -124,7 +123,7 @@ class Medecin {
            if($res){
              echo" <script>
              
-             swal({
+             swal.fire({
                  title: 'updated successfully!',
                  text: '',
                  icon: 'success',
@@ -158,7 +157,7 @@ class Medecin {
           if($res){
             echo" <script>
             
-            swal({
+            swal.fire({
                 title: 'updated successfully!',
                 text: '',
                 icon: 'success',
@@ -176,30 +175,28 @@ class Medecin {
     
 
         
-      public function updateTarif($typeTarif,$value){
+      public function updateTarif($typeTarif,$value,$email){
         if($value == ""){
             return;
         }
-        else {$query_string = "update medecin set $typeTarif = '{$value}' where id='1' ";
+        else {$query_string = "update medecin set $typeTarif = '{$value}' where gmail ='{$email}' ";
         $res =$this->db->con->query($query_string); 
        if($res){
-        echo" <script>
-            
-        swal({
-            title: 'tarif est modifié!',
-            text: '',
-            icon: 'success',
-            
-          });
-          
-</script>
-";
+        echo "<script>
+                  
+                        Swal.fire({
+                            title: 'tarif est modifié !',
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                          })
+                  
+      </script>";
 
               }}
       }
 
          //pour changer les horaires
-      public function changeHoraire($arrayHoraires,$entree,$sortie,$choix){
+      public function changeHoraire($arrayHoraires,$entree,$sortie,$choix,$email){
         
          if(($entree == "") || ($sortie == "")) {
            return;
@@ -229,12 +226,12 @@ class Medecin {
         }
          }
          $formation =implode("\r\n",$arrayHoraires);
-         $query_string = "update medecin set Horaires = '{$formation}' where id='1' ";
+         $query_string = "update medecin set Horaires = '{$formation}' where gmail ='{$email}' ";
          $res =$this->db->con->query($query_string); 
          if($res){
             echo "<script>
                   
-            swal({
+            swal.fire({
                 title: 'Horaire est bien modifié',
                 text: '',
                 icon: 'success',
@@ -246,7 +243,7 @@ class Medecin {
              }
 
 
-             public function UpdateH($arrayHoraires,$arrayEntree,$arraySortie){
+             public function UpdateH($arrayHoraires,$arrayEntree,$arraySortie,$email){
                 $tab = array();
                 for($i=0;$i<count($arrayHoraires);$i++){
                     if(($arrayEntree[$i]=="") || ($arraySortie[$i] == ""))
@@ -263,7 +260,7 @@ class Medecin {
 
                 }
                 $formation =implode("\r\n",$arrayHoraires);
-                $query_string = "update medecin set Horaires = '{$formation}' where id='1' ";
+                $query_string = "update medecin set Horaires = '{$formation}' where gmail = '{$email}' ";
                 $res =$this->db->con->query($query_string); 
                 if($res){
                    echo "<script>

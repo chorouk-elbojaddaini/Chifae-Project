@@ -1,6 +1,6 @@
 <?php
-session_start();
-$medecin_shuffle = $medecin->getData();
+$medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
+// echo $_SESSION['SESSION_EM'];
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +98,7 @@ $medecin_shuffle = $medecin->getData();
                }
                 else{
                   ?>
-                    <img  src="../images/avatar.jpeg" alt="profile" id="photo"  height="100" width="100" border-radius="50%" class="imageNavbar">
+                    <img  src="../images/avatar.jpeg" alt="profile" id="photo"  width="100" class="imageNavbar imgNav">
               
               
               <?php

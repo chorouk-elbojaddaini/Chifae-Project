@@ -99,7 +99,7 @@ if($motdepasse == $motdepasse2 ){
     $msg ="<p class='alert-red'> Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, et 8 caractères!</p> ";
   }
   else {
-    $sql ="INSERT INTO medecin (nom,prenom ,cin,gmail,motdepasse,sexe,specialite,adresse, ville ,numero,code,inscrit) VALUES ('{$firstname}' , '{$secondname}' , '{$cin}', '{$email}', '{$motdepasse}', '{$genre}', '{$specialite}', '{$adresse}', '{$ville}', '{$numero}','{$code}','oui') ";
+    $sql ="INSERT INTO medecin (nom,prenom ,cin,gmail,motdepasse,sexe,specialite,adresse, ville ,numero,code,inscrit,Horaires) VALUES ('{$firstname}' , '{$secondname}' , '{$cin}', '{$email}', '{$motdepasse}', '{$genre}', '{$specialite}', '{$adresse}', '{$ville}', '{$numero}','{$code}','oui','00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00\r\n00:00 - 00:00') ";
     $result=mysqli_query($conn,$sql);
     if ($result) {
         echo "<div style='display: none;'>";

@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include ("../php/database/functions.php");
 $status=200;
 if(isset($_POST['upload-photo']))
@@ -36,7 +37,7 @@ if(!empty($_FILES["photo"]["size"]) )
            //========file size 150mb
            if($photo_size<150000000)
            {
-                $sql = "UPDATE medecin SET photo ='$photo' where id='1'";
+                $sql = "UPDATE medecin SET photo ='$photo' where gmail = '{$_SESSION["SESSION_EM"]}' ";
             //    $sql = "insert into medecin (photo) values ('$photo') where id = '1'";
             
                $addedPh = $medecin->db->con->query($sql); 

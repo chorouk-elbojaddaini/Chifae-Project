@@ -75,7 +75,7 @@
     </div>
     <?php
             if(isset($_POST["delete_spec"])){
-               $medecin->deleteData("medecin","specialites");
+               $medecin->deleteData("medecin","specialites",$_SESSION['SESSION_EM']);
             }
     ?>
         <img src="../images/close.svg.png" class="close" onclick="toggle('boite')">
@@ -97,7 +97,7 @@
     </div>
     <?php
             if(isset($_POST["delete_desc"])){
-               $medecin->deleteData("medecin","description");
+               $medecin->deleteData("medecin","description",$_SESSION['SESSION_EM']);
             }
     ?>
     <div id="boite3">
@@ -126,7 +126,7 @@
     </div>
     <?php
             if(isset($_POST["delete_experience"])){
-               $medecin->deleteData("medecin","experience");
+               $medecin->deleteData("medecin","experience",$_SESSION['SESSION_EM']);
             }
     ?>
     <div id="boite4">
@@ -150,7 +150,7 @@
     </div>
     <?php
             if(isset($_POST["delete_diplome"])){
-               $medecin->deleteData("medecin","diplome");
+               $medecin->deleteData("medecin","diplome",$_SESSION['SESSION_EM']);
             }
     ?>
    

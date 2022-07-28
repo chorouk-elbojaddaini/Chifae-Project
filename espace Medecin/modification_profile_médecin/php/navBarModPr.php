@@ -1,5 +1,5 @@
 <?php
-$medecin_shuffle = $medecin->getData();
+$medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
 
 ?>
 
@@ -16,8 +16,10 @@ $medecin_shuffle = $medecin->getData();
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
      <link rel="icon" type="image/png" href="./logo.png" />
-     <!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
-     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     <script src="./sweetAlert/jquery-3.6.0.min.js"></script>
+     <script src="./sweetAlert/sweetalert2.all.min.js"></script>
+      <link rel="stylesheet" href="./sweetAlert/sweetalert2.css">
+     <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     <title>modification du profil | Shifae</title>
     
 </head>
@@ -55,7 +57,7 @@ $medecin_shuffle = $medecin->getData();
                }
                 else{
                   ?>
-                    <img  src="../images/avatar.jpeg" alt="profile" id="photo"  height="100" width="100" border-radius="50%" class="imageNavbar">
+                    <img  src="../images/avatar.jpeg" alt="profile" id="photo"  height="100" width="100" border-radius="50%" class="imgNav">
               
               
               <?php
