@@ -57,7 +57,7 @@
           }
           
           echo '<div class="voirplus plus1">
-          <button class="btn-voirplus btn1">voir le profile</button>
+          <button class="btn-voirplus btn1 voirprof">voir le profile</button>
         </div>
       </div>
       <div class="div-info" >

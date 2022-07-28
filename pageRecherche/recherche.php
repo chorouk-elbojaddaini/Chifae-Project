@@ -432,6 +432,12 @@ window.history.pushState('', 'New Page Title', '../ProfilMedecin/php?id='+ide);
 // document.location.href = '../pageValidation/validation.php';
 
 });
+$('.voirprof').click(function() {
+    ide = this.id;
+window.history.pushState('', 'New Page Title', '../ProfilMedecin/php?id='+ide);
+// document.location.href = '../pageValidation/validation.php';
+
+});
 
 });   
 </script>
