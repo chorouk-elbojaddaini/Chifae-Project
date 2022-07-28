@@ -10,6 +10,14 @@ $arrayExperience = $medecin->displayData('medecin','experience',$idMed);
 $arrayDiplome = $medecin->displayData('medecin','diplome',$idMed);
 $arrayHoraires = $medecin->displayData('medecin','horaires',$idMed);
 $days = array('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche');
+$lat = $medecin_shuffle[0]['lat'];
+$lon = $medecin_shuffle[0]['lon'];
+$adresse = $medecin_shuffle[0]['adresse'];
+$ville = $medecin_shuffle[0]['ville'];
+$nom = $medecin_shuffle[0]['nom'];
+$prenom = $medecin_shuffle[0]['prenom'];
+
+
 ?>
 <div class="carte">
 <?php foreach ($medecin_shuffle as $item) { ?>
@@ -27,6 +35,9 @@ $days = array('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche')
             <div class="name-spec">
                 <h1 class="name"><i class="fa-solid fa-user-doctor"></i> Dr.<?php echo $medecin_shuffle[0]['nom'].' '.$medecin_shuffle[0]['prenom']?></h1>
                 <h2 class="spec"><?php echo $medecin_shuffle[0]['specialite']; ?></h2>
+                
+
+
             </div>
         </div>
 
@@ -208,15 +219,16 @@ $days = array('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche')
                         else {echo $medecin_shuffle[0]['adresse'];}
                         ?></p>
                          <?php if($medecin_shuffle[0]['adresse'] != null) {?>
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d105994.59262669296!2d-5.608060686464307!3d33.88112770504354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xda044d23bfc49d1%3A0xfbbf80a99e4cde18!2zTWVrbsOocw!5e0!3m2!1sfr!2sma!4v1655074703314!5m2!1sfr!2sma"
-                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade" class="iframe-map"></iframe>
+                            
+                      
                             <?php } ?>
-                    </div>
-                    <div class="map">
 
                     </div>
+                    <div id="googleMap" style="width: 100%;height: 40vh;position: relative;"></div>
+
+                    <!-- <div class="map">
+
+                    </div> -->
                 </div>
                 
                 <div class="four">
