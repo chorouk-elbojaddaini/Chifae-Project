@@ -1,13 +1,14 @@
 <aside class="right">
     <?php 
+    $idMed = $_GET['id'];
              $time = $calendrier->create_time_range("8:00","12:00","30 mins");
              // print_r($time);
              // echo "<db> <db>";
              $column_horaire = array("Horaires");
-             $horaire_medecin = $calendrier->getDataCalendrier("medecin",$column_horaire[0],"id");
+             $horaire_medecin = $calendrier->getDataCalendrier("medecin",$column_horaire[0],"id",$idMed);
             //  print_r($horaire_medecin);
              $string_rendez_vous_medecin = "start_datetime,end_datetime";
-             $start_end_rendezvous = $calendrier->getDataCalendrier("schedule_list",$string_rendez_vous_medecin,"idMedecin");
+             $start_end_rendezvous = $calendrier->getDataCalendrier("schedule_list",$string_rendez_vous_medecin,"idMedecin",$idMed);
             
      
      
@@ -83,8 +84,12 @@
         </div>
 
         <button class="afficherdisponibilite" onclick="showHideDisp()" >afficher plus de disponibilités</button>
-
-        <div class="rdv"><a href="" class="prendre-rdv" id="1">Prendre un RDV</a></div>
+        <?php if($medecin_shuffle[0]['inscrit'] != null){
+           $idC = $medecin_shuffle[0]['id'];
+       echo' <div class="rdv"><a href="" class="prendre-rdv" id="$idC">Prendre un RDV</a></div>';
+          }
+       ?>
+        <!-- <div class="rdv"><a href="" class="prendre-rdv" id="1">Prendre un RDV</a></div> -->
     </div>
 </aside>
 
@@ -98,7 +103,9 @@
     var semaine = <?php echo json_encode($semaine); ?> ;
     console.log(semaine)
     var timeS = <?php echo json_encode($start_end_rendezvous); ?> ;
+    var idMedec = <?php echo json_encode($idMed); ?> ;
 
+    
     function ecrireDispo(jour, id, length, day) {
 
         var jourL = document.getElementById(id)
@@ -144,7 +151,7 @@
         return result;
     }
     var date = new Date()
-    var date2 = date
+    // var date2 = date
     const months = [
         "Jan",
         "Fev",
@@ -265,13 +272,13 @@
     var minOut = "0"
     $('.prendre-rdv').click(function() {
 
-window.history.pushState('', 'New Page Title', '../../cabinetProject/pageValidation/validation.php?id='+11+'&year='+yearOut+'&month='+monthOut+'&day='+dayOut+'&hour='+hourOut+'&min='+minOut);
+window.history.pushState('', 'New Page Title', '../../terminer/pageValidation/validation.php?id='+idMedec+'&year='+yearOut+'&month='+monthOut+'&day='+dayOut+'&hour='+hourOut+'&min='+minOut);
 
 
 });
  
     function fct(y,m,d,h,min){
-        window.history.replaceState('', 'New Page Title', '?year='+y+'&month='+m+'&day='+d+'&hour='+h+'&min='+min);
+        window.history.replaceState('', 'New Page Title', '?id='+idMedec+'&year='+y+'&month='+m+'&day='+d+'&hour='+h+'&min='+min);
 
         yearOut = y;
         monthOut = m

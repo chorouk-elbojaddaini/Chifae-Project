@@ -101,7 +101,7 @@ a++
  };
 
 renderCalendar()
-console.log("hadi 3la brra"+date)
+
 
 document.querySelector(".next").addEventListener("click", () => {
 
@@ -119,7 +119,7 @@ date = addDays(date,-14)
 console.log("hellooo")
 renderCalendar();
 
-  console.log(date)
+ 
      
 
 });

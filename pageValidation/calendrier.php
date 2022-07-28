@@ -34,8 +34,8 @@ class Calendrier{
         return $times;
     }
 
-     public function getDataCalendrier($table,$column,$condition,$id){
-        $query_string = sprintf("select %s from %s where %s = '%d' ",$column,$table,$condition,$id);
+     public function getDataCalendrier($table,$column,$condition){
+        $query_string = sprintf("select %s from %s where %s = '1' ",$column,$table,$condition);
         $result = $this->db->con->query($query_string);
         $resultArray = array();
         while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -62,7 +62,6 @@ class Calendrier{
         $dayStartEnd = explode("-",$arrayH[0]);
         
         for($i=0;$i<7;$i++){
-           
            $dayStartEnd = explode("-",$arrayH[$i]);
           
             switch ($i) {

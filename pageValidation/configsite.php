@@ -1,7 +1,27 @@
 <?php 
 error_reporting(E_ALL);
  session_start();
+
  $_SESSION["id"] = "$_GET[medecin]";
+ $hour = $_SESSION['hour'];
+ $min = $_SESSION["min"];
+
+ if($hour <= "9"){
+   $hour = "0".$hour;
+ }
+ if($min == "0"){
+  $min = $min."0";
+ }
+ 
+
+ $time = $hour.":".$min;
+ $_SESSION["heure"] = $time;
+ 
+ if($_SESSION["month"] < "10"){
+   $_SESSION["month"]= "0".$_SESSION["month"];
+ }
+
+
 include('../pageAcceuil/cnx.php'); 
 $query = mysqli_query($conn, "SELECT * FROM medecin WHERE id='{$_SESSION['id']}'");
 
@@ -31,16 +51,18 @@ function test_input($data)
      if (empty($_POST["date"])){
       echo "<script> aler('helo')</script>";
      }
-      $date = test_input($_POST["date"]);
-      $heure = test_input($_POST["heure"]);
+    //   $date = test_input($_POST["date"]);
+    //   $heure = test_input($_POST["heure"]);
+     
       $nom = test_input($_POST["nom"]);
       $prenom = test_input($_POST["prenom"]);
       $email = test_input($_POST["email"]);
       $phone = test_input($_POST["phone"]);
      
        
-     $_SESSION["date"] = "$date";
-     $_SESSION["heure"] = "$heure";
+    //  $_SESSION["date"] = "$date";
+    //  $_SESSION["heure"] = "$time";
+      $_SESSION["time"] = $_SESSION["heure"];
      $_SESSION["prenom"] = "$prenom";
      $_SESSION["email"] = "$email";
      $_SESSION["phone"] = "$phone";
@@ -50,7 +72,7 @@ function test_input($data)
    
   
 //   $input = "$_POST[date]  $_POST[heure]";
-  $_SESSION["dateTime"]= "$_SESSION[date]"." "."$_SESSION[heure]";
+  $_SESSION["dateTime"]= $_SESSION["date"]." "."$_SESSION[time]";
   $verification_code = substr(number_format(time() * rand(), 0, '', ''), 0,6);
   $_SESSION["code"]=$verification_code;
  
@@ -121,13 +143,13 @@ function test_input($data)
     if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
         $_SESSION["idpat"] = $row["id"];
-        $div ="INSERT INTO rendezvous (nom, prenom, email,code,telephone,idMedecin,dateTime,idPatient)
+        $div ="INSERT INTO schedule_list (nom, prenom, email,code,telephone,idMedecin,start_datetime,idPatient)
         VALUES ('$_SESSION[nom]', '$_SESSION[prenom]','$_SESSION[email]','$_SESSION[code]', '$_SESSION[phone]', '$_SESSION[id]','$_SESSION[dateTime]','$_SESSION[idpat]')";
               $result = mysqli_query ($conn , $div);
             header("location: final.php");
     }
     else {
-      $div ="INSERT INTO rendezvous (nom, prenom, email,code,telephone,idMedecin,dateTime)
+      $div ="INSERT INTO schedule_list (nom, prenom, email,code,telephone,idMedecin,start_datetime)
       VALUES ('$_SESSION[nom]', '$_SESSION[prenom]','$_SESSION[email]','$_SESSION[code]', '$_SESSION[phone]', '$_SESSION[id]','$_SESSION[dateTime]')";
             $result = mysqli_query ($conn , $div);
           header("location: final.php");

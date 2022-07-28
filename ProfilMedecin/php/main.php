@@ -1,12 +1,14 @@
 <?php 
-$medecin_shuffle = $medecin->getData();
-$patient_shuffle = $patient->getData();
-$arrayspec = $medecin->displayData('medecin','specialites');
-$arrayDesc = $medecin->displayData('medecin','description');
-$arrayLangue = $medecin->displayData('medecin','langue');
-$arrayExperience = $medecin->displayData('medecin','experience');
-$arrayDiplome = $medecin->displayData('medecin','diplome');
-$arrayHoraires = $medecin->displayData('medecin','horaires');
+$idMed = $_GET['id'];
+$medecin_shuffle = $medecin->getData('medecin',$idMed);
+// print_r($medecin_shuffle);
+$patient_shuffle = $patient->getData('medecin',$idMed);
+$arrayspec = $medecin->displayData('medecin','specialites',$idMed);
+$arrayDesc = $medecin->displayData('medecin','description',$idMed);
+$arrayLangue = $medecin->displayData('medecin','langue',$idMed);
+$arrayExperience = $medecin->displayData('medecin','experience',$idMed);
+$arrayDiplome = $medecin->displayData('medecin','diplome',$idMed);
+$arrayHoraires = $medecin->displayData('medecin','horaires',$idMed);
 $days = array('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche');
 ?>
 <div class="carte">

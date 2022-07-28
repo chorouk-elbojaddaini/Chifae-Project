@@ -8,8 +8,8 @@ class Medecin {
          $this->db = $db;
      }
  
-     public function getData($table ='medecin'){
-         $result = $this->db->con->query("select * from {$table}   ");
+     public function getData($table ='medecin',$id){
+         $result = $this->db->con->query("select * from {$table} where id = '{$id}'   ");
          $resultArray = array();
          //fetch data one by one
          while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -18,8 +18,8 @@ class Medecin {
          return $resultArray;
      }
 
-     public function displayData($table ,$column){
-        $result = $this->db->con->query("select {$column} from {$table} where id='1' ");
+     public function displayData($table ,$column,$id){
+        $result = $this->db->con->query("select {$column} from {$table} where id='{$id}' ");
          $resultArray = array();
          //fetch data one by one
          while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){

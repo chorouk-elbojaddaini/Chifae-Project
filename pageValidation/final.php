@@ -121,7 +121,7 @@ include('../pageAcceuil/cnx.php');
         <div class="confirmation-info">
             <h3><?php echo $_SESSION['nom']." ".$_SESSION['prenom'] ; ?> </h3>
             <p>Nous confirmons votre rendez-vous du  </br>
-            <span><?php echo $_SESSION['date']." à  ".$_SESSION['heure'] ; ?></span>
+            <span><?php echo $_SESSION["date"]." à ".$_SESSION['heure'] ; ?></span>
         avec <span>Dr. <?php echo $row['nom']." ".$row['prenom'] ; ?> </span>  à <span><?php echo $row['adresse']." , ".$row['ville'] ; ?>  </span></p>
         </div>
         <input type="submit" value="imprimer" name="imprimer" class="imprimer" onclick="location.href='pdf/pdf.php'">

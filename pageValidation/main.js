@@ -97,61 +97,61 @@ function updateProgressbar() {
 // show and hide number
 const num = document.querySelector(".affichernum");
 const numaffiche =document.querySelector(".numero");
-num.addEventListener("click", () =>{
-  num.style.display="none";
-  numaffiche.style.display="block";
-}
-)
-const showNumber = () => {
-  num.style.display ="none";
-  numaffiche.style.display = "block";
-};
+// num.addEventListener("click", () =>{
+//   num.style.display="none";
+//   numaffiche.style.display="block";
+// }
+// )
+// const showNumber = () => {
+//   num.style.display ="none";
+//   numaffiche.style.display = "block";
+// };
 // hide the number
-const hideNumber = () => {
-  num.style.display = "block";
-  numaffiche.style.display = "none";
-};
-num.addEventListener("click",showNumber);
-numaffiche.addEventListener("click",hideNumber);
+// const hideNumber = () => {
+//   num.style.display = "block";
+//   numaffiche.style.display = "none";
+// };
+// num.addEventListener("click",showNumber);
+// numaffiche.addEventListener("click",hideNumber);
 // end show and hide number
 
 // show and hide dates 
-const date =document.querySelectorAll('.valide-none');
-const show_date=document.querySelector('.see-more');
-show_date.addEventListener("click", ()=>{
-    for (var i = 0; i < date.length; i++) {
-    date[i].style.display="block";
-    }
-    show_date.style.display="none";
-})
+// const date =document.querySelectorAll('.valide-none');
+// const show_date=document.querySelector('.see-more');
+// show_date.addEventListener("click", ()=>{
+//     for (var i = 0; i < date.length; i++) {
+//     date[i].style.display="block";
+//     }
+//     show_date.style.display="none";
+// })
 
 // number check 
 let check = document.querySelector(".check");
 let number = document.querySelector(".number");
 let text = document.querySelector(".text");
 
-let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+let regex = /^[\d,\s,\+,\-]{10}/;
 
-check.addEventListener("click",()=>{
-	if(number.value ==""){
-		text.innerText = "Priére d'entrer un numéro";
-		text.style.color = "#da3400";
-	}
-  else if(number.value.length>10){
-    text.innerText = "le numéro doit être en 10 chiffres ";
-		text.style.color = "#da3400";
-	}
-	else if(number.value.match(regex)){
-		text.innerText = "le numéro est valide ,un code a été envoyé";
-		text.style.color = "rgba(4,125,9,1)";
-	}
+// check.addEventListener("click",()=>{
+// 	if(number.value ==""){
+// 		text.innerText = "Priére d'entrer un numéro";
+// 		text.style.color = "#da3400";
+// 	}
+//   else if(number.value.length>10){
+//     text.innerText = "le numéro doit être en 10 chiffres ";
+// 		text.style.color = "#da3400";
+// 	}
+// 	else if(number.value.match(regex)){
+// 		text.innerText = "le numéro est valide ,un code a été envoyé";
+// 		text.style.color = "rgba(4,125,9,1)";
+// 	}
  
-	else
-		{
-		text.innerText = "le numéro n'est pas valide ";
-		text.style.color = "#da3400";
-		}
-});
+// 	else
+// 		{
+// 		text.innerText = "le numéro n'est pas valide ";
+// 		text.style.color = "#da3400";
+// 		}
+// });
 
 
 
@@ -202,20 +202,15 @@ return false;
   }
 
  
-   if(e.length!=10){
+   if(number.value.length<12){
     alert("le numéro doit contenir 10 nombres");
 
     location.reload();
 return false;
 	}
-
- 
-
-  if(number.value.match(regex)){
+	else if(number.value.match(regex)){
 		
 	}
- 
-
  
 
 
