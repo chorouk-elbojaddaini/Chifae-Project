@@ -5,7 +5,7 @@
 ini_set("display_errors", true);
 session_start();
 if (isset($_SESSION['SESSION_EMAIL'])) {
-    header("Location: connected.php");
+    header("location: ../espace Medecin/page_profil_medecin/php");
     die();
 }
 

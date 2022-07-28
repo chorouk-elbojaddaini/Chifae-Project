@@ -5,8 +5,11 @@
 ini_set("display_errors", true);
 session_start();
 if (isset($_SESSION['SESSION_EMAIL'])) {
-    header("Location: connected.php");
-    die();
+    header("location: ../espace_patient/accueil/welcome.html");        
+        die();
+        
+       
+   
 }
 
 include 'cnx.php';
