@@ -214,7 +214,7 @@ echo"
                   // echo "ana page".$page."<br>";
                   $start_from =   ($page-1)*$num_per_page;
                   // echo "ana lbdya 0".$start_from;
-                  $malad_array = filter_by_date("maladies",$_SESSION['date'],$start_from,$num_per_page,"categorie", $_SESSION['word'],$conn);
+                  $malad_array = filter_by_date("maladies",$_SESSION['date'],$start_from,$num_per_page,"categorie", $_SESSION['word'],$conn,$_SESSION['idPatient']);
                   $malad = $malad_array['query'];
                   $total_records=$malad_array['nb_rows'];
                   // echo "ana total".$total_records;
@@ -228,7 +228,7 @@ echo"
                         
 
                   }//====================small devices================
-                  $malad1_array = filter_by_date("maladies",$_SESSION['date'],$start_from,$num_per_page,"categorie", $_SESSION['word'],$conn);
+                  $malad1_array = filter_by_date("maladies",$_SESSION['date'],$start_from,$num_per_page,"categorie", $_SESSION['word'],$conn,$_SESSION['idPatient']);
                   $malad1 = $malad1_array['query'];
                   $total_records1=$malad1_array['nb_rows'];
                   $res1 ="<p class='response'>Il existe ". $total_records1." enregistrement</p>";

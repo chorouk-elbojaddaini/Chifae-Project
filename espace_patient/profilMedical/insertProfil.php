@@ -7,6 +7,7 @@ if (mysqli_num_rows($display) > 0)
  { 
    $row = mysqli_fetch_assoc($display);
    $_SESSION['idPatient'] =$row['id'];
+   $_SESSION['SESSION_EMAIL'] =$row['email'];
  }
 
 //================================insert data ================
@@ -46,10 +47,14 @@ if(!empty($_FILES["photo"]["size"]) )
            //========file size 150mb
            if($photo_size<150000000)
            {
-               $sql = "UPDATE dossiermedical SET photo ='$photo' WHERE id='{$_SESSION['idPatient']}' AND id='$id'";
-               $addedPh = mysqli_query($conn,$sql);     
+               $sql = "UPDATE dossiermedical SET photo ='$photo' WHERE  id='$id'";
+               $sql_pat = "UPDATE patient SET photo ='$photo' WHERE  id='$id'";
+               $addedPh = mysqli_query($conn,$sql);
+               $addedPh_pat = mysqli_query($conn,"UPDATE patient SET photo ='$photo' WHERE email= '{$_SESSION['SESSION_EMAIL']}'"); 
+                 
+              
                //========photo added================ 
-               if($addedPh)
+               if($addedPh==true && $addedPh_pat==true)
                {
                    
                        $res = [

@@ -208,7 +208,7 @@ function table_traite($traite,$res) {
                   // echo "ana page".$page."<br>";
                   $start_from =   ($page-1)*$num_per_page;
                   // echo "ana lbdya 0".$start_from;
-                  $traite_array = filter_by_date("traitements",$_SESSION['dateT'],$start_from,$num_per_page,"nom", $_SESSION['searchT'],$conn);
+                  $traite_array = filter_by_date("traitements",$_SESSION['dateT'],$start_from,$num_per_page,"nom", $_SESSION['searchT'],$conn,$_SESSION['idPatient']);
                   $traite = $traite_array['query'];
                   $total_records=$traite_array['nb_rows'];
                   // echo "ana total".$total_records;
@@ -221,7 +221,7 @@ function table_traite($traite,$res) {
                         
 
                   }//====================small devices================
-                  $traite1_array = filter_by_date("traitements",$_SESSION['dateT'],$start_from,$num_per_page,"nom", $_SESSION['searchT'],$conn);
+                  $traite1_array = filter_by_date("traitements",$_SESSION['dateT'],$start_from,$num_per_page,"nom", $_SESSION['searchT'],$conn,$_SESSION['idPatient']);
                   $traite1 = $traite1_array['query'];
                   $total_records1=$traite1_array['nb_rows'];
                   $res1 = "<p class='response'>Il existe ". $total_records1." enregistrement</p>";

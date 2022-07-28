@@ -199,7 +199,7 @@ echo"
                     
                     $start_fromV =   ($pageV-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromH;
-                    $vaccin_array = filter_by_date("vaccins",$_SESSION['dateV'],$start_fromV,$num_per_page,"nom", $_SESSION['searchV'],$conn);
+                    $vaccin_array = filter_by_date("vaccins",$_SESSION['dateV'],$start_fromV,$num_per_page,"nom", $_SESSION['searchV'],$conn,$_SESSION['idPatient']);
                     $vaccin = $vaccin_array['query'];
                     $total_recordsV=$vaccin_array['nb_rows'];
                     // echo $total_records;
@@ -212,7 +212,7 @@ echo"
                           
 
                     }
-                    $vaccin_array1 = filter_by_date("vaccins",$_SESSION['dateV'],$start_fromV,$num_per_page,"nom", $_SESSION['searchV'],$conn);
+                    $vaccin_array1 = filter_by_date("vaccins",$_SESSION['dateV'],$start_fromV,$num_per_page,"nom", $_SESSION['searchV'],$conn,$_SESSION['idPatient']);
                     $vaccin1 = $vaccin_array1['query'];
                     $total_pages=ceil($total_recordsV/$num_per_page);
                     $res = "<p class='response '>Il existe ". $total_recordsV." enregistrement</p>";

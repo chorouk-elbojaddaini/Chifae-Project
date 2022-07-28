@@ -6,6 +6,7 @@ $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESS
 if (mysqli_num_rows($display) > 0) 
  { 
    $row = mysqli_fetch_assoc($display);
+   $_SESSION['idPatient'] =$row['id'];
  }
 ?>
 <!DOCTYPE html>
@@ -247,7 +248,7 @@ if (mysqli_num_rows($display) > 0)
                             <i class="fa-solid fa-camera" id="cam"></i>
                             </label>
                             <form  method="post" enctype="multipart/form-data" id="photo-upload" onsubmit="return false">
-                                   <input type="hidden" name="idP" id="idP"  value='<?php echo $row['id'] ;?>'>
+                                   <input type="hidden" name="idP" id="idP"  value='<?php echo $_SESSION['idPatient'] ;?>'>
                                   <input type="file" id="add-photo"name="photo" onchange="uploadImage()">
                            </form>
                         
@@ -257,7 +258,7 @@ if (mysqli_num_rows($display) > 0)
                <div class="info-general">
                     <h1 class="data-text"><?php echo $row['nom']."  ".$row['prenom'];?></h1>
                     <p>Bienvenue dans votre espace de santé , veuillez remplir vos informations personnelles</p>
-                <button  class="form-btn" id="profilBtn" name="update-profil" value='<?php echo $row['id'] ;?>'>Modifier</button>
+                <button  class="form-btn" id="profilBtn" name="update-profil" value='<?php echo $_SESSION['idPatient'] ;?>'>Modifier</button>
               </div>
           </div>
          <div class="details">

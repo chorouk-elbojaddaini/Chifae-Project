@@ -352,7 +352,7 @@ echo"
                     // echo "ana page".$pageM."<br>";
                     $start_fromD =   ($pageD-1)*$num_per_page;
                     // echo "ana lbdya".$start_from;
-                    $doc_array = filter_by_date("documents",$_SESSION['dateD'],$start_fromD,$num_per_page,"nomDoc", $_SESSION['searchD'],$conn);
+                    $doc_array = filter_by_date("documents",$_SESSION['dateD'],$start_fromD,$num_per_page,"nomDoc", $_SESSION['searchD'],$conn,$_SESSION['idPatient']);
                     $doc = $doc_array['query'];
                     $total_recordsD=$doc_array['nb_rows'];
                     // echo $total_records;
@@ -364,7 +364,7 @@ echo"
                       table_doc($doc,$res);
                      
                     }
-                    $doc1_array = filter_by_date("documents",$_SESSION['dateD'],$start_fromD,$num_per_page,"nomDoc", $_SESSION['searchD'],$conn);
+                    $doc1_array = filter_by_date("documents",$_SESSION['dateD'],$start_fromD,$num_per_page,"nomDoc", $_SESSION['searchD'],$conn,$_SESSION['idPatient']);
                     $doc1 = $doc1_array['query'];
                     $total_recordsD1=$doc1_array['nb_rows'];
                     // echo $total_records;

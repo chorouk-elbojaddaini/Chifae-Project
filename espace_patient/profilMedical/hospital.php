@@ -195,7 +195,7 @@ echo"
                     
                     $start_fromH =   ($pageH-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromH;
-                    $hospi_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$conn);
+                    $hospi_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$_SESSION['idPatient']);
                     $hospi = $hospi_array['query'];
                     $total_recordsH=$hospi_array['nb_rows'];
                     // echo $total_recordsH;
@@ -208,7 +208,7 @@ echo"
                           
 
                     }
-                    $hospi1_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$conn);
+                    $hospi1_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$_SESSION['idPatient']);
                     $hospi1 = $hospi1_array['query'];
                     $total_pages=ceil($total_recordsH/$num_per_page);
                     $res1 = "<p class='response'>Il existe ". $total_recordsH." enregistrement</p>";

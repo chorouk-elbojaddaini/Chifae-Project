@@ -187,7 +187,7 @@ echo"
                // echo "ana page".$pageM."<br>";
                $start_fromDg =   ($pageDg-1)*$num_per_page;
                // echo "ana lbdya".$start_from;
-               $diag_array = filter_by_date("diagnostic",$_SESSION['dateDg'],$start_fromDg,$num_per_page,"nomComplet", $_SESSION['searchDg'],$conn);
+               $diag_array = filter_by_date("diagnostic",$_SESSION['dateDg'],$start_fromDg,$num_per_page,"nomComplet", $_SESSION['searchDg'],$conn,$_SESSION['idPatient']);
                $diag = $diag_array['query'];
                $total_recordsDg=$diag_array['nb_rows'];
                // echo $total_records;

@@ -615,7 +615,7 @@ if(isset($_POST['updateP']) )
   $mut = test_input($_POST["mutuel"]);
 
   //=======================error msg about empty fields===========
-    if($nom == NULL || $pre == NULL || $mail == NULL||  $nais == NULL || $tel == NULL || $adr == NULL || $sexe == NULL||  $mut == NULL|| $grp == NULL||  $etat== NULL)
+    if($nom == NULL || $pre == NULL || $mail == NULL||  $nais == NULL || $tel == NULL  || $sexe == NULL||  $mut == NULL )
     {
         $res = [
             'status' => 422,

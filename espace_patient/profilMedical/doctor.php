@@ -1,21 +1,21 @@
 <?php 
 session_start();
 error_reporting(E_ALL ^ E_WARNING);
-  
 include '../../connexionDoc/cnx.php';
-
 $_SESSION['code_patient'] = $_GET["code_patient"];
 // echo $_SESSION['code_patient'] ;
 // echo  $_GET["code_patient"];
-$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient ='{$_SESSION['code_patient']}' ");
+$query = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient ='{$_SESSION['code_patient']}' ");
 // echo mysqli_num_rows($display);
-if (mysqli_num_rows($display) > 0) 
+// $row = mysqli_fetch_assoc($getEmail);
+if (mysqli_num_rows($query) > 0) 
  { 
-   $row = mysqli_fetch_assoc($display);
+   $row = mysqli_fetch_assoc($query);
    $_SESSION['idPatient'] =$row['id'];
-  //  print_r($row);
- }
+   $_SESSION['SESSION_EMAIL'] =$row['email'];
 
+ }
+// echo  $_SESSION['SESSION_EMAIL'] ;
 
 ?>
 
