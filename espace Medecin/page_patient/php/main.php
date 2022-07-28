@@ -86,7 +86,9 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
                                     
                                     <p><i class="fa-solid fa-folder-medical icones circle"></i></p> 
                                     <form action="../../../espace_patient/profilMedical/doctor.php" method="get">
-                                    <button type="submit" class= "dossier" id = "medicale" value="<?php echo $item["code_patient"] ?>" name="code_patient">dossier médicale</button>
+                                    <button type="submit" class= "dossier" id = "medicale" name='code_patient' value="<?php echo $item["code_patient"];
+                                    
+                                    ?>" name="code_patient">dossier médicale</button>
                                  </form>
                                 </div>
                             </div>

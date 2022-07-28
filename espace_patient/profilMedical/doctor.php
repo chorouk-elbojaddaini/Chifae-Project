@@ -1,18 +1,21 @@
 <?php 
 session_start();
 error_reporting(E_ALL ^ E_WARNING);
-$_SESSION['idPatient']='100000';
   
 include '../../connexionDoc/cnx.php';
 
-$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient ='{$_GET['code_patient']}' ");
-
+$_SESSION['code_patient'] = $_GET["code_patient"];
+// echo $_SESSION['code_patient'] ;
+// echo  $_GET["code_patient"];
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient ='{$_SESSION['code_patient']}' ");
+// echo mysqli_num_rows($display);
 if (mysqli_num_rows($display) > 0) 
  { 
    $row = mysqli_fetch_assoc($display);
    $_SESSION['idPatient'] =$row['id'];
-   
+  //  print_r($row);
  }
+
 
 ?>
 
@@ -272,7 +275,7 @@ function vanish() {
                                 </div>
                     </div>
                        
-                  <button  class="open-form" id="profilBtn" name="update-profil" value='<?php echo $row['id'] ;?>'>Modifier</button>
+                  <button  class="open-form" id="profilBtn" name="update-profil" value='<?php echo  $_SESSION['idPatient'] ;?>'>Modifier</button>
                    <!-- ---------------------------update form--------------- -->
        <div class="overlay profil hide over-prof" id="profil" >
                     <form action="" method="POST" name="profil" class="form border update" id="profil-form-update">
@@ -1106,7 +1109,9 @@ function smallDevicesD(query1) {
 let query1 = window.matchMedia("(max-width:767px)");
 smallDevicesD(query1);
 </script>
-
+<?php
+unset($_SESSION['code_patient']);
+?>
 
 <!-- ================sripts================================================= -->
 
