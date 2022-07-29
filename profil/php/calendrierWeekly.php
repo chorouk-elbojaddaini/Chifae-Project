@@ -92,7 +92,7 @@
         <!-- <div class="rdv"><a href="" class="prendre-rdv" id="1">Prendre un RDV</a></div> -->
     </div>
 </aside>
-
+</div>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script async defer>

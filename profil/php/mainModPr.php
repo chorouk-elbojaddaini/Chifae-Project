@@ -19,30 +19,43 @@ $prenom = $medecin_shuffle[0]['prenom'];
 
 
 ?>
+<div class="inside">
 <div class="carte">
-<?php foreach ($medecin_shuffle as $item) { ?>
-                <?php 
-                    if("$item[photo]"==null){ ?>
-
-                    <img src="../images/profile2.jpeg" alt="#" class="avatar">
-                    
-                    <?php break;}
-                    else{
-                        echo'<img  src = "data:image/jpeg;base64,' . base64_encode("$item[photo]") . '" width = "90px" " class="avatar"/>';
-                    break;}
-                 ?>
-        <?php }?>
+        <?php
+               if($medecin_shuffle[0]['photo'] != null){
+               ?>
+              <img id="photo"  src="data:image;base64,<?php echo $medecin_shuffle[0]['photo'] ;?>" width = "90px" class="avatar">
+            
+               <?php
+               }
+                else{
+                  ?>
+                    <img  src="../images/avatar.jpeg" alt="profile" id="photo" style="width:100px; height:100px; margin-left:-9px; margin-top:-110px" class="medecinNophoto">
+              
+              
+              <?php
+            }?>
             <div class="name-spec">
                 <h1 class="name"><i class="fa-solid fa-user-doctor"></i> Dr.<?php echo $medecin_shuffle[0]['nom'].' '.$medecin_shuffle[0]['prenom']?></h1>
                 <h2 class="spec"><?php echo $medecin_shuffle[0]['specialite']; ?></h2>
                 
-
-
+                <?php if($medecin_shuffle[0]['inscrit'] != null){
+           $idC = $medecin_shuffle[0]['id'];
+       echo' <div class="rdv"><a href="" class="prendre-rdv buttonRdv" id="$idC">Prendre un RDV</a></div>';
+          }
+       ?>
+<script>
+    function fct()
+    {
+        console.log('Clicked');
+    }
+</script>
             </div>
+            
         </div>
 
-
-        <main>
+<div class="mainRight">
+        <main >
             
              <div class="contenu"> 
                 
@@ -224,7 +237,7 @@ $prenom = $medecin_shuffle[0]['prenom'];
                             <?php } ?>
 
                     </div>
-                    <div id="googleMap" style="width: 100%;height: 40vh;position: relative;"></div>
+                    <div id="googleMap" style="width: 100%;height: 40vh;"></div>
 
                     <!-- <div class="map">
 
@@ -274,3 +287,4 @@ $prenom = $medecin_shuffle[0]['prenom'];
                     </div> 
                  </div>
         </main>
+

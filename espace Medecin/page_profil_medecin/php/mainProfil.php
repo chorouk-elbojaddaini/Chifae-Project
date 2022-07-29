@@ -243,7 +243,7 @@ $days = array('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche')
                             
                     </div>
                     <div class="map">
-                    <div id="googleMap" class = "mapChild"  ></div>
+                    <div id="googleMap" class = "mapChild"  style="width: 100%;height: 40vh;position: relative;"></div>
                     </div>
                    
                 </div>
