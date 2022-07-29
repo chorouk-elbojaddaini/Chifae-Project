@@ -198,7 +198,7 @@ function validateForm() {
     alertify.set('notifier','position', 'top-center');
                     
                     window.setTimeout(function () {window.location.reload();
-                  }, 2000);
+                  }, 1200);
                     return false;
   }
   
