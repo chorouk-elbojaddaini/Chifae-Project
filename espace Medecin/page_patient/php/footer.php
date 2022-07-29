@@ -52,19 +52,15 @@
    </footer>
    </div>
    <div id="boite" >
-   <form method = "post" name = "form_ajouter_patient" id = "addPatientForm">
-          <!-- <div class="c1">       
-            <input type="text" name = "idPatient" placeholder="id" class="">
-            <i class="fa-solid fa-circle-xmark" onclick="toggle()"></i>
-          </div> -->
-          <i class="fa-solid fa-circle-xmark fa-xl" onclick="toggle()"></i>
-          <div class="column_form other col2">
-            <input class="input_form" type="text" name = "code_patient" autocomplete="off" placeholder=" ">
-            <label class="label_form" type="text" for="idPatient">code</label>
-            </div>
+        <form method = "post" name = "form_ajouter_patient" id = "addPatientForm">
+            <i class="fa-solid fa-circle-xmark fa-xl" onclick="toggle()"></i>
+            <div class="column_form other col2">
+                <input class="input_form" type="text" name = "code_patient" autocomplete="off" placeholder=" ">
+                <label class="label_form" type="text" for="idPatient">code</label>
+                </div>
 
-            <button type="submit" name = "ajouterPatButton" id = "ajouterParId" class="ajouterPatient">ajouter</button>
-    </form>
+                <button type="submit" name = "ajouterPatButton" id = "ajouterParId" class="ajouterPatient">ajouter</button>
+        </form>
       
              
     </div>

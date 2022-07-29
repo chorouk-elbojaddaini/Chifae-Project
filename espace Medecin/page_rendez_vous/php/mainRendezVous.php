@@ -40,7 +40,7 @@ error_reporting(E_ALL & ~E_NOTICE);
                 <option name = "yesterday" value="yesterday" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="yesterday"){echo "selected";} }?>>Yesterday</option>
                 <option name = "tomorrow" value="tomorrow" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="tomorrow"){echo "selected";} }?>>Tomorrow</option>
             </select>
-            <button class="ok" type = "submit" name = "submit" id = "buttonSubmit"><i class="fa-solid fa-circle-check fa-xl"></i></button>
+            <button class="ok" type = "submit" name = "submit" id = "buttonSubmit"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
             
          </form>
      </div>

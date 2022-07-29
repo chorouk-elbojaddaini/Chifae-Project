@@ -58,7 +58,7 @@
                 <p class="appointmentTitle">Ajouter un rendez vous</p>
                 <i class="fa-solid fa-circle-xmark fa-xl" onclick="toggle()"></i>
           </div>
-          <form action="#" method = "post">
+          <form action="#" method = "post" id = "addRendezVousForm">
                
                 <div class="column_form other col2">
                     <input class="input_form" type="text" id="nom" name = "boite_nom" autocomplete="off" placeholder=" ">
@@ -78,43 +78,13 @@
                 </div>
 
                
-                <input type="submit" name = "boite_submit"  class="ajouter">
+                <input type="submit" name = "boite_submit"  class="ajouter" onClick = "window.location.reload()">
         </form>
 
         <?php 
         
-         $boite_array= array();
-            if(isset($_POST["boite_submit"])){ 
-                $nom = $_POST["boite_nom"];
-                $prenom = $_POST["boite_prenom"];
-                $telephone = $_POST["boite_telephone"];
-                 $dateTimeStart = $_POST["boite_date"];
-                // echo $dateTimeStart;
-                $minutes_to_add = 30;
-               
-                $time = new DateTime($dateTimeStart);
-                $time->add(new DateInterval('PT' . $minutes_to_add . 'M'));
-
-                $dateTimeEnd = $time->format('Y-m-d H:i');
-                
-                // if(isset($_POST["boite_submit"])){
-                //     $medecin->insertBoite("yamna","yzaa","05242");
-                // }
-                $boite_array = array("nom"=>$nom,"prenom"=>$prenom,"telephone"=>$telephone,"start_datetime"=>$dateTimeStart,"end_datetime"=>$dateTimeEnd,"idMedecin"=>$_SESSION['id']);
-               if($nom == null){
-                
-                
-                    echo" <script>
-             
-                    alert('vous n avez rien ajouté');
-        </script>
-        ";
-                }
-                else{
-                    $medecin->insertInto($boite_array,'schedule_list');
-                    
-                }
-            }
+            
+         
         ?>
      
     </div>
@@ -128,6 +98,70 @@
     if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );
     }
+    </script>
+    <script>
+         $("#addRendezVousForm").on('submit',function(e)
+        {    
+            
+            e.preventDefault();
+            
+           
+            let formData = new FormData(this);
+            formData.append('insertRendezVous', true);
+           
+            for (const pair of formData.entries()) {
+                console.log(`${pair[0]}, ${pair[1]}`);
+              }
+              let ajouter = document.getElementById("ajouterParId");
+            $.ajax({
+                type: "POST",
+                url: "../addAjax.php",
+                data: formData,
+                processData: false,
+                contentType: false,
+               
+                success: function (response) {
+                    
+                    let res = jQuery.parseJSON(response);
+                    //===========success case-----------
+                    if(res.status == 200){
+                      
+                     
+                         //------success msg-------------
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.success(res.message);
+                         location.reload(true);
+                         ajouter.addEventListener('click', function() {
+                        console.log("hi again");
+                            $("#boite").hide()
+                                // location.reload(true);
+                        })
+                     
+                         
+                        
+        
+                    }    //=============db probleme query return falsy value
+        
+                    else if(res.status == 500) {
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.error(res.message);
+                      
+                    }
+                    //--------------empty fields error---------
+                    else if(res.status == 422)
+                    {
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.error(res.message);
+                     
+                    }
+                }
+            }
+
+            
+         )
+         
+       
+        });
     </script>
 </body>
 </html>

@@ -33,9 +33,9 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
                 <a class="add_patient" href="#"  onclick="toggle()">ajouter patient</a>
         </div>
         <form method = "GET">
-                    <input type = "search" name= "s" placeholder = "rechercher par nom" class="rechercher" >
-                    <input type="submit" name = "envoyer" value="rechercher" style="background:#fe6686; border:none; color:white; padding:3px 9px; cursor:pointer; border-radius:10px; ">
-                </form>
+            <input type = "search" name= "s" placeholder = "rechercher par nom" class="rechercher" >
+            <input type="submit" name = "envoyer" value="rechercher" style="background:#fe6686; border:none; color:white; padding:3px 9px; cursor:pointer; border-radius:10px; ">
+        </form>
            <div class="patient_wrapper">
             <?php if($patient_shuffle !=null){ ?>
                 <?php foreach($patient_shuffle as $item) {  ?>
