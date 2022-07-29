@@ -86,8 +86,8 @@
                   
                 });
                 
-  </script>
-  ";
+                </script>
+                ";
             }
         
             elseif(empty($new_password) == true){

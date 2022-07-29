@@ -1014,6 +1014,10 @@ ul{
   cursor: pointer;
 
 }
+.deleteLangue{
+ margin-left: 150px;
+ margin-top: 30px;
+}
 
 #change_pass_boite.act {
   visibility: visible;

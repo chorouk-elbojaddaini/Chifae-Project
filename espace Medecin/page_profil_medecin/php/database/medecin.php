@@ -18,16 +18,18 @@ class Medecin {
          }
          return $resultArray;
      }
-     public function deleteData($table="medecin",$column,$email){
+
+    public function deleteData($table="medecin",$column,$email){
         
         $result = mysqli_query($this->db->con,"UPDATE {$table} SET {$column} =NULL WHERE `gmail`='{$email}';");
-    if($result){
-        // echo "deleted succefuly";
+        if($result){
+            // echo "deleted succefuly";
+        }
+        else{
+            // echo "nope";
+        }
+        return $result;
     }
-    else{
-        // echo "nope";
-    }
- }
  public function deleteDataHoraires($email){
     
         // echo "IAM WORKING BABYY" ;

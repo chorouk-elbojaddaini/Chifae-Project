@@ -67,16 +67,14 @@
 
 
         <form method = "post">
-            <button type = "submit" name = "delete_spec" class="delete">supprimer</button>
+            <button type = "submit" name = "delete_spec" class="delete" id = "delete_specialite">supprimer</button>
         </form>
         
                       
         
     </div>
     <?php
-            if(isset($_POST["delete_spec"])){
-               $medecin->deleteData("medecin","specialites",$_SESSION['SESSION_EM']);
-            }
+            
     ?>
         <img src="../images/close.jpeg" class="close" onclick="toggle('boite')">
     </div>
@@ -91,14 +89,12 @@
                 ?>
         </div>
         <form method = "post">
-            <button type = "submit" name = "delete_desc" class="delete">supprimer </button>
+            <button type = "submit" name = "delete_desc" class="delete" id = "delete_description">supprimer </button>
         </form>
         <img src="../images/close.svg.png" class="close" onclick="toggle('boite2')">
     </div>
     <?php
-            if(isset($_POST["delete_desc"])){
-               $medecin->deleteData("medecin","description",$_SESSION['SESSION_EM']);
-            }
+            
     ?>
     <div id="boite3">
     <div class="experiences-content"><i class="fa-solid fa-stethoscope"></i> Expériences </div>
@@ -120,14 +116,12 @@
                         <?php } ?>
                     </ul>
         <form method = "post">
-            <button type = "submit" name = "delete_experience" class="delete">supprimer </button>
+            <button type = "submit" name = "delete_experience" class="delete" id = "delete_experience">supprimer </button>
         </form>
         <img src="../images/close.svg.png" class="close" onclick="toggle('boite3')">
     </div>
     <?php
-            if(isset($_POST["delete_experience"])){
-               $medecin->deleteData("medecin","experience",$_SESSION['SESSION_EM']);
-            }
+           
     ?>
     <div id="boite4">
     <div class="diplome"><i class="fa-solid fa-graduation-cap"></i> Cursus et diplômes</div>
@@ -144,7 +138,7 @@
 
         </ul>
         <form method = "post">
-            <button type = "submit" name = "delete_diplome" class="delete">supprimer </button>
+            <button type = "submit" name = "delete_diplome" class="delete" id = "delete_diplome">supprimer </button>
         </form>
     <img src="../images/close.svg.png" class="close" onclick="toggle('boite4')">
     </div>
@@ -166,54 +160,54 @@
 <script>
 // position we will use later
 <?php if((isset($lat) || isset($lon))!= true){ ?>
-  var lat = 33.589886 ;
-var lon = 7.603869;
-<?php }
+    var lat = 33.589886 ;
+    var lon = 7.603869;
+    <?php }
 
-else{
-?>
-var lat = <?php 
+    else{
+    ?>
+    var lat = <?php 
 
 
-echo $lat;
- ?>;
-var lon = <?php 
-echo $lon; }?>
+    echo $lat;
+    ?>;
+    var lon = <?php 
+    echo $lon; }?>
 
-// initialize map
-map = L.map('googleMap').setView([lat, lon], 13);
-// set map tiles source
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-  maxZoom: 18,
-}).addTo(map);
-// add marker to the map
-marker = L.marker([lat, lon]).addTo(map);
-// add popup to the marker
+    // initialize map
+    map = L.map('googleMap').setView([lat, lon], 13);
+    // set map tiles source
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 18,
+    }).addTo(map);
+    // add marker to the map
+    marker = L.marker([lat, lon]).addTo(map);
+    // add popup to the marker
 
-marker.bindPopup("<b><?php   if(isset($nom)){
-    echo "dr ".$nom;
-  }
-  else{
-    echo "";
-  }?><?php   if(isset($prenom)){
-    echo "  ".$prenom;
-  }
-  else{
-    echo "";
-  }?></b><br/><center><?php if(isset($adresse)){
-    echo " ".$adresse."</br> ";
-  }
-  else{
-    echo "";
-  }
-  
-  if(isset($ville)){
-    echo " ".$ville;
-  }
-  else{
-    echo "";
-  }?></center>").openPopup();
+    marker.bindPopup("<b><?php   if(isset($nom)){
+        echo "dr ".$nom;
+    }
+    else{
+        echo "";
+    }?><?php   if(isset($prenom)){
+        echo "  ".$prenom;
+    }
+    else{
+        echo "";
+    }?></b><br/><center><?php if(isset($adresse)){
+        echo " ".$adresse."</br> ";
+    }
+    else{
+        echo "";
+    }
+    
+    if(isset($ville)){
+        echo " ".$ville;
+    }
+    else{
+        echo "";
+    }?></center>").openPopup();
 </script>
 
 
@@ -271,6 +265,219 @@ $(document).on('click','#delete_horaires', function (e) {
         });
     }
 });
+
+$(document).on('click','#delete_specialite', function (e) {
+    console.log(this)
+    e.preventDefault();
+    let id = $(this).val();
+    console.log(id);
+    let data = {
+        'id':1,
+        'deleteSpecialite':true
+    }
+  //===========to specifiy wich table we will delete from
+   
+     if(confirm('Vous voulez vraiment le supprimer ?'))
+    {
+        //---------ajax request-----------
+        
+        $.ajax({
+            type: "POST",
+            url: "./deleteAjax.php",
+            data:{
+            'id':id,
+            'deleteSpecialite':true
+          },
+        //-------checking response----------
+            success: function (response) {
+
+                let res = jQuery.parseJSON(response);
+                //------fail---------------
+                if(res.status == 500) {
+
+                    alertify.set('notifier','position', 'top-right');
+                    alertify.error(res.message);
+                }else{
+                //--------success--------- 
+                    alertify.set('notifier','position', 'top-right');
+                    alertify.success(res.message);
+                     location.reload(true);
+
+                }
+            }
+        });
+    }
+});
+$(document).on('click','#delete_description', function (e) {
+    console.log(this)
+    e.preventDefault();
+    let id = $(this).val();
+    console.log(id);
+    let data = {
+        'id':1,
+        'deleteDescription':true
+    }
+  //===========to specifiy wich table we will delete from
+   
+     if(confirm('Vous voulez vraiment le supprimer ?'))
+    {
+        //---------ajax request-----------
+        
+        $.ajax({
+            type: "POST",
+            url: "./deleteAjax.php",
+            data:{
+            'id':id,
+            'deleteDescription':true
+          },
+        //-------checking response----------
+            success: function (response) {
+
+                let res = jQuery.parseJSON(response);
+                //------fail---------------
+                if(res.status == 500) {
+
+                    alertify.set('notifier','position', 'top-right');
+                    alertify.error(res.message);
+                }else{
+                //--------success--------- 
+                    alertify.set('notifier','position', 'top-right');
+                    alertify.success(res.message);
+                     location.reload(true);
+
+                }
+            }
+        });
+    }
+});
+
+$(document).on('click','#delete_experience', function (e) {
+    console.log(this)
+    e.preventDefault();
+    let id = $(this).val();
+    console.log(id);
+    let data = {
+        'id':1,
+        'deleteExperience':true
+    }
+  //===========to specifiy wich table we will delete from
+   
+     if(confirm('Vous voulez vraiment le supprimer ?'))
+    {
+        //---------ajax request-----------
+        
+        $.ajax({
+            type: "POST",
+            url: "./deleteAjax.php",
+            data:{
+            'id':id,
+            'deleteExperience':true
+          },
+        //-------checking response----------
+            success: function (response) {
+
+                let res = jQuery.parseJSON(response);
+                //------fail---------------
+                if(res.status == 500) {
+
+                    alertify.set('notifier','position', 'top-right');
+                    alertify.error(res.message);
+                }else{
+                //--------success--------- 
+                    alertify.set('notifier','position', 'top-right');
+                    alertify.success(res.message);
+                     location.reload(true);
+
+                }
+            }
+        });
+    }
+});
+$(document).on('click','#delete_diplome', function (e) {
+    console.log(this)
+    e.preventDefault();
+    let id = $(this).val();
+    console.log(id);
+    let data = {
+        'id':1,
+        'deleteDiplome':true
+    }
+  //===========to specifiy wich table we will delete from
+   
+     if(confirm('Vous voulez vraiment le supprimer ?'))
+    {
+        //---------ajax request-----------
+        
+        $.ajax({
+            type: "POST",
+            url: "./deleteAjax.php",
+            data:{
+            'id':id,
+            'deleteDiplome':true
+          },
+        //-------checking response----------
+            success: function (response) {
+
+                let res = jQuery.parseJSON(response);
+                //------fail---------------
+                if(res.status == 500) {
+
+                    alertify.set('notifier','position', 'top-right');
+                    alertify.error(res.message);
+                }else{
+                //--------success--------- 
+                    alertify.set('notifier','position', 'top-right');
+                    alertify.success(res.message);
+                     location.reload(true);
+
+                }
+            }
+        });
+    }
+});
+$(document).on('click','#delete_langue', function (e) {
+    console.log(this)
+    e.preventDefault();
+    let id = $(this).val();
+    console.log(id);
+    let data = {
+        'id':1,
+        'deleteLangue':true
+    }
+  //===========to specifiy wich table we will delete from
+   
+     if(confirm('Vous voulez vraiment le supprimer ?'))
+    {
+        //---------ajax request-----------
+        
+        $.ajax({
+            type: "POST",
+            url: "./deleteAjax.php",
+            data:{
+            'id':id,
+            'deleteLangue':true
+          },
+        //-------checking response----------
+            success: function (response) {
+
+                let res = jQuery.parseJSON(response);
+                //------fail---------------
+                if(res.status == 500) {
+
+                    alertify.set('notifier','position', 'top-right');
+                    alertify.error(res.message);
+                }else{
+                //--------success--------- 
+                    alertify.set('notifier','position', 'top-right');
+                    alertify.success(res.message);
+                     location.reload(true);
+
+                }
+            }
+        });
+    }
+});
+
 </script>
    <script>
     if ( window.history.replaceState ) {

@@ -159,19 +159,21 @@ $days = array('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche')
                         <span>CB  </span>
                     </div> -->
                     <div class="langue"><i class="fa-solid fa-language"></i> Langues parlées</div>
-                    <div class="class-langues">
-                    <?php  for($i=0;$i<count($arrayLangue);$i++){ 
-                        if($arrayLangue[0]== null){
-                            echo "aucune langue n'est choisie";
-                            break;
-                        }?>
-                     <span> <?php echo $arrayLangue[$i]; ?>
-                      </span>
-                        <?php } ?>
-                        
-                    </div>
-                    
-                </div> 
+                        <div class="class-langues">
+                        <?php  for($i=0;$i<count($arrayLangue);$i++){ 
+                            if($arrayLangue[0]== null){
+                                echo "aucune langue n'est choisie";
+                                break;
+                            }?>
+                        <span> <?php echo $arrayLangue[$i]; ?>
+                        </span>
+                            <?php } ?>
+                            
+                        </div>
+                    </div> 
+                    <form method = "post">
+                        <button type = "submit" name = "delete_diplome" class="delete deleteLangue" id = "delete_langue">supprimer </button>
+                    </form>
                 <div class="two">
                     <div class="experiences-content"><i class="fa-solid fa-stethoscope"></i> Expériences </div>
                     <ul class="ul-experiences">
