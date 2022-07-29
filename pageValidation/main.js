@@ -97,11 +97,16 @@ function updateProgressbar() {
 // show and hide number
 const num = document.querySelector(".affichernum");
 const numaffiche =document.querySelector(".numero");
-// num.addEventListener("click", () =>{
-//   num.style.display="none";
-//   numaffiche.style.display="block";
-// }
-// )
+num.addEventListener("click", () =>{
+  num.style.display="none";
+  numaffiche.style.display="block";
+}
+)
+numaffiche.addEventListener("click", () =>{
+  num.style.display="block";
+  numaffiche.style.display="none";
+}
+)
 // const showNumber = () => {
 //   num.style.display ="none";
 //   numaffiche.style.display = "block";

@@ -163,26 +163,25 @@
     }
     </script>
 
-
-
 <script>
 // position we will use later
-
 <?php if((isset($lat) || isset($lon))!= true){ ?>
   var lat = 33.589886 ;
 var lon = 7.603869;
 <?php }
 
-else{ 
+else{
 ?>
-var lat = <?php echo json_encode($_SESSION["lat"]); ?> ;
-var lon = <?php echo json_encode($_SESSION["lon"]); ?> ;
-<?php }?>
+var lat = <?php 
 
+
+echo $lat;
+ ?>;
+var lon = <?php 
+echo $lon; }?>
 
 // initialize map
-map = L.map('googleMap').setView([lat, lon], 9);
-
+map = L.map('googleMap').setView([lat, lon], 13);
 // set map tiles source
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
@@ -192,30 +191,31 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 marker = L.marker([lat, lon]).addTo(map);
 // add popup to the marker
 
-marker.bindPopup("<b><?php   if(isset($_SESSION["nom"])){
-    echo "dr ".$_SESSION["nom"];
+marker.bindPopup("<b><?php   if(isset($nom)){
+    echo "dr ".$nom;
   }
   else{
     echo "";
-  }?><?php   if(isset($_SESSION["prenom"])){
-    echo "  ".$_SESSION["prenom"];
+  }?><?php   if(isset($prenom)){
+    echo "  ".$prenom;
   }
   else{
     echo "";
-  }?></b><br/><center><?php if(isset($_SESSION["adresse"])){
-    echo " ".$_SESSION["adresse"]."</br> ";
+  }?></b><br/><center><?php if(isset($adresse)){
+    echo " ".$adresse."</br> ";
   }
   else{
     echo "";
   }
   
-  if(isset($_SESSION["ville"])){
-    echo " ".$_SESSION["ville"];
+  if(isset($ville)){
+    echo " ".$ville;
   }
   else{
     echo "";
   }?></center>").openPopup();
 </script>
+
 
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>

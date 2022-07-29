@@ -245,8 +245,11 @@ $days = array('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche')
                     <div class="map">
                     <div id="googleMap" class = "mapChild"  style="width: 100%;height: 40vh;position: relative;"></div>
                     </div>
+                <div id="googleMap" style="width: 100%;height: 40vh;position: relative;"></div>
+
                    
                 </div>
+
                 <div class="four">
                     <div class="horaires-left">
                          <div class="horaires"><i class="fa-solid fa-clock"></i> Horaires </div>
