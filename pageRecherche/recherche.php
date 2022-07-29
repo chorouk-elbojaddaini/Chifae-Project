@@ -130,7 +130,7 @@ include('../pageAcceuil/cnx.php');
                  $total = mysqli_num_rows($result);
                  echo $total;
                  while($row=mysqli_fetch_array($result)){
-                  echo '<option value="'."$row[ville]".'" ';?><?php if(isset($_SESSION['search2'])){if($_POST["ville2"] == "$row[ville]"){echo "selected";} } ?> <?php echo '>'."$row[ville]".'</option>'; 
+                  echo '<option value="'."$row[ville]".'" ';?><?php if(isset($_POST['search2'])){if($_POST["ville2"] == "$row[ville]"){echo "selected";} } ?> <?php echo '>'."$row[ville]".'</option>'; 
                  }
                  ?>
           </select>
@@ -422,7 +422,7 @@ window.history.replaceState({}, '', `${location.pathname}?${params}`);
 $('.prendre-rdv').click(function() {
    a = this.id;
 var b = a;
-window.history.pushState('', 'New Page Title', '../pageValidation/validation.php?id='+a);
+window.history.pushState('', 'New Page Title', '../pageValidation/validation.php?id='+a+'&year=0&month=0&day=0&hour=0&min=0');
 // document.location.href = '../pageValidation/validation.php';
 
 });

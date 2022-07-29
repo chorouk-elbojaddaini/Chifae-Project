@@ -57,7 +57,7 @@
           }
           
           echo '<div class="voirplus plus1">
-          <button class="btn-voirplus btn1 voirprof" id="'."$row[id]".'">voir le profile</button>
+          <button class="btn-voirplus btn1 voirprof" id="'."$row[id]".'">voir  profil</button>
         </div>
       </div>
       <div class="div-info" >
@@ -76,7 +76,7 @@
             echo '<p >'."$row[numero]".'</p>';
           }
           if(empty("$row[inscrit]") == true){
-       echo' <button class="voir-rdv" id="'."$row[id]".'" >Voir Profile</button> ';
+       echo' <button class="voir-rdv" id="'."$row[id]".'" >Voir Profil</button> ';
           }
         else{
        echo' <button class="prendre-rdv" id="'."$row[id]".'" >Prendre rendez-vous</button> ';
