@@ -124,7 +124,7 @@
     </div>
     <script>
 // position we will use later
-<?php if((isset($lat) || isset($lon))!= true){ ?>
+<?php if((empty($lat) || empty($lon)) == true){ ?>
   var lat = 33.589886 ;
 var lon = 7.603869;
 <?php }
