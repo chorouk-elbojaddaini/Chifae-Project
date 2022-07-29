@@ -92,113 +92,113 @@ echo"</div> ";
                    </div>
             <!-- ---------------------------form to add mesures------------------------- -->
             <div class="overlay mesureForm hide" id="mesure">
-                <form action="#" method="post" name="mesure" class="form border insert" id="mesure-form">
-                  <button class="close_form" id="mesure-btn" name="close-insert-mesure"> <i class="uis uis-multiply closeF"></i> </button> 
-                    <div class="mesure-inputs">
-                      <label >
-                        Poids
-                        <input type="text"  name="poid" id="M1">
-                        </label>
+<form action="" method="post" name="mesure" class="form border insert" id="mesure-form">
+ <button class="close_form" id="mesure-btn" name="close-insert-mesure"> <i class="uis uis-multiply closer"></i> </button> 
+   <div class="mesure-inputs">
+     <label >
+       Poids
+       <input type="text"  name="poid" id="M1" placeholder="en Kg...">
+       </label>
 
-                        <label >
-                          Taille
-                          <input type="text"  name="taille" id="M2">
-                        </label>
+       <label >
+         Taille
+         <input type="text"  name="taille" id="M2"placeholder="en cm...">
+       </label>
 
-                        <label >
-                          ICM 
-                          <input type="text"  name="IMC" id="M3" placeholder="Indice de Masse Corporelle">
-                        </label>
+       <label >
+         ICM 
+         <input type="text"  name="IMC" id="M3" placeholder="Indice de Masse Corporelle">
+       </label>
 
-                        <label >
-                            Tour de taille
-                            <input type="text"  name="tour-taille" id="M4">
-                        </label>
+       <label >
+           Tour de taille
+           <input type="text"  name="tour-taille" id="M4" placeholder="en cm...">
+       </label>
 
-                        <label >
-                          Température
-                          <input type="text"  name="temperature" id="M5">
-                        </label>
-                    
-                        <label >
-                          Tension artérielle
-                          <input type="text"  name="tension-arterielle" id="M6">
-                        </label>
-                      
-                        <label >
-                          fréquence cardiaque
-                          <input type="text"  name="frq-cardiaque" id="M7">
-                        </label>
-                    
-                        <label >
-                          Glycémie
-                          <input type="text"  name="glycemie" id="M8">
-                        </label>
-                        <label >
-                     Date
-                      <input type="date"  name="date" id="date">
-                    </label>
-                    </div>
-                    
-                        <button type="submit" class="form-btn"  name="insert-mesure">Ajouter</button>
-               </form>
-          </div>
+       <label >
+         Température
+         <input type="text"  name="temperature" id="M5"  placeholder="en degrée...">
+       </label>
+   
+       <label >
+         Tension artérielle
+         <input type="text"  name="tension-arterielle" id="M6"placeholder=" en cmHg...">
+       </label>
+     
+       <label >
+         fréquence cardiaque
+         <input type="text"  name="frq-cardiaque" id="M7"placeholder=" en bpm...">
+       </label>
+   
+       <label >
+         Glycémie
+         <input type="text"  name="glycemie" id="M8" placeholder=" en  mmol/L....">
+       </label>
+       <label >
+       Date
+     <input type="date"  name="date" id="date">
+   </label>
+   </div>
+   
+       <button type="submit" class="form-btn"  name="insert-mesure">Ajouter</button>
+</form>
+</div>
                <!-- ---------------------------form to update mesures------------------------- -->
-              <div class="overlay mesureForm hide" id="mesure1">
-                <form action="#" method="post" name="mesure" class="form border update" id="mesure-form-update">
-                  <button class="close_form" id="mesure-btn-close" name="close-update-mesure"> <i class="uis uis-multiply closeF"></i> </button> 
-                    <input type="hidden" name="idM" id="mes" >
-                 
-                  <div class="mesure-inputs">
-                  <label >
-                    Poids
-                     <input type="text"  name="M1" id="m1">
-                    </label>
+               <div class="overlay mesureForm hide" id="mesure1">
+<form action="" method="post" name="mesure" class="form border update" id="mesure-form-update">
+ <button class="close_form" id="mesure-btn-close" name="close-update-mesure"> <i class="uis uis-multiply closer"></i> </button> 
+   <input type="hidden" name="idM" id="mes" >
 
-                    <label >
-                      Taille
-                      <input type="text"  name="M2" id="m2">
-                    </label>
+ <div class="mesure-inputs">
+ <label >
+   Poids
+    <input type="text"  name="M1" id="m1"placeholder=" en Kg...">
+   </label>
 
-                    <label >
-                      ICM 
-                      <input type="text"  name="M3" id="m3" placeholder="Indice de Masse Corporelle">
-                    </label>
+   <label >
+     Taille
+     <input type="text"  name="M2" id="m2"en cm...">
+   </label>
 
-                    <label >
-                        Tour de taille
-                         <input type="text"  name="M4" id="m4">
-                    </label>
+   <label >
+     ICM 
+     <input type="text"  name="M3" id="m3" placeholder="Indice de Masse Corporelle">
+   </label>
 
-                    <label >
-                      Température
-                      <input type="text"  name="M5" id="m5">
-                    </label>
-                
-                    <label >
-                      Tension artérielle
-                      <input type="text"  name="M6" id="m6">
-                    </label>
-                   
-                    <label >
-                      fréquence cardiaque
-                      <input type="text"  name="M7" id="m7">
-                    </label>
-                 
-                    <label >
-                      Glycémie
-                      <input type="text"  name="M8" id="m8">
-                    </label>
-                    <label >
-                    Date
-                      <input type="date"  name="date1" id="date1">
-                    </label>
-               
-                </div>
-                
-                        <button type="submit" class="form-btn"  id="update-mesure"name="update-mesure">Modifier</button>
-               </form>
-              </div>
+   <label >
+       Tour de taille
+        <input type="text"  name="M4" id="m4"en cm...">
+   </label>
+
+   <label >
+     Température
+     <input type="text"  name="M5" id="m5"placeholder="en degrée...">
+   </label>
+
+   <label >
+     Tension artérielle
+     <input type="text"  name="M6" id="m6"placeholder=" en cmHg...">
+   </label>
+  
+   <label >
+     fréquence cardiaque
+     <input type="text"  name="M7" id="m7"placeholder=" en bpm...">
+   </label>
+
+   <label >
+     Glycémie
+     <input type="text"  name="M8" id="m8"placeholder=" en  mmol/L....">
+   </label>
+   <label >
+   Date
+     <input type="date"  name="date1" id="date1">
+   </label>
+
+</div>
+
+       <button type="submit" class="form-btn"  id="update-mesure"name="update-mesure">Modifier</button>
+</form>
+</div>
               <?php
                if(empty( $_SESSION['dateMes']) )
                {
@@ -254,7 +254,7 @@ echo"</div> ";
                     
                     $start_fromM =   ($pageM-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromM;
-                    $mesure_array = filter_by_date("mesures",$_SESSION['dateMes'],$start_fromM,$num_per_page,"poids", $_SESSION['searchM'],$conn);
+                    $mesure_array = filter_by_date("mesures",$_SESSION['dateMes'],$start_fromM,$num_per_page,"poids", $_SESSION['searchM'],$conn,$_SESSION['idPatient']);
                     $mesure = $mesure_array['query'];
                     $total_recordsM=$mesure_array['nb_rows'];
                     // echo $total_recordsM;
@@ -280,6 +280,8 @@ echo"</div> ";
                               echo'</div>';
                               echo'</div>';
                               echo'</div>';
+                              echo'</div>';
+
 
                     ?>
 

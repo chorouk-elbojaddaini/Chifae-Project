@@ -15,7 +15,7 @@ include'filter.php';
           <h4>".$row["cause"]."
           <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
                       <div class='options' data-div='".$row["idH"]."'>
-                          <button class='editH' value='".$row["idH"]."'><i class='fa-solid fa-pen'></i></button>
+                          <button class='editH editHide' value='".$row["idH"]."'><i class='fa-solid fa-pen'></i></button>
                           <button class='deleteH' id='delete-'".$row["idH"]."' value='".$row["idH"]."'><i class='fa-solid fa-trash-can'></i></button>
                       </div>
           </h4>
@@ -195,7 +195,7 @@ echo"
                     
                     $start_fromH =   ($pageH-1)*$num_per_page;
                     // echo "ana lbdya".$start_fromH;
-                    $hospi_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$_SESSION['idPatient']);
+                    $hospi_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$conn,$_SESSION['idPatient']);
                     $hospi = $hospi_array['query'];
                     $total_recordsH=$hospi_array['nb_rows'];
                     // echo $total_recordsH;
@@ -208,7 +208,7 @@ echo"
                           
 
                     }
-                    $hospi1_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$_SESSION['idPatient']);
+                    $hospi1_array = filter_by_date("hospitalisation",$_SESSION['dateH'],$start_fromH,$num_per_page,"cause", $_SESSION['searchH'],$conn,$_SESSION['idPatient']);
                     $hospi1 = $hospi1_array['query'];
                     $total_pages=ceil($total_recordsH/$num_per_page);
                     $res1 = "<p class='response'>Il existe ". $total_recordsH." enregistrement</p>";

@@ -189,7 +189,7 @@ function validateForm() {
     alertify.set('notifier','position', 'top-center');
                     
                     window.setTimeout(function () {window.location.reload();
-                  }, 2000);
+                  }, 700);
                     return false;
   }
   if (y == "" || y == null) {
@@ -198,7 +198,7 @@ function validateForm() {
     alertify.set('notifier','position', 'top-center');
                     
                     window.setTimeout(function () {window.location.reload();
-                  }, 1200);
+                  }, 700);
                     return false;
   }
   
@@ -207,7 +207,7 @@ function validateForm() {
     alertify.set('notifier','position', 'top-center');
                     
                     window.setTimeout(function () {window.location.reload();
-                  }, 2000);
+                  }, 700);
                     return false;
   
 
@@ -217,7 +217,7 @@ function validateForm() {
     alertify.set('notifier','position', 'top-center');
                     
                     window.setTimeout(function () {window.location.reload();
-                  }, 2000);
+                  }, 700);
                     return false;
   }
 
@@ -226,7 +226,7 @@ function validateForm() {
     alertify.set('notifier','position', 'top-center');
                     
                     window.setTimeout(function () {window.location.reload();
-                  }, 2000);
+                  }, 700);
                     return false;
 
 	}
@@ -235,7 +235,7 @@ function validateForm() {
     alertify.set('notifier','position', 'top-center');
                     
                     window.setTimeout(function () {window.location.reload();
-                  }, 2000);
+                  }, 700);
                     return false;
 	}
 	if(!validateNUM(e)){
@@ -243,7 +243,7 @@ function validateForm() {
     alertify.set('notifier','position', 'top-center');
                     
                     window.setTimeout(function () {window.location.reload();
-                  }, 2000);
+                  }, 700);
                     return false;
 	}
 
@@ -257,7 +257,7 @@ function validateForm() {
   alertify.set('notifier','position', 'top-center');
                   
                   window.setTimeout(function () {window.location.reload();
-                }, 2000);
+                }, 700);
                   return false;
   }
  

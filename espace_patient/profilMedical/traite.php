@@ -15,7 +15,7 @@ function affich_traite($traite,$res) {
           <h4>".$row["nom"]."
           <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
                       <div class='options' data-div='".$row["idT"]."'>
-                          <button class='editT' value='".$row["idT"]."'><i class='fa-solid fa-pen'></i></button>
+                          <button class='editT editHide' value='".$row["idT"]."'><i class='fa-solid fa-pen'></i></button>
                           <button class='deleteT' id='delete-'".$row["idT"]."' value='".$row["idT"]."'><i class='fa-solid fa-trash-can'></i></button>
                       </div>
           </h4>

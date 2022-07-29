@@ -14,7 +14,7 @@ include'filter.php';
           <h4>".$row["nom"]."
           <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
                       <div class='options' data-div='".$row["idA"]."'>
-                          <button class='editA' value='".$row["idA"]."'><i class='fa-solid fa-pen'></i></button>
+                          <button class='editA editHide' value='".$row["idA"]."'><i class='fa-solid fa-pen'></i></button>
                           <button class='deleteA' id='delete-'".$row["idA"]."' value='".$row["idA"]."'><i class='fa-solid fa-trash-can'></i></button>
                       </div>
           </h4>

@@ -133,7 +133,7 @@ if (mysqli_num_rows($display) > 0)
        
        <div id="popup" class="popup">
         <div class="modal-btn"  >
-          <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
+          <button class="close_menu_botton2" type="button"> <i class="uis uis-multiply close2" ></i> </button> 
           <?php
                if(empty($row['photo'] )){
                ?>
@@ -159,7 +159,7 @@ if (mysqli_num_rows($display) > 0)
        <!-- ---------------------------update form--------------- -->
        <div class="overlay profil hide over-prof" id="profil" >
                     <form action="" method="post" name="profil" class="form border update" id="profil-form-update">
-                    <button class="close_form" id="profil-btn-close" name="close-update-profil" > <i class="uis uis-multiply closeF"></i> </button> 
+                    <button class="close_form" id="profil-btn-close" name="close-update-profil"  > <i class="uis uis-multiply closeF"></i> </button> 
                                   <input type="hidden" name="idP" id="idP" >
                                 
                             <div class="profil-inputs">
@@ -223,6 +223,7 @@ if (mysqli_num_rows($display) > 0)
               
             </ul>
          </div>
+    <div class="pageData">
       <div class="perso-data">
             <div class="header">
                 <div class="photo">
@@ -234,12 +235,12 @@ if (mysqli_num_rows($display) > 0)
                         <?php
                if(empty($row['photo'] )){
                ?>
-              <img  src="images/noprofil.jpg" alt="profile" id="photo">
+              <img  src="images/noprofil.jpg" alt="profile" id="photo" class="photoProfil">
                <?php
                }
                 else{
                   ?>
-              <img id="photo" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              <img id="photo" class="photoProfil" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
               
               
               <?php
@@ -304,5 +305,113 @@ if (mysqli_num_rows($display) > 0)
                         </div>
          </div>
       </div>
+      <?php 
+      function check_mdp_format($mdp)
+      {
+        $majuscule = preg_match('@[A-Z]@', $mdp);
+        $minuscule = preg_match('@[a-z]@', $mdp);
+        $chiffre = preg_match('@[0-9]@', $mdp);
+        
+        if(!$majuscule || !$minuscule || !$chiffre || strlen($mdp) < 5)
+        {
+          return false;
+        }
+        else 
+          return true;
+      }
+   $msg = "";
+   if (isset($_POST['changePassword'])) {
+            $old_password = mysqli_real_escape_string($conn, $_POST['oldPwd']);
+            $new_password = mysqli_real_escape_string($conn, $_POST['newPwd']);
+
+            $confirm_password = mysqli_real_escape_string($conn, $_POST['confirmPwd']);
+            if(empty($old_password) == true){
+              $msg ="<p class='alert-red'> veuillez remplir l'ancien mot de passe</p> ";
+            
+            }
+        
+            elseif(empty($new_password) == true){
+                $msg ="<p class='alert-red'> veuillez remplir le champ mot de passe</p> ";
+              
+              }
+              elseif(empty($confirm_password) == true){
+                $msg ="<p class='alert-red'> veuillez remplir le champ confirmation mot de passe </p> ";
+             
+              }
+
+            elseif($new_password === $confirm_password ) {
+                if (check_mdp_format("$new_password") != true)
+                {
+                $msg ="<p class='alert-red'> Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, et 8 caractères!</p> ";
+                }
+                else{
+                
+                $old =  mysqli_query($conn,"SELECT * FROM patient WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+                if(mysqli_num_rows($old) > 0){
+                  $resultat = mysqli_fetch_assoc($old);
+                  $oldPwd = $resultat['motdepasse'];
+                  if($oldPwd !=  $old_password)
+                  {
+                    $msg ="<p class='alert-red'>l'ancien mot de passe est éronné</p> ";
+                  }
+                  else{
+                     $query = mysqli_query($conn, "UPDATE patient SET motdepasse='{$new_password}' WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+                if ($query) {
+                    echo"<script>
+                    alertify.set('notifier','position', 'top-right');
+                      alertify.success('Votre mot de passe a été modifié avec succés ✔');
+                    </script>";
+                }
+                  }
+                }
+               
+            }
+            } else {
+              
+                $msg = "<div class='alert-red'>Assurez-vous que le mot de passe a été entré correctement.</div>";
+            }
+            
+        }
+        ?>
+      <div class="password ">
+        <h3 id="pwdH">Changer votre mot de passe :</h3>
+        <?php echo $msg; ?>
+            <form method="post" action="profil.php" id="changePwd">
+             <label for="oldPwd">Ancien mot de passe :</label>
+             <input type="password" name="oldPwd" class="pwdinput" >
+             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+             <label for="newPwd">Nouveau mot de passe :</label>
+             <input type="password" name="newPwd" class="pwdinput">
+             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+             <label for="confirmPwd">Confirme mot de passe :</label>
+             <input type="password" name="confirmPwd" class="pwdinput">
+             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+             <button type="submit" class="form-btn" name="changePassword" id="changePassword">Changer</button>
+            </form>
+        </div>
+    </div>
    </div>
+   
    <?php include'footer.php';?>
+   <script type="text/javascript">
+    $(".toggle-password").click(function() {
+$(this).toggleClass("fa-eye fa-eye-slash");
+let pwd = this.previousElementSibling;
+
+// 
+if (pwd.getAttribute("type") == "password") {
+  pwd.setAttribute("type", "text");
+  console.log('hello')
+} else {
+  pwd.setAttribute("type", "password");
+  console.log('hello2')
+
+}
+});
+   </script>
+   <!-- <script>
+    if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+    }
+    </script> -->
+   

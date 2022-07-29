@@ -123,18 +123,18 @@ nav {
 nav button {
   display: none;
 }
-.nav-menu {
+.nav-menu ,.doctor-menu{
   display: flex;
   align-items: center;
   gap: 2.5rem;
   margin-left: 38rem;
   position: relative;
 }
-.nav-menu a {
+.nav-menu a ,.doctor-menu a {
   font-size: 0.9rem;
   transition: var(--transition);
 }
-.nav-menu a:hover {
+.nav-menu a:hover,.doctor-menu a:hover {
   color: var(--color-green3);
 }
 .medecin {
@@ -273,7 +273,7 @@ nav button {
         place-items: center;
         
       }
-      .nav-menu a:hover {
+      .nav-menu a:hover,.doctor-menu a:hover {
         background-color: var(--color-green3);
         color: var(--color-white);
       }
@@ -313,11 +313,15 @@ nav button {
     align-self: center;
     /* position: relative; */
   }
+  #doctorPH{
+    clip-path: circle();
+    width: 70px;
+  }
 /* ======================MEDIA QUERIES (SMALL =PHONES)============ */
 @media screen and (max-width: 600px) {
     /* ======   navBar   ============ */
   
-    .nav-menu {
+    .nav-menu,.doctor-menu {
       right: 3%;
       /* left: -4%; */
     }
@@ -534,6 +538,6 @@ footer {
            width:100%
        }
   }
-  
+
   /* ======================== end footer ========================= */
 /* ====================== end standar ================================== */

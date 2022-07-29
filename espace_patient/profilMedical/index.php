@@ -51,7 +51,7 @@ function affich_maladie($malad,$res)
          <h4>".$row["nom"]."
          <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
                      <div class='options' data-div='".$row["idMal"]."'>
-                         <button class='editM' value='".$row["idMal"]."'><i class='fa-solid fa-pen'></i></button>
+                         <button class='editM editHide' value='".$row["idMal"]."'><i class='fa-solid fa-pen'></i></button>
                          <button class='deleteM' id='delete-'".$row["idMal"]."' value='".$row["idMal"]."'><i class='fa-solid fa-trash-can'></i></button>
                      </div>
          </h4>
@@ -271,9 +271,14 @@ for (let i = 0; i < options.length; i++) {
     let div=options[i].nextElementSibling
     // div.style.display="block"
     $(div).toggle()
-    console.log( )
    
   })
 }
+let btnEdit = document.querySelectorAll('.editHide')
+btnEdit.addEventListener('click',function(){
+  console.log('hello')
+  // $(div).hide()
+})
+
 </script>
 <!-- <script src="js/filter.js"></script> -->

@@ -18,7 +18,7 @@ function affich_vaccin($vaccin,$res)
           <h4>".$row["nom"]."
           <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
                       <div class='options' data-div='".$row["idV"]."'>
-                          <button class='editV' value='".$row["idV"]."'><i class='fa-solid fa-pen'></i></button>
+                          <button class='editV editHide' value='".$row["idV"]."'><i class='fa-solid fa-pen'></i></button>
                           <button class='deleteV' id='delete-'".$row["idV"]."' value='".$row["idV"]."'><i class='fa-solid fa-trash-can'></i></button>
                       </div>
           </h4>
@@ -124,7 +124,7 @@ echo"
                     <!-- -----------------------------vaccin update----------------------------------- -->
                     <div class="overlay vaccin hide" id="vaccin1">
                       <form action="#" method="post" name="vaccin" class="form border update" id="vaccin-form-update">
-                        <button class="close_form" id="vaccin-btn-close" name="close-update-vaccin"> <i class="uis uis-multiply closeF"></i> </button> 
+                        <button  class="close_form" id="vaccin-btn-close" name="close-update-vaccin"> <i class="uis uis-multiply closeF"></i> </button> 
                             <input type="hidden" name="idV" id="vac" >
                                 
                                 <label >
@@ -260,5 +260,7 @@ for (let i = 0; i < options.length; i++) {
    
   })
 }
+let opt = options.querySelectorAll('options');
+
 </script>
  

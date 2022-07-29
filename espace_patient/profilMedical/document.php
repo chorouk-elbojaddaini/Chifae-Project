@@ -28,7 +28,7 @@ if (mysqli_num_rows($display) > 0)
          <button class='options-btn '><i class='fa-solid fa-ellipsis-vertical'></i></button>
                      <div class='options' data-div='".$row["idDoc"]."'>
                      <p><a href='download.php?file=". $row["nomDoc"]."'><i class='fa-solid fa-file-arrow-down'></i></a></p>
-                         <button class='editDoc' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
+                         <button class='editDoc editHide' value='".$row["idDoc"]."'><i class='fa-solid fa-pen'></i></button>
                          <button class='deleteDoc' id='delete-'".$row["idDoc"]."' value='".$row["idDoc"]."'><i class='fa-solid fa-trash-can'></i></button>
                      </div>
          </h4>
@@ -356,7 +356,7 @@ echo"
                     $doc = $doc_array['query'];
                     $total_recordsD=$doc_array['nb_rows'];
                     // echo $total_records;
-                    $res = "<p class='response hideMe'>Il existe ". $total_recordsD." enregistrement</p>";
+                    $res = "<p class='response hideMe'>Il existe ". $total_recordsD." enregistrement<hr></p>";
                     $total_pages=ceil($total_recordsD/$num_per_page);
                     if($total_recordsD>0)
                     {

@@ -2,12 +2,11 @@
 session_start();
 error_reporting(E_ALL ^ E_WARNING);
 include '../../connexionDoc/cnx.php';
+
 $_SESSION['code_patient'] = $_GET["code_patient"];
-// echo $_SESSION['code_patient'] ;
-// echo  $_GET["code_patient"];
+// get the patient
 $query = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient ='{$_SESSION['code_patient']}' ");
-// echo mysqli_num_rows($display);
-// $row = mysqli_fetch_assoc($getEmail);
+
 if (mysqli_num_rows($query) > 0) 
  { 
    $row = mysqli_fetch_assoc($query);
@@ -15,8 +14,14 @@ if (mysqli_num_rows($query) > 0)
    $_SESSION['SESSION_EMAIL'] =$row['email'];
 
  }
-// echo  $_SESSION['SESSION_EMAIL'] ;
+// get doctor 
 
+$queryDoctor = mysqli_query($conn,"SELECT * FROM medecin WHERE gmail ='{$_SESSION['SESSION_EM']}' ");
+if (mysqli_num_rows($queryDoctor) > 0) 
+ { 
+   $rowDoctor = mysqli_fetch_assoc($queryDoctor);
+   $_SESSION['photo_doctor'] =$rowDoctor['photo'];
+ }
 ?>
 
 <!DOCTYPE html>
@@ -87,99 +92,56 @@ window.addEventListener("load", vanish);
 function vanish() {
   loader.classList.add("disppear");
 }
-</script>
-    <nav>
-        <div class="container nav_container">
-          <div class="logo_cont">
-            <a href="index.php"
-              ><img src="./assets/logo.png" alt="logo" class="logo"
-            /></a>
-            <h4>Chifae</h4>
-          </div>
-          <ul class="nav-menu">
-            <li><a href="../accueil/index.php">Acceuil</a></li>
-            <li class="medecin"><a href="index.php">Mon profil médical</a></li>
-            <li class="patient"><a href="document.php">Documents</a></li>
-          </ul>
-          <!-- drop down medecin  -->
-          <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn"></button>
-            <div id="myDropdown" class="dropdown-content">
-              <hr class="solid" />
-              <a href="#">Mon espace </a>
-              <hr class="solid" />
-              <a href="#">Mes blogs</a>
-              <hr class="solid" />
-              <a href="#">Se déconnecter</a>
-              <hr class="solid" />
-            </div>
-          </div>
-          <!-- end  drop down medecin  -->
-          
-          <!-- drop down patient -->
-          <div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn"></button>
-            <div id="myDropdown" class="dropdown-content">
-              <hr class="solid" />
-              <a href="#">Mon dossier medical</a>
-              <hr class="solid" />
-              <a href="#">Prendre un rendez-vous</a>
-              <hr class="solid" />
-              <a href="#">Se déconnecter</a>
-              <hr class="solid" />
-            </div>
-          </div>
-          <!-- end drop down patient -->
-          <!-------------------------------------------------->
-          <?php
-               if(empty($row['photo'] )){
-               ?>
-              <img  src="images/noprofil.jpg" alt="profile" id="user">
-               <?php
-               }
-                else{
-                  ?>
-              <input type="image" id="user" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
-              
-              
-              <?php
-            }?>
-          <button class="open_menu_botton"><i class="uis uis-bars"></i></button>
-          <button class="close_menu_botton">
-            <i class="uis uis-multiply"></i>
-          </button> 
-          
-        
-        </div>
-      </nav>
 
-          <!-----------------PROFIL MODAL------------------>
-          <div class="prof hide" >
-       
-            <div id="popup" class="popup">
-             <div class="modal-btn"  >
-               <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
-               <?php
-               if(empty($row['photo'] )){
-               ?>
-              <img  src="images/noprofil.jpg" alt="profile" id="account">
-               <?php
-               }
-                else{
-                  ?>
-              <img id="account" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
-              
-              
-              <?php
-            }?>
-                   <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
-                      <a class="pop"href="profil.php" tarPOST="_blank" id="monProfil">Mes infos</a>
-                      <a class="pop" href="../../connexionPat/logout.php" id="deconnect">Se déconnecter</a>
-           </div>
-            </div>
-           
-          </div>
-      
+
+
+</script>
+<nav>
+<div class="containerD" id="blur">
+
+<div class="navbar">
+    <section class="top-nav"><!--nav bar-->
+        <div class="navLogo">
+            <img class="logo" src="./assets/logo.png" alt="#">
+            <span class="chifaeNav">Shifae</span>
+        </div>
+        <input id="menu-toggle" type="checkbox" />
+        <label class='menu-button-container' for="menu-toggle">
+        <div class='menu-button'></div>
+        </label>
+        <ul class="menu">
+            <li>
+                <a  class="nav-links pink" href="../../espace Medecin/page_profil_medecin/php">Acceuil</a>
+            </li>
+            <li>
+                <a  class="nav-links " href="../../connexionDoc/logout.php"><i class="fa-solid fa-arrow-right-from-bracket icon .logout "></i> Deconnexion</a>
+            </li>
+            
+            
+        </ul>
+        <a href="#">
+               
+        <?php
+           if($rowDoctor['photo'] != null){
+           ?>
+          <img id="photoD"   src="data:image;base64,<?php echo $_SESSION['photo_doctor'] ;?>" border-radius="50%" class="imageNavbar">
+        
+           <?php
+           }
+            else{
+              ?>
+                <img  src="../images/avatar.jpeg" alt="profile" id="photoD"  width="100" class="imageNavbar imgNav">
+          
+          
+          <?php
+        }?>
+            
+    </a>
+    </section> <!--nav bar end-->
+  </div>
+</nav>
+
+          
     <div class="main-doctor">
          <!-- --------------------TABS------------------->
        <div class="tabs " id="doctor-tabs">
@@ -1062,14 +1024,8 @@ let options = document.querySelectorAll('.options-btn');
 for (let i = 0; i < options.length; i++) {
   options[i].addEventListener('click',()=>{
     let div=options[i].nextElementSibling
-    // div.style.display="block"
     $(div).toggle()
-//     $(div).slideToggle('medium', function() {
-//     if ($(this).is(':visible'))
-//         $(this).css('display','inline-block');
-// });
-    // console.log( )
-   
+
   })
 }
 //=============select 
@@ -1108,7 +1064,11 @@ function smallDevicesD(query1) {
 
 let query1 = window.matchMedia("(max-width:767px)");
 smallDevicesD(query1);
+
+
+
 </script>
+
 <?php
 unset($_SESSION['code_patient']);
 ?>

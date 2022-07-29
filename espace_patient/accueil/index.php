@@ -184,15 +184,15 @@ if (mysqli_num_rows($display) > 0)
                     <h2 class="titre-rdv ">Vos Rendez-vous:</h2>
                     <hr>
            <?php
-            $num_per_page=03;
+            $num_per_page=02;
             $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
             $start_from =   ($page-1)*$num_per_page;
-            $sql = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3 AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
-            $nbRows = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3 AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
+            $sql = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
+            $nbRows = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
 
             $total_records=mysqli_num_rows($nbRows);
             $total_pages=ceil($total_records/$num_per_page);
-      
+               
               
               if ($total_records > 0) 
              { 
@@ -200,6 +200,7 @@ if (mysqli_num_rows($display) > 0)
 
                while($row = mysqli_fetch_assoc($sql))
                {
+                
                  $medecin = mysqli_query($conn,"SELECT nom,prenom,specialite FROM medecin WHERE id ='{$row['idMedecin']}';");
                  if((mysqli_num_rows($medecin) > 0))
                  {
@@ -215,7 +216,7 @@ if (mysqli_num_rows($display) > 0)
                 </div>';}
                 else
                 {
-                  echo"<div class='affichage-item-msg border'>
+                  echo"<div class='affichage-item-msg-pro border'>
                     <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
                     </div>";
                 }
@@ -223,7 +224,7 @@ if (mysqli_num_rows($display) > 0)
                 }
                 else
                 {
-                  echo"<div class='affichage-item-msg border'>
+                  echo"<div class='affichage-item-msg-pro border'>
                     <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
                     </div>";
                 }
@@ -283,11 +284,11 @@ if (mysqli_num_rows($display) > 0)
             <p class="titre-rdv hover-underline-animation">Vos Rendez-vous:</p>
 
             <?php
-               $num_per_page=03;
+               $num_per_page=02;
                $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
                $start_from =   ($page-1)*$num_per_page;
-               $sql = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3 AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
-               $nbRows = mysqli_query($conn,"SELECT start_datetime,idMedecin FROM schedule_list WHERE idPatient =3 AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
+               $sql = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
+               $nbRows = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
 
                $total_records=mysqli_num_rows($nbRows);
                $total_pages=ceil($total_records/$num_per_page);
@@ -299,6 +300,7 @@ if (mysqli_num_rows($display) > 0)
 
                   while($row = mysqli_fetch_assoc($sql))
                   {
+                    // echo'id'.$row['idMedecin'];
                     $medecin = mysqli_query($conn,"SELECT nom,prenom,specialite FROM medecin WHERE id ='{$row['idMedecin']}';");
                     if((mysqli_num_rows($medecin) > 0))
                     {
@@ -313,7 +315,7 @@ if (mysqli_num_rows($display) > 0)
                 </div>';}
                 else
                 {
-                  echo"<div class='affichage-item-msg border'>
+                  echo"<div class='affichage-item-msg-pro border'>
                     <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
                     </div>";
                 }
@@ -321,7 +323,7 @@ if (mysqli_num_rows($display) > 0)
                 }
                 else
                 {
-                  echo"<div class='affichage-item-msg border'>
+                  echo"<div class='affichage-item-msg-pro border'>
                     <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
                     </div>";
                 }

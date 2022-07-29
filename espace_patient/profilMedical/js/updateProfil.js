@@ -13,19 +13,24 @@ function update(url,submitEditBtn,overlayId,closeEditBtn,formData) {
                 let res = jQuery.parseJSON(response);
                 //===========success case-----------
                 if(res.status == 200){
-    
+                      alertify.set('notifier','position', 'top-right');
+                      alertify.success(res.message);
                     $(submitEditBtn).click(function(e){
                       e.preventDefault();
+                   
                         console.log('close')
                         $(overlayId).hide();
+                         location.reload(true);
+    
                     })
+                   
+
+                    
                      //------success msg-------------
-                    alertify.set('notifier','position', 'top-right');
-                    alertify.success(res.message);
+                    
                     // $(idForm)[0].reset();
     
-                    location.reload(true);
-    
+                   
                 }    //=============db probleme query return falsy value
     
                 else if(res.status == 500) {
@@ -33,6 +38,7 @@ function update(url,submitEditBtn,overlayId,closeEditBtn,formData) {
                     alertify.error(res.message);
                     $(closeEditBtn).click(function() {
                         $(overlayId).hide();
+                        location.reload(true);
                     })
                 }
                 //--------------empty fields error---------
@@ -79,8 +85,8 @@ function deleteRow(url,data){
 }
 //=========================================maladie===========================================
 //============get the id of the row to edit and dispaly the old values in the form inputs fields=============
- $(document).on('click', '.editM', function () {
-
+ $(document).on('click', '.editM', function (e) {
+e.stopImmediatePropagation()
 let idMal = $(this).val();
 console.log(idMal);
 $.ajax({
@@ -104,6 +110,12 @@ $.ajax({
            $('#descMal').val(res.data.description);
            $('#maladie1').show();
        }
+       $('#maladie-btn-close').click(function(e) {
+        e.preventDefault()
+                    $('#update-maladie').hide();
+                    location.reload(true);
+
+                })
    }
    });
    });
@@ -136,8 +148,8 @@ $(document).on('click','.deleteM', function (e) {
 
 //=========================================traitements===========================================
 //============get the id of the row to edit and dispaly the old values in the form inputs fields=============
-$(document).on('click', '.editT', function () {
-
+$(document).on('click', '.editT', function (e) {
+e.stopPropagation();
     let idT = $(this).val();
     console.log(idT);
     $.ajax({
@@ -161,6 +173,12 @@ $(document).on('click', '.editT', function () {
                $('#descT').val(res.data.description);
                $('#traitement1').show();
            }
+           $('#traitement-btn-close').click(function(e) {
+            e.preventDefault()
+                        $('#update-traitement').hide();
+                        location.reload(true);
+
+                    })
        }
        });
        });
@@ -193,8 +211,8 @@ $(document).on('click', '.editT', function () {
     
 //=========================================hospialisation===========================================
 //============get the id of the row to edit and dispaly the old values in the form inputs fields=============
-$(document).on('click', '.editH', function () {
-
+$(document).on('click', '.editH', function (e) {
+e.stopPropagation();
     let idH = $(this).val();
     console.log(idH);
     $.ajax({
@@ -217,6 +235,12 @@ $(document).on('click', '.editH', function () {
                $('#descH').val(res.data.description);
                $('#hospital1').show();
            }
+           $('#hospital-btn-close').click(function(e) {
+            e.preventDefault()
+                        $('#update-hospital').hide();
+                        location.reload(true);
+
+                    })
        }
        });
        });
@@ -249,8 +273,8 @@ $(document).on('click', '.editH', function () {
     
 //=========================================allergie===========================================
 //============get the id of the row to edit and dispaly the old values in the form inputs fields=============
-$(document).on('click', '.editA', function () {
-
+$(document).on('click', '.editA', function (e) {
+e.stopImmediatePropagation()
     let idA = $(this).val();
     console.log(idA);
     $.ajax({
@@ -271,6 +295,12 @@ $(document).on('click', '.editA', function () {
                $('#descA').val(res.data.description);
                $('#allergy1').show();
            }
+           $('#allergy-btn-close').click(function(e) {
+            e.preventDefault()
+                        $('#update-allergy').hide();
+                        location.reload(true);
+
+                    })
        }
        });
        });
@@ -303,8 +333,8 @@ $(document).on('click', '.editA', function () {
     
 //=========================================vaccins===========================================
 //============get the id of the row to edit and dispaly the old values in the form inputs fields=============
-$(document).on('click', '.editV', function () {
-
+$(document).on('click', '.editV', function (e) {
+e.stopImmediatePropagation()
     let idV = $(this).val();
     console.log(idV);
     $.ajax({
@@ -328,6 +358,12 @@ $(document).on('click', '.editV', function () {
                $('#descV').val(res.data.description);
                $('#vaccin1').show();
            }
+           $('#vaccin-btn-close').click(function(e) {
+            e.preventDefault()
+                        $('#update-vaccin').hide();
+                        location.reload(true);
+
+                    })
        }
        });
        });
@@ -361,8 +397,8 @@ $(document).on('click', '.editV', function () {
 //=========================================mesures===========================================
 //============get the id of the row to edit and dispaly the old values in the form inputs fields=============
 
-$(document).on('click', '.editMes', function () {
-    // $('#vaccin1').show();
+$(document).on('click', '.editMes', function (e) {
+   e.stopImmediatePropagation()
     let idMes = $(this).val();
     console.log(idMes);
     $.ajax({
@@ -390,6 +426,12 @@ $(document).on('click', '.editMes', function () {
                $('#date1').val(res.data.date);
                $('#mesure1').show();
            }
+           $('#mesure-btn-close').click(function(e) {
+            e.preventDefault()
+                        $('#update-mesure').hide();
+                        location.reload(true);
+
+                    })
        }
        });
        });
@@ -424,8 +466,8 @@ $(document).on('click', '.editMes', function () {
     
 //=========================================antecedente===========================================
 //============get the id of the row to edit and dispaly the old values in the form inputs fields=============
-$(document).on('click', '.editAnt', function () {
-
+$(document).on('click', '.editAnt', function (e) {
+e.stopImmediatePropagation()
     let idAnt = $(this).val();
     console.log(idAnt);
     $.ajax({
@@ -447,6 +489,12 @@ $(document).on('click', '.editAnt', function () {
                $('#descAnt').val(res.data.description);
                $('#antecedent1').show();
            }
+           $('#antecedent-btn-close').click(function(e) {
+            e.preventDefault()
+                        $('#update-antecedent').hide();
+                        location.reload(true);
+
+                    })
        }
        });
        });
@@ -479,8 +527,8 @@ $(document).on('click', '.editAnt', function () {
     //=========================================mesures===========================================
 //============get the id of the row to edit and dispaly the old values in the form inputs fields=============
 
-$(document).on('click', '#profilBtn', function () {
-    // $('#vaccin1').show();
+$(document).on('click', '#profilBtn', function (e) {
+    e.stopImmediatePropagation();
     let idP = $(this).val();
     console.log(idP);
     $.ajax({
@@ -509,39 +557,29 @@ $(document).on('click', '#profilBtn', function () {
                $('#etat').val(res.data.etatCivil);
                $('#profil').show();
            }
+           $('#profil-btn-close').click(function(e) {
+            e.preventDefault()
+                        $('#update-profil').hide();
+                        location.reload(true);
+
+                    })
        }
        });
        });
-    //    console.log($('#maladie-form-update'))
     //==================call update ajax request ============================
     $(document).on('submit','#profil-form-update' , function(e) {
-        e.preventDefault()
+        e.preventDefault();
+        e.stopImmediatePropagation();
         let formData = new FormData(this);
         formData.append("updateP", true);
         for (const pair of formData.entries()) {
             console.log(`${pair[0]}, ${pair[1]}`);}
         update('updateProfil.php','#update-profil','#profil','#profil-btn-close',formData)
     });
-    // //=============================deleting ===========================
-    
-    // $(document).on('click','.deleteM', function (e) {
-    
-    //     e.preventDefault();
-    //     let idM= $(this).val();
-    //     console.log(idM);
-    //     let data = {
-    //         'id':idM,
-    //         'deleteM':true
-    //     }
-    //   //===========to specifiy wich table we will delete from
-       
-    //     deleteRow('updateProfil.php',data)
-    //       console.log(this.data)
-    // });
-    //=========================================diagno==========================================
-//============get the id of the row to edit and dispaly the old values in the form inputs fields=============
- $(document).on('click', '.editD', function () {
 
+//============get the id of the row to edit and dispaly the old values in the form inputs fields=============
+ $(document).on('click', '.editD', function (e) {
+e.stopImmediatePropagation()
     let idD = $(this).val();
     console.log(idD);
     $.ajax({
@@ -567,6 +605,12 @@ $(document).on('click', '#profilBtn', function () {
                $('#traite1').val(res.data.traitement);
                $('#diagno1').show();
            }
+           $('#diagno-btn-close').click(function(e) {
+            e.preventDefault()
+                        $('#update-diagno').hide();
+                        location.reload(true);
+
+                    })
        }
        });
        });
