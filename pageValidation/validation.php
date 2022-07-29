@@ -292,7 +292,7 @@ $_SESSION["heure"] = $time;
 
         </div>
 
-        <p class="afficherdisponibilite" onclick="showHideDisp()" >afficher plus de disponibilités</p>
+        <p class="afficherdisponibilite" >afficher plus de disponibilités</p>
     </div>
 
     
@@ -931,16 +931,24 @@ validate.style.display = "none";
     });
 
 
-    function showHideDisp() {
-       var elmt = document.querySelectorAll(".hidden")
-    
-    var button = document.querySelector(".afficherdisponibilite")
+    const faqs = document.querySelector(".afficherdisponibilite");
+  faqs.addEventListener("click", () => {
+    var elmt = document.querySelectorAll(".hidden")
     for (let i = 0; i < elmt.length; i++) {
          elmt[i].classList.toggle("showHide")
        }
-       button.innerHTML = "afficher moins de disponibilites"
+
     
+    if (faqs.textContent === "afficher plus de disponibilités") {
+      console.log("moins");
+      faqs.textContent = "afficher moins de disponibilités";
+    } else {
+        console.log("plus");
+      faqs.textContent = "afficher plus de disponibilités";
     }
+  });
+
+  
 </script>
 
       <!-- include the script -->

@@ -83,7 +83,7 @@
 
         </div>
 
-        <button class="afficherdisponibilite" onclick="showHideDisp()" >afficher plus de disponibilités</button>
+        <button class="afficherdisponibilite"  >afficher plus de disponibilités</button>
         <?php if($medecin_shuffle[0]['inscrit'] != null){
            $idC = $medecin_shuffle[0]['id'];
        echo' <div class="rdv"><a href="" class="prendre-rdv" id="$idC">Prendre un RDV</a></div>';
@@ -444,18 +444,33 @@ window.history.pushState('', 'New Page Title', '../../pageValidation/validation.
     });
 
 
-    function showHideDisp() {
-       var elmt = document.querySelectorAll(".hidden")
+    // function showHideDisp() {
+    //    var elmt = document.querySelectorAll(".hidden")
     
-    var button = document.querySelector(".afficherdisponibilite")
+    // var button = document.querySelector(".afficherdisponibilite")
+    
+    //    button.innerHTML = "afficher moins de disponibilites"
+    
+    // }
+    
+    
+const faqs = document.querySelector(".afficherdisponibilite");
+  faqs.addEventListener("click", () => {
+    var elmt = document.querySelectorAll(".hidden")
     for (let i = 0; i < elmt.length; i++) {
          elmt[i].classList.toggle("showHide")
        }
-       button.innerHTML = "afficher moins de disponibilites"
+
     
+    if (faqs.textContent === "afficher plus de disponibilités") {
+      console.log("moins");
+      faqs.textContent = "afficher moins de disponibilités";
+    } else {
+        console.log("plus");
+      faqs.textContent = "afficher plus de disponibilités";
     }
-    
+  });
+
   
-    
 </script>
 
