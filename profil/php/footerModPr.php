@@ -179,6 +179,6 @@ marker.bindPopup("<b><?php   if(isset($nom)){
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script src="../assets/navscript.js"></script>
+  <script src="./navscript.js"></script>
   <script src="./scripts/profil.js"></script>
 

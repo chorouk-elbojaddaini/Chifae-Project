@@ -30,7 +30,7 @@ $prenom = $medecin_shuffle[0]['prenom'];
                }
                 else{
                   ?>
-                    <img  src="../images/avatar.jpeg" alt="profile" id="photo" style="width:100px; height:100px; margin-left:-9px; margin-top:-110px" class="medecinNophoto">
+                    <img  src="avatar.jpeg" alt="profile" id="photo" style="width:100px; height:100px;" class="avatar">
               
               
               <?php
