@@ -48,12 +48,7 @@ if (mysqli_num_rows($display) > 0)
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/modal.css">
     <!-- ================sripts================================================= -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-<script src="js/script.js" defer></script>
-<script src="js/main.js" defer></script>
-<script src="js/modal.js" defer></script>
-<script src="js/insertProfil.js" defer></script>
-<script src="js/updateProfil.js" defer></script>
+
 
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
@@ -358,7 +353,7 @@ if (mysqli_num_rows($display) > 0)
                      $query = mysqli_query($conn, "UPDATE patient SET motdepasse='{$new_password}' WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
                 if ($query) {
                     echo"<script>
-                    alertify.set('notifier','position', 'top-right');
+                    alertify.set('notifier','position', 'top-center');
                       alertify.success('Votre mot de passe a été modifié avec succés ✔');
                     </script>";
                 }

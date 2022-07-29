@@ -36,7 +36,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
                     event.preventDefault();
                     document.getElementById("doc").classList.add("hide");
                 //===================DISPLAY SUCCESS MSGS======================
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier','position', 'top-center');
                 alertify.success(resObject.msgs);
                 //===============we should empty the fields after sending the form===========
                   $("#nom-doc,#date-docs,#added-by-docs,#add-file").val("");
@@ -50,32 +50,32 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
               
             } //=============if empty fields
             else if( resObject.status==422){
-              alertify.set('notifier','position', 'top-right');
+              alertify.set('notifier','position', 'top-center');
               alertify.error(resObject.msgs);
             }
             //================== interdite extension =================
             else if( resObject.status==110){
-              alertify.set('notifier','position', 'top-right');
+              alertify.set('notifier','position', 'top-center');
               alertify.error(resObject.msgs);
             }
             //================== big formats =================
             else if( resObject.status==100){
-              alertify.set('notifier','position', 'top-right');
+              alertify.set('notifier','position', 'top-center');
               alertify.error(resObject.msgs);
             }
               //================== DB error =================
               else if( resObject.status==500){
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier','position', 'top-center');
                 alertify.error(resObject.msgs);
               }
                //================== file error =================
                else if( resObject.status==550){
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier','position', 'top-center');
                 alertify.error(resObject.msgs);
               }
                //================== file exist=================
                else if( resObject.status==150){
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier','position', 'top-center');
                 alertify.error(resObject.msgs);
                 console.log("hel")
               }
@@ -89,7 +89,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
           {
             // event.preventDefault();
             
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error(resObject.msgs);
             document.getElementById("doc").classList.add("hide");
           })
@@ -100,7 +100,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
     //============================if we have a probleme with the request itself : this.status != 200
     else if (this.readyState == 4) 
     {
-      alertify.set('notifier','position', 'top-right');
+      alertify.set('notifier','position', 'top-center');
       alertify.error(resObject.msgs);
       console.log("hello2")
 
@@ -112,7 +112,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
           closeForm.addEventListener("click", function() 
           {
             document.getElementById("doc").classList.add("hide");
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error(resObject.msgs);
             console.log("hello3")
           })

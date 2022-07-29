@@ -13,7 +13,7 @@ function update(url,submitEditBtn,overlayId,closeEditBtn,formData) {
                 let res = jQuery.parseJSON(response);
                 //===========success case-----------
                 if(res.status == 200){
-                      alertify.set('notifier','position', 'top-right');
+                      alertify.set('notifier','position', 'top-center');
                       alertify.success(res.message);
                     $(submitEditBtn).click(function(e){
                       e.preventDefault();
@@ -34,7 +34,7 @@ function update(url,submitEditBtn,overlayId,closeEditBtn,formData) {
                 }    //=============db probleme query return falsy value
     
                 else if(res.status == 500) {
-                    alertify.set('notifier','position', 'top-right');
+                    alertify.set('notifier','position', 'top-center');
                     alertify.error(res.message);
                     $(closeEditBtn).click(function() {
                         $(overlayId).hide();
@@ -44,7 +44,7 @@ function update(url,submitEditBtn,overlayId,closeEditBtn,formData) {
                 //--------------empty fields error---------
                 else if(res.status == 422)
                 {
-                    alertify.set('notifier','position', 'top-right');
+                    alertify.set('notifier','position', 'top-center');
                     alertify.error(res.message);
                     $(closeEditBtn).click(function() {
                         $(overlayId).hide();
@@ -70,11 +70,11 @@ function deleteRow(url,data){
                 //------fail---------------
                 if(res.status == 500) {
 
-                    alertify.set('notifier','position', 'top-right');
+                    alertify.set('notifier','position', 'top-center');
                     alertify.error(res.message);
                 }else{
                 //--------success--------- 
-                    alertify.set('notifier','position', 'top-right');
+                    alertify.set('notifier','position', 'top-center');
                     alertify.success(res.message);
                      location.reload(true);
 

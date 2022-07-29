@@ -57,7 +57,7 @@ $(document).on('submit', '#docs-form-edit', function (e) {
                     $('#editDoc').hide();
                 })
                  //------success msg-------------
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier','position', 'top-center');
                 alertify.success(res.message);
                 $('#docs-form-edit')[0].reset();
 
@@ -66,7 +66,7 @@ $(document).on('submit', '#docs-form-edit', function (e) {
             }    //=============db probleme query return falsy value
 
             else if(res.status == 500) {
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier','position', 'top-center');
                 alertify.error(res.message);
                 $('#close-edit-doc').click(function() {
                     res.message=""
@@ -76,7 +76,7 @@ $(document).on('submit', '#docs-form-edit', function (e) {
             //--------------empty fields error---------
             else if(res.status == 422)
             {
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier','position', 'top-center');
                 alertify.error(res.message);
                 $('#close-edit-doc').click(function() {
                     res.message=""
@@ -110,11 +110,11 @@ $(document).on('click','.deleteDoc', function (e) {
                 //------fail---------------
                 if(res.status == 500) {
 
-                    alertify.set('notifier','position', 'top-right');
+                    alertify.set('notifier','position', 'top-center');
                     alertify.error(res.message);
                 }else{
                 //--------success--------- 
-                    alertify.set('notifier','position', 'top-right');
+                    alertify.set('notifier','position', 'top-center');
                     alertify.success(res.message);
                      location.reload(true);
 

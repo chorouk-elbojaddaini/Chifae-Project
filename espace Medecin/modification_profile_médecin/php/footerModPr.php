@@ -47,7 +47,7 @@
         </p>
       </div>
         </div>
-        
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>  
    </footer>
    </div>
    <div class="change_pass" id = "change_pass_boite">
@@ -69,7 +69,7 @@
         else 
           return true;
       }
-   $msg = "hello wordl";
+   $msg = "";
    if (isset($_POST['changePassword'])) {
             $old_password = mysqli_real_escape_string($medecin->db->con, $_POST['oldPwd']);
             $new_password = mysqli_real_escape_string($medecin->db->con, $_POST['newPwd']);
@@ -89,21 +89,39 @@
                 </script>
                 ";
             }
+              $msg =" veuillez remplir l'ancien mot de passe ";
+
+              ?><script>
+              alertify.set('notifier','position', 'top-center');
+                alertify.error("❗  veuillez remplir l'ancien mot de passe ");
+              </script>
+           <?php }
         
             elseif(empty($new_password) == true){
-                $msg ="<p class='alert-red'> veuillez remplir le champ mot de passe</p> ";
-              
-              }
+                $msg =" veuillez remplir le champ mot de passe ";
+                ?><script>
+                  
+                alertify.set('notifier','position', 'top-center');
+                  alertify.error("❗  veuillez remplir le champ mot de passe ");
+                </script>
+             <?php }
               elseif(empty($confirm_password) == true){
-                $msg ="<p class='alert-red'> veuillez remplir le champ confirmation mot de passe </p> ";
-             
-              }
+                $msg =" veuillez remplir le champ confirmation mot de passe ";
+                ?><script>
+                alertify.set('notifier','position', 'top-center');
+                  alertify.error("❗  veuillez remplir le champ confirmation mot de passe ");
+                </script>
+             <?php }
 
             elseif($new_password === $confirm_password ) {
                 if (check_mdp_format("$new_password") != true)
                 {
-                $msg ="<p class='alert-red'> Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, et 8 caractères!</p> ";
-                }
+                $msg =" Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, et 8 caractères! ";
+                ?><script>
+                alertify.set('notifier','position', 'top-center');
+                  alertify.error("❗  Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, et 8 caractères! ");
+                </script>
+             <?php }
                 else{
                 
                 $old =  $medecin->db->con->query("SELECT * FROM medecin WHERE gmail='{$_SESSION['SESSION_EM']}' ");
@@ -112,16 +130,21 @@
                   $oldPwd = $resultat['motdepasse'];
                   if($oldPwd !=  $old_password)
                   {
-                    $msg ="<p class='alert-red'>l'ancien mot de passe est éronné</p> ";
-                  }
+                    $msg ="l'ancien mot de passe est éronné ";
+                    ?><script>
+                    alertify.set('notifier','position', 'top-center');
+                      alertify.error("❗ l'ancien mot de passe est éronné ");
+                    </script>
+                 <?php }
                   else{
                      $query = $medecin->db->con->query("UPDATE medecin SET motdepasse='{$new_password}' WHERE gmail='{$_SESSION['SESSION_EM']}' ");
                 if ($query) {
-                    echo"<script>
-                    alertify.set('notifier','position', 'top-right');
-                      alertify.success('Votre mot de passe a été modifié avec succés ✔');
-                    </script>";
-                }
+                  $msg ="le mot de passe est modifié ";
+                  ?><script>
+                  alertify.set('notifier','position', 'top-center');
+                  alertify.success("le mot de passe est modifié ✔");
+                  </script>
+               <?php }
                   }
                 }
                
@@ -129,11 +152,15 @@
             } else {
               
                 $msg = "<div class='alert-red'>Assurez-vous que le mot de passe a été entré correctement.</div>";
-            }
-            
+                ?><script>
+                  alertify.set('notifier','position', 'top-center');
+                  alertify.error("❗ Assurez-vous que le mot de passe a été entré correctement");
+                  </script>
+               <?php }
+           
         }
         ?>
-         <?php echo $msg; ?>
+   
 
  
 
@@ -143,15 +170,15 @@
             <i class="fa-solid fa-xmark fa-xl close_icon" onclick="toggle('change_pass_boite')"></i>
           
                 <input class="input_form" type="text" id="motdepasse" name="oldPwd" autocomplete="off" placeholder=" ">
-                <label class="label_form" type="text" for="motdepasse">ancien mot de passe</label>
+                <label class="label_form lb" type="text" for="motdepasse">ancien mot de passe</label>
             </div>
             <div class="column_form   new_pass">
                 <input class="input_form" type="password" id="motdepasse" name="newPwd" autocomplete="off" placeholder=" ">
-                <label class="label_form" type="text" for="motdepasse">nouveau mot de passe</label>
+                <label class="label_form lb" type="text" for="motdepasse">nouveau mot de passe</label>
             </div>
             <div class="column_form   confirmer">
                 <input class="input_form" type="password" id="motdepasse" name="confirmPwd" autocomplete="off" placeholder=" ">
-                <label class="label_form" type="text" for="motdepasse">confirm</label>
+                <label class="label_form lb" type="text" for="motdepasse">confirm</label>
             </div>
             <button type = "submit" name="changePassword" class= "ajouter_btn" >save changes</button>
         </form>
@@ -163,7 +190,7 @@
     }
     </script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
 
     <script src="../uploadAjax.js"></script>
     <script>

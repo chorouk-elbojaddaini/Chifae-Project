@@ -20,7 +20,7 @@ let formData = new FormData(document.getElementById('photo-upload'));
             //===========success case-----------
             if(res.status == 200){
                  //------success msg-------------
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier','position', 'top-center');
                 alertify.success(res.message);
                 // document.getElementById('photo').style.borderRadius='50%'
                  location.reload(true);
@@ -28,22 +28,22 @@ let formData = new FormData(document.getElementById('photo-upload'));
 
           //=============if empty 
           else if( res.status==422){
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error(res.message);
           }
           //================== interdite extension =================
           else if( res.status==110){
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error(res.message);
           }
           //================== big formats =================
           else if( res.status==100){
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error(res.message);
           }
             //================== DB error =================
             else if( res.status==500){
-              alertify.set('notifier','position', 'top-right');
+              alertify.set('notifier','position', 'top-center');
               alertify.error(res.message);
             }
             

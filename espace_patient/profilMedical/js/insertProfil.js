@@ -43,7 +43,7 @@
                             $(overlay).hide();
                         })
                          //------success msg-------------
-                        alertify.set('notifier','position', 'top-right');
+                        alertify.set('notifier','position', 'top-center');
                         alertify.success(res.message);
                         $(formsInsert[i])[0].reset();
                         location.reload(true);
@@ -53,7 +53,7 @@
                     }    //=============db probleme query return falsy value
         
                     else if(res.status == 500) {
-                      alertify.set('notifier','position', 'top-right');
+                      alertify.set('notifier','position', 'top-center');
               alertify.error(res.message);
                  $(submitForm).click(function() {
                 
@@ -64,7 +64,7 @@
                    
                    $(closeForm).click(function() {
                      
-                     alertify.set('notifier','position', 'top-right');
+                     alertify.set('notifier','position', 'top-center');
                    alertify.error(res.message);
                    
                        $(overlay).hide();
@@ -75,7 +75,7 @@
                     //--------------empty fields error---------
                     else if(res.status == 422)
                     {
-                           alertify.set('notifier','position', 'top-right');
+                           alertify.set('notifier','position', 'top-center');
                    alertify.error(res.message);
                       $(submitForm).click(function() {
                      
@@ -86,7 +86,7 @@
                         
                         $(closeForm).click(function() {
                           
-                          alertify.set('notifier','position', 'top-right');
+                          alertify.set('notifier','position', 'top-center');
                         alertify.error(res.message);
                         
                             $(overlay).hide();
@@ -128,7 +128,7 @@ function uploadImage()
             //===========success case-----------
             if(res.status == 200){
                  //------success msg-------------
-                alertify.set('notifier','position', 'top-right');
+                alertify.set('notifier','position', 'top-center');
                 alertify.success(res.message);
                 document.getElementById('photo').style.borderRadius='50%'
                 location.reload(true);
@@ -136,22 +136,22 @@ function uploadImage()
 
           //=============if empty 
           else if( res.status==422){
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error(res.message);
           }
           //================== interdite extension =================
           else if( res.status==110){
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error(res.message);
           }
           //================== big formats =================
           else if( res.status==100){
-            alertify.set('notifier','position', 'top-right');
+            alertify.set('notifier','position', 'top-center');
             alertify.error(res.message);
           }
             //================== DB error =================
             else if( res.status==500){
-              alertify.set('notifier','position', 'top-right');
+              alertify.set('notifier','position', 'top-center');
               alertify.error(res.message);
             }
             
