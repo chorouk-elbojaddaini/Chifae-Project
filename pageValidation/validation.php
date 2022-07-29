@@ -70,6 +70,7 @@ $_SESSION["heure"] = $time;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"  href="style.css ?v=<?php echo time(); ?>" />
     <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <script
     src="https://kit.fontawesome.com/64d58efce2.js"
     crossorigin="anonymous"
@@ -956,7 +957,7 @@ validate.style.display = "none";
    
     <script src="./app.js"></script>
     <script src="main.js"></script>
-
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
 </body>
 

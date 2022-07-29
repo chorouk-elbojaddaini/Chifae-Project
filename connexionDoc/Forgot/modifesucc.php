@@ -117,7 +117,7 @@ $msg ="";
         <div class="footer-widget">
           <a href="#">
               <div class="logo-footer">
-            <img src="assets/logo.png" class="logo" />
+            <img src="logo.png" class="logo" />
             <p>Shifae</p></div>
           </a>
           <p class="desc">

@@ -182,46 +182,69 @@ function validateForm() {
     console.log(x);
     console.log(validateEmail(z));
   if (x == "" || x == null) {
-    alert("Le nom doit être remplit");
+    // alert("Le nom doit être remplit");
+  
 
-    location.reload();
-return false;
+    alertify.error(' Le nom doit être remplit');
+    alertify.set('notifier','position', 'top-center');
+                    
+                    window.setTimeout(function () {window.location.reload();
+                  }, 2000);
+                    return false;
   }
   if (y == "" || y == null) {
-    alert("Le prenom doit être remplit");
-
-    location.reload();
-return false;
+    
+    alertify.error(' Le prenom doit être remplit');
+    alertify.set('notifier','position', 'top-center');
+                    
+                    window.setTimeout(function () {window.location.reload();
+                  }, 2000);
+                    return false;
   }
+  
   if (z == "" || z == null) {
-    alert("Le email doit être remplit");
+    alertify.error(' Email doit être remplit');
+    alertify.set('notifier','position', 'top-center');
+                    
+                    window.setTimeout(function () {window.location.reload();
+                  }, 2000);
+                    return false;
+  
 
-    location.reload();
-return false;
   }
   if (e == "" || e == null) {
-    alert("Le numero doit être remplit");
-
-    location.reload();
-return false;
+    alertify.error(' Le numéro doit être remplit');
+    alertify.set('notifier','position', 'top-center');
+                    
+                    window.setTimeout(function () {window.location.reload();
+                  }, 2000);
+                    return false;
   }
-  if(e.length >10){
-    alert("le numéro doit contenir 10 nombres");
 
-    location.reload();
-return false;
+  if(e.length >10){
+    alertify.error(' Le numéro doit contenir 10 nombres');
+    alertify.set('notifier','position', 'top-center');
+                    
+                    window.setTimeout(function () {window.location.reload();
+                  }, 2000);
+                    return false;
+
 	}
   if(e.length <9){
-    alert("le numéro doit contenir 10 nombres");
-
-    location.reload();
-return false;
+    alertify.error(' Le numéro doit contenir 10 nombres');
+    alertify.set('notifier','position', 'top-center');
+                    
+                    window.setTimeout(function () {window.location.reload();
+                  }, 2000);
+                    return false;
 	}
 	if(!validateNUM(e)){
-    alert("le numéro doit commencer par 06 ou 07");
-
-    location.reload();
-return false;
+    alertify.error(' Le numéro doit commencer par 06 ou 07');
+    alertify.set('notifier','position', 'top-center');
+                    
+                    window.setTimeout(function () {window.location.reload();
+                  }, 2000);
+                    return false;
 	}
 
   if(validateEmail(z))
@@ -230,10 +253,12 @@ return false;
   }
   else
 {
-    alert("Entrer un email valide");
-
-    location.reload();
-    return false;
+  alertify.error(' Entrer un email valide');
+  alertify.set('notifier','position', 'top-center');
+                  
+                  window.setTimeout(function () {window.location.reload();
+                }, 2000);
+                  return false;
   }
  
 
