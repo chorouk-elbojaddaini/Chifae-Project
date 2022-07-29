@@ -803,6 +803,13 @@ border-radius: 50%;
     
     z-index: 1;
 }
+.change_password{
+  font-size: 15px;
+  color:var(--color-pink);
+}
+.change_password:hover{
+  color: var(--color-green);
+}
 /* ================================MAIN SECTION END========================== */
 
 /* ===================================FOOTER =========================== */
@@ -951,7 +958,74 @@ ul{
         width: 280px;
     }
 } */
+/* ===============================BOITE CHANGER MOT DE PASSE======================= */
+.change_pass{
+  width: 330px;
+  height :300px;
+  background-color: white;
+  position: absolute;
+  top: 300px;
+  left: 500px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 2px black;
+  visibility: hidden;
+}
+.change_pass .old_pass{
+  margin-top: 20px !important;
 
+}
+.change_pass .new_pass{
+  margin-top: 80px !important;
+
+}
+.confirmer{
+  margin-top: 140px !important;
+
+}
+.title_pass{
+  font-size: 17px;
+  color: #13565f;
+  margin-left: -70px;
+}
+.ajouter_btn{
+  margin-left:49px;
+  margin-top:50px ;
+  padding: 7px 45px;
+  color: white;
+  background: var(--color-green);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.appointmentTitle::after{
+  content: '';
+  position: absolute;
+  left: 5px;
+  top:40px;
+  width: 80px;
+  height: 3.5px;
+  background: var(--color-green);
+  }
+.close_icon{
+  position: absolute;
+  top: -50px;
+  left: 280px;
+  cursor: pointer;
+
+}
+
+#change_pass_boite.act {
+  visibility: visible;
+  opacity: 1;
+ transition: 0.5s;
+ 
+ }
+ .container#blur.act {
+  filter: blur(3px);
+  pointer-events: none;
+  user-select: none;
+}
 @media only screen and (max-width:800px){
   .profile .medecinNophoto{
     margin-right: 80px;

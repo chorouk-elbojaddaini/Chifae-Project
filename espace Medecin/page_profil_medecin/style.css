@@ -22,7 +22,11 @@
 /* ===============================SIDE BAR END=============================== */
 
 /*==================================START MAIN SECTION=========================*/
-
+.container#blur.act {
+  filter: blur(3px);
+  pointer-events: none;
+  user-select: none;
+}
 .bonjour{
   background: #fff;
   /* padding: 1.5rem ;

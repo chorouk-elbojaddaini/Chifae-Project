@@ -78,7 +78,7 @@
                $medecin->deleteData("medecin","specialites",$_SESSION['SESSION_EM']);
             }
     ?>
-        <img src="../images/close.svg.png" class="close" onclick="toggle('boite')">
+        <img src="../images/close.jpeg" class="close" onclick="toggle('boite')">
     </div>
     <div id="boite2">
     <span class="span-desc">Description</span>

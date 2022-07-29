@@ -66,6 +66,11 @@ a{
    
     
 }
+.container#blur.act {
+  filter: blur(3px);
+  pointer-events: none;
+  user-select: none;
+}
 
 .container .sidebar{
   background-color: #13565f;

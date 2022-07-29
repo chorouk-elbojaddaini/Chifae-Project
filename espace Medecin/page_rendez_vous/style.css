@@ -974,7 +974,11 @@ ul{
   border-radius: 10px;
   cursor: pointer;
 }
-
+.container#blur.act {
+  filter: blur(3px);
+  pointer-events: none;
+  user-select: none;
+}
 
 
 

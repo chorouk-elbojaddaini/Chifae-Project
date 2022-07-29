@@ -97,19 +97,13 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
                                 <label class="label_form" type="text" for="adresse">localisation</label>
                             </div>
                         
-                            <div class="column_form other col8">
-                                <input class="input_form" type="text" id="motdepasse" name = "motdepasse" autocomplete="off" placeholder=" ">
-                                <label class="label_form" type="text" for="motdepasse">old_password</label>
-                            </div>
-                            <div class="column_form other col9">
-                                <input class="input_form" type="password" id="motdepasse" name = "motdepasse" autocomplete="off" placeholder=" ">
-                                <label class="label_form" type="text" for="motdepasse">password</label>
-                            </div>
+                           
 
                             </div>
                          <button  class="save_changes_btn" type="submit" name= "submited">save changes</button> 
                    
                    </form> 
+                   <a href="#" class = "change_password" onClick = "toggle('change_pass_boite')">Changer votre mot de passe</a>
 
                
                    <?php
@@ -121,11 +115,11 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
                     $numero= $_POST["numero"];
                    $ville = $_POST["ville"];
                       $adresse= $_POST["adresse"];
-                      $motdepasse= $_POST["motdepasse"];
+                      
                      $specialite = 'chir';
                      
 
-                     $insertInformation = array("nom"=>$nom,"prenom"=>$prenom,"gmail"=>$gmail,"numero"=>$numero,"ville"=>$ville,"adresse"=>$adresse,"motdepasse"=>$motdepasse);
+                     $insertInformation = array("nom"=>$nom,"prenom"=>$prenom,"gmail"=>$gmail,"numero"=>$numero,"ville"=>$ville,"adresse"=>$adresse);
                             
                             foreach($insertInformation as $all_keys => $all_values){
                             $teste = $all_keys;

@@ -73,7 +73,7 @@ class Medecin {
         if($this->db->con != null){
             if($email !=null && isset($data)){
                 if($choix == "information"){
-                $query_string = sprintf("update {$table} set nom = '%s' ,prenom = '%s' , gmail = '%s',numero = '%s' , ville = '%s',adresse = '%s',motdepasse = '%s'  where gmail = '%s' ",$data['nom'],$data['prenom'] ,$data['gmail'] ,$data['numero'], $data['ville'],$data['adresse'],$data['motdepasse'],$email);
+                $query_string = sprintf("update {$table} set nom = '%s' ,prenom = '%s' , gmail = '%s',numero = '%s' , ville = '%s',adresse = '%s'  where gmail = '%s' ",$data['nom'],$data['prenom'] ,$data['gmail'] ,$data['numero'], $data['ville'],$data['adresse'],$email);
                 $res =$this->db->con->query($query_string); 
                 if($res){
                     
