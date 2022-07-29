@@ -70,7 +70,8 @@
           return true;
       }
    $msg = "";
-   if (isset($_POST['changePassword'])) {
+   if (isset($_POST['changePassword'])) 
+   {
             $old_password = mysqli_real_escape_string($medecin->db->con, $_POST['oldPwd']);
             $new_password = mysqli_real_escape_string($medecin->db->con, $_POST['newPwd']);
 
@@ -90,6 +91,15 @@
                 ";
             }
               $msg =" veuillez remplir l'ancien mot de passe ";
+              $msg =" veuillez remplir l'ancien mot de passe ";
+
+              ?><script>
+              alertify.set('notifier','position', 'top-center');
+                alertify.error("❗  veuillez remplir l'ancien mot de passe ");
+              </script>
+           <?php }
+
+           
 
               ?><script>
               alertify.set('notifier','position', 'top-center');
@@ -158,6 +168,7 @@
                   </script>
                <?php }
            
+          }  
         
         ?>
    
