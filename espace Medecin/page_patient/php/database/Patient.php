@@ -68,6 +68,7 @@
     }
 
     public function ajouterPatientTablePat($id,$idPatient){
+        
         $idMedePatient = $this->db->con->query("select * from patient where id = {$idPatient}");
         $resultArray = array();
         //fetch data one by one

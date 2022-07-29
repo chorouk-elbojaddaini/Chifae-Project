@@ -140,10 +140,10 @@
                   $oldPwd = $resultat['motdepasse'];
                   if($oldPwd !=  $old_password)
                   {
-                    $msg ="l'ancien mot de passe est éronné ";
+                    $msg ="l'ancien mot de passe est erroné ";
                     ?><script>
                     alertify.set('notifier','position', 'top-center');
-                      alertify.error("❗ l'ancien mot de passe est éronné ");
+                      alertify.error("❗ l'ancien mot de passe est erroné ");
                     </script>
                  <?php }
                   else{

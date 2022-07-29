@@ -100,7 +100,7 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
                            
 
                             </div>
-                         <button  class="save_changes_btn" type="submit" name= "submited">save changes</button> 
+                         <button  class="save_changes_btn" type="submit" name= "submited" >save changes</button> 
                    
                    </form> 
                    <a href="#" class = "change_password" onClick = "toggle('change_pass_boite')">Changer votre mot de passe</a>

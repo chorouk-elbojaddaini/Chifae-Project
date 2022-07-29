@@ -25,8 +25,11 @@ session_start();
             $resultArray[] = $item;
         }
         $idPat = $resultArray[0]['id'];
-    
+        if(!(empty($_POST["code_patient"]))){
+            
         $patient->ajouterPatient($idPat,"medecin",$_SESSION['SESSION_EM']);
+            
+        }
        
     }
     

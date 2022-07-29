@@ -5,7 +5,7 @@ $patientResn = $patient->getDataPatientMed("medecin",$_SESSION['SESSION_EM']);
 
 // print_r($patientResn);
     $arrayTest = implode(",",$patientResn);
-    
+    // print_r($arrayTest);
     
 
     // for($i=0;$i<count($patientResn);$i++){
@@ -19,9 +19,10 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
 // $idsPatient = $patient->getDataPatientMed("medecin"); 
  
  $patient_shuffle = $patient->getDataPagination("patient",$patient_shuffle);
-    if(isset($_GET['s']) AND !empty($_GET['s'])){
-        $recherche = htmlspecialchars($_GET['s']);
-        $patient_shuffle = $patient->db->con->query('SELECT * from patient where nom LIKE "%'.$recherche.'%"  and id IN ('.$arrayTest.')ORDER BY id DESC');
+    if(isset($_POST['s']) AND !empty($_POST['s'])){
+        $recherche = htmlspecialchars($_POST['s']);
+        
+            $patient_shuffle = $patient->db->con->query('SELECT * from patient where nom LIKE "%'.$recherche.'%"  and id IN ('.$arrayTest.') ORDER BY id DESC');
        
     }
     
@@ -32,7 +33,7 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
                 
                 <a class="add_patient" href="#"  onclick="toggle()">ajouter patient</a>
         </div>
-        <form method = "GET">
+        <form method = "POST">
             <input type = "search" name= "s" placeholder = "rechercher par nom" class="rechercher" >
             <input type="submit" name = "envoyer" value="rechercher" style="background:#fe6686; border:none; color:white; padding:3px 9px; cursor:pointer; border-radius:10px; ">
         </form>

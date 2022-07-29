@@ -347,14 +347,14 @@ if (mysqli_num_rows($display) > 0)
                   $oldPwd = $resultat['motdepasse'];
                   if($oldPwd !=  $old_password)
                   {
-                    $msg ="<p class='alert-red'>l'ancien mot de passe est éronné</p> ";
+                    $msg ="<p class='alert-red'>l'ancien mot de passe est erroné</p> ";
                   }
                   else{
                      $query = mysqli_query($conn, "UPDATE patient SET motdepasse='{$new_password}' WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
                 if ($query) {
                     echo"<script>
                     alertify.set('notifier','position', 'top-center');
-                      alertify.success('Votre mot de passe a été modifié avec succés ✔');
+                      alertify.success('Votre mot de passe a été modifié avec succès ✔');
                     </script>";
                 }
                   }
