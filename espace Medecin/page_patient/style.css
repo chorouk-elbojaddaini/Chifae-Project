@@ -75,10 +75,11 @@ a{
 .container .sidebar{
   background-color: #13565f;
   grid-area: sidebar;
-  height: 800px !important;
+  
   margin-left: 5%;
   margin-top: 15px !important;
-  height: 790px !important;
+  height: 750px !important;
+  padding-bottom: 50px;
   
 }
 .logout{
@@ -253,7 +254,7 @@ a{
     /* margin-right: 10px; */
     border-radius: 15px 15px 15px 15px !important;
     color: white;
-    height: 700px !important;
+    height: 750px !important;
     margin-left: 5%;
   }
   

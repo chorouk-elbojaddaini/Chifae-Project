@@ -170,10 +170,11 @@ $days = array('Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche')
                             <?php } ?>
                             
                         </div>
-                    </div> 
-                    <form method = "post">
+                        <form method = "post">
                         <button type = "submit" name = "delete_diplome" class="delete deleteLangue" id = "delete_langue">supprimer </button>
                     </form>
+                    </div> 
+                    
                 <div class="two">
                     <div class="experiences-content"><i class="fa-solid fa-stethoscope"></i> Expériences </div>
                     <ul class="ul-experiences">

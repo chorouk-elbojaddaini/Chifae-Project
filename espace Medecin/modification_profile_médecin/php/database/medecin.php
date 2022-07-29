@@ -34,10 +34,7 @@ class Medecin {
         elseif($column == 'diplome') {
                 $arrayspec = explode(".",$string);
          }
-         elseif($column == 'langue') {
-            $arrayspec = explode(".",$string);
-     }
-       
+        
          elseif($column == 'horaires') {
             $arrayspec = explode("\r\n",$string);
      } elseif ($column == 'maladieTraite'){
@@ -153,9 +150,6 @@ class Medecin {
         elseif($choix == 'diplome'){
             $formation =implode(".",$array);
         }
-        elseif($choix == 'langue'){
-            $formation =implode(".",$array);
-        }
         else {
             $formation =implode(" ",$array);
         }
@@ -165,7 +159,7 @@ class Medecin {
             echo" <script>
             
             swal.fire({
-                title: 'updated successfully!',
+                title: 'modifié avec succès!',
                 text: '',
                 icon: 'success',
                 
