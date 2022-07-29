@@ -15,7 +15,16 @@ class Calendrier{
          if(!isset($db->con)) return null;
          $this->db = $db;
      }
-
+      //function to get data from database
+      public function getData($table ='medecin',$id){
+        $result = $this->db->con->query("select * from {$table} where id='{$id}' ");
+        $resultArray = array();
+        //fetch data one by one
+        while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+            $resultArray[] = $item;
+        }
+        return $resultArray;
+    }
      //to create the range of time like 8:00 8:30 9:00 9:30
      public function create_time_range($start, $end, $interval = '30 mins', $format = '24') {
         $startTime = strtotime($start);

@@ -44,7 +44,7 @@ $_SESSION["heure"] = $time;
  include("./calendar.php");
  $db = new DBController();
  $calendrier = new Calendrier($db);
- 
+
 
 
 
@@ -59,7 +59,8 @@ $_SESSION["heure"] = $time;
      
      
              $semaine = $calendrier->dayRange($horaire_medecin);
-
+              // $medecin_shuffle =$calendrier->getData('medecin',$idMed);
+              
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -179,37 +180,35 @@ $_SESSION["heure"] = $time;
         $id = $_GET["id"];
         $result = mysqli_query($conn, "SELECT * FROM medecin WHERE id = $id ");
         $row = mysqli_fetch_array($result);
-
+        $medecin_shuffle =$calendrier->getData('medecin',$idMed);
         echo '<div class="information-medecin">';
-         if(empty("$row[photo]")==true){
-        if("$row[sexe]" === "femme"){
-          echo' <div class="div-photo">
-          <img
-            src="assets/medecinfemme.jpg"
-            alt="medecin homme"
-            class="img-medecin medecin1"
-          />
-        </div>';
-        }
-        else{
-          
+         if($medecin_shuffle[0]['photo'] != null){ ?>
+          <div class="div-photo">
+          <img id="photo"  src="data:image;base64,<?php echo $medecin_shuffle[0]['photo'] ;?>" height="100" width="100" border-radius="50%" class="img-medecin medecin1">
+        </div>
+
+     <?php }
+      else{
+        
+      if("$row[sexe]" === "femme"){
         echo' <div class="div-photo">
         <img
-          src="assets/medecinhomme.jpg"
+          src="assets/medecinfemme.jpg"
           alt="medecin homme"
           class="img-medecin medecin1"
         />
       </div>';
-        }
       }
       else{
-        echo'<div class="div-photo">
-        <img
-        src="data:image/jpg;base64,' . base64_encode("$row[photo]"). '"
-          alt="medecin homme"
-          class="img-medecin medecin1"
-        />
-      </div>'; 
+        
+      echo' <div class="div-photo">
+      <img
+        src="assets/medecinhomme.jpg"
+        alt="medecin homme"
+        class="img-medecin medecin1"
+      />
+    </div>';
+      } 
            }
        
        echo' 
@@ -240,6 +239,7 @@ $_SESSION["heure"] = $time;
       <div class="day">
  
           <h5 >Veuillez choisir la date   du rendez-vous </h5>
+          
           <!-- <input type="date" name="date" class="jour" id="date" value =" // if(isset($_POST['sub'])){ echo $_POST["date"] ;} "/> -->
         <!-- <h5 >Veuillez choisir l'heure  du rendez-vous </h5> -->
       </div>
