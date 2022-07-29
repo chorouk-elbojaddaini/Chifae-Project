@@ -45,6 +45,7 @@ class Medecin {
      }
     
     public function insertInto($params=null,$table = 'medecin'){
+        
         if($this->db->con !=null){
             if($params !=null){
                 //get table columns
@@ -56,11 +57,18 @@ class Medecin {
                 // print_r($values);
                 $query_string = sprintf("insert into %s (%s) values (%s)",$table,$columns,$values);
                  $res = $this->db->con->query($query_string);
-                // if($res){
-                // //    echo "data succefully inserted";
-                // }
+                if($res){
+                    echo" <script>
+             
+            alert('updated successfully!');
+               
+ </script>
+ ";
+ 
+                 }
             }
         }
+       
     }
     public function update($id=null,$data=array(),$table='medecin',$choix){
         if($this->db->con != null){
@@ -73,7 +81,7 @@ class Medecin {
                     $query_string = sprintf("update {$table} set patient = '%s' where id ='%d' ",$data['idPatient'],$id);
                     $res = $this->db->con->query($query_string);
                     if($res){
-                        //echo "updated succefuly";
+                        // echo "updated succefuly";
                     }
                 }  
             }  

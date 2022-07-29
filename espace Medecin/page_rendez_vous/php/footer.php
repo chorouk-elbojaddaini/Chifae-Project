@@ -80,7 +80,9 @@
                
                 <input type="submit" name = "boite_submit"  class="ajouter">
         </form>
+
         <?php 
+        
          $boite_array= array();
             if(isset($_POST["boite_submit"])){ 
                 $nom = $_POST["boite_nom"];
@@ -99,15 +101,28 @@
                 //     $medecin->insertBoite("yamna","yzaa","05242");
                 // }
                 $boite_array = array("nom"=>$nom,"prenom"=>$prenom,"telephone"=>$telephone,"start_datetime"=>$dateTimeStart,"end_datetime"=>$dateTimeEnd,"idMedecin"=>$_SESSION['id']);
-                // print_r($boite_array);
-                $medecin->insertInto($boite_array,'schedule_list');
+               if($nom == null){
+                
+                
+                    echo" <script>
+             
+                    alert('vous n avez rien ajouté');
+        </script>
+        ";
+                }
+                else{
+                    $medecin->insertInto($boite_array,'schedule_list');
+                    
+                }
             }
         ?>
+     
     </div>
 
 <?php 
 ?>
     <script src="../appointment/test.js"></script>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     if ( window.history.replaceState ) {
