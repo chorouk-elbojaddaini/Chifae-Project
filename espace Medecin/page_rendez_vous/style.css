@@ -233,7 +233,7 @@ a{
     /* margin-right: 10px; */
     border-radius: 15px 15px 15px 15px !important;
     color: white;
-    height: 700px !important;
+    min-height: 720px !important;
     margin-left: 5%;
   }
 
@@ -307,6 +307,9 @@ a{
     background: #13565f;
 
     color: white;
+  }
+  div.sidebar {
+    height: 750px !important;
   }
   .bottom ul li {
     text-decoration: none;

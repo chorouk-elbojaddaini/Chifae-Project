@@ -70,7 +70,7 @@ $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
                 </li>
 
 
-                <li class="nav-item">
+                <li class="nav-item logout">
                     <a class = "nav-link"  href="../../../connexionDoc/logout.php">
                         <i class="fa-solid fa-arrow-right-from-bracket icon .logout "></i>
                         <span class="text nav-text">log out</span>

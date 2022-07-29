@@ -50,7 +50,7 @@ a {
 .container .sidebar{
   background-color: #13565f;
   grid-area: sidebar;
-  height: 800px !important;
+  height: 950px !important;
   margin-left: 5%;
   margin-top: 15px !important;
   
@@ -255,7 +255,8 @@ color:white;
   /* margin-right: 10px; */
   border-radius: 15px 15px 15px 15px !important;
   color: white;
-  height: 700px !important;
+  height: 750px !important;
+ 
   margin-left: 5%;
 }
 
@@ -273,8 +274,9 @@ color:white;
 
 .container .sidebar .top .profile img {
   width: 160px;
-  margin-top: -70%;
-  margin-left: -19px;
+  height: 106px;
+  margin-top: -66%;
+  margin-left: -5px !important;
   clip-path: circle();
 
   filter: drop-shadow(1px 14px 5px rgb(24, 26, 26));

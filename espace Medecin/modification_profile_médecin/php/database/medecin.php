@@ -34,6 +34,10 @@ class Medecin {
         elseif($column == 'diplome') {
                 $arrayspec = explode(".",$string);
          }
+         elseif($column == 'langue') {
+            $arrayspec = explode(".",$string);
+     }
+       
          elseif($column == 'horaires') {
             $arrayspec = explode("\r\n",$string);
      } elseif ($column == 'maladieTraite'){
@@ -112,13 +116,13 @@ class Medecin {
         }
     }
      //this function to add the new value to others values in database
-    public function ajout($array,$for,$choix){
+    public function ajout($array,$for,$choix,$email){
         if($array[0] == ""){
             $array[0] = $for;
             if($for == ""){
                 return;
             }
-            $query_string = "update medecin set $choix = '{$array[0]}' where id='1' ";
+            $query_string = "update medecin set $choix = '{$array[0]}' where gmail = '{$email}' ";
             $res =$this->db->con->query($query_string); 
            if($res){
              echo" <script>
@@ -149,10 +153,13 @@ class Medecin {
         elseif($choix == 'diplome'){
             $formation =implode(".",$array);
         }
+        elseif($choix == 'langue'){
+            $formation =implode(".",$array);
+        }
         else {
             $formation =implode(" ",$array);
         }
-        $query_string = "update medecin set $choix = '{$formation}' where id='1' ";
+        $query_string = "update medecin set $choix = '{$formation}' where gmail = '{$email}' ";
            $res =$this->db->con->query($query_string); 
           if($res){
             echo" <script>

@@ -4,7 +4,10 @@
  $arrayspec = $medecin->displayData('medecin','specialites',$_SESSION['SESSION_EM']);
 $arrayMaladie = $medecin->displayData('medecin','diplome',$_SESSION['SESSION_EM']);
 $arrayDesc = $medecin->displayData('medecin','description',$_SESSION['SESSION_EM']);
+$arraylangue = $medecin->displayData('medecin','langue',$_SESSION['SESSION_EM']);
+
 $arrayData = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
+
 $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_EM']);
 
 
@@ -184,7 +187,7 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
                   
       </script>";
                  }
-                       $medecin->ajout($arrayExperience,$for,'experience');
+                       $medecin->ajout($arrayExperience,$for,'experience', $_SESSION['SESSION_EM'] );
                      }     ?>
                      
                     </div>
@@ -223,7 +226,7 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
                   
       </script>";
                  }
-                        $medecin->ajout($arrayspec,$specialite,'specialites');
+                        $medecin->ajout($arrayspec,$specialite,'specialites', $_SESSION['SESSION_EM'] );
                          }     ?> 
                     </div>
                     
@@ -235,14 +238,7 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
                                 <label class="label_form" for="maladie" type = "text">Cursus et diplome</label>
                                 <button class="save_change" type="submit" name="submit_maladie" >Ajouter</button>
                             </div>
-                            <!-- <div class="bottoms">
-                                
-                                    <ul class="liste maladie" id="maladieLi">
-                                        <li>fièvre</li>
-                                    </ul>
-                                
-                            </div>
-                            <a class="voir_plus" href="#">voir plus</a> -->
+                          
                         </div>
                     </form>
 
@@ -261,7 +257,7 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
                   
       </script>";
                        }
-                       $medecin->ajout($arrayMaladie,$maladie,'diplome');
+                       $medecin->ajout($arrayMaladie,$maladie,'diplome', $_SESSION['SESSION_EM'] );
                          }     ?>
                     </div>
                     <div class="lines expLine">
@@ -289,7 +285,35 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
                   
       </script>";
                  }
-                       $medecin->ajout($arrayDesc,$description,'description');
+                       $medecin->ajout($arrayDesc,$description,'description', $_SESSION['SESSION_EM'] );
+                         }     ?>
+                    </div>
+                    <div class="lines expLine">
+                        <form action="#" method="post">
+                            <div class="column_form ajouter descr">
+                                <div class="top">
+                                <input class="input_form exp_input" type="text" id="langue" name="langue" autocomplete="off" placeholder=" ">
+                                <label class="label_form" for="description" type = "text">langue</label>
+                                <button class="save_change " type="submit" name="submit_langue">Ajouter</button>
+                            </div>
+                            </div>
+                        </form>
+
+                        <!--AJOUTER à La description-->
+                        <?php if(isset($_POST['submit_langue'])){
+                       $langue = $_POST['langue'];
+                       if($langue == null){
+                        echo "<script>
+                  
+                        Swal.fire({
+                            title: 'Vous n avez rien entré!',
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                          })
+                  
+      </script>";
+                 }
+                       $medecin->ajout($arraylangue,$langue,'langue', $_SESSION['SESSION_EM'] );
                          }     ?>
                     </div>
                     
