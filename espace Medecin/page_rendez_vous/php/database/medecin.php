@@ -89,8 +89,8 @@ class Medecin {
         
     }
     
-    public function getDataPatientMed($table ='medecin'){
-        $result = $this->db->con->query("select * from medecin where id = '1' ");
+    public function getDataPatientMed($table ='medecin',$email){
+        $result = $this->db->con->query("select * from medecin where gmail = '{$email}' ");
         $resultArray = array();
         //fetch data one by one
         while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -101,12 +101,14 @@ class Medecin {
         return $patientsArray;
         
     }
-    public function ajouterPatient($id,$idPatient,$table = "medecin"){
-        $arrayPatients = $this->getDataPatientMed("medecin");
+    public function ajouterPatient($email,$idPatient,$table = "medecin"){
+        $arrayPatients = $this->getDataPatientMed("medecin",$email);
         //  print_r($arrayPatients);
         
-        if($arrayPatients[0] !=""){
+        if(!(empty($arrayPatients[0]))){
+            print_r($arrayPatients);
             array_push($arrayPatients, $idPatient);
+            print_r($arrayPatients);
             $arrayPatientsUnique = array_unique($arrayPatients);
             $arrayTest = implode(" ",$arrayPatientsUnique);
             // echo "hi".$arrayTest;
@@ -115,6 +117,11 @@ class Medecin {
         }
         else{
             $query_string = sprintf("update {$table} set patient = '%s'   where gmail = '{$id}' ",$idPatient);
+            $query_string = sprintf("update {$table} set patient = '%s'   where gmail = '{$email}' ",$arrayTest);
+            $result =$this->db->con->query($query_string);
+        }
+        else{
+            $query_string = sprintf("update {$table} set patient = '%s'   where gmail = '{$email}' ",$idPatient);
             $result =$this->db->con->query($query_string);
         }
     }
