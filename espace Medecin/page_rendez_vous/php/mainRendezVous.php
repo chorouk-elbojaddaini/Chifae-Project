@@ -51,11 +51,11 @@ error_reporting(E_ALL & ~E_NOTICE);
 <?php 
 
  
-   $arrayToday = $medecin->getDataChoix("events", $_SESSION["choixOption"],$_SESSION['id']);
+   $arrayToday = $medecin->getDataChoix("schedule_list", $_SESSION["choixOption"],$_SESSION['id']);
    
    $sortedRendezVous = $medecin->sortRendezVous($arrayToday);
    
-   $displayTable    =  $medecin->getDataPagination('events',$sortedRendezVous);
+   $displayTable    =  $medecin->getDataPagination('schedule_list',$sortedRendezVous);
   
     ?>
 

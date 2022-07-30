@@ -16,10 +16,10 @@
                 <div class="footer-col">
                     <h4>des liens rapides</h4>
                     <ul>
-                        <li><a href="#">Acceuil </a></li>
-                        <li><a href="#">Medecin</a></li>
+                        <li><a href="../../../pageAcceuil/index.php">Acceuil </a></li>
+                        <li><a href="../../page_profil_medecin/php/index.php">Medecin</a></li>
                         <li><a href="#">Patient</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="../../../ContactPage/contact.php">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

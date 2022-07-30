@@ -19,12 +19,24 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
 // $idsPatient = $patient->getDataPatientMed("medecin"); 
  
  $patient_shuffle = $patient->getDataPagination("patient",$patient_shuffle);
+ $resultArray = array();
     if(isset($_POST['s']) AND !empty($_POST['s'])){
         $recherche = htmlspecialchars($_POST['s']);
+        if(!empty($recherche) && !empty($arrayTest)){
+          
+            $result = $patient->db->con->query('SELECT * from patient where nom LIKE "%'.$recherche.'%"  and id IN ('.$arrayTest.') ORDER BY id DESC');
+           
+            
+             while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+                $resultArray[] = $item;
+            }
+        }
         
-            $patient_shuffle = $patient->db->con->query('SELECT * from patient where nom LIKE "%'.$recherche.'%"  and id IN ('.$arrayTest.') ORDER BY id DESC');
+        $patient_shuffle = array_unique($resultArray);
        
     }
+   
+    // $patient_shuffle = array_unique($patient_shuffle);
     
   ?>
 <main>
