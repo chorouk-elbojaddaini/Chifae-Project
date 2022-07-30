@@ -1,9 +1,9 @@
 <?php
 "/XMII/Illuminator?Service=Admin&Mode=SessionList&Content-Type=text/xml";
+session_start();
 
 
 ini_set("display_errors", true);
-session_start();
 if (isset($_SESSION['SESSION_EMAIL'])) {
     header("location: ../espace_patient/accueil/welcome.html");        
         die();
