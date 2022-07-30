@@ -71,8 +71,11 @@ $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
     <div class="navbar">
         <section class="top-nav"><!--nav bar-->
             <div class="navLogo">
-                <img class="logo" src="../images/logo.png" alt="#">
-                <span class="chifaeNav">Shifae</span>
+              <a href="../../../pageAcceuil/index.php">
+                <img class="logo" src="../images/logo.png" alt="#"></a>
+              <a href="../../../pageAcceuil/index.php">
+
+                <span class="chifaeNav">Shifae</span></a>
             </div>
             <input id="menu-toggle" type="checkbox" />
             <label class='menu-button-container' for="menu-toggle">

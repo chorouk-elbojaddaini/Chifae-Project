@@ -61,8 +61,8 @@ include('../pageAcceuil/cnx.php');
     <nav>
       <div class="container nav_container">
         <div class="logo_cont">
-          <a href="index.html"
-            ><img src="./assets/logo.png" alt="logo" class="logo"
+        <a href="../pageAcceuil/index.php">
+            <img src="./assets/logo.png" alt="logo" class="logo"
           /></a>
           <h4>Shifae 
             <div id="div_refresh">
@@ -76,7 +76,7 @@ include('../pageAcceuil/cnx.php');
             echo "../connexionPat/index.php";
           } ?>">Patient</a></li>
           <li><a href="../ContactPage/contact.php">Contact</a></li>
-          <li><a href="../aboutUs/about.html" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
+          <li><a href="../aboutUs/about.php" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
         </ul>
         <!-- drop down medecin  -->
         <div class="dropdown">
@@ -257,7 +257,7 @@ var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
     <div class="container">
       <div class="wrapper">
         <div class="footer-widget">
-          <a href="#">
+        <a href="../../pageAcceuil/index.php">
               <div class="logo-footer">
             <img src="assets/logo.png" class="logo" />
             <p>Shifae</p></div>

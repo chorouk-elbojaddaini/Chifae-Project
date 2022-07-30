@@ -38,8 +38,8 @@ session_start();
     <nav>
         <div class="container nav_container">
           <div class="logo_cont">
-            <a href="index.html"
-              ><img src="./assets/logo.png" alt="logo" class="logo"
+          <a href="../pageAcceuil/index.php">
+              <img src="./assets/logo.png" alt="logo" class="logo"
             /></a>
             <h4>Shifae</h4>
           </div>
@@ -168,7 +168,7 @@ session_start();
     <div class="container">
       <div class="wrapper">
         <div class="footer-widget">
-          <a href="#">
+        <a href="../pageAcceuil/index.php">
               <div class="logo-footer">
             <img src="assets/logo.png" class="logo" />
             <p>Shifae</p></div>

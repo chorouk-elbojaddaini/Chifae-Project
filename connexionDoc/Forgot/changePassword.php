@@ -44,8 +44,8 @@ include "configChangepassword.php";
     <nav>
         <div class="container nav_container">
           <div class="logo_cont">
-            <a href="index.html"
-              ><img src="../images/logo.png" alt="logo" class="logo"
+          <a href="../../pageAcceuil/index.php">
+              <img src="../images/logo.png" alt="logo" class="logo"
             /></a>
             <h4>Shifae</h4>
           </div>
@@ -54,7 +54,7 @@ include "configChangepassword.php";
             <li class="medecin"><a href="../../connexionDoc/index.php">Medecin</a></li>
             <li class="patient"><a href="../../connexionPat/index.php">Patient</a></li>
             <li><a href="../../ContactPage/contact.php">Contact</a></li>
-          <li><a href="../../aboutUs/about.html" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
+          <li><a href="../../aboutUs/about.php" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
 
           </ul>
           <!-- drop down medecin  -->
@@ -121,7 +121,7 @@ include "configChangepassword.php";
     <div class="container">
       <div class="wrapper">
         <div class="footer-widget">
-          <a href="#">
+        <a href="../../pageAcceuil/index.php">
               <div class="logo-footer">
             <img src="logo.png" class="logo" />
             <p>Shifae</p></div>

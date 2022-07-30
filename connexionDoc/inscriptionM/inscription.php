@@ -38,7 +38,7 @@ include 'config.php';
     <nav>
         <div class="container nav_container">
           <div class="logo_cont">
-            <a href="index.html"
+            <a href="../../pageAcceuil/index.php"
               ><img src="assets/logo.png" alt="logo" class="logo"
             /></a>
             <h4>Shifae</h4>
@@ -48,7 +48,7 @@ include 'config.php';
             <li class="medecin"><a href="../../connexionDoc/index.php">Medecin</a></li>
             <li class="patient"><a href="../../connexionPat/index.php">Patient</a></li>
             <li><a href="../../ContactPage/contact.php">Contact</a></li>
-          <li><a href="../../aboutUs/about.html" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
+          <li><a href="../../aboutUs/about.php" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
 
           </ul>
           <!-- drop down medecin  -->
@@ -215,7 +215,7 @@ include 'config.php';
     <div class="container">
       <div class="wrapper">
         <div class="footer-widget">
-          <a href="#">
+          <a href="../../pageAcceuil/index.php">
               <div class="logo-footer">
             <img src="assets/logo.png" class="logo" />
             <p>Shifae</p></div>
