@@ -413,7 +413,7 @@ transition: 0.5s;
   color: black !important;
 }
 .three{
-  height: 400px;
+  /* height: 400px; */
 }
 
 /*=============END CONTENT 3===========================*/
