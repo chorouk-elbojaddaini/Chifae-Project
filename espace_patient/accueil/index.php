@@ -21,7 +21,7 @@ if (mysqli_num_rows($display) > 0)
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/nav.css" />
-    <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <link rel="icon" type="image/png" href="./logo.png" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
   <link
   rel="stylesheet"

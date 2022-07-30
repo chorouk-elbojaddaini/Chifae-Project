@@ -14,7 +14,7 @@ $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
     <title>calendrier</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="icon" type="image/png" href="images/logo.png" />
+    <link rel="icon" type="image/png" href="./logo.png" />
 
     <link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
     <link rel="stylesheet" href="style.css">

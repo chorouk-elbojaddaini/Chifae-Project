@@ -27,7 +27,7 @@ include "cnx.php";
       rel="stylesheet"
       href="https://unicons.iconscout.com/release/v4.0.0/css/solid.css"
     />
-    <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <link rel="icon" type="image/png" href="./logo.png" />
     <title>Shifae</title>
   </head>
   <body>

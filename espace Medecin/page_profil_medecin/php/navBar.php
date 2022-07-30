@@ -53,7 +53,7 @@ $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
         
-     <link rel="icon" type="image/png" href="./logo.png" />
+        <link rel="icon" type="image/png" href="./logo.png" />
      <link rel="stylesheet" href="../style.css ?v=<?php echo time(); ?>">
      <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
 

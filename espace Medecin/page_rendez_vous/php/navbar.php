@@ -20,7 +20,7 @@
      <script src="./sweetAlert/sweetalert2.all.min.js"></script>
       <link rel="stylesheet" href="./sweetAlert/sweetalert2.css">
      <title>Rendez Vous | Shifae</title>
-     <link rel="icon" type="image/png" href="../images/logo.png" />
+     <link rel="icon" type="image/png" href="../logo.png" />
 </head>
 <body>
     
