@@ -3,8 +3,8 @@
             <div class="row">
              <div class="footer-col">
                 <div class="logoChifae">
-                    <img class="logo" src="../images/logo.png" alt="#">
-                    <span class="chifae">Shifae</span>
+                <a href="../../../pageAcceuil/index.php"><img class="logo" src="../images/logo.png" alt="#"></a>
+                <span class="chifae">Shifae</span>
                 </div>
                  <div class="social-links">
                      <a href="#"><i class="fab fa-facebook-f fa-lg"></i></a>

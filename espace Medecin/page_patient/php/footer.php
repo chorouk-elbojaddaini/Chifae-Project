@@ -4,7 +4,7 @@
             <div class="row">
              <div class="footer-col">
                 <div class="logoChifae">
-                    <img class="logo" src="../images/logo.png" alt="#">
+                    <a href="../../../pageAcceuil/index.php"><img class="logo" src="../images/logo.png" alt="#"></a>
                     <span class="chifae">Shifae</span>
                 </div>
                  <div class="social-links">
