@@ -768,73 +768,6 @@ ul{
 /* ===================================footer end =============================================*/
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ===============================GRID LAYOUT RESPONSIVE=============================================== */
 @media (min-width:1180px) and (max-width:1234px){
   .dossier{
@@ -1018,7 +951,7 @@ ul{
       /* position: absolute;
       top: 0; */
       margin-top: 50px;
-      /* left: 0; */
+      left: 0;
       /* margin-right: -50px; */
       flex-direction: column;
       width: 841px;

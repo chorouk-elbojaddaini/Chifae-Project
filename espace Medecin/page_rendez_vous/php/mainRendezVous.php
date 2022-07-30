@@ -145,8 +145,8 @@ error_reporting(E_ALL & ~E_NOTICE);
                 <?php
                     if(isset($_POST["ajouter_patient"])){
                         $idPatientMed = $_POST["idPatient"];
-                       
-                        $medecin->ajouterPatient($_SESSION['id'],$idPatientMed,'medecin');
+                        echo $idPatientMed;
+                        $medecin->ajouterPatient($_SESSION['SESSION_EM'],$idPatientMed,'medecin');
                     }
                 ?>    
                    <td>

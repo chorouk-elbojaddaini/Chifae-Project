@@ -217,3 +217,67 @@
   
   }
     </script>
+<script>
+         $("#modifyDataForm").on('submit',function(e)
+        {    
+            
+            e.preventDefault();
+            
+           
+            let formData = new FormData(this);
+            formData.append('modifyDataMed', true);
+           
+            for (const pair of formData.entries()) {
+                console.log(`${pair[0]}, ${pair[1]}`);
+              }
+              let ajouter = document.getElementById("ajouterParId");
+            $.ajax({
+                type: "POST",
+                url: "../modifyAjax.php",
+                data: formData,
+                processData: false,
+                contentType: false,
+               
+                success: function (response) {
+                    
+                    let res = jQuery.parseJSON(response);
+                    //===========success case-----------
+                    if(res.status == 200){
+                      
+                     
+                         //------success msg-------------
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.success(res.message);
+                         location.reload(true);
+                         ajouter.addEventListener('click', function() {
+                        console.log("hi again");
+                            $("#boite").hide()
+                                // location.reload(true);
+                        })
+                     
+                         
+                        
+        
+                    }    //=============db probleme query return falsy value
+        
+                    else if(res.status == 500) {
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.error(res.message);
+                      
+                    }
+                    //--------------empty fields error---------
+                    else if(res.status == 422)
+                    {
+                        alertify.set('notifier','position', 'top-right');
+                        alertify.error(res.message);
+                     
+                    }
+                }
+            }
+
+            
+         )
+         
+       
+        });
+    </script>

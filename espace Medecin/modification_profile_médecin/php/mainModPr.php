@@ -53,7 +53,7 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
 
                
 
-                   <form action="#" method = "post">
+                   <form action="#" method = "post" id ="modifyDataForm">
                        <div class="wrapper">
                         
                             <div class="column_form topSec col1">
@@ -101,40 +101,15 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
 
                             </div>
                          <button  class="save_changes_btn" type="submit" name= "submited" >save changes</button> 
+                         <button  class="save_changes_btn" type="submit" name= "submited" onClick = "window.location.reload()">save changes</button> 
                    
                    </form> 
                    <a href="#" class = "change_password" onClick = "toggle('change_pass_boite')">Changer votre mot de passe</a>
 
                
                    <?php
-                   if(isset($_POST['submited'])){ 
-                     $nom= $_POST["nom"];
-                     $prenom= $_POST["prenom"];
-                      $gmail= $_POST["gmail"];
-                    
-                    $numero= $_POST["numero"];
-                   $ville = $_POST["ville"];
-                      $adresse= $_POST["adresse"];
-                      
-                     $specialite = 'chir';
-                     
-
-                     $insertInformation = array("nom"=>$nom,"prenom"=>$prenom,"gmail"=>$gmail,"numero"=>$numero,"ville"=>$ville,"adresse"=>$adresse);
-                            
-                            foreach($insertInformation as $all_keys => $all_values){
-                            $teste = $all_keys;
-                            
-                            $all_values = $medecin->verifyEmpty($all_values,$teste,$_SESSION['SESSION_EM']);
-                            $insertInformation[$all_keys] = $all_values;
-                        }
-                      
-                   $medecin->update($_SESSION['SESSION_EM'],$insertInformation,'medecin',"information");
-                   if($gmail != null){
-                    
-                    $_SESSION['SESSION_EM'] = $gmail;
-                    
-                 }
-                }
+                   
+                
                
                 //    $arrayFormation = $medecin->displayData('medecin','experience');
                   

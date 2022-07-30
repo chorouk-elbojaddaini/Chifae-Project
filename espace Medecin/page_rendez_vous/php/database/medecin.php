@@ -110,11 +110,11 @@ class Medecin {
             $arrayPatientsUnique = array_unique($arrayPatients);
             $arrayTest = implode(" ",$arrayPatientsUnique);
             // echo "hi".$arrayTest;
-            $query_string = sprintf("update {$table} set patient = '%s'   where id = '{$id}' ",$arrayTest);
+            $query_string = sprintf("update {$table} set patient = '%s'   where gmail = '{$id}' ",$arrayTest);
             $result =$this->db->con->query($query_string);
         }
         else{
-            $query_string = sprintf("update {$table} set patient = '%s'   where id = '{$id}' ",$idPatient);
+            $query_string = sprintf("update {$table} set patient = '%s'   where gmail = '{$id}' ",$idPatient);
             $result =$this->db->con->query($query_string);
         }
     }
