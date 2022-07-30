@@ -34,8 +34,8 @@ function table_antecedent($antecedent,$res)
   echo"
   $res
   
-
-<table id='antecedent-table'>
+  <div class='table-scroll'>
+  <table id='antecedent-table'>
 <thead>
   <tr>
     <th>Nom de la antecedent</th>
@@ -68,6 +68,7 @@ function table_antecedent($antecedent,$res)
 echo" 
 </tbody>
 </table> 
+</div>
 ";
 }
 ?>

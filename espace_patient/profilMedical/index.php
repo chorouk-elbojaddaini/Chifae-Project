@@ -69,8 +69,8 @@ function table_maladie($malad1,$res)
  echo  $res;
  
   echo"
-    
-    <table id='maladie-table'>
+  <div class='table-scroll'>
+  <table id='maladie-table'>
     <thead>
       <tr>
         <th>Nom du maladie</th>
@@ -106,6 +106,7 @@ function table_maladie($malad1,$res)
 echo" 
     </tbody>
     </table> 
+    </div>
     ";
 }
 ?>

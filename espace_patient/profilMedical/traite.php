@@ -33,7 +33,8 @@ function affich_traite($traite,$res) {
 function table_traite($traite,$res) {
       echo
       "$res
-    <table id='traitement-table'>
+      <div class='table-scroll'>
+      <table id='traitement-table'>
     <thead>
     <tr>
       <th>Nom du traitement</th>
@@ -68,6 +69,7 @@ function table_traite($traite,$res) {
     echo" 
     </tbody>
     </table> 
+    </div>
     ";
 }?>
 <!-- =====================PAGE 2 =========================-->

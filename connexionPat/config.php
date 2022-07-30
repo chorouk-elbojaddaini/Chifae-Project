@@ -5,7 +5,7 @@ session_start();
 
 ini_set("display_errors", true);
 if (isset($_SESSION['SESSION_EMAIL'])) {
-    header("location: ../espace_patient/accueil/welcome.html");        
+    header("location: ../espace_patient/accueil/index.php");        
         die();
         
        

@@ -37,7 +37,8 @@ function table_vaccin($vaccin,$res)
   echo
   "
   $res
-<table id='vaccin-table'>
+  <div class='table-scroll'>
+  <table id='vaccin-table'>
 <thead>
 <tr>
   <th>Nom du vaccin</th>
@@ -72,6 +73,7 @@ while($row = mysqli_fetch_assoc($vaccin))
 echo" 
 </tbody>
 </table> 
+</div>
 ";
 }
 ?>

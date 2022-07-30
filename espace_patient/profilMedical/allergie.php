@@ -28,6 +28,7 @@ include'filter.php';
 
   echo"
   $res
+  <div class='table-scroll'>
     <table id='allergie-table'>
     <thead>
       <tr>
@@ -56,6 +57,7 @@ include'filter.php';
 echo" 
     </tbody>
     </table> 
+    </div>
     ";
  }?>
  

@@ -31,7 +31,8 @@ include'filter.php';
  {
   echo"
   $res
-    <table id='hospital-table'>
+  <div class='table-scroll'>
+  <table id='hospital-table'>
     <thead>
       <tr>
         <th>Cause</th>
@@ -66,6 +67,7 @@ include'filter.php';
 echo" 
     </tbody>
     </table> 
+    </div>
     ";
  }
  ?>

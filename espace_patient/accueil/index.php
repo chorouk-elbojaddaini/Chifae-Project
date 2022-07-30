@@ -59,7 +59,7 @@ if (mysqli_num_rows($display) > 0)
 </head>
 <body>
    <div class="wrapp">
-    <div class="nav">
+    <!-- <div class="nav"> -->
         <nav>
             <div class="container nav_container">
               <div class="logo_cont">
@@ -124,7 +124,7 @@ if (mysqli_num_rows($display) > 0)
             
             </div>
           </nav>
-    </div>
+    <!-- </div> -->
     <!-----------------PROFIL MODAL------------------>
        <div class="overlay " >
        
@@ -196,7 +196,7 @@ if (mysqli_num_rows($display) > 0)
               
               if ($total_records > 0) 
              { 
-              echo "<p class='urRDV'>Vous avez ".$total_records." rendez-vous";
+              echo "<p class='urRDV'>Vous avez ".$total_records." rendez-vous</p>";
 
                while($row = mysqli_fetch_assoc($sql))
                {

@@ -45,7 +45,8 @@ function table_doc($doc,$res)
 {
   echo"
       $res
-    <table id='maladie-table'>
+      <div class='table-scroll'>
+      <table id='maladie-table'>
     <thead>
       <tr>
         <th>Nom du document</th>
@@ -79,6 +80,7 @@ function table_doc($doc,$res)
 echo" 
     </tbody>
     </table> 
+    </div>
     ";
 
 }

@@ -7,7 +7,8 @@ function table_diag($diag,$res)
 {
   echo"
       $res
-    <table   class='show' id='diag-table'>
+      <div class='table-scroll'>
+      <table   class='show' id='diag-table'>
     <thead>
       <tr>
         <th>Nom et Prénom</th>
@@ -45,6 +46,7 @@ function table_diag($diag,$res)
 echo" 
     </tbody>
     </table> 
+    </div>
     ";
 }?>
 
