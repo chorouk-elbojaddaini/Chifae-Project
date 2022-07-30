@@ -21,7 +21,7 @@ if (mysqli_num_rows($display) > 0)
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/nav.css" />
-    <link rel="icon" type="image/png" href="./images/logo.png" />
+    <link rel="icon" type="image/png" href="logo1.png" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
   <link
   rel="stylesheet"
@@ -62,7 +62,7 @@ if (mysqli_num_rows($display) > 0)
         <div class="container nav_container">
           <div class="logo_cont">
             <a href="index.html"
-              ><img src="./assets/logo.png" alt="logo" class="logo"
+              ><img src="logo1.png" alt="logo" class="logo"
             /></a>
             <h4>Chifae</h4>
           </div>

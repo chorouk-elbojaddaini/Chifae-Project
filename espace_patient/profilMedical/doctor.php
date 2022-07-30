@@ -374,7 +374,7 @@ function vanish() {
                             echo'<div class="pages-btn">';
 
                             for ($i=1; $i <= $total_pages ; $i++){  
-                                echo "<a class='pagination'href='?pageM=".$i."#maladieS'>".$i."</a>" ;
+                                echo "<a class='pagination'href='&pageM=".$i."#maladieS'>".$i."</a>" ;
                               } 
                               echo'</div>';
                    
@@ -454,7 +454,7 @@ function vanish() {
                             echo'<div class="pages-btn">';
 
                             for ($i=1; $i <= $total_pages ; $i++){  
-                                echo "<a class='pagination'href='?pageT=".$i."#traiteS'>".$i."</a>" ;
+                                echo "<a class='pagination'href='&pageT=".$i."#traiteS'>".$i."</a>" ;
                               } 
                               echo'</div>';
 
@@ -535,7 +535,7 @@ function vanish() {
                             echo'<div class="pages-btn">';
 
                             for ($i=1; $i <= $total_pages ; $i++){  
-                                echo "<a class='pagination'href='?pageH=".$i."#hospitalS'>".$i."</a>" ;
+                                echo "<a class='pagination'href='&pageH=".$i."#hospitalS'>".$i."</a>" ;
                               } 
                               echo'</div>';
 
@@ -609,7 +609,7 @@ function vanish() {
                                 echo'<div class="pages-btn">';
 
                                 for ($i=1; $i <= $total_pages ; $i++){  
-                                    echo "<a class='pagination'href='?pageAl=".$i."#allergieS'>".$i."</a>" ;
+                                    echo "<a class='pagination'href='&pageAl=".$i."#allergieS'>".$i."</a>" ;
                                   } 
                                   echo'</div>';
 
@@ -689,7 +689,7 @@ function vanish() {
                             echo'<div class="pages-btn">';
 
                             for ($i=1; $i <= $total_pages ; $i++){  
-                                echo "<a class='pagination'href='?pageV=".$i."#vaccinS'>".$i."</a>" ;
+                                echo "<a class='pagination'href='&pageV=".$i."#vaccinS'>".$i."</a>" ;
                               } 
                               echo'</div>';
 
@@ -765,7 +765,7 @@ function vanish() {
                             echo'<div class="pages-btn">';
 
                             for ($i=1; $i <= $total_pages ; $i++){  
-                                echo "<a class='pagination'href='?pageMes=".$i."#mesureS'>".$i."</a>" ;
+                                echo "<a class='pagination'href='&pageMes=".$i."#mesureS'>".$i."</a>" ;
                               } 
                               echo'</div>';
 
@@ -837,7 +837,7 @@ function vanish() {
                             echo'<div class="pages-btn">';
 
                             for ($i=1; $i <= $total_pages ; $i++){  
-                                echo "<a class='pagination'href='?pageAn=".$i."#antecedentS'>".$i."</a>" ;
+                                echo "<a class='pagination'href='&pageAn=".$i."#antecedentS'>".$i."</a>" ;
                               } 
                               echo'</div>';
                     ?>
@@ -913,7 +913,7 @@ function vanish() {
                             echo'<div class="pages-btn">';
 
                             for ($i=1; $i <= $total_pages ; $i++){  
-                                echo "<a class='pagination'href='?pageD=".$i."#documentS'>".$i."</a>" ;
+                                echo "<a class='pagination'href='&pageD=".$i."#documentS'>".$i."</a>" ;
                               } 
                               echo'</div>';
                    
@@ -985,7 +985,7 @@ function vanish() {
                           echo'<div class="pages-btn">';
 
                           for ($i=1; $i <= $total_pages ; $i++){  
-                              echo "<a class='pagination'href='?pageDg=".$i."#diagnosticS'>".$i."</a>" ;
+                              echo "<a class='pagination'href='&pageDg=".$i."#diagnosticS'>".$i."</a>" ;
                             } 
                             echo'</div>';
 

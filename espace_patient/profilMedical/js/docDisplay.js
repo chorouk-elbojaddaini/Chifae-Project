@@ -2,7 +2,7 @@
 /*=============status numbers meaning:=====================
 200 => successful
 422 => empty fields
-500 => big format 
+100 => big format 
 110 => interdite format
 500=> db erroe while inserting
 550 => file error
@@ -41,7 +41,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
               alertify.set('notifier','position', 'top-center');
              
                                     window.setTimeout(function () {window.location.reload();
-                                  },500);
+                                  },700);
                                   console.log('log')
                 // document.getElementById("docs-form").reset(); 
                 $("#nom-doc,#date-docs,#added-by-docs,#add-file").val("");
@@ -56,7 +56,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
               alertify.set('notifier','position', 'top-center');
                               
                               window.setTimeout(function () {window.location.reload();
-                            },500);
+                            },700);
                               return false;
             }
             //================== interdite extension =================
@@ -65,18 +65,18 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
               alertify.set('notifier','position', 'top-center');
                               
                               window.setTimeout(function () {window.location.reload();
-                            },500);
+                            },700);
                             console.log('log2')
 
                               return false;
             }
             //================== big formats =================
-            else if( resObject.status==500){
+            else if( resObject.status==100){
               alertify.error(resObject.msgs);
               alertify.set('notifier','position', 'top-center');
                               
                               window.setTimeout(function () {window.location.reload();
-                            },500);
+                            },700);
                               return false;
             }
               //================== DB error =================
@@ -85,7 +85,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
                 alertify.set('notifier','position', 'top-center');
                                 
                                 window.setTimeout(function () {window.location.reload();
-                              },500);
+                              },700);
                                 return false;
               }
                //================== file error =================
@@ -94,7 +94,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
                 alertify.set('notifier','position', 'top-center');
                                 
                                 window.setTimeout(function () {window.location.reload();
-                              },500);
+                              },700);
                                 return false;
               }
                //================== file exist=================
@@ -103,7 +103,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
                 alertify.set('notifier','position', 'top-center');
                                 
                                 window.setTimeout(function () {window.location.reload();
-                              },500);
+                              },700);
                                 return false;
               }
       //================if we failed we should display the reason================
@@ -115,7 +115,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
           alertify.set('notifier','position', 'top-center');
                           
                           window.setTimeout(function () {window.location.reload();
-                        },500);
+                        },700);
                           return false;
          
       }
@@ -128,7 +128,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
       alertify.set('notifier','position', 'top-center');
                       
                       window.setTimeout(function () {window.location.reload();
-                    },500);
+                    },700);
                       return false;
     }
     else{
@@ -138,7 +138,7 @@ document.getElementById("docs-form").addEventListener("submit", function (e) {
         alertify.set('notifier','position', 'top-center');
                         
                         window.setTimeout(function () {window.location.reload();
-                      },500);
+                      },700);
                         return false;
     }
   };

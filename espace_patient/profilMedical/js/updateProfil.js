@@ -18,7 +18,7 @@ function update(url,submitEditBtn,overlayId,closeEditBtn,formData) {
                     alertify.set('notifier','position', 'top-center');
                                     
                                     window.setTimeout(function () {window.location.reload();
-                                  }, 80);
+                                  }, 500);
                                     return false;
                  
                 }    //=============db probleme query return falsy value
@@ -29,7 +29,7 @@ function update(url,submitEditBtn,overlayId,closeEditBtn,formData) {
                     alertify.set('notifier','position', 'top-center');
                                     
                                     window.setTimeout(function () {window.location.reload();
-                                  }, 80);
+                                  }, 500);
                                     return false;
                 }
                 //--------------empty fields error---------
@@ -40,7 +40,7 @@ function update(url,submitEditBtn,overlayId,closeEditBtn,formData) {
                     alertify.set('notifier','position', 'top-center');
                                     
                                     window.setTimeout(function () {window.location.reload();
-                                  }, 80);
+                                  }, 500);
                                     return false;
                 }
             }

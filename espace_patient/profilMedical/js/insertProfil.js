@@ -39,7 +39,7 @@
                         alertify.set('notifier','position', 'top-center');
                          $(formsInsert[i])[0].reset();    
                                     window.setTimeout(function () {window.location.reload();
-                                  }, 80);
+                                  }, 700);
                                     return false;
                     
                         // location.reload(true);
@@ -51,7 +51,7 @@
               alertify.set('notifier','position', 'top-center');
                               
                               window.setTimeout(function () {window.location.reload();
-                            }, 80);
+                            }, 700);
                               return false;
                }
                     //--------------empty fields error---------
@@ -62,7 +62,7 @@
                   alertify.set('notifier','position', 'top-center');
                                   
                                   window.setTimeout(function () {window.location.reload();
-                                }, 80);
+                                }, 700);
                                   return false;
                     }
                 }

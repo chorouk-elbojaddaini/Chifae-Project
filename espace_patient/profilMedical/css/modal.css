@@ -294,13 +294,15 @@ overflow-y:auto;
  }
  .docForm  #choisir
 {
-  padding-bottom: 5px;
-  background-color:transparent;
-  border:none
+  padding: 10px;
+  background-color:#4d9da775;
+  border:#054c55
 }
 .docForm  #choisir:hover
 {
-  color:var(--green3)
+  color:var(--pink);
+  background-color:#fe668756;
+
 }
 
 /* ==========================MESURE FORM=================== */

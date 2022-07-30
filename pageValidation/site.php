@@ -57,9 +57,12 @@ include "configsite.php";
     <nav>
         <div class="container nav_container">
           <div class="logo_cont">
+
           <a href="../pageAcceuil/index.php">
-              <img src="./assets/logo.png" alt="logo" class="logo"
-            /></a>
+              <img src="./assets/logo.png" alt="logo" class="logo">
+
+            <a href="index.html"><img src="logo.png" alt="logo" class="logo">
+            </a>
             <h4>Shifae</h4>
           </div>
           <ul class="nav-menu">

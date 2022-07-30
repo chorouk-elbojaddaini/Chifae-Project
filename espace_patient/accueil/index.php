@@ -21,7 +21,7 @@ if (mysqli_num_rows($display) > 0)
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/nav.css" />
-    <link rel="icon" type="image/png" href="./logo.png" />
+    <link rel="icon" type="image/png" href="logo1.png" />
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
   <link
   rel="stylesheet"
@@ -64,9 +64,9 @@ if (mysqli_num_rows($display) > 0)
             <div class="container nav_container">
               <div class="logo_cont">
                 <a href="index.html"
-                  ><img src="./assets/logo.png" alt="logo" class="logo"
+                  ><img src="logo1.png" alt="logo" class="logo"
                 /></a>
-                <h4>Shifae</h4>
+                <h4>Chifae</h4>
               </div>
               <ul class="nav-menu">
                 <li><a href="index.php">Acceuil</a></li>
@@ -187,8 +187,8 @@ if (mysqli_num_rows($display) > 0)
             $num_per_page=02;
             $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
             $start_from =   ($page-1)*$num_per_page;
-            $sql = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
-            $nbRows = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
+            $sql = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime,1) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
+            $nbRows = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime,1) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
 
             $total_records=mysqli_num_rows($nbRows);
             $total_pages=ceil($total_records/$num_per_page);
@@ -214,12 +214,12 @@ if (mysqli_num_rows($display) > 0)
                 </div>
                     <p id="time">'.$row['start_datetime'].'</p>
                 </div>';}
-                else
-                {
-                  echo"<div class='affichage-item-msg-pro border'>
-                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
-                    </div>";
-                }
+                // else
+                // {
+                //   echo"<div class='affichage-item-msg-pro border'>
+                //     <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
+                //     </div>";
+                // }
                   }
                 }
                 else
@@ -287,9 +287,9 @@ if (mysqli_num_rows($display) > 0)
                $num_per_page=02;
                $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
                $start_from =   ($page-1)*$num_per_page;
-               $sql = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
-               $nbRows = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
-
+               $sql = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime,1) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
+               $nbRows = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime,1) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
+              //  echo  $total_records;
                $total_records=mysqli_num_rows($nbRows);
                $total_pages=ceil($total_records/$num_per_page);
          
@@ -313,12 +313,12 @@ if (mysqli_num_rows($display) > 0)
                 </div>
                     <p id="time">'.$row['start_datetime'].'</p>
                 </div>';}
-                else
-                {
-                  echo"<div class='affichage-item-msg border'>
-                    <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
-                    </div>";
-                }
+                // else
+                // {
+                //   echo"<div class='affichage-item-msg border'>
+                //     <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
+                //     </div>";
+                // }
                   }
                 }
                 else
@@ -342,9 +342,9 @@ if (mysqli_num_rows($display) > 0)
     <div class="container">
       <div class="wrapper">
         <div class="footer-widget">
-          <a href="#">
+          <a href="../../pageAcceuil/index.php">
               <div class="logo-footer">
-            <img src="assets/logo.png" class="logo" />
+            <img src="logo1.png" class="logo" />
             <p>Shifae</p></div>
           </a>
           <p class="desc">

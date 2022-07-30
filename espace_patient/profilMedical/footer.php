@@ -2,9 +2,9 @@
     <div class="container">
       <div class="wrapper">
         <div class="footer-widget">
-          <a href="#">
+          <a href="../../pageAcceuil/index.php">
               <div class="logo-footer">
-            <img src="assets/logo.png" class="logo" />
+            <img src="logo1.png" class="logo" />
             <p>Shifae</p></div>
           </a>
           <p class="desc">
