@@ -271,21 +271,21 @@ echo"
       <!-- -----------------------Editer un docsS------------------------ -->
                
       <div class="overlay docs hide" id="editDoc">
-        <form   class="form border docForm" id="docs-form-edit" enctype="multipart/form-data" >
+        <form   class="form border docForm" id="docs-form-edit" enctype="multipart/form-data"  >
         <button class="close_form" id="close-edit-doc"> <i class="uis uis-multiply closeF"></i> </button> 
         <input type="hidden" name="doc_id" id="doc_id" >
                 <label >
                     Nom du document : 
-                    <input type="text" minlength="3" name="nom" id="nom" placeholder="Entrez le nom du document"  />
+                    <input type="text" minlength="3" name="nomDoc" id="nomDoc" placeholder="Entrez le nom du document"  />
                     <!-- add condition about existing file name -->
                 </label>
                   <label >
                       Date :
-                      <input type="date"id="date"name="date"  />
+                      <input type="date"id="dateDoc"name="dateDoc"  />
                   </label>
                   <label >
                     Ajouté par :
-                    <input type="text"id="added"name="added"  />
+                    <input type="text"id="addedDoc"name="addedDoc"  />
                 </label>
                 <label >
                     Catégorie :

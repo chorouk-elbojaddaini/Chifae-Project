@@ -13,42 +13,35 @@ function update(url,submitEditBtn,overlayId,closeEditBtn,formData) {
                 let res = jQuery.parseJSON(response);
                 //===========success case-----------
                 if(res.status == 200){
-                      alertify.set('notifier','position', 'top-center');
-                      alertify.success(res.message);
-                    $(submitEditBtn).click(function(e){
-                      e.preventDefault();
                    
-                        console.log('close')
-                        $(overlayId).hide();
-                         location.reload(true);
-    
-                    })
-                   
-
-                    
-                     //------success msg-------------
-                    
-                    // $(idForm)[0].reset();
-    
-                   
+                    alertify.success(res.message);
+                    alertify.set('notifier','position', 'top-center');
+                                    
+                                    window.setTimeout(function () {window.location.reload();
+                                  }, 80);
+                                    return false;
+                 
                 }    //=============db probleme query return falsy value
     
                 else if(res.status == 500) {
-                    alertify.set('notifier','position', 'top-center');
+                  
                     alertify.error(res.message);
-                    $(closeEditBtn).click(function() {
-                        $(overlayId).hide();
-                        location.reload(true);
-                    })
+                    alertify.set('notifier','position', 'top-center');
+                                    
+                                    window.setTimeout(function () {window.location.reload();
+                                  }, 80);
+                                    return false;
                 }
                 //--------------empty fields error---------
                 else if(res.status == 422)
                 {
-                    alertify.set('notifier','position', 'top-center');
+                 
                     alertify.error(res.message);
-                    $(closeEditBtn).click(function() {
-                        $(overlayId).hide();
-                    })
+                    alertify.set('notifier','position', 'top-center');
+                                    
+                                    window.setTimeout(function () {window.location.reload();
+                                  }, 80);
+                                    return false;
                 }
             }
         })

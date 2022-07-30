@@ -315,7 +315,7 @@ if (mysqli_num_rows($display) > 0)
                 </div>';}
                 else
                 {
-                  echo"<div class='affichage-item-msg-pro border'>
+                  echo"<div class='affichage-item-msg border'>
                     <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
                     </div>";
                 }
@@ -323,7 +323,7 @@ if (mysqli_num_rows($display) > 0)
                 }
                 else
                 {
-                  echo"<div class='affichage-item-msg-pro border'>
+                  echo"<div class='affichage-item-msg border'>
                     <p><i class='fa-solid fa-circle-exclamation warning'></i>Aucun rendez-vous n'est trouvé</p>
                     </div>";
                 }
@@ -338,7 +338,7 @@ if (mysqli_num_rows($display) > 0)
       </div>
 
        </div>
-      <footer>
+       <footer>
     <div class="container">
       <div class="wrapper">
         <div class="footer-widget">
@@ -386,7 +386,7 @@ if (mysqli_num_rows($display) > 0)
           <h6>Services</h6>
           <ul class="links">
             <li><a href="../../pageAcceuil/index.php">prise de RDV</a></li>
-            <li><a href="../../connexionPat/index.php">Dossier médical</a></li>
+            <li><a href="../../espace_patient/index.php">Dossier médical</a></li>
             <li><a href="../../connexionDoc/index.php">calendrier pour medecin</a></li>
             <!-- <li><a href="#">Contacts de Laboratoires</a></li> -->
           </ul>
@@ -408,7 +408,7 @@ if (mysqli_num_rows($display) > 0)
         </p>
       </div>
     </div>
-  </footer>     
+  </footer>  
    </div>
 
 

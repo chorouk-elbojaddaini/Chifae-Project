@@ -970,6 +970,9 @@ p
   margin-top:5px;
    margin-bottom: 5px;
 }
+.btn-option:hover,.btn-optionD:hover{
+  cursor: pointer;
+}
 p[class='btn-optionD']{
   display: inline !important;
 }

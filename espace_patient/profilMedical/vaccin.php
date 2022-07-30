@@ -180,7 +180,7 @@ echo"
                             <option name="ans" value="ans" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="ans"){echo "selected";} }?>>ans</option>
                             <option name="plsans" value="plusieursAns" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="plusieursAns"){echo "selected";} }?>>plus d'un an</option>
                         </select>
-                        <input type="text" name="searchV" id="search" placeholder='nom du vaccin...' value="<?php if(isset($_SESSION['searchVac'])){echo $_SESSION['searchT'];}?>">
+                        <input type="text" name="searchV" id="search" placeholder='nom du vaccin...' value="<?php if(isset($_SESSION['searchVac'])){echo $_SESSION['searchV'];}?>">
                         <button type="submit" name="searchVac" class="searchBtn">
                         <i class="fa-solid fa-magnifying-glass " id="search_icon"></i>
                         </button>

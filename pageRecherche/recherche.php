@@ -72,7 +72,9 @@ include('../pageAcceuil/cnx.php');
         <ul class="nav-menu">
           <li><a href="../pageAcceuil/index.php">Acceuil</a></li>
           <li class="medecin"><a href="../connexionDoc/index.php">Medecin</a></li>
-          <li class="patient"><a href="../connexionPat/index.php">Patient</a></li>
+          <li class="patient"><a href="<?php if(!empty($_SESSION['SESSION_EMAIL'])){echo "../espace_patient/profilMedical/index.php ";} else{
+            echo "../connexionPat/index.php";
+          } ?>">Patient</a></li>
           <li><a href="../ContactPage/contact.php">Contact</a></li>
           <li><a href="../aboutUs/about.html" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
         </ul>

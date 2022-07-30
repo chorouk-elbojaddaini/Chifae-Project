@@ -1,8 +1,14 @@
 <?php
+session_start();
 include '../../connexionDoc/cnx.php';
 //===============================returning the old values==============================
 
-
+$display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
+if (mysqli_num_rows($display) > 0) 
+ { 
+   $row = mysqli_fetch_assoc($display);
+   $_SESSION['idPatient'] =$row['id'];
+ }
 
 if(isset($_GET['doc_id']))
 {
@@ -41,9 +47,9 @@ if(isset($_GET['doc_id']))
 if(isset($_POST['update_doc']) )
 {
     $doc_id = mysqli_real_escape_string($conn, $_POST['doc_id']);
-    $name = mysqli_real_escape_string($conn, $_POST['nom']);
-    $date = mysqli_real_escape_string($conn, $_POST['date']);
-    $added_by = mysqli_real_escape_string($conn, $_POST['added']);
+    $name = mysqli_real_escape_string($conn, $_POST['nomDoc']);
+    $date = mysqli_real_escape_string($conn, $_POST['dateDoc']);
+    $added_by = mysqli_real_escape_string($conn, $_POST['addedDoc']);
     $category = mysqli_real_escape_string($conn, $_POST['category-doc']);
 
   //=======================error msg about empty fields===========

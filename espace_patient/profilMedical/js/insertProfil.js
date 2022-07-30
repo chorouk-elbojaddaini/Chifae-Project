@@ -33,66 +33,37 @@
                     let res = jQuery.parseJSON(response);
                     //===========success case-----------
                     if(res.status == 200){
-                      
-                      console.log(document.querySelector(`button[name='insert-${nameBtn}']`))
-                      console.log((overlay))
-                      //============================On click close the form=====================
-                        $(submitForm).click(function(e){
-                          // e.preventDefault();
-                            console.log((overlay))
-                            $(overlay).hide();
-                        })
+                     
                          //------success msg-------------
+                         alertify.success(res.message);
                         alertify.set('notifier','position', 'top-center');
-                        alertify.success(res.message);
-                        $(formsInsert[i])[0].reset();
-                        location.reload(true);
-                         
-                        
-        
+                         $(formsInsert[i])[0].reset();    
+                                    window.setTimeout(function () {window.location.reload();
+                                  }, 80);
+                                    return false;
+                    
+                        // location.reload(true);
                     }    //=============db probleme query return falsy value
         
                     else if(res.status == 500) {
-                      alertify.set('notifier','position', 'top-center');
+          
               alertify.error(res.message);
-                 $(submitForm).click(function() {
-                
-                  $(overlay).hide();
-              location.reload(true);
-
-              })
-                   
-                   $(closeForm).click(function() {
-                     
-                     alertify.set('notifier','position', 'top-center');
-                   alertify.error(res.message);
-                   
-                       $(overlay).hide();
-                   location.reload(true);
-
-                   })
+              alertify.set('notifier','position', 'top-center');
+                              
+                              window.setTimeout(function () {window.location.reload();
+                            }, 80);
+                              return false;
                }
                     //--------------empty fields error---------
                     else if(res.status == 422)
                     {
-                           alertify.set('notifier','position', 'top-center');
-                   alertify.error(res.message);
-                      $(submitForm).click(function() {
-                     
-                       $(overlay).hide();
-                   location.reload(true);
-
-                   })
-                        
-                        $(closeForm).click(function() {
-                          
-                          alertify.set('notifier','position', 'top-center');
-                        alertify.error(res.message);
-                        
-                            $(overlay).hide();
-                        location.reload(true);
-
-                        })
+         
+                  alertify.error(res.message);
+                  alertify.set('notifier','position', 'top-center');
+                                  
+                                  window.setTimeout(function () {window.location.reload();
+                                }, 80);
+                                  return false;
                     }
                 }
             }

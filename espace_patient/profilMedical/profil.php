@@ -371,7 +371,7 @@ if (mysqli_num_rows($display) > 0)
       <div class="password ">
         <h3 id="pwdH">Changer votre mot de passe :</h3>
         <?php echo $msg; ?>
-            <form method="post" action="profil.php" id="changePwd">
+            <form method="post" action="profil.php#pwdH" id="changePwd">
              <label for="oldPwd">Ancien mot de passe :</label>
              <input type="password" name="oldPwd" class="pwdinput" >
              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>

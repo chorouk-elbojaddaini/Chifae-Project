@@ -40,7 +40,7 @@
       margin:10px auto;
       border:none;
       background-color:var(--green);
-      padding:15px;
+      padding:10px;
       font-size:1.1rem;
       border-radius:30px;
       box-shadow: 4px 4px 2px #58597876;
@@ -59,7 +59,7 @@
   }
   .main
   {
-    margin-bottom: 20%;
+    margin-bottom: 5%;
   }
   /* =============================================MEDIA QUERIES ========================================*/
  /* Small devices (tablets, 768px and up)*/
@@ -80,11 +80,11 @@
 @media (min-width: 992px) and (max-width: 1119px) { 
     h2
     {
-        font-size: 3rem;
+        font-size: 1.8rem;
     }
     p
     {
-        font-size: 2rem;
+        font-size: 1.2rem;
     }
  }
 
@@ -92,11 +92,11 @@
 @media (min-width: 1200px) { 
     h2
     {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
     }
     p
     {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
     }
  }
  

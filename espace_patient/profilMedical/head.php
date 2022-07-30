@@ -156,7 +156,7 @@ if (mysqli_num_rows($display) > 0)
           <div class="profil-text">
             <h1 id="profil-medical">Profil Médical</h1>
            <p>Je complète mon profil médical pour retrouver facilement toutes les informations importantes qui caractérisent ma santé</p>
-           <a href="#" id="prendre-rdv">Prendre un Rendez-vous ></a>
+           <a href="../../pageAcceuil/index.php" id="prendre-rdv">Prendre un Rendez-vous ></a>
           </div>
           
         </div>

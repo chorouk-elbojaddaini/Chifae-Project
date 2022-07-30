@@ -119,7 +119,7 @@ function vanish() {
             
             
         </ul>
-        <a href="#">
+        <a href="../../espace Medecin/page_profil_medecin/php">
                
         <?php
            if($rowDoctor['photo'] != null){
