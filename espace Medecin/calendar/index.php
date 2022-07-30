@@ -111,7 +111,7 @@ $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
             <div class="col-md-3">
                 <div class="cardt rounded-0 shadow">
                     <div class="card-header bg-gradient bg-primary text-light">
-                        <h5 class="card-title">Rendez vous</h5>
+                        <h5 class="card-title" style="margin-left:70px;">Rendez vous</h5>
                     </div>
                     <div class="card-body">
                         <div class="container-fluid">
