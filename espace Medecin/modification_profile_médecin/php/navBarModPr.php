@@ -38,7 +38,7 @@ $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
             </label>
             <ul class="menu">
                 <li>
-                    <a  class="nav-links pink" href="#">Acceuil</a>
+                    <a  class="nav-links pink" href="../../../pageAcceuil/index.php">Acceuil</a>
                 </li>
                 <li>
                     <a  class="nav-links " href="../../../connexionDoc/logout.php"><i class="fa-solid fa-arrow-right-from-bracket icon .logout "></i> Deconnexion</a>

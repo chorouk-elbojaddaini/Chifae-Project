@@ -42,10 +42,12 @@ include "cnx.php";
         <ul class="nav-menu">
           <li><a href="index.php">Acceuil</a></li>
           <!-- ../connexionDoc/index.php -->
-          <li class="medecin"><a href="<?php if(!empty($_SESSION['SESSION_EM'])){echo "../espace Medecin/page_profil_medecin/php/index.php ";} ?>">Medecin</a></li>
+          <li class="medecin"><a href="<?php if(!empty($_SESSION['SESSION_EM'])){echo "../espace Medecin/page_profil_medecin/php/index.php ";} else{
+            echo "../connexionDoc/index.php";
+          } ?>">Medecin</a></li>
           <li class="patient"><a href="../connexionPat/index.php">Patient</a></li>
           <li><a href="../ContactPage/contact.php">Contact</a></li>
-          <li><a href="../aboutUs/about.html" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
+          <li><a href="../aboutUs/about.php" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
           <!-- <li >
             <div class="langWrap">
             <a href="#" language="arabe"><img src="assets/maroc.jpg" alt="maroc" class="arabe"> Ar</a>

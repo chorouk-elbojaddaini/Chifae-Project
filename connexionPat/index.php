@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include 'config.php';
 ?>
 <!DOCTYPE html>
@@ -45,10 +45,12 @@ include 'config.php';
           </div>
           <ul class="nav-menu">
             <li><a href="../pageAcceuil/index.php">Acceuil</a></li>
-            <li class="medecin"><a href="../connexionDoc/index.php">Medecin</a></li>
+            <li class="medecin"><a href="<?php if(!empty($_SESSION['SESSION_EM'])){echo "../espace Medecin/page_profil_medecin/php/index.php ";} else{
+            echo "../connexionDoc/index.php";
+          } ?>">Medecin</a></li>
             <li class="patient"><a href="../connexionPat/index.php">Patient</a></li>
             <li><a href="../ContactPage/contact.php">Contact</a></li>
-          <li><a href="../aboutUs/about.html" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
+          <li><a href="../aboutUs/about.php" class="iconnav" ><i class="uil uil-info-circle " ></i></a></li>
 
           </ul>
           <!-- drop down medecin  -->
