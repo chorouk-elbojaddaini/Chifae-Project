@@ -46,7 +46,6 @@ include "cnx.php";
           <li class="medecin"><a href="<?php if(!empty($_SESSION['SESSION_EM'])){echo "../espace Medecin/page_profil_medecin/php/index.php ";} else{
             echo "../connexionDoc/index.php";
           } ?>">Medecin</a></li>
-
           <li class="patient"><a href="<?php if(!empty($_SESSION['SESSION_EMAIL'])){echo "../espace_patient/profilMedical/index.php ";} else{
             echo "../connexionPat/index.php";
           } ?>">Patient</a></li>

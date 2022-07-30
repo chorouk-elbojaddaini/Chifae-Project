@@ -233,7 +233,8 @@ $arrayHoraires = $medecin->displayData('medecin','horaires',$_SESSION['SESSION_E
                         <form action="#" method="post">
                             <div class="column_form ajouter descr">
                                 <div class="top">
-                                <input class="input_form exp_input" type="text" id="description" name="description" autocomplete="off" placeholder=" ">
+                                <!-- <input class="input_form exp_input" type="text" id="description" name="description" autocomplete="off" placeholder=" "> -->
+                                <textarea name="description"  id="description" class="input_form exp_input"  ></textarea>
                                 <label class="label_form" for="description" type = "text">description</label>
                                 <button class="save_change " type="submit" name="submit_description">Ajouter</button>
                             </div>
