@@ -57,15 +57,7 @@ class Medecin {
                 // print_r($values);
                 $query_string = sprintf("insert into %s (%s) values (%s)",$table,$columns,$values);
                  $res = $this->db->con->query($query_string);
-                if($res){
-                    echo" <script>
-             
-            alert('updated successfully!');
-               
- </script>
- ";
- 
-                 }
+                
             }
         }
        
@@ -106,9 +98,9 @@ class Medecin {
         //  print_r($arrayPatients);
         
         if(!(empty($arrayPatients[0]))){
-            print_r($arrayPatients);
+            
             array_push($arrayPatients, $idPatient);
-            print_r($arrayPatients);
+            
             $arrayPatientsUnique = array_unique($arrayPatients);
             $arrayTest = implode(" ",$arrayPatientsUnique);
             // echo "hi".$arrayTest;
@@ -250,8 +242,8 @@ class Medecin {
             return $result;
         }
     }
-    public function insertBoite($nom,$prenom,$telephne){
-        $query = "insert into rendezvous (nom,prenom,telephone) values ({$nom},{$prenom},{$telephne}) ";
+    public function insertBoite($nom,$prenom,$email){
+        $query = "insert into rendezvous (nom,prenom,email) values ({$nom},{$prenom},{$email}) ";
         $result = $this->db->con->query($query);
         if($result){
             return $result;

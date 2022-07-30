@@ -19,6 +19,8 @@
      <script src="./sweetAlert/jquery-3.6.0.min.js"></script>
      <script src="./sweetAlert/sweetalert2.all.min.js"></script>
       <link rel="stylesheet" href="./sweetAlert/sweetalert2.css">
+      <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+      <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
      <title>Rendez Vous | Shifae</title>
      <link rel="icon" type="image/png" href="../logo.png" />
 </head>

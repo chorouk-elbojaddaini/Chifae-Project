@@ -104,13 +104,17 @@ $(document).on('click','.deletePat', function (e) {
                 //------fail---------------
                 if(res.status == 500) {
 
-                    alertify.set('notifier','position', 'top-right');
+                    alertify.set('notifier','position', 'top-center');
                     alertify.error(res.message);
+                    window.setTimeout(function () {window.location.reload();
+                                    }, 800);
                 }else{
                 //--------success--------- 
-                    alertify.set('notifier','position', 'top-right');
+                    alertify.set('notifier','position', 'top-center');
                     alertify.success(res.message);
-                    location.reload(true);
+                    // location.reload(true);
+                    window.setTimeout(function () {window.location.reload();
+                                    }, 800);
 
                 }
             }
@@ -148,11 +152,13 @@ $(document).on('click','.deletePat', function (e) {
                       
                      
                          //------success msg-------------
-                        alertify.set('notifier','position', 'top-right');
+                        alertify.set('notifier','position', 'top-center');
                         alertify.success(res.message);
-                         location.reload(true);
+                        window.setTimeout(function () {window.location.reload();
+                                    }, 800);
+                        //  location.reload(true);
                          ajouter.addEventListener('click', function() {
-                        console.log("hi again");
+                        
                             $("#boite").hide()
                                 // location.reload(true);
                         })
@@ -163,15 +169,18 @@ $(document).on('click','.deletePat', function (e) {
                     }    //=============db probleme query return falsy value
         
                     else if(res.status == 500) {
-                        alertify.set('notifier','position', 'top-right');
+                        alertify.set('notifier','position', 'top-center');
                         alertify.error(res.message);
-                      
+                        window.setTimeout(function () {window.location.reload();
+                                    }, 800);
                     }
                     //--------------empty fields error---------
                     else if(res.status == 422)
                     {
-                        alertify.set('notifier','position', 'top-right');
+                        alertify.set('notifier','position', 'top-center');
                         alertify.error(res.message);
+                        window.setTimeout(function () {window.location.reload();
+                                    }, 800);
                      
                     }
                 }

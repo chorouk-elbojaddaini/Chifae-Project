@@ -69,8 +69,8 @@
                     <label class="label_form" type="text" for="prenom">prenom</label>
                 </div>
                 <div class="column_form other col2">
-                    <input class="input_form" type="tel" id="telephone" name = "boite_telephone" autocomplete="off" placeholder=" ">
-                    <label class="label_form" type="text" for="telephone">telephone</label>
+                    <input class="input_form" type="email" id="telephone" name = "boite_telephone" autocomplete="off" placeholder=" ">
+                    <label class="label_form" type="text" for="telephone">Email</label>
                 </div>
                 <div class="column_form other col2">
                     <input class="input_form" type="datetime-local" id="date" name = "boite_date" autocomplete="off" placeholder=" ">
@@ -78,7 +78,7 @@
                 </div>
 
                
-                <input type="submit" name = "boite_submit"  class="ajouter" onClick = "window.location.reload()">
+                <input type="submit" name = "boite_submit"  class="ajouter" >
         </form>
 
         <?php 
@@ -128,14 +128,16 @@
                       
                      
                          //------success msg-------------
-                        alertify.set('notifier','position', 'top-right');
+                        alertify.set('notifier','position', 'top-center');
                         alertify.success(res.message);
-                         location.reload(true);
-                         ajouter.addEventListener('click', function() {
-                        console.log("hi again");
-                            $("#boite").hide()
-                                // location.reload(true);
-                        })
+                        //  location.reload(true);
+                        window.setTimeout(function () {window.location.reload();
+                                    }, 800);
+                        //  ajouter.addEventListener('click', function() {
+                        
+                        //     $("#boite").hide()
+                        //         // location.reload(true);
+                        // })
                      
                          
                         
@@ -143,15 +145,19 @@
                     }    //=============db probleme query return falsy value
         
                     else if(res.status == 500) {
-                        alertify.set('notifier','position', 'top-right');
+                        alertify.set('notifier','position', 'top-center');
                         alertify.error(res.message);
+                        window.setTimeout(function () {window.location.reload();
+                                    }, 800);
                       
                     }
                     //--------------empty fields error---------
                     else if(res.status == 422)
                     {
-                        alertify.set('notifier','position', 'top-right');
+                        alertify.set('notifier','position', 'top-center');
                         alertify.error(res.message);
+                        window.setTimeout(function () {window.location.reload();
+                                    }, 800);
                      
                     }
                 }
