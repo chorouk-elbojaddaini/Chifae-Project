@@ -248,5 +248,40 @@
         margin-right: -52% !important;
         
       }}
+      @media (max-width:636px){
+        .menu-button-container{
+          margin-right: 0px !important;
+          position:fixed;
+          right: 80px;
+          
+        }
+      }
+  @media (max-width:500px){
+    .btn-group{
+      display: flex;
+      flex-direction: column;
+     flex-wrap: wrap !important;
+
+    }
+    .fc-dayGridMonth-button ,.fc-dayGridWeek-button, .fc-list-button{ 
+      border-radius: 0px;
+      margin-bottom: 5px;
+    }
+    .fc-dayGridMonth-button{
+      padding-left: 5px;
+    }
+    .fc-prev-button, .fc-next-button {
+      width: 50px ;
+      border-radius: 0px;
+      margin-bottom: 5px;
+    }
+    .fc-today-button{
+      margin-left: -0.5px !important;
+    }
+    .fc-toolbar-title{
+      margin-top: -30px !important;
+      margin-left: -70px !important;
+    }
+  }
 
   /* nav bar end */
