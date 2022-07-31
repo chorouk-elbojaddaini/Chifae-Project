@@ -2,6 +2,10 @@
 session_start();
 include('database/functions.php');
 require_once('db-connect.php');
+if (empty($_SESSION['SESSION_EM'])) {
+    header("location:../../connexionDoc/logout.php");     
+   
+}
 $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
 ?>
 <!DOCTYPE html>

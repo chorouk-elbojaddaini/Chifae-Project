@@ -112,8 +112,8 @@ error_reporting(E_ALL & ~E_NOTICE);
                     ?>
                 </td>
                  
-                 <td><?php echo $patientInfo[0]["nom"] ?></td>
-                 <td><?php echo $patientInfo[0]["prenom"] ?></td>
+                 <td><?php  echo $item["nom"]  ?></td>
+                 <td><?php  echo $item["nom"] ?></td>
                  <td>
                     <?php 
                             $from = new DateTime($patientInfo[0]['datenaissace']);
