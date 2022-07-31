@@ -20,7 +20,7 @@ if(isset($_POST["insertRendezVous"])){
         //     $medecin->insertBoite("yamna","yzaa","05242");
         // }
         $boite_array = array("nom"=>$nom,"prenom"=>$prenom,"email"=>$gmail,"start_datetime"=>$dateTimeStart,"end_datetime"=>$dateTimeEnd,"idMedecin"=>$_SESSION['id']);
-    if($nom == null){
+    if($nom == null || $prenom == null || $gmail == null || $dateTimeStart == null){
         
         $res = [
             'status' => 500,

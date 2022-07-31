@@ -163,17 +163,11 @@ $(document).on('click','.deletePat', function (e) {
                                 // location.reload(true);
                         })
                      
-                         
+                        
                         
         
                     }    //=============db probleme query return falsy value
-        
-                    else if(res.status == 500) {
-                        alertify.set('notifier','position', 'top-center');
-                        alertify.error(res.message);
-                        window.setTimeout(function () {window.location.reload();
-                                    }, 800);
-                    }
+                     
                     //--------------empty fields error---------
                     else if(res.status == 422)
                     {
@@ -183,6 +177,15 @@ $(document).on('click','.deletePat', function (e) {
                                     }, 800);
                      
                     }
+                    else if(res.status == 500)
+                    {
+                        alertify.set('notifier','position', 'top-center');
+                        alertify.error(res.message);
+                        window.setTimeout(function () {window.location.reload();
+                                    }, 800);
+                     
+                    }
+                    
                 }
             }
 
@@ -195,7 +198,10 @@ $(document).on('click','.deletePat', function (e) {
       
        
 </script>
+<script>
+ 
 
+</script>
 
 </body>
 </html>

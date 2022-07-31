@@ -5,6 +5,7 @@
     include("./navBar.php");
     include("./sideBar.php");
     include("./main.php");
+  
     include("./footer.php");
     
       

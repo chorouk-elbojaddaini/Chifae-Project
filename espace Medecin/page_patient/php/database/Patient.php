@@ -103,7 +103,7 @@
         
 
         
-        if($arrayPatients[0] !=""){
+        if($arrayPatients[0] !="" ){
             array_push($arrayPatients, $idPatient);
             $arrayPatientsUnique = array_unique($arrayPatients);
             $arrayTest = implode(" ",$arrayPatientsUnique);
@@ -111,10 +111,11 @@
             $query_string = sprintf("update {$table} set patient = '%s'   where gmail = '{$email}' ",$arrayTest);
             $result =$this->db->con->query($query_string);
         }
-        else{
+        else {
             $query_string = sprintf("update {$table} set patient = '%s'   where gmail = '{$email}' ",$idPatient);
             $result =$this->db->con->query($query_string);
         }
+      
     
         if($result)
             {
@@ -127,23 +128,7 @@
             }
             //=============db probleme query return falsy value
         
-            elseif(empty($idPat)){
-                $res = [
-                    'status' => 422,
-                    'message' => 'tous les champs sont oligatoires'
-                    ];
-                    echo json_encode($res);
-                    return;
-            }
-            else
-            {
-                $res = [
-                    'status' => 500,
-                    'message' => 'Une erreur est survenue'
-                ];
-                echo json_encode($res);
-                return;
-            } 
+            
             
     }
     public function getDataPagination($table,$sortedArray){

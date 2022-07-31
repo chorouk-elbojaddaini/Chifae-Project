@@ -1,4 +1,5 @@
 <?php 
+
 $patientResn = $patient->getDataPatientMed("medecin",$_SESSION['SESSION_EM']);
 
 
@@ -43,7 +44,8 @@ $patient_shuffle = $patient->getData('patient',$arrayTest);
             <div class="top_section">
                 <h2 class="main_title">liste des patients</h2>
                 
-                <a class="add_patient" href="#"  onclick="toggle()">ajouter patient</a>
+                <a class="add_patient" href="#"  onclick="toggle()">ajouter patient</a> 
+               
         </div>
         <form method = "POST">
             <input type = "search" name= "s" placeholder = "rechercher par nom" class="rechercher" >

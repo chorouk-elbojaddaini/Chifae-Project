@@ -20,17 +20,40 @@ session_start();
         $_SESSION['codePatient'] = $_POST["code_patient"];
         $result = $patient->db->con->query("select * from patient where code_patient = '{$code_pat}'");
         $resultArray = array();
+      
+        
         //fetch data one by one
         while($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
             $resultArray[] = $item;
         }
-        $idPat = $resultArray[0]['id'];
-        if(!(empty($_POST["code_patient"]))){
-            
-        $patient->ajouterPatient($idPat,"medecin",$_SESSION['SESSION_EM']);
-            
+        if(!empty($_POST["code_patient"]) && !empty($resultArray)){ 
+           $idPat = $resultArray[0]['id'];
         }
+           if(!empty($idPat)){
+
+            $patient->ajouterPatient($idPat,"medecin",$_SESSION['SESSION_EM']);   
+        
+           }
+           else if(empty($resultArray) && !empty($_POST["code_patient"])){
+                $res = [
+                    'status' => 500,
+                    'message' => 'ce patient nexiste pas'
+                ];
+                echo json_encode($res);
+           }
+           else if(empty($_POST["code_patient"])){
+        
+                $res = [
+                    'status' => 422,
+                    'message' => 'vous n avez rien entrez'
+                    ];
+                    echo json_encode($res);
+            
+            
+           }
        
+        
+        
     }
     
 ?>
