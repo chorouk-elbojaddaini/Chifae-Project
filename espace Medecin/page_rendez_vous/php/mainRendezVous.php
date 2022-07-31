@@ -34,7 +34,7 @@ error_reporting(E_ALL & ~E_NOTICE);
          <p>Rendez-vous</p>
      </div>
      <div class="right">
-     <a class="appointment" href="#"  onclick= "toggle()"><i class="fa-solid fa-calendar-plus"></i> RDV</a>
+     <a class="appointment" href="#"  onclick= "toggle()"><i class="uil uil-plus-circle" style="color:white;"></i> RDV</a>
         <form method= "post" id="frm">
             <select class="select" name="choix" id="dateFilter">
                 <option name = "all" value="all" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="all"){echo "selected";} }?>>all</option>
@@ -140,7 +140,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 
                  <td class="accept">
                  <form method = "post">
-                    <input type="hidden" value = "<?php echo $patientInfo[0]["id"] ?? 0;  ?>" name =  "idPatient">
+                    <input type="hidden" value = "<?php echo $patientInfo[0]["id"] ;  ?>" name =  "idPatient">
                     <button type = "submit" class="deleteP" name = "ajouter_patient" onClick="return confirm('Voulez-vous ajouter ce patient ?')"><i class="fa-solid fa-user-plus fa-lg"></i></button>
                 </form>  
                     </td>
@@ -156,7 +156,7 @@ $medecin->ajouterPatient($_SESSION['SESSION_EM'],$idPatientMed,'medecin');
                 ?>    
                    <td>
                   <form method="post">
-                        <input type="hidden" value="<?php echo $item['id'] ?? 0; ?>" name="id">
+                        <input type="hidden" value="<?php echo $item['id'] ;?>" name="id">
                         <!-- <button type="submit" name="delete_rendezvous" >Delete</button> -->
                         <button type="submit" class='deleteP' name="delete_rendezvous" onClick="return confirm('êtes-vous sûr de vouloir supprimer ce patient?')"><i class='fa-solid fa-trash-can fa-lg'></i></button>
                 </form>       
@@ -201,7 +201,7 @@ $medecin->ajouterPatient($_SESSION['SESSION_EM'],$idPatientMed,'medecin');
                  </td>
                  <td>
                       <form method="post">
-                                <input type="hidden" value="<?php echo $item['id'] ?? 0; ?>" name="id">
+                                <input type="hidden" value="<?php echo $item['id'] ; ?>" name="id">
                         <button type="submit" class='deleteP' name="delete_rendezvous" onClick="return confirm('Êtes-vous sûr de vouloir supprimer ce patient?')"><i class='fa-solid fa-trash-can fa-lg'></i></button>
                                 
                         </form>
