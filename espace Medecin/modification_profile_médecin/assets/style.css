@@ -19,7 +19,7 @@ html,
 body {
   margin: 0;
   height: 100%;
-  background: #f3f8fe;
+  background-color:#e6edee;
 }
 
 * {
@@ -87,6 +87,7 @@ a {
   width: 55px;
   height: 55px;
   clip-path: circle();
+  margin-top: 10px;
 }
 .navbar{
   /* position: relative; */

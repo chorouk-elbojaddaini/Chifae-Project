@@ -54,7 +54,7 @@ $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
                 
                 
             </ul>
-            <a href="#">
+            <a href="../../page_profil_medecin/php">
                    
             <?php
                if($medecin_shuffle[0]['photo'] != null){
