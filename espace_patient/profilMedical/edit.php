@@ -2,7 +2,6 @@
 session_start();
 include '../../connexionDoc/cnx.php';
 //===============================returning the old values==============================
-
 $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
 if (mysqli_num_rows($display) > 0) 
  { 
@@ -20,10 +19,14 @@ if(isset($_GET['doc_id']))
     if(mysqli_num_rows($query_run) == 1)
     {
         $doc = mysqli_fetch_assoc($query_run);
+        $name =explode('.', $doc['nomDoc'])[0];
+       
+
         $res = [
             'status' => 200,
             'message' => 'le document existe',
-            'data' => $doc
+            'data' => $doc,
+            'name'=>$name
           
         ];
         
@@ -50,9 +53,10 @@ if(isset($_POST['update_doc']) )
     $name = mysqli_real_escape_string($conn, $_POST['nomDoc']);
     $date = mysqli_real_escape_string($conn, $_POST['dateDoc']);
     $added_by = mysqli_real_escape_string($conn, $_POST['addedDoc']);
-    $category = mysqli_real_escape_string($conn, $_POST['category-doc']);
-
+    $category = mysqli_real_escape_string($conn, $_POST['categorieDoc']);
+   
   //=======================error msg about empty fields===========
+//   echo 'name'.$_SESSION['fileName'];
     if($name == NULL || $date == NULL || $added_by == NULL )
     {
             $res = [
@@ -70,7 +74,8 @@ if(isset($_POST['update_doc']) )
     $query_run = mysqli_query($conn, $query);
     $doc_info = mysqli_fetch_assoc($query_run);
     $oldName = $doc_info['nomDoc'];
-    
+    $ext =explode('.', $oldName)[1];
+    $name =$name.'.'.$ext;
     $update = "UPDATE documents SET nomDoc='$name',date='$date',ajoutPar='$added_by',categorieDoc='$category'
                 WHERE id='{$_SESSION['idPatient']}' AND  idDoc='$doc_id'";
     $update_run = mysqli_query($conn, $update);

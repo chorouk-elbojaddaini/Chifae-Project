@@ -2,12 +2,17 @@
 session_start();
 
 include '../../connexionDoc/cnx.php';
+if (empty($_SESSION['SESSION_EMAIL'])) {
+  header("location: ../../connexionPat/logout.php");        
+      die();
+}
 $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
 if (mysqli_num_rows($display) > 0) 
  { 
    $row = mysqli_fetch_assoc($display);
    $_SESSION['idPatient'] =$row['id'];
  }
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">

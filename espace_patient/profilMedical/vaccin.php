@@ -126,7 +126,7 @@ echo"
                     <!-- -----------------------------vaccin update----------------------------------- -->
                     <div class="overlay vaccin hide" id="vaccin1">
                       <form action="#" method="post" name="vaccin" class="form border update" id="vaccin-form-update">
-                        <button  class="close_form" id="vaccin-btn-close" name="close-update-vaccin" onclick="hideForm()"> <i class="uis uis-multiply closeF"></i> </button> 
+                        <button  class="close_form" id="vaccin-btn-close" name="close-update-vaccin" > <i class="uis uis-multiply closeF"></i> </button> 
                             <input type="hidden" name="idV" id="vac" >
                                 
                                 <label >

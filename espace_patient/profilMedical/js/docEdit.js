@@ -1,5 +1,5 @@
 //============get the id of the row to edit=============
-let nameF =""
+
 $(document).on('click', '.editDoc', function () {
 
     let doc_id = $(this).val();
@@ -15,20 +15,16 @@ $(document).on('click', '.editDoc', function () {
               
                 alert(res.message);
             }else if(res.status == 200){
-                  let nameOnly = res.data.nomDoc.split('.')[0];
-                  let ext = res.data.nomDoc.split('.')[1];
-                  let nameF = nameOnly+'.'+ext
+                
                 $('#doc_id').val(res.data.idDoc);
-                $('#doc_ext').val(ext);
-
-                $('#nomDoc').val(nameOnly);
+                $('#nomDoc').val(res.name);
                 $('#dateDoc').val(res.data.date);
                 $('#addedDoc').val(res.data.ajoutPar);
                 $('#category-doc').val(res.data.categorieDoc);
                
                 $('#editDoc').show();
             }
-        
+            
         }
     });
 
@@ -37,11 +33,9 @@ $(document).on('click', '.editDoc', function () {
 $(document).on('submit', '#docs-form-edit', function (e) {
 
     e.preventDefault();
- 
+
     let formData = new FormData(this);
     formData.append("update_doc", true);
-    formData.append("nomDocFull",nameF);
-
     for (const pair of formData.entries()) {
         console.log(`${pair[0]}, ${pair[1]}`);
       }
@@ -60,8 +54,8 @@ $(document).on('submit', '#docs-form-edit', function (e) {
                 alertify.success(res.message);
                 alertify.set('notifier','position', 'top-center');
                
-                                      window.setTimeout(function () {window.location.reload();
-                                    }, 700);
+                                    //   window.setTimeout(function () {window.location.reload();
+                                    // }, 700);
                 $('#docs-form-edit')[0].reset();
                 return false;
 
@@ -73,8 +67,8 @@ $(document).on('submit', '#docs-form-edit', function (e) {
                 alertify.error(res.message);
                 alertify.set('notifier','position', 'top-center');
                                 
-                                window.setTimeout(function () {window.location.reload();
-                              }, 700);
+                            //     window.setTimeout(function () {window.location.reload();
+                            //   }, 700);
                                 return false;
             }
             //--------------empty fields error---------
@@ -83,8 +77,8 @@ $(document).on('submit', '#docs-form-edit', function (e) {
                 alertify.error(res.message);
                 alertify.set('notifier','position', 'top-center');
                                 
-                                window.setTimeout(function () {window.location.reload();
-                              }, 700);
+                            //     window.setTimeout(function () {window.location.reload();
+                            //   }, 700);
                                 return false;
             }
         }
@@ -128,3 +122,24 @@ $(document).on('click','.deleteDoc', function (e) {
     }
 });
 
+  let btnClose = document.querySelectorAll('.close_form')
+  for(let i = 0; i < btnClose.length; i++) {
+    btnClose[i].addEventListener('click',function(e) {
+      e.preventDefault()
+      console.log('hello')
+      let form = this.parentNode.parentNode
+    
+      $(form).hide()
+      location.reload(true);
+    })
+  }
+//   let btnOpen = document.querySelectorAll('.open-form')
+//   for(let i = 0; i < btnOpen.length; i++) {
+//     btnOpen[i].addEventListener('click',function(e) {
+     
+//       console.log('hello1')
+//       let form = this.parentNode.parentNode
+    
+//       $(form).show()
+//     })
+//   }

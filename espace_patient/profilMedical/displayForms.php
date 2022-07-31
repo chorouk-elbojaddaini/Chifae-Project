@@ -4,7 +4,7 @@ function insert_allergie(){
  echo'
  <div class="overlay allergy hide" id="allergy">
  <form action="" method="post" name="allergy" class="form border insert" id="allergy-form">
-   <button class="close_form" onclick="hideForm()"id="allergy-btn" name="close-insert-allergy" > <i class="uis uis-multiply closer"></i> </button> 
+   <button class="close_form" id="allergy-btn" name="close-insert-allergy" > <i class="uis uis-multiply closer"></i> </button> 
  
            <label >
              Nom d\'allergie : 
@@ -25,7 +25,7 @@ function update_allergie()
  echo'
  <div class="overlay allergy hide" id="allergy1">
  <form action="" method="post" name="allergy" class="form border update" id="allergy-form-update">
-   <button class="close_form" onclick="hideForm()"id="allergy-btn-close" name="close-update-allergy" > <i class="uis uis-multiply closer"></i> </button> 
+   <button class="close_form" id="allergy-btn-close" name="close-update-allergy" > <i class="uis uis-multiply closer"></i> </button> 
        <input type="hidden" name="idAlg" id="alg" >
          
            <label >
@@ -51,7 +51,7 @@ function insert_antecedent()
 echo'
 <div class="overlay antecedent hide" id="antecedent">
 <form action="" method="post" name="antecedent" class="form border insert" id="antecedent-form">
- <button class="close_form" onclick="hideForm()" id="antecedent-btn" name="close-insert-antecedent"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form"  id="antecedent-btn" name="close-insert-antecedent"> <i class="uis uis-multiply closer"></i> </button> 
 
          <label >
            Nom de la antecedentie : 
@@ -75,7 +75,7 @@ function update_antecedent() {
 echo'
 <div class="overlay antecedent hide" id="antecedent1">
 <form action="" method="post" name="antecedent" class="form border update" id="antecedent-form-update">
- <button class="close_form" onclick="hideForm()" id="antecedent-btn-close" name="close-update-antecedent"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form"  id="antecedent-btn-close" name="close-update-antecedent"> <i class="uis uis-multiply closer"></i> </button> 
       <input type="hidden" name="idAnt" id="antece" >
   
          <label >
@@ -102,7 +102,7 @@ function insert_doc()
 echo'
 <div class="overlay docs hide" id="doc">
      <form   class="form border docForm" id="docs-form" enctype="multipart/form-data" >
-     <button class="close_form" onclick="hideForm()"id="close-add-doc"> <i class="uis uis-multiply closer"></i> </button> 
+     <button class="close_form" id="close-add-doc"> <i class="uis uis-multiply closer"></i> </button> 
              <label >
                  Nom du document : 
                  <input type="text" minlength="3" name="nom-docs" id="nom-doc" placeholder="Entrez le nom du document"  />
@@ -119,12 +119,12 @@ echo'
              <label >
                  Catégorie :
                  <select id="category" name="category">
-                     <option value="resultats">Résultats de biologie</option>
-                     <option value="compte-rendu">Comptes rendu</option>
-                     <option value="imagerie">Imageries médicales</option>
-                     <option value="certifs">Certificats</option>
-                     <option value="piece">Pièces administratives</option>
-                     <option value="autres">autres documents</option>
+                 <option value="Résultats de biologie">Résultats de biologie</option>
+                 <option value="Comptes rendu">Comptes rendu</option>
+                 <option value="Imageries médicales">Imageries médicales</option>
+                 <option value="Certificats">Certificats</option>
+                 <option value="Pièces administratives">Pièces administratives</option>
+                 <option value="autres documents">autres documents</option>
                  </select>
              </label>
              <label id="choisir">
@@ -143,24 +143,24 @@ function update_doc()
 echo'
 <div class="overlay docs hide" id="editDoc">
 <form   class="form border docForm" id="docs-form-edit" enctype="multipart/form-data" >
-<button class="close_form" onclick="hideForm()"id="close-edit-doc"> <i class="uis uis-multiply closer"></i> </button> 
+<button class="close_form" id="close-edit-doc"> <i class="uis uis-multiply closer"></i> </button> 
 <input type="hidden" name="doc_id" id="doc_id" >
      <label >
          Nom du document : 
-         <input type="text" minlength="3" name="nom" id="nomDoc" placeholder="Entrez le nom du document"  />
+         <input type="text" minlength="3" name="nomDoc" id="nomDoc" placeholder="Entrez le nom du document"  />
          <!-- add condition about existing file name -->
      </label>
        <label >
            Date :
-           <input type="date"id="dateDoc"name="date"  />
+           <input type="date"id="dateDoc"name="dateDoc"  />
        </label>
        <label >
          Ajouté par :
-         <input type="text"id="addedDoc"name="added"  />
+         <input type="text"id="addedDoc"name="addedDoc"  />
      </label>
      <label >
          Catégorie :
-         <select id="category-doc" name="category-doc">
+         <select id="categorieDoc" name="categorieDoc">
          <option value="Résultats de biologie">Résultats de biologie</option>
          <option value="Comptes rendu">Comptes rendu</option>
          <option value="Imageries médicales">Imageries médicales</option>
@@ -170,7 +170,7 @@ echo'
          </select>
      </label>
     
-     <button  class="form-btn" id="submit-doc-edit" value="Edit" >Modifier</button>
+     <button  class="form-btn" id="submit-doc-edit"  >Modifier</button>
 </form>
 </div>';
 }
@@ -180,7 +180,7 @@ function insert_hospital()
 echo'
 <div class="overlay hospital hide" id="hospital">
                  <form action="" method="post" name="hospital" class="form border insert" id="hospital-form">
-                   <button class="close_form" onclick="hideForm()"id="hospital-btn" name="close-insert-hospital"> <i class="uis uis-multiply closer"></i> </button> 
+                   <button class="close_form" id="hospital-btn" name="close-insert-hospital"> <i class="uis uis-multiply closer"></i> </button> 
                  
                            <label >
                              Cause : 
@@ -207,7 +207,7 @@ echo'
 function update_hospital() {
 echo'   <div class="overlay hospital hide" id="hospital1">
 <form action="" method="post" name="hospital" class="form border update" id="hospital-form-update">
- <button class="close_form" onclick="hideForm()"id="hospital-btn-close" name="close-update-hospital"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" id="hospital-btn-close" name="close-update-hospital"> <i class="uis uis-multiply closer"></i> </button> 
          <input type="hidden" name="idH" id="hosp" >
          
          <label >
@@ -236,7 +236,7 @@ function insert_maladie(){
 echo'
 <div class="overlay maladie hide" id="maladie">
                  <form action="" method="post" name="maladie" class="form border insert" id="maladie-form">
-                   <button class="close_form" onclick="hideForm()"id="maladie-btn" name="close-insert-maladie"> <i class="uis uis-multiply closer"></i> </button> 
+                   <button class="close_form" id="maladie-btn" name="close-insert-maladie"> <i class="uis uis-multiply closer"></i> </button> 
                            <label >
                              Nom du maladie : 
                              <input type="text" minlength="3" name="nom-maladie"  placeholder="Entrez le nom du maladie" />
@@ -273,7 +273,7 @@ echo'
  
 <div class="overlay maladie hide" id="maladie1">
 <form action="" method="post" name="maladie" class="form border update" id="maladie-form-update">
- <button class="close_form" onclick="hideForm()"id="maladie-btn-close" name="close-update-maladie"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" id="maladie-btn-close" name="close-update-maladie"> <i class="uis uis-multiply closer"></i> </button> 
      <input type="hidden" name="idMal" id="mal" >
 
          <label >
@@ -309,7 +309,7 @@ function insert_mesure(){
 echo'
 <div class="overlay mesureForm hide" id="mesure">
 <form action="" method="post" name="mesure" class="form border insert" id="mesure-form">
- <button class="close_form" onclick="hideForm()"id="mesure-btn" name="close-insert-mesure"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" id="mesure-btn" name="close-insert-mesure"> <i class="uis uis-multiply closer"></i> </button> 
    <div class="mesure-inputs">
      <label >
        Poids
@@ -368,7 +368,7 @@ function update_mesure() {
 echo'
 <div class="overlay mesureForm hide" id="mesure1">
 <form action="" method="post" name="mesure" class="form border update" id="mesure-form-update">
- <button class="close_form" onclick="hideForm()"id="mesure-btn-close" name="close-update-mesure"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" id="mesure-btn-close" name="close-update-mesure"> <i class="uis uis-multiply closer"></i> </button> 
    <input type="hidden" name="idM" id="mes" >
 
  <div class="mesure-inputs">
@@ -428,7 +428,7 @@ function insert_traite()
 {
 echo'<div class="overlay traitement hide" id="traitement" >
 <form action="" method="post" name="traitement" class="form border insert" id="traitement-form">
- <button class="close_form" onclick="hideForm()"id="traitement-btn-close" name="close-insert-traitement" > <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" id="traitement-btn-close" name="close-insert-traitement" > <i class="uis uis-multiply closer"></i> </button> 
 
          <label >
            Nom du traitement : 
@@ -461,7 +461,7 @@ function update_traite()
 echo'
 <div class="overlay traitement hide" id="traitement1" >
 <form action="" method="post" name="traitement" class="form border update" id="traitement-form-update">
-<button class="close_form" onclick="hideForm()"id="traitement-btn-close" name="close-update-traitement" > <i class="uis uis-multiply closer"></i> </button> 
+<button class="close_form" id="traitement-btn-close" name="close-update-traitement" > <i class="uis uis-multiply closer"></i> </button> 
               <input type="hidden" name="idT" id="traite" >
             
           <label >
@@ -496,7 +496,7 @@ function insert_vaccin()
 echo'
 <div class="overlay vaccin hide" id="vaccin">
 <form action="" method="post" name="vaccin" class="form border insert" id="vaccin-form">
- <button class="close_form" onclick="hideForm()"id="vaccin-btn" name="close-insert-vaccin"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" id="vaccin-btn" name="close-insert-vaccin"> <i class="uis uis-multiply closer"></i> </button> 
 
          <label >
            Nom du vaccin : 
@@ -527,7 +527,7 @@ echo'
 function update_vaccin() {
 echo' <div class="overlay vaccin hide" id="vaccin1">
 <form action="" method="post" name="vaccin" class="form border update" id="vaccin-form-update">
- <button class="close_form" onclick="hideForm()"id="vaccin-btn-close" name="close-update-vaccin"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" id="vaccin-btn-close" name="close-update-vaccin"> <i class="uis uis-multiply closer"></i> </button> 
      <input type="hidden" name="idV" id="vac" >
          
          <label >
@@ -562,7 +562,7 @@ function insert_diagno()
 echo'
 <div class="overlay diagno hide" id="diagno">
 <form action="" method="post" name="diagno" class="form border insert" id="diagno-form">
-             <button class="close_form" onclick="hideForm()"id="diagno-btn" name="close-insert-diagno" > <i class="uis uis-multiply closer"></i> </button> 
+             <button class="close_form" id="diagno-btn" name="close-insert-diagno" > <i class="uis uis-multiply closer"></i> </button> 
  
            <label >
              Nom et Prénom : 
@@ -594,7 +594,7 @@ echo'
 function update_diagno() {
 echo' <div class="overlay diagno hide" id="diagno1">
 <form action="" method="post" name="diagno" class="form border update" id="diagno-form-update">
- <button class="close_form" onclick="hideForm()"id="diagno-btn-close" name="close-update-diagno"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" id="diagno-btn-close" name="close-update-diagno"> <i class="uis uis-multiply closer"></i> </button> 
      <input type="hidden" name="idD" id="diag" >
          
         

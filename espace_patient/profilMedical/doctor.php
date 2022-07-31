@@ -2,7 +2,10 @@
 session_start();
 error_reporting(E_ALL ^ E_WARNING);
 include '../../connexionDoc/cnx.php';
-
+if (empty($_SESSION['SESSION_EM'])) {
+  header("location: ../../connexionDoc/logout.php");        
+      die();
+}
 $_SESSION['code_patient'] = $_GET["code_patient"];
 // get the patient
 $query = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE code_patient ='{$_SESSION['code_patient']}' ");
@@ -242,7 +245,7 @@ function vanish() {
                    <!-- ---------------------------update form--------------- -->
        <div class="overlay profil hide over-prof" id="profil" >
                     <form action="" method="POST" name="profil" class="form border update" id="profil-form-update">
-                    <button class="close_form" onclick="hideForm()"id="profil-btn-close" name="close-update-profil" > <i class="uis uis-multiply closeF"></i> </button> 
+                    <button class="close_form" id="profil-btn-close" name="close-update-profil" > <i class="uis uis-multiply closeF"></i> </button> 
                                   <input type="hidden" name="idP" id="idP" >
                                 
                             <div class="profil-inputs">

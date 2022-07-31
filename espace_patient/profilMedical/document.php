@@ -3,9 +3,16 @@ session_start();
 error_reporting(E_ALL ^ E_WARNING);
 
 include '../../connexionDoc/cnx.php';
+if (empty($_SESSION['SESSION_EMAIL'])) {
+  header("location: ../../connexionPat/logout.php");        
+      die();
+}
 include'pagination.php';
 include'filter.php';
-
+if (isset($_SESSION['SESSION_EMAIL'])) {
+  header("location: document.php");        
+      die();
+}
 $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
 
 if (mysqli_num_rows($display) > 0) 
@@ -236,7 +243,7 @@ echo"
                
       <div class="overlay docs hide" id="doc">
         <form   class="form border docForm" id="docs-form" enctype="multipart/form-data" >
-        <button class="close_form" onclick="hideForm()"id="close-add-doc"> <i class="uis uis-multiply closeF"></i> </button> 
+        <button class="close_form" id="close-add-doc"> <i class="uis uis-multiply closeF"></i> </button> 
                 <label >
                     Nom du document : 
                     <input type="text" minlength="3" name="nom-docs" id="nom-doc" placeholder="Entrez le nom du document"  />
@@ -274,7 +281,7 @@ echo"
                
       <div class="overlay docs hide" id="editDoc">
         <form   class="form border docForm" id="docs-form-edit" enctype="multipart/form-data"  >
-        <button class="close_form" onclick="hideForm()"id="close-edit-doc"> <i class="uis uis-multiply closeF"></i> </button> 
+        <button class="close_form" id="close-edit-doc"> <i class="uis uis-multiply closeF"></i> </button> 
         <input type="hidden" name="doc_id" id="doc_id" >
         <input type="hidden" name="doc_ext" id="doc_ext" >
 
@@ -293,17 +300,17 @@ echo"
                 </label>
                 <label >
                     Catégorie :
-                    <select id="category-doc" name="category-doc">
-                        <option value="resultats">Résultats de biologie</option>
-                        <option value="compte-rendu">Comptes rendu</option>
-                        <option value="imagerie">Imageries médicales</option>
-                        <option value="certifs">Certificats</option>
-                        <option value="piece">Pièces administratives</option>
-                        <option value="autres">autres documents</option>
+                    <select id="categorieDoc" name="categorieDoc">
+                    <option value="Résultats de biologie">Résultats de biologie</option>
+                        <option value="Comptes rendu">Comptes rendu</option>
+                        <option value="Imageries médicales">Imageries médicales</option>
+                        <option value="Certificats">Certificats</option>
+                        <option value="Pièces administratives">Pièces administratives</option>
+                        <option value="autres documents">autres documents</option>
                     </select>
                 </label>
                
-                <button  class="form-btn" id="submit-doc-edit" value="Edit" >Modifier</button>
+                <button  class="form-btn" id="submit-doc-edit"  >Modifier</button>
        </form>
       </div>
       

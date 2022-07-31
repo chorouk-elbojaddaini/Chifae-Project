@@ -74,7 +74,7 @@ echo"
                           <p>
                             Je peux renseigner l'ensemble de mes allergies et les décrire 
                           </p>
-                          <button  class="open-form" id="add-allergy" onclick="displayForm('allergy')">Ajouter</button>
+                          <button type="button" class="open-form" id="add-allergy" onclick="displayForm('allergy')">Ajouter</button>
                         </div>
                     </div>
                     </div>
@@ -82,7 +82,7 @@ echo"
                     <!-- -----------------------------insert allergy----------------------------------- -->
                   <div class="overlay allergy hide" id="allergy">
                     <form action="" method="post" name="allergy" class="form border insert" id="allergy-form">
-                      <button  class="close_form" id="allergy-btn" name="close-insert-allergy" onclick="hideForm()" > <i class="uis uis-multiply closeF"></i> </button> 
+                      <button  class="close_form" id="allergy-btn" name="close-insert-allergy" > <i class="uis uis-multiply closeF"></i> </button> 
                     
                               <label >
                                 Nom d'allergie : 
@@ -99,7 +99,7 @@ echo"
                   <!-- -----------------------------update allergy----------------------------------- -->
                   <div class="overlay allergy hide" id="allergy1">
                     <form action="" method="post" name="allergy" class="form border update" id="allergy-form-update">
-                      <button  class="close_form" id="allergy-btn-close" name="close-update-allergy"  onclick="hideForm()"> <i class="uis uis-multiply closeF"></i> </button> 
+                      <button  class="close_form" id="allergy-btn-close" name="close-update-allergy" > <i class="uis uis-multiply closeF"></i> </button> 
                           <input type="hidden" name="idAlg" id="alg" >
                             
                               <label >

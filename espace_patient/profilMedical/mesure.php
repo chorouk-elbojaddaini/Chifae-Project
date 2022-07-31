@@ -93,7 +93,7 @@ echo"</div> ";
             <!-- ---------------------------form to add mesures------------------------- -->
             <div class="overlay mesureForm hide" id="mesure">
 <form action="" method="post" name="mesure" class="form border insert" id="mesure-form">
- <button class="close_form"onclick="hideForm()" id="mesure-btn" name="close-insert-mesure"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" id="mesure-btn" name="close-insert-mesure"> <i class="uis uis-multiply closer"></i> </button> 
    <div class="mesure-inputs">
      <label >
        Poids
@@ -146,7 +146,7 @@ echo"</div> ";
                <!-- ---------------------------form to update mesures------------------------- -->
                <div class="overlay mesureForm hide" id="mesure1">
 <form action="" method="post" name="mesure" class="form border update" id="mesure-form-update">
- <button class="close_form"onclick="hideForm()" id="mesure-btn-close" name="close-update-mesure"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" id="mesure-btn-close" name="close-update-mesure"> <i class="uis uis-multiply closer"></i> </button> 
    <input type="hidden" name="idM" id="mes" >
 
  <div class="mesure-inputs">
