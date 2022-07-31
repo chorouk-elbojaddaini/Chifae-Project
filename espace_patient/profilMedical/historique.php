@@ -72,7 +72,7 @@ echo"
 
 <div class="overlay diagno hide" id="diagno">
 <form action="" method="post" name="diagno" class="form border insert" id="diagno-form">
-             <button class="close_form" id="diagno-btn" name="close-insert-diagno" > <i class="uis uis-multiply closer"></i> </button> 
+             <button class="close_form" onclick="hideForm()"id="diagno-btn" name="close-insert-diagno" > <i class="uis uis-multiply closer"></i> </button> 
  
            <label >
              Nom et Prénom : 
@@ -101,7 +101,7 @@ echo"
 </div>
  <div class="overlay diagno hide" id="diagno1">
 <form action="" method="post" name="diagno" class="form border update" id="diagno-form-update">
- <button class="close_form" id="diagno-btn-close" name="close-update-diagno"> <i class="uis uis-multiply closer"></i> </button> 
+ <button class="close_form" onclick="hideForm()"id="diagno-btn-close" name="close-update-diagno"> <i class="uis uis-multiply closer"></i> </button> 
      <input type="hidden" name="idD" id="diag" >
          
         

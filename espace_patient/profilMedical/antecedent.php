@@ -92,7 +92,7 @@ echo"
                           <!-- -----------------------------insert antecedent----------------------------------- -->
                <div class="overlay antecedent hide" id="antecedent">
                 <form action="#" method="post" name="antecedent" class="form border insert" id="antecedent-form">
-                  <button class="close_form"  id="antecedent-btn" name="close-insert-antecedent"> <i class="uis uis-multiply closeF"></i> </button> 
+                  <button class="close_form"onclick="hideForm()"  id="antecedent-btn" name="close-insert-antecedent"> <i class="uis uis-multiply closeF"></i> </button> 
                 
                           <label >
                             Nom de la antecedent : 
@@ -113,7 +113,7 @@ echo"
                <!-- -----------------------------update antecedent----------------------------------- -->
                <div class="overlay antecedent hide" id="antecedent1">
                 <form action="#" method="post" name="antecedent" class="form border update" id="antecedent-form-update">
-                  <button class="close_form"  id="antecedent-btn-close" name="close-update-antecedent"> <i class="uis uis-multiply closeF"></i> </button> 
+                  <button class="close_form"onclick="hideForm()"  id="antecedent-btn-close" name="close-update-antecedent"> <i class="uis uis-multiply closeF"></i> </button> 
                        <input type="hidden" name="idAnt" id="antece" >
                    
                           <label >

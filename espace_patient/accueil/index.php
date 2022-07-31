@@ -187,8 +187,8 @@ if (mysqli_num_rows($display) > 0)
             $num_per_page=02;
             $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
             $start_from =   ($page-1)*$num_per_page;
-            $sql = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime,1) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
-            $nbRows = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime,1) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
+            $sql = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND DATE_ADD(CURDATE(),INTERVAL -7 DAY) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
+            $nbRows = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND DATE_ADD(CURDATE(),INTERVAL -7 DAY) ORDER BY start_datetime DESC ;");
 
             $total_records=mysqli_num_rows($nbRows);
             $total_pages=ceil($total_records/$num_per_page);
@@ -287,8 +287,8 @@ if (mysqli_num_rows($display) > 0)
                $num_per_page=02;
                $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
                $start_from =   ($page-1)*$num_per_page;
-               $sql = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime,1) = YEARWEEK(NOW()) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
-               $nbRows = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND YEARWEEK(start_datetime,1) = YEARWEEK(NOW()) ORDER BY start_datetime DESC ;");
+               $sql = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND DATE_ADD(CURDATE(),INTERVAL -7 DAY) ORDER BY start_datetime DESC limit  $start_from,$num_per_page;");
+               $nbRows = mysqli_query($conn,"SELECT * FROM schedule_list WHERE email='{$_SESSION['SESSION_EMAIL']}' AND DATE_ADD(CURDATE(),INTERVAL -7 DAY) ORDER BY start_datetime DESC ;");
               //  echo  $total_records;
                $total_records=mysqli_num_rows($nbRows);
                $total_pages=ceil($total_records/$num_per_page);

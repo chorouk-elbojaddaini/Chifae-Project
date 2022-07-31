@@ -93,7 +93,7 @@ function table_traite($traite,$res) {
                   
                 <div class="overlay traitement hide" id="traitement" >
                   <form action="#" method="post" name="traitement" class="form border insert" id="traitement-form">
-                    <button class="close_form" id="traitement-btn-close" name="close-insert-traitement" > <i class="uis uis-multiply closeF"></i> </button> 
+                    <button class="close_form" onclick="hideForm()"id="traitement-btn-close" name="close-insert-traitement" > <i class="uis uis-multiply closeF"></i> </button> 
                   
                             <label >
                               Nom du traitement : 
@@ -122,8 +122,8 @@ function table_traite($traite,$res) {
                   <!-- -----------------------UPDATE DES TARAITEMENTS------------------------ -->
                   
                   <div class="overlay traitement hide" id="traitement1" >
-                    <form action="#" method="post" name="traitement" class="form border update" id="traitement-form-update">
-                    <button class="close_form" id="traitement-btn-close" name="close-update-traitement" > <i class="uis uis-multiply closeF"></i> </button> 
+                    <form action="" method="post" name="traitement" class="form border update" id="traitement-form-update">
+                    <button class="close_form" onclick="hideForm()"id="traitement-btn-close" name="close-update-traitement" > <i class="uis uis-multiply closeF"></i> </button> 
                                   <input type="hidden" name="idT" id="traite" >
                                 
                               <label >

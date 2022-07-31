@@ -8,7 +8,7 @@ function insert_maladie()
   echo'
   <div class="overlay maladie hide" id="maladie">
   <form action="#" method="post" name="maladie" class="form border insert" id="maladie-form">
-    <button class="close_form" id="maladie-btn" name="close-insert-maladie"> <i class="uis uis-multiply closeF"></i> </button> 
+    <button class="close_form"onclick="hideForm()" id="maladie-btn" name="close-insert-maladie"> <i class="uis uis-multiply closeF"></i> </button> 
             <label >
               Nom du maladie : 
               <input type="text" minlength="3" name="nom-maladie"  placeholder="Entrez le nom du maladie" />
@@ -137,7 +137,7 @@ echo"
                   
                   <div class="overlay maladie hide" id="maladie1">
                     <form action="#" method="post" name="maladie" class="form border update" id="maladie-form-update">
-                      <button class="close_form" id="maladie-btn-close" name="close-update-maladie"> <i class="uis uis-multiply closeF"></i> </button> 
+                      <button class="close_form"onclick="hideForm()" id="maladie-btn-close" name="close-update-maladie"> <i class="uis uis-multiply closeF"></i> </button> 
                           <input type="hidden" name="idMal" id="mal" >
 
                               <label >
@@ -151,12 +151,12 @@ echo"
                               <label >
                     Catégorie :
                     <select id="category" name="category">
-                        <option value="ordi">ordinaire</option>
-                        <option value="chroni">chronique</option>
-                        <option value="tumeur">Tumeur</option>
-                        <option value="grossesse">Grossesse</option>
-                        <option value="autres">autres </option>
-                    </select>
+                            <option value="ordinaire">ordinaire</option>
+                            <option value="chronique">chronique</option>
+                            <option value="Tumeur">Tumeur</option>
+                            <option value="Grossesse">Grossesse</option>
+                            <option value="autres">autres </option>
+                        </select>
                                 <label >
                                     Description :
                                     <textarea name="descMal"  id="descMal"  rows="4" placeholder="Décrivez votre maladie"></textarea>

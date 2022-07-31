@@ -1,5 +1,5 @@
 //============get the id of the row to edit=============
-
+let nameF =""
 $(document).on('click', '.editDoc', function () {
 
     let doc_id = $(this).val();
@@ -15,16 +15,20 @@ $(document).on('click', '.editDoc', function () {
               
                 alert(res.message);
             }else if(res.status == 200){
-
+                  let nameOnly = res.data.nomDoc.split('.')[0];
+                  let ext = res.data.nomDoc.split('.')[1];
+                  let nameF = nameOnly+'.'+ext
                 $('#doc_id').val(res.data.idDoc);
-                $('#nomDoc').val(res.data.nomDoc);
+                $('#doc_ext').val(ext);
+
+                $('#nomDoc').val(nameOnly);
                 $('#dateDoc').val(res.data.date);
                 $('#addedDoc').val(res.data.ajoutPar);
                 $('#category-doc').val(res.data.categorieDoc);
                
                 $('#editDoc').show();
             }
-            
+        
         }
     });
 
@@ -33,9 +37,11 @@ $(document).on('click', '.editDoc', function () {
 $(document).on('submit', '#docs-form-edit', function (e) {
 
     e.preventDefault();
-
+ 
     let formData = new FormData(this);
     formData.append("update_doc", true);
+    formData.append("nomDocFull",nameF);
+
     for (const pair of formData.entries()) {
         console.log(`${pair[0]}, ${pair[1]}`);
       }

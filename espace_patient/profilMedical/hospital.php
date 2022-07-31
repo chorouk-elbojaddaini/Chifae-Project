@@ -92,7 +92,7 @@ echo"
                   <!-- -----------------------------Insert hospitalisations----------------------------------- -->
                   <div class="overlay hospital hide" id="hospital">
                     <form action="#" method="post" name="hospital" class="form border insert" id="hospital-form">
-                      <button class="close_form" id="hospital-btn" name="close-insert-hospital"> <i class="uis uis-multiply closeF"></i> </button> 
+                      <button class="close_form" onclick="hideForm()"id="hospital-btn" name="close-insert-hospital"> <i class="uis uis-multiply closeF"></i> </button> 
                     
                               <label >
                                 Cause : 
@@ -117,7 +117,7 @@ echo"
                   <!-- -----------------------------update hospitalisations----------------------------------- -->
                   <div class="overlay hospital hide" id="hospital1">
                     <form action="#" method="post" name="hospital" class="form border update" id="hospital-form-update">
-                      <button class="close_form" id="hospital-btn-close" name="close-update-hospital"> <i class="uis uis-multiply closeF"></i> </button> 
+                      <button class="close_form" onclick="hideForm()"id="hospital-btn-close" name="close-update-hospital"> <i class="uis uis-multiply closeF"></i> </button> 
                               <input type="hidden" name="idH" id="hosp" >
                               
                               <label >

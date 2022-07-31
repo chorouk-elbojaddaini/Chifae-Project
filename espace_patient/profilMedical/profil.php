@@ -154,7 +154,7 @@ if (mysqli_num_rows($display) > 0)
        <!-- ---------------------------update form--------------- -->
        <div class="overlay profil hide over-prof" id="profil" >
                     <form action="" method="post" name="profil" class="form border update" id="profil-form-update">
-                    <button class="close_form" id="profil-btn-close" name="close-update-profil"  > <i class="uis uis-multiply closeF"></i> </button> 
+                    <button class="close_form" onclick="hideForm()"id="profil-btn-close" name="close-update-profil"  > <i class="uis uis-multiply closeF"></i> </button> 
                                   <input type="hidden" name="idP" id="idP" >
                                 
                             <div class="profil-inputs">
@@ -170,10 +170,10 @@ if (mysqli_num_rows($display) > 0)
                               date de naissance : 
                               <input type="date"  id="nais" name="nais"   />
                           </label>
-                          <label >
+                          <!-- <label >
                             Email : 
                             <input type="email"  id="mail"name="mail"   />
-                        </label>
+                        </label> -->
                                 <label >
                                     Tél :
                                     <input type ="text"name="tel"  id="tel"  pattern="(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}" placeholder="+212 / 0....">

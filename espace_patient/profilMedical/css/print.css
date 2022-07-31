@@ -39,6 +39,12 @@
         height: max-content;
         border-collapse: collapse !important;
         page-break-inside: auto !important;
+        border-collapse: collapse;
+        width:100%;
+        table-layout: fixed;
+        overflow-wrap: break-word;  
+        word-wrap: break-word; 
+        word-break: break-word;
         /* page-break-after: auto!important; */
         }
      
@@ -67,13 +73,14 @@
               page-break-inside: avoid !important;
             } */
      
-        td,th{
+        td,th,table{
             border: solid 2px rgb(41, 41, 41);
         }
         th:last-child, td:last-child
         {
           display: none;
           border: none;
+          
         }
   
         /* table { page-break-after:auto }

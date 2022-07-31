@@ -46,7 +46,7 @@ function table_doc($doc,$res)
   echo"
       $res
       <div class='table-scroll'>
-      <table id='maladie-table'>
+      <table id='doc-table'>
     <thead>
       <tr>
         <th>Nom du document</th>
@@ -236,7 +236,7 @@ echo"
                
       <div class="overlay docs hide" id="doc">
         <form   class="form border docForm" id="docs-form" enctype="multipart/form-data" >
-        <button class="close_form" id="close-add-doc"> <i class="uis uis-multiply closeF"></i> </button> 
+        <button class="close_form" onclick="hideForm()"id="close-add-doc"> <i class="uis uis-multiply closeF"></i> </button> 
                 <label >
                     Nom du document : 
                     <input type="text" minlength="3" name="nom-docs" id="nom-doc" placeholder="Entrez le nom du document"  />
@@ -253,12 +253,12 @@ echo"
                 <label >
                     Catégorie :
                     <select id="category" name="category">
-                        <option value="resultats">Résultats de biologie</option>
-                        <option value="compte-rendu">Comptes rendu</option>
-                        <option value="imagerie">Imageries médicales</option>
-                        <option value="certifs">Certificats</option>
-                        <option value="piece">Pièces administratives</option>
-                        <option value="autres">autres documents</option>
+                        <option value="Résultats de biologie">Résultats de biologie</option>
+                        <option value="Comptes rendu">Comptes rendu</option>
+                        <option value="Imageries médicales">Imageries médicales</option>
+                        <option value="Certificats">Certificats</option>
+                        <option value="Pièces administratives">Pièces administratives</option>
+                        <option value="autres documents">autres documents</option>
                     </select>
                 </label>
                 <label id="choisir">
@@ -274,8 +274,10 @@ echo"
                
       <div class="overlay docs hide" id="editDoc">
         <form   class="form border docForm" id="docs-form-edit" enctype="multipart/form-data"  >
-        <button class="close_form" id="close-edit-doc"> <i class="uis uis-multiply closeF"></i> </button> 
+        <button class="close_form" onclick="hideForm()"id="close-edit-doc"> <i class="uis uis-multiply closeF"></i> </button> 
         <input type="hidden" name="doc_id" id="doc_id" >
+        <input type="hidden" name="doc_ext" id="doc_ext" >
+
                 <label >
                     Nom du document : 
                     <input type="text" minlength="3" name="nomDoc" id="nomDoc" placeholder="Entrez le nom du document"  />

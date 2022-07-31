@@ -267,13 +267,14 @@ option :hover{
   /* ---------------------GRID WRAPP----------------------------- */
   .wrapp
   {
-    margin : 40px;
-    margin-left : 80px;
+    /* margin : 40px; */
+    /* margin-left : 80px; */
     display : grid;
    grid-template-rows : max-content max-content max-content; 
     grid-template-areas : "profil profil profil"
                  "tabs page  page"
-                 "tabs page page"
+                 "tabs page page";
+                 
   }
   /* ---------------------GRID Contenaire page documents----------------------------- */
   .contenaire
@@ -299,7 +300,8 @@ option :hover{
   /* justify-content: center; */
   flex-direction:row;
   width:fit-content;
-   
+  margin:20px
+
 }
 .profilDoc
 {
@@ -320,8 +322,8 @@ option :hover{
 {
   display:block;
   padding:10px;
-  font-size : 1.1rem
-
+  font-size : 1.1rem;
+  
 }
 #profil-medical 
 {
@@ -335,7 +337,9 @@ option :hover{
   /* text-align:center; */
   padding:10px 0px;
   word-wrap: wrap;
-
+  overflow-wrap: break-word;  
+  word-wrap: break-word; 
+  word-break: break-word;
 }
 #prendre-rdv {
   text-decoration: none;
@@ -436,6 +440,7 @@ padding:10px 20px
   grid-area: page;
   display:flex;
   flex-direction: column;
+  /* margin-right:20px */
   /* grid-template-columns: max-content; */
   /* grid-template-rows: fit-content max-content; */
   /* grid-template-areas: "description "
@@ -647,11 +652,15 @@ table
   border-radius:5px;
   background-color: rgba(178, 178, 178, 0.639);
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  /* overflow-wrap: break-word;  
+  word-wrap: break-word; 
+  word-break: break-word; */
 }
 .doctor-tables,.historique-table,.table-scroll
 {
   overflow-x:auto;
-  /* width:90vw */
+  width:80vw
+
 
 }
 th,td
@@ -1283,7 +1292,13 @@ grid-area:cam
 /* ----------------------------Tablette/ipad media------------------------ */
 @media (min-width: 481px)and(max-width:767px)
 {
-  
+  .doctor-tables,.historique-table,.table-scroll
+{
+  overflow-x:auto;
+  width:90vw
+
+
+}
 }
 /* -------------------------Medium ------------------------------- */
 @media (min-width:768px) and (max-width:991px)
@@ -1448,6 +1463,13 @@ margin-right:30px;
  display:none;
  
 }
+.doctor-tables,.historique-table,.table-scroll
+{
+  overflow-x:auto;
+  width:60vw
+
+
+}
 }
 /* -------------------------large------------------------------ */
 @media (min-width:992px) and (max-width:1119px)
@@ -1470,10 +1492,11 @@ margin-right:30px;
  padding:0px;
  margin:10px
 }
-.doctor-tables,.historique-table
+.doctor-tables,.historique-table,.table-scroll
 {
   overflow-x:auto;
   width:70vw
+
 
 }
 
@@ -1497,7 +1520,9 @@ margin-right:30px;
 
     margin-left:20px
   }
-  
+  .wrapp{
+    margin:40px
+  }
 }
 /* --------------------------------Xsmall & small----------------------- */
 @media (max-width:767px)
@@ -1919,12 +1944,7 @@ margin:10px auto;
 
     font-size: .9rem;
 }
-.doctor-tables,.historique-table
-{
-  overflow-x:auto;
-  width:90vw
 
-}
 .show
 {
   display: table;
@@ -1999,12 +2019,7 @@ margin:10px auto;
     flex-direction: column;
     flex-wrap: wrap;
 } */
-.doctor-tables,.historique-table
-{
-  overflow-x:auto;
-  /* width:90vw */
 
-}
 .show
 {
   display: table;
@@ -2030,7 +2045,7 @@ th{
 
 }
 #downloadDiv,.tabs {
-margin:10px auto;
+/* margin:10px auto; */
   text-align:center;
 
   padding:10px
@@ -2414,6 +2429,9 @@ margin-top: 15px !important;
     margin-right: -42% !important;
     
   }
+  .description{
+    margin:10px auto
+  }
   #downloadDiv,.tabs {
     margin:10px auto;
       text-align:center;
@@ -2444,5 +2462,12 @@ margin-top: 15px !important;
     right: 50px ;  */
     margin-right: -22% !important;
     
+  }
+  .doctor-tables,.historique-table,.table-scroll
+  {
+    overflow-x:auto;
+    width:90vw
+  
+  
   }
 }

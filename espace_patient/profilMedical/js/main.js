@@ -53,3 +53,8 @@ function autoResize() {
   this.style.height = this.scrollHeight + "px";
 }
 //===============
+function hideForm() {
+  let form = this.parentNode
+  
+  $(form).hide()
+}

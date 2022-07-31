@@ -606,7 +606,7 @@ if(isset($_POST['updateP']) )
   $nom = test_input($_POST["nom"]);
   $pre = test_input($_POST["pre"]);
   $nais = test_input($_POST["nais"]);
-  $mail = test_input($_POST["mail"]);
+//   $mail = test_input($_POST["mail"]);
   $tel = test_input($_POST["tel"]);
   $etat = test_input($_POST["etat"]);
   $adr = test_input($_POST["adr"]);
@@ -615,7 +615,7 @@ if(isset($_POST['updateP']) )
   $mut = test_input($_POST["mutuel"]);
 
   //=======================error msg about empty fields===========
-    if($nom == NULL || $pre == NULL || $mail == NULL||  $nais == NULL || $tel == NULL  || $sexe == NULL||  $mut == NULL )
+    if($nom == NULL || $pre == NULL ||  $nais == NULL || $tel == NULL  || $sexe == NULL||  $mut == NULL )
     {
         $res = [
             'status' => 422,
@@ -627,9 +627,9 @@ if(isset($_POST['updateP']) )
     //========================update to the new values===============
     else
 {
-    $update = "UPDATE dossiermedical SET nom='$nom',prenom='$pre',dateNaissance='$nais',sexe='$sexe',email='$mail',tel='$tel',adresse='$adr',etatCivil='$etat',groupSanguin='$grp',mutuelle='$mut'
+    $update = "UPDATE dossiermedical SET nom='$nom',prenom='$pre',dateNaissance='$nais',sexe='$sexe',tel='$tel',adresse='$adr',etatCivil='$etat',groupSanguin='$grp',mutuelle='$mut'
                 WHERE   id='$id'";
-    $updatePat = "UPDATE patient SET nom='$nom',prenom='$pre',datenaissace='$nais',sexe='$sexe',email='$mail',numero='$tel'
+    $updatePat = "UPDATE patient SET nom='$nom',prenom='$pre',datenaissace='$nais',sexe='$sexe',numero='$tel'
                  WHERE   email='{$_SESSION['SESSION_EMAIL']}'";
     $update_run = mysqli_query($conn, $update);
     $update_run_pat = mysqli_query($conn, $updatePat);

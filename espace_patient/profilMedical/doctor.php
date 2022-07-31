@@ -100,7 +100,8 @@ function vanish() {
 <div class="containerD" id="blur">
 
 <div class="navbar">
-    <section class="top-nav"><!--nav bar-->
+    <section class="top-nav">
+      <!--nav bar-->
         <div class="navLogo">
             <img class="logo" src="./assets/logo.png" alt="#">
             <span class="chifaeNav">Shifae</span>
@@ -160,7 +161,7 @@ function vanish() {
         </div>
         
         <div id="heading" class="hid">
-        <img src="./images/logo1.png" alt="logo" class="logo" width="100px" height="100px"/>
+        <img src="logo1.png" alt="logo" class="logo" width="100px" height="100px"/>
           <p>Dossier Médical :</p>
           <p><?php echo $row['nom']."  ".$row['prenom']; ?></p>
           <hr>
@@ -241,7 +242,7 @@ function vanish() {
                    <!-- ---------------------------update form--------------- -->
        <div class="overlay profil hide over-prof" id="profil" >
                     <form action="" method="POST" name="profil" class="form border update" id="profil-form-update">
-                    <button class="close_form" id="profil-btn-close" name="close-update-profil" > <i class="uis uis-multiply closeF"></i> </button> 
+                    <button class="close_form" onclick="hideForm()"id="profil-btn-close" name="close-update-profil" > <i class="uis uis-multiply closeF"></i> </button> 
                                   <input type="hidden" name="idP" id="idP" >
                                 
                             <div class="profil-inputs">
@@ -257,10 +258,10 @@ function vanish() {
                               date de naissance : 
                               <input type="date"  id="nais" name="nais"   />
                           </label>
-                          <label >
+                          <!-- <label >
                             Email : 
                             <input type="email"  id="mail"name="mail"   />
-                        </label>
+                        </label> -->
                                 <label >
                                     Tél :
                                     <input type ="text"name="tel"  id="tel"  pattern="(\+212|0)([ \-_/]*)(\d[ \-_/]*){9}" placeholder="+212 / 0....">
@@ -320,7 +321,7 @@ function vanish() {
                     
                     <!-- -----------------filtring data--------------------------- -->
                     <div class="filters">
-                      <form action="doctor.php#maladieS" method="POST" id="by_date" >
+                      <form action="" method="POST" id="by_date" >
                         <select name="byDate">
                         <option name="tous" value="tous" <?php if(isset($_SESSION['searchM'])){if($_SESSION['dateMal']=="tous"){echo "selected";} }?>>Tous</option>
                             <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchM'])){if($_SESSION['dateMal']=="cemois"){echo "selected";} }?>>ce mois</option>
@@ -403,7 +404,7 @@ function vanish() {
                   ?>
                           <!-- -----------------filtring data--------------------------- -->
                     <div class="filters">
-                      <form action="doctor.php#traiteS" method="POST" id="by_date">
+                      <form action="" method="POST" id="by_date">
                         <select name="byDate">
                         <option name="tous" value="tous" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="tous"){echo "selected";} }?>>Tous</option>
                             <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchTr'])){if($_SESSION['dateT']=="cemois"){echo "selected";} }?>>ce mois</option>
@@ -482,7 +483,7 @@ function vanish() {
                  
                       <!-- -----------------filtring data--------------------------- -->
                       <div class="filters">
-                      <form action="doctor.php#hospitalS" method="POST" id="by_date">
+                      <form action="" method="POST" id="by_date">
                         <select name="byDateH">
                         <option name="tous" value="tous" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="tous"){echo "selected";} }?>>Tous</option>
                             <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchHos'])){if($_SESSION['dateH']=="cemois"){echo "selected";} }?>>ce mois</option>
@@ -561,7 +562,7 @@ function vanish() {
                     }
                     ?>
                     <div class="filters"> 
-                      <form action="doctor.php#allergieS" method="POST" id="filter">
+                      <form action="" method="POST" id="filter">
                        
                         <input type="text" name="searchA" id="search" placeholder='nom ...'value="<?php if(isset($_SESSION['searchAlg'])){echo $_SESSION['searchAl'];}?>">
                         <button type="submit" name="searchAlg" class="searchBtn">
@@ -637,7 +638,7 @@ function vanish() {
                                    }
                           ?>
                     <div class="filters">
-                      <form action="doctor.php#vaccinS" method="POST" id="by_date">
+                      <form action="" method="POST" id="by_date">
                         <select name="byDateV">
                         <option name="tous" value="tous" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="tous"){echo "selected";} }?>>Tous</option>
                             <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchVac'])){if($_SESSION['dateV']=="cemois"){echo "selected";} }?>>ce mois</option>
@@ -715,7 +716,7 @@ function vanish() {
               ?>
               <!-- -------------------------Contenu------------------------ -->
               <div class="filters">
-                      <form action="doctor.php#mesureS" method="POST" id="by_date">
+                      <form action="" method="POST" id="by_date">
                         <select name="byDateM">
                         <option name="tous" value="tous" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="tous"){echo "selected";} }?>>Tous</option>
                             <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchMes'])){if($_SESSION['dateMes']=="cemois"){echo "selected";} }?>>ce mois</option>
@@ -791,7 +792,7 @@ function vanish() {
                      }
                      ?>
                      <div class="filters">
-                      <form action="doctor.php#antecedentS" method="POST" id="filter">
+                      <form action="" method="POST" id="filter">
                        
                         <input type="text" name="searchAn" id="search" placeholder='nom ...'value="<?php if(isset($_SESSION['searchAnt'])){echo $_SESSION['searchAn'];}?>">
                         <button type="submit" name="searchAnt" class="searchBtn">
@@ -864,7 +865,7 @@ function vanish() {
              }
            ?>
            <div class="filters">
-                      <form action="doctor.php#documentS" method="POST" id="by_date">
+                      <form action="" method="POST" id="by_date">
                         <select name="byDateD">
                         <option name="tous" value="tous" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="tous"){echo "selected";} }?>>Tous</option>
                             <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchDoc'])){if($_SESSION['dateD']=="cemois"){echo "selected";} }?>>ce mois</option>
@@ -939,7 +940,7 @@ function vanish() {
                       }
                       ?>
                       <div class="filters">
-                      <form action="doctor.php#diagnosticS" method="POST" id="filter"name="diagnostic">
+                      <form action="" method="POST" id="filter"name="diagnostic">
                       <select name="byDateDg">
                       <option name="tous" value="tous" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="tous"){echo "selected";} }?>>Tous</option>
                             <option name="cemois" value="cemois" <?php if(isset($_SESSION['searchDia'])){if($_SESSION['dateDg']=="cemois"){echo "selected";} }?>>ce mois</option>
@@ -1068,7 +1069,11 @@ smallDevicesD(query1);
 
 
 </script>
-
+<script>
+    if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
 <?php
 unset($_SESSION['code_patient']);
 ?>
