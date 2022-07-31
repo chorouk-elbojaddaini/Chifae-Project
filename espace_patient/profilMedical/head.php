@@ -1,7 +1,6 @@
 <?php 
 session_start();
 error_reporting(E_ALL ^ E_WARNING);
-
 include '../../connexionDoc/cnx.php';
 if (empty($_SESSION['SESSION_EMAIL'])) {
   header("location: ../../connexionPat/logout.php");        
@@ -14,13 +13,7 @@ if (mysqli_num_rows($display) > 0)
    $row = mysqli_fetch_assoc($display);
    $_SESSION['idPatient'] =$row['id'];
  }
- if (isset($_SESSION['SESSION_EMAIL'])) {
-  header("location: index.php");        
-      die();
-      
-     
- 
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

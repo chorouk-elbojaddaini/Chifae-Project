@@ -54,8 +54,8 @@ $(document).on('submit', '#docs-form-edit', function (e) {
                 alertify.success(res.message);
                 alertify.set('notifier','position', 'top-center');
                
-                                    //   window.setTimeout(function () {window.location.reload();
-                                    // }, 700);
+                                      window.setTimeout(function () {window.location.reload();
+                                    }, 700);
                 $('#docs-form-edit')[0].reset();
                 return false;
 
@@ -67,8 +67,8 @@ $(document).on('submit', '#docs-form-edit', function (e) {
                 alertify.error(res.message);
                 alertify.set('notifier','position', 'top-center');
                                 
-                            //     window.setTimeout(function () {window.location.reload();
-                            //   }, 700);
+                                window.setTimeout(function () {window.location.reload();
+                              }, 700);
                                 return false;
             }
             //--------------empty fields error---------
@@ -77,8 +77,8 @@ $(document).on('submit', '#docs-form-edit', function (e) {
                 alertify.error(res.message);
                 alertify.set('notifier','position', 'top-center');
                                 
-                            //     window.setTimeout(function () {window.location.reload();
-                            //   }, 700);
+                                window.setTimeout(function () {window.location.reload();
+                              }, 700);
                                 return false;
             }
         }

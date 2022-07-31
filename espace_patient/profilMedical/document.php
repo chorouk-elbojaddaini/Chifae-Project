@@ -9,10 +9,7 @@ if (empty($_SESSION['SESSION_EMAIL'])) {
 }
 include'pagination.php';
 include'filter.php';
-if (isset($_SESSION['SESSION_EMAIL'])) {
-  header("location: document.php");        
-      die();
-}
+
 $display = mysqli_query($conn,"SELECT * FROM dossiermedical WHERE email='{$_SESSION['SESSION_EMAIL']}' ");
 
 if (mysqli_num_rows($display) > 0) 
@@ -203,7 +200,19 @@ echo"
        <div id="popup" class="popup">
         <div class="modal-btn"  >
           <button class="close_menu_botton2"> <i class="uis uis-multiply close2" ></i> </button> 
-            <img type="image"  src="images/profile.jpg" alt="profile" id="account">
+          <?php
+               if(empty($row['photo'] )){
+               ?>
+              <img  src="images/noprofil.jpg" alt="profile" id="account">
+               <?php
+               }
+                else{
+                  ?>
+              <img id="account" height="100" width="100" src="data:image;base64,<?php echo $row['photo'] ;?>">
+              
+              
+              <?php
+            }?>
               <h3 id="bienvenu">Bienvenue dans votre Espace de Santé</h3>
                  <a class="pop"href="profil.php" target="_blank" id="monProfil">Mes infos</a>
                  <a class="pop" href="../../connexionPat/logout.php" id="deconnect">Se déconnecter</a>
@@ -503,6 +512,9 @@ echo"
    
   })
 }
-   </script>
-   
+ 
+    if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
 </html>

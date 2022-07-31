@@ -409,6 +409,14 @@ if (pwd.getAttribute("type") == "password") {
 }
 });
    </script>
+   <script>
+    if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
+<?php
+unset($_SESSION['code_patient']);
+?>
    <!-- <script>
     if ( window.history.replaceState ) {
     window.history.replaceState( null, null, window.location.href );

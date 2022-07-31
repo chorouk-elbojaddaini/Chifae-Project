@@ -1,6 +1,5 @@
 <?php 
 session_start();
-
 include '../../connexionDoc/cnx.php';
 if (empty($_SESSION['SESSION_EMAIL'])) {
   header("location: ../../connexionPat/logout.php");        
@@ -13,11 +12,7 @@ if (mysqli_num_rows($display) > 0)
    $_SESSION['idPatient'] =$row['id'];
 
  }
- if (empty($_SESSION['SESSION_EMAIL'])) {
-  header("location: index.php");        
-      die();
 
-}
 
  ?>
 <!DOCTYPE html>
@@ -79,8 +74,10 @@ if (mysqli_num_rows($display) > 0)
               </div>
               <ul class="nav-menu">
                 <li><a href="index.php">Acceuil</a></li>
-                <li class="medecin"><a href="../profilMedical/index.php">Mon profil médical</a></li>
-                <li class="patient"><a href="../profilMedical/document.php">Documents</a></li>
+                <li class="medecin"><a href=<?php if(empty($_SESSION['SESSION_EMAIL'])){echo'#';}
+                else{echo '../profilMedical/index.php';}
+                ?> >Mon profil médical</a></li>
+                <li class="patient"><a href="../profilMedical/document.php" target="_blank">Documents</a></li>
               </ul>
               <!-- drop down medecin  -->
               <div class="dropdown">
@@ -425,5 +422,10 @@ if (mysqli_num_rows($display) > 0)
 <script src="js/script.js">
 
 </script>
+<script>
+    if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
 </body>
 </html>

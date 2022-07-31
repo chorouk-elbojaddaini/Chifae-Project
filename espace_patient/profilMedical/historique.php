@@ -212,7 +212,7 @@ echo"
                        echo'<div class="pages-btn">';
 
                        for ($i=1; $i <= $total_pages ; $i++){  
-                           echo "<a class='pagination'href='?pageDg=".$i."#diagnosticS'>".$i."</a>" ;
+                           echo "<a class='pagination'href='?page=".$i."'>".$i."</a>" ;
                          } 
                          echo'</div>';
 

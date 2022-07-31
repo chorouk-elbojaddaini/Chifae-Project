@@ -82,7 +82,14 @@
 <script src="js/docDisplay.js" defer></script>
 <script src="js/docEdit.js" defer></script>
 
-
+<script>
+    if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
+<?php
+unset($_SESSION['code_patient']);
+?>
 </html>
     <!-- ================sripts================================================= -->
     
