@@ -16,7 +16,7 @@ $arrayData = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
                }
                 else{
                   ?>
-                    <img  src="../images/avatar.jpeg" alt="profile" id="photo" style="width:100px; height:100px; margin-left:-9px; margin-top:-110px" class="medecinNophoto">
+                    <img  src="../images/avatar.jpeg" alt="profile" id="photo" style="width:100px; height:100px; margin-left:20px; margin-top:-110px" class="medecinNophoto">
               
               
               <?php

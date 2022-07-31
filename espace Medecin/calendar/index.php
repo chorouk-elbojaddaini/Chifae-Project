@@ -63,11 +63,11 @@ $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
 
 <a href="../../pageAcceuil/index.php">
 
-                <img class="logo" src="images/logo.png" alt="#">
+                <img class="logo" src="images/logo.png" alt="#" style ="height:48px; margin-bottom:7px">
 </a>
         <a href="../../pageAcceuil/index.php">
 
-                <span class="chifaeNav">Shifae</span>
+                <span class="chifaeNav" style ="font-family:'Poppins">Shifae</span>
 </a>
             </div>
       <input id="menu-toggle" type="checkbox" />
@@ -76,10 +76,10 @@ $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
       </label>
       <ul class="menu">
           <li>
-              <a  class="nav-links pink" href="../../pageAcceuil">Acceuil</a>
+              <a  class="nav-links pink" href="../../pageAcceuil" style ="font-family:'Poppins">Acceuil</a>
           </li>
           <li>
-              <a  class="nav-links " href="../../connexionDoc/logout.php"><i class="fa-solid fa-arrow-right-from-bracket icon .logout "></i> Deconnexion</a>
+              <a  class="nav-links " href="../../connexionDoc/logout.php" style ="font-family:'Poppins"><i class="fa-solid fa-arrow-right-from-bracket icon .logout " ></i> Deconnexion</a>
           </li>
           
           
@@ -94,7 +94,7 @@ $medecin_shuffle = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
          }
           else{
             ?>
-              <img  src="images/avatar.jpeg" alt="profile" id="photo" style="width:55px;" class="imageNavbar">
+              <img  src="images/avatar.jpeg" alt="profile" id="photo" style="width:55px; margin-bottom:7px" class="imageNavbar">
         
         
         <?php
