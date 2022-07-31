@@ -77,3 +77,4 @@ $arrayData = $medecin->getData('medecin',$_SESSION['SESSION_EM']);
         </div><!--bottom section end-->
         
     </div> <!--side bar end-->
+   
