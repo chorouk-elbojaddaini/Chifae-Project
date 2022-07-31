@@ -14,7 +14,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 
     if(empty( $_SESSION['choixOption']))
     {
-    $_SESSION['choixOption']='all';
+    $_SESSION['choixOption']='tous';
     
     }
     if(isset($_POST['submit']))
@@ -37,10 +37,10 @@ error_reporting(E_ALL & ~E_NOTICE);
      <a class="appointment" href="#"  onclick= "toggle()"><i class="uil uil-plus-circle" style="color:white;"></i> RDV</a>
         <form method= "post" id="frm">
             <select class="select" name="choix" id="dateFilter">
-                <option name = "all" value="all" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="all"){echo "selected";} }?>>all</option>
-                <option name = "today" value="today" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="today"){echo "selected";} }?>>Today</option>
-                <option name = "yesterday" value="yesterday" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="yesterday"){echo "selected";} }?>>Yesterday</option>
-                <option name = "tomorrow" value="tomorrow" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="tomorrow"){echo "selected";} }?>>Tomorrow</option>
+                <option name = "tous" value="tous" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="tous"){echo "selected";} }?>>tous</option>
+                <option name = "aujoudhui" value="aujoudhui" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="aujoudhui"){echo "selected";} }?>>aujoud'hui</option>
+                <option name = "hier" value="hier" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="hier"){echo "selected";} }?>>hier</option>
+                <option name = "demain" value="demain" <?php if(isset($_SESSION['submit'])){if($_SESSION['choixOption']=="demain"){echo "selected";} }?>>demain</option>
             </select>
             <button class="ok" type = "submit" name = "submit" id = "buttonSubmit"><i class="fa-solid fa-magnifying-glass fa-lg"></i></button>
             
