@@ -93,36 +93,35 @@
       <!-- end nav  -->
       <div class="container-up">
         <h4>ABOUT US </h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa repellat sint quaerat assumenda nisi, </p>
+        <p>Bienvenue sur notre site Shifae ! </p>
+        <p>Le projet Shifae représente une plateforme de gestion des rendez-vous en ligne entre les médecins et les patients  </p>
       
       <div class="container-about">
         <div class="img-about">
             <img src="assets/Consulting-rafiki.svg" alt="img ">
         </div>
         <div class="text-about">
-            <p>Lorem Ipsum Sit Amet Consecteur AAdipilsing Elit 
+            <p>
+            elle comporte un espace patient qui permet à ce dernier d’avoir son dossier médical accessible par ses médecins
             </p>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Debitis magnam nulla molestias veniam ut aliquid. Minus magnam.</p>
-            
+              <p>  ajouter ses informations personnelles ainsi que son historique de soin , ses traitements, ses maladies, ses mesures , ses antécédents familiaux de plus ses vaccinations et allergies, comme il a la possibilité d’importer ses documents médicaux à titre d’exemple résultats de biologies, comptes rendus, imageries médicales...
+Comme elle comporte un espace médecin contenant les fonctionnalités nécessaires aux médecins pour une efficiente gestion de leurs rendez-vous en utilisant un calendrier qui leurs permet de visualiser leurs rendez-vous .
+</p>          
                <div class="icon-with">
                 <img src="assets/check.png" alt="imgee" class="icons">
-                <p class="white">Lorem upset lorem</p>
+                <p class="white">Prise de RDV</p>
             </div>
             <div class="icon-with">
                 <img src="assets/check.png" alt="imgee" class="icons">
-                <p class="white">Lorem upset lorem</p>
+                <p class="white">Espace Patient</p>
             </div>
             <div class="icon-with">
                 <img src="assets/check.png" alt="imgee" class="icons">
-                <p class="white">Lorem upset lorem</p>
+                <p class="white">Dossier Médical</p>
             </div>
-            <div class="icon-with">
-                <img src="assets/check.png" alt="imgee" class="icons">
-                <p class="white">Lorem upset lorem</p>
-            </div>
-            <p class="class">Lorem, ipsum dolor sit amet consectetur adipisicing elit. </p>
-            <p class="class">Lorem, ipsum dolor sit amet consectetur adipisicing elit.Lorem ipsum ipsum</p>
+          
+            <!-- <p class="class">Lorem, ipsum dolor sit amet consectetur adipisicing elit. </p> -->
+            <p class="class">les visiteurs du site cherchant de prendre un rendez-vous.</p>
             
         </div>
       </div>
